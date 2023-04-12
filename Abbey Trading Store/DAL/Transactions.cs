@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net;
+using System.Net.Http;
 using System.Data;
 using System.Data.OleDb;
+using System.Net.Http.Headers;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using Abbey_Trading_Store.DAL.DAL_Properties;
+using System.Runtime.CompilerServices;
 
 namespace Abbey_Trading_Store.DAL
 {
@@ -24,21 +31,81 @@ namespace Abbey_Trading_Store.DAL
         private string paid;
         private string taken;
 
-        // properties
-        public int id { get { return ID; } set { ID = value; } }
-        public string Type { get { return type; } set { type = value; } }
-        public string Dea_Cust_name { get { return dea_cust_name; } set { dea_cust_name = value; } }
-        public int GrandTotal { get { return grandTotal; } set { grandTotal = value; } }
-        public DateTime Transaction_date { get { return transaction_date; } set { transaction_date = value; } }
-        public int Discount { get { return discount; } set { discount = value; } }
-        public string Added_by { get { return added_by; } set { added_by = value; } }
-        public int Return_amount { get { return return_amount; } set { return_amount = value; } }
-        public int Paid_amount { get { return paid_amount; } set { paid_amount = value; } }
-        public int Total_Profit { get { return total_profit; } set { total_profit = value; } }
-        public string Paid { get { return paid; } set { paid = value; } }
-        public string Taken { get { return taken; } set { taken = value; } }
+        // Instantiating a new object of TransactionsProps
+        TransactionsProps newtransaction = new TransactionsProps();
 
-        
+
+        // properties
+        public int id { get { return ID; } set { 
+                ID = value;
+                newtransaction.id = value;
+            }
+        }
+        public string Type { get { return type; } set { 
+                type = value;
+                newtransaction.Type = value;
+            }
+        }
+        public string Dea_Cust_name { get { return dea_cust_name; } set { 
+                dea_cust_name = value;
+                newtransaction.Dea_Cust_name = value;
+            }
+        }
+        public int GrandTotal { get { return grandTotal; } set { 
+                grandTotal = value;
+                newtransaction.GrandTotal = value;
+            }
+        }
+        public DateTime Transaction_date { get { return transaction_date; } set { 
+                transaction_date = value;
+                newtransaction.Transaction_date = value;
+            }
+        }
+        public int Discount { get { return discount; } set { 
+                discount = value;
+                newtransaction.Discount = value;
+            }
+        }
+        public string Added_by { get { return added_by; } set { 
+                added_by = value;
+                newtransaction.Added_by = value;
+            }
+        }
+        public int Return_amount { get { return return_amount; } set { 
+                return_amount = value;
+                newtransaction.Return_amount = value;
+            }
+        }
+        public int Paid_amount { get { return paid_amount; } set { 
+                paid_amount = value; 
+                newtransaction.Paid_amount = value;
+            }
+        }
+        public int Total_Profit { get { return total_profit; } set { 
+                total_profit = value;
+                newtransaction.Total_Profit = value;
+            }
+        }
+        public string Paid { get { return paid; } set { 
+                paid = value;
+                newtransaction.Paid = value;
+            }
+        }
+        public string Taken { get { return taken; } set { 
+                taken = value;
+                newtransaction.Taken = value;
+            }
+        }
+
+        // Declaring the new HTTP client
+        HttpClient client = new HttpClient();
+
+
+
+        //Global uri
+        string uri = Env.debug_enabled ? (Env.debug_url) : (Env.live_url);
+
+
 
         #region Insert Transactions
         public int Insert()
@@ -82,6 +149,30 @@ namespace Abbey_Trading_Store.DAL
             return transID;
         }
         #endregion
+
+        public async Task<bool> insert2()
+        {
+            //Posting to online server
+            string derived_uri = uri + "/createTransaction/";
+            var stringPayload = JsonConvert.SerializeObject(newtransaction);
+
+            // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
+            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(derived_uri, httpContent);
+
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        
 
         #region Showing all Transactions 
         public DataTable DisplayAllTransactions()
@@ -185,7 +276,32 @@ namespace Abbey_Trading_Store.DAL
 
             return isSuccess;
         }
+
+    
         #endregion
+
+        public async Task<bool> UpdatePayment2(int TransactionId, int amount, int paid_amount, bool cleared)
+        {
+            //Posting to online server
+            string derived_uri = uri + "/updatetransaction/" + TransactionId + "/" + amount + "/" + paid_amount + "/" + cleared + "/";
+            var stringPayload = JsonConvert.SerializeObject(newtransaction);
+
+            // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
+            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.GetAsync(derived_uri);
+
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
 
         #region Search DebtsOrCredits
         public DataTable SearchCreditorsDebtors(string type, string keywords)
@@ -253,6 +369,30 @@ namespace Abbey_Trading_Store.DAL
             return isSuccess;
         }
         #endregion
+
+        public async Task<bool> InsertTransactionTrack2(string[] args)
+        {
+            //Posting to online server
+            string derived_uri = uri + "/createtrack/" + args[0] + "/" + args[1] + "/" + args[2] + "/";
+            var stringPayload = JsonConvert.SerializeObject(newtransaction);
+
+            // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
+            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(derived_uri, httpContent);
+
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
 
         #region Getting all Debts or Credits
         public OleDbDataAdapter GetAllDebtsCredits(string type)

@@ -24,6 +24,7 @@ namespace Abbey_Trading_Store.UI
         Transactions Ts = new Transactions();
         public static string lblName;
         public static DateTime date;
+        public static int transaction_id;
         DataTable flexible = new DataTable();
 
         
@@ -162,6 +163,7 @@ namespace Abbey_Trading_Store.UI
 
         private void Show_all_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             DataTable dt_showAll = Ts.DisplayAllTransactions();    
             flexible = dt_showAll;
             dgv_transactions.DataSource = flexible;
@@ -201,6 +203,7 @@ namespace Abbey_Trading_Store.UI
             txtbx_discounts.Text = "Shs. " + profit_holder.ToString("N0");
             Cateory_combobox.Text = "";
             checkBox1.Checked = false;
+            Cursor = Cursors.Default;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -213,6 +216,7 @@ namespace Abbey_Trading_Store.UI
             int row = e.RowIndex;
             string name = dgv_transactions.Rows[row].Cells[2].Value.ToString();
             DateTime time = Convert.ToDateTime(dgv_transactions.Rows[row].Cells[4].Value.ToString());
+            transaction_id = int.Parse(dgv_transactions.Rows[row].Cells[0].Value.ToString());
             lblName = name;
             date = time;
             //TransactionDetail Td = new TransactionDetail();
@@ -223,6 +227,7 @@ namespace Abbey_Trading_Store.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             DGVPrinter Printer = new DGVPrinter();
             Printer.Title = "\r\n\r\n\r\n MMAK AGRO CHEMICALS Ltd \r\n\r\n";
             Printer.SubTitle = "Busega kampala \r\n Phone: 0754066646\r\n\r\n";
@@ -234,6 +239,7 @@ namespace Abbey_Trading_Store.UI
             Printer.Footer = "\r\n\r\n Report for All the Transactions";
             Printer.FooterSpacing = 15;
             Printer.PrintDataGridView(dgv_transactions);
+            Cursor = Cursors.Default;
         }
 
         private void dgv_transactions_CellContentClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
@@ -373,6 +379,14 @@ namespace Abbey_Trading_Store.UI
         private void txtbx_total_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void analysis_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            frmAnalysis form = new frmAnalysis();
+            form.Show();
+            Cursor = Cursors.Default;
         }
     }
 }

@@ -56,8 +56,9 @@ namespace Abbey_Trading_Store.UI
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             product product = new product();
             product.products = name.Text;
             product.Category = category_comboBox1.Text;
@@ -69,14 +70,17 @@ namespace Abbey_Trading_Store.UI
             try
             {
                 bool check = product.add();
+                var success = await product.insert2();
                 if (check == true)
                 {
+                    Cursor = Cursors.Default;
                     MessageBox.Show("Product successfully inserted");
                     clear();
 
                 }
                 else
                 {
+                    Cursor = Cursors.Default;
                     MessageBox.Show("An error occured. Please check your entries");
                 }
 
@@ -84,6 +88,7 @@ namespace Abbey_Trading_Store.UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+               
             }
             finally
             {
@@ -95,6 +100,7 @@ namespace Abbey_Trading_Store.UI
                 dgv_product.DataSource = dt;
                 conn.Close();
             }
+            Cursor = Cursors.Default;
         }
 
         private void dgv_product_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -110,8 +116,9 @@ namespace Abbey_Trading_Store.UI
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private async void button4_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             product product = new product();
             product.Id = Convert.ToInt32(id.Text);
             product.products = name.Text;
@@ -121,13 +128,16 @@ namespace Abbey_Trading_Store.UI
             product.Selling_price = decimal.Parse(SP_txtbx.Text);
             product.Added_by = Login_form.user;
             bool check = product.update();
+            var success = await product.update2();
             if (check == true)
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show(name.Text+" successfully updated.");
                 clear();
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Failed to update "+name.Text+" .Please check your entries");
             }
             DataTable dt = new DataTable();
@@ -148,18 +158,23 @@ namespace Abbey_Trading_Store.UI
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             product product = new product();
             product.Id = Convert.ToInt32(id.Text);
+            product.products = name.Text;
             bool check = product.delete();
+            var success = await product.delete2();
             if (check == true)
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show(name.Text + " successfully deleted.");
                 clear();
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Failed to delete " + name.Text + ".");
             }
             DataTable dt = new DataTable();
@@ -168,6 +183,7 @@ namespace Abbey_Trading_Store.UI
             adapter.Fill(dt);
             dgv_product.DataSource = dt;
             conn.Close();
+            Cursor = Cursors.Default;
         }
     }
 }

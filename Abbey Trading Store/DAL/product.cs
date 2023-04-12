@@ -2,10 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Data;
 using System.Data.OleDb;
 using System.Windows.Forms;
+using Abbey_Trading_Store.DAL.DAL_Properties;
+using Newtonsoft.Json;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 
 namespace Abbey_Trading_Store.DAL
 {
@@ -22,16 +29,63 @@ namespace Abbey_Trading_Store.DAL
         private DateTime added_date;
         private string added_by;
 
+        ProductsProps productprop = new ProductsProps();
+
         // properties
-        public int Id { get { return id; } set { id = value; } }
-        public string products { get { return Product; } set { Product = value; } }
-        public string Category { get { return category; } set { category = value; } }
-        public string Description { get { return description; } set { description = value; } }
-        public decimal Rate { get { return rate; } set { rate = value; } }
-        public decimal Selling_price { get { return selling_price; } set { selling_price = value; } }
-        public decimal Quantity { get { return quantity; } set { quantity = value; } }
-        public DateTime Added_date { get { return added_date; } set { added_date = value; } }
-        public string Added_by { get { return added_by; } set { added_by = value; } }
+        public int Id { get { return id; } set { 
+                id = value; 
+                productprop.Id = value;
+            }
+        }
+        public string products { get { return Product; } set {
+                Product = value;
+                productprop.products = value;
+            }
+        }
+        public string Category { get { return category; } set { 
+                category = value;
+                productprop.Category = value;
+            }
+        }
+        public string Description { get { return description; } set { 
+                description = value;
+                productprop.Description = value;
+            }
+        }
+        public decimal Rate { get { return rate; } set { 
+                rate = value;
+                productprop.Rate = value;
+            }
+        }
+        public decimal Selling_price { get { return selling_price; } set { 
+                selling_price = value;
+                productprop.Selling_price = value;
+            }
+        }
+        public decimal Quantity { get { return quantity; } set { 
+                quantity = value;
+                productprop.Quantity = value;
+            }
+        }
+        public DateTime Added_date { get { return added_date; } set { 
+                added_date = value;
+                productprop.Added_date = value;
+            }
+        }
+        public string Added_by { get { return added_by; } set { 
+                added_by = value;
+                productprop.Added_by = value;
+            }
+        }
+
+        // Declaring the new HTTP client
+        HttpClient client = new HttpClient();
+
+
+
+        //Global uri
+        string uri = Env.debug_enabled ? (Env.debug_url) : (Env.live_url);
+        
 
         #region SELECT
         public OleDbDataAdapter select (){
@@ -100,6 +154,28 @@ namespace Abbey_Trading_Store.DAL
         }
         #endregion
 
+        public async Task<bool> insert2()
+        {
+            //Posting to online server
+            string derived_uri = uri + "/createproduct/";
+            var stringPayload = JsonConvert.SerializeObject(productprop);
+
+            // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
+            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(derived_uri, httpContent);
+
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         #region UPDATE
         public bool update()
         {
@@ -143,6 +219,25 @@ namespace Abbey_Trading_Store.DAL
 
         }
         #endregion
+
+        public async Task<bool> update2()
+        {
+            string derived_uri = uri + "/updateProduct/";
+            //Serialize object
+            var Stringpayload = JsonConvert.SerializeObject(productprop);
+            var httpContent = new StringContent(Stringpayload, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PutAsync(derived_uri, httpContent);
+
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         #region SEARCH
         public DataTable search(string keywords)
@@ -208,6 +303,24 @@ namespace Abbey_Trading_Store.DAL
 
         }
         #endregion
+        public async Task<bool> delete2()
+        {
+            string derived_uri = uri + "/deleteproduct/" + Id + "/";
+            //Serialize object
+            var Stringpayload = JsonConvert.SerializeObject(productprop);
+            var httpContent = new StringContent(Stringpayload, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.DeleteAsync(derived_uri);
+
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         #region Search for product in transaction module
         public DataTable Search(string keywords)
@@ -284,8 +397,31 @@ namespace Abbey_Trading_Store.DAL
         }
         #endregion
 
+        public async Task<bool> quantityupdate2(decimal quantity, string productName)
+        {
+            //Posting to online server
+            string derived_uri = uri + "/updateQuantity/" + productName + "/" + quantity + "/";
+            var stringPayload = JsonConvert.SerializeObject(productprop);
+
+            // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
+            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(derived_uri, httpContent);
+
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
         #region Update the product quantity
-        public bool QuantityUpdate(decimal quantity ,string productName )
+        public async Task<bool> QuantityUpdate(decimal quantity ,string productName )
         {
             bool success = false;
             const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
@@ -298,6 +434,7 @@ namespace Abbey_Trading_Store.DAL
                 cmd.Parameters.AddWithValue("@product", productName);
                 conn.Open();
                 int rows = cmd.ExecuteNonQuery();
+                var server_side = await quantityupdate2(quantity, productName);
                 if (rows > 0)
                 {
                     success = true;
@@ -322,8 +459,10 @@ namespace Abbey_Trading_Store.DAL
         }
         #endregion
 
+        
+
         #region Increase the product quantity 
-        public bool IncreaseProduct(decimal quantity, string Product_name)
+        public async Task<bool> IncreaseProduct(decimal quantity, string Product_name)
         {
             bool success = false;
             const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
@@ -337,7 +476,7 @@ namespace Abbey_Trading_Store.DAL
                 decimal result = Qty + quantity;
 
                 //Updating the quantity in the database
-                bool check = QuantityUpdate(result, Product_name);
+                bool check = await QuantityUpdate(result, Product_name);
 
                 // verification
                 if (check == true)
@@ -365,7 +504,7 @@ namespace Abbey_Trading_Store.DAL
         #endregion
 
         #region Decrease the product Quantity
-        public bool DecreaseProduct(decimal quantity, string Product_name)
+        public async Task<bool> DecreaseProduct(decimal quantity, string Product_name)
         {
             bool success = false;
             const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
@@ -379,7 +518,7 @@ namespace Abbey_Trading_Store.DAL
                 decimal result = Qty - quantity;
 
                 //Updating the quantity in the database
-                bool check = QuantityUpdate(result, Product_name);
+                bool check = await QuantityUpdate(result, Product_name);
 
                 // verification
                 if (check == true)
@@ -470,6 +609,28 @@ namespace Abbey_Trading_Store.DAL
         }
         #endregion
 
+        public async Task<bool> Batchupload(List<ProductsProps>products)
+        {
+            //Posting to online server
+            string derived_uri = uri + "/BatchUpload/";
+            var stringPayload = JsonConvert.SerializeObject(products);
+
+            // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
+            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(derived_uri, httpContent);
+
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
 
 
 

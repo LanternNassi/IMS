@@ -40,8 +40,9 @@ namespace Abbey_Trading_Store.UI
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             DealerAndCustomer DC = new DealerAndCustomer();
             //DC.Id = Convert.ToInt32(id.Text);
             DC.Type = type_comboBox1.Text;
@@ -51,8 +52,10 @@ namespace Abbey_Trading_Store.UI
             DC.Address = address.Text;
             DC.Added_by = Login_form.user;
             bool check = DC.Insert();
+            var iSuccess = await DC.insert2();
             if (check == true)
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show(name.Text + " successfully added.");
                 clear();
                 DataTable dt = DC.Select();
@@ -60,6 +63,7 @@ namespace Abbey_Trading_Store.UI
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Failed to add " + name.Text);
             }
 
@@ -84,8 +88,9 @@ namespace Abbey_Trading_Store.UI
             address.Text = dgv_dcust.Rows[row].Cells[5].Value.ToString();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private async void button4_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             DealerAndCustomer DC = new DealerAndCustomer();
             DC.Id = Convert.ToInt32(id.Text);
             DC.Type = type_comboBox1.Text;
@@ -94,8 +99,10 @@ namespace Abbey_Trading_Store.UI
             DC.Contact = contact.Text;
             DC.Address = address.Text;
             bool check = DC.Update();
+            var isSuccess = await DC.update2();
             if (check == true)
             {
+                Cursor = Cursors.Default;
                 DataTable dt = DC.Select();
                 dgv_dcust.DataSource = dt;
                 MessageBox.Show(name.Text + " successfully updated.");
@@ -103,18 +110,22 @@ namespace Abbey_Trading_Store.UI
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Failed to update" + name.Text);
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             DealerAndCustomer DC = new DealerAndCustomer();
             DC.Id = Convert.ToInt32(id.Text);
+            DC.Name = name.Text;
             bool check = DC.Delete();
+            var success = await DC.delete2();
             if (check == true)
             {
-                
+                Cursor = Cursors.Default;
                 DataTable dt = DC.Select();
                 dgv_dcust.DataSource = dt;
                 MessageBox.Show(name.Text + " successfully deleted.");
@@ -122,8 +133,10 @@ namespace Abbey_Trading_Store.UI
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Failed to delete " + name.Text);
             }
+            Cursor = Cursors.Default;
 
         }
     }

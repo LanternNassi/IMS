@@ -1,94 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
-  <DataSources>
-    <DataSource Name="Abbey_Trading_StoreInvoice">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>f008b058-35f9-44be-af89-d23a91cf5081</rd:DataSourceID>
-    </DataSource>
-  </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Report">
-      <Fields>
-        <Field Name="product_name">
-          <DataField>product_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Qty">
-          <DataField>Qty</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="rate">
-          <DataField>rate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="total">
-          <DataField>total</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>Abbey_Trading_StoreInvoice</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Abbey_Trading_Store.Invoice</rd:DataSetName>
-        <rd:TableName>Datatable_invoiceDataTable</rd:TableName>
-        <rd:ObjectDataSourceType>Abbey_Trading_Store.Invoice.Abbey_Trading_StoreDataSet+Datatable_invoiceDataTable, Invoice.Abbey_Trading_StoreDataSet.Designer.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="DataSet_details">
-      <Fields>
-        <Field Name="ID">
-          <DataField>ID</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="type">
-          <DataField>type</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="dea_cust_name">
-          <DataField>dea_cust_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="grandTotal">
-          <DataField>grandTotal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="transaction_date">
-          <DataField>transaction_date</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="discount">
-          <DataField>discount</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="added_by">
-          <DataField>added_by</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Paid_amount">
-          <DataField>Paid_amount</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Return_amount">
-          <DataField>Return_amount</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>Abbey_Trading_StoreInvoice</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <rd:DataSetInfo>
-        <rd:DataSetName>Abbey_Trading_Store.Invoice</rd:DataSetName>
-        <rd:TableName>DataTable_Details2DataTable</rd:TableName>
-        <rd:ObjectDataSourceType>Abbey_Trading_Store.Invoice.Abbey_Trading_StoreDataSet+DataTable_Details2DataTable, Invoice.Abbey_Trading_StoreDataSet.Designer.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
       <Tablix Name="Tablix1">
@@ -120,9 +31,9 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Product name</Value>
+                              <Value>Product </Value>
                               <Style>
-                                <FontSize>6.5pt</FontSize>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -156,7 +67,7 @@
                             <TextRun>
                               <Value>Qty</Value>
                               <Style>
-                                <FontSize>6.5pt</FontSize>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -192,7 +103,7 @@
                             <TextRun>
                               <Value>Rate</Value>
                               <Style>
-                                <FontSize>6.5pt</FontSize>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -228,7 +139,7 @@
                             <TextRun>
                               <Value>total</Value>
                               <Style>
-                                <FontSize>6.5pt</FontSize>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -269,7 +180,7 @@
                             <TextRun>
                               <Value>=Fields!product_name.Value</Value>
                               <Style>
-                                <FontSize>6.5pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -301,7 +212,7 @@
                             <TextRun>
                               <Value>=Fields!Qty.Value</Value>
                               <Style>
-                                <FontSize>6.5pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -335,13 +246,13 @@
                             <TextRun>
                               <Value>shs.</Value>
                               <Style>
-                                <FontSize>6.5pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                             <TextRun>
                               <Value>=Format(CInt(Fields!rate.Value),"##,##0.##")</Value>
                               <Style>
-                                <FontSize>6.5pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -375,13 +286,13 @@
                             <TextRun>
                               <Value>shs.</Value>
                               <Style>
-                                <FontSize>6.5pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                             <TextRun>
                               <Value>=Format(CInt(Fields!total.Value),"##,##0.##")</Value>
                               <Style>
-                                <FontSize>6.5pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -446,7 +357,7 @@
               <TextRun>
                 <Value>Grand Total :</Value>
                 <Style>
-                  <FontSize>6.5pt</FontSize>
+                  <FontSize>7pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -456,7 +367,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
         <Top>0.66293in</Top>
-        <Left>1.18761in</Left>
+        <Left>0.87674in</Left>
         <Height>0.25in</Height>
         <Width>0.68575in</Width>
         <ZIndex>1</ZIndex>
@@ -479,7 +390,7 @@
               <TextRun>
                 <Value>Discount :</Value>
                 <Style>
-                  <FontSize>6.5pt</FontSize>
+                  <FontSize>7pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -489,7 +400,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
         <Top>0.87126in</Top>
-        <Left>1.29356in</Left>
+        <Left>0.87674in</Left>
         <Height>0.25in</Height>
         <Width>0.63542in</Width>
         <ZIndex>2</ZIndex>
@@ -528,7 +439,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
         <Top>1.06398in</Top>
-        <Left>1.18761in</Left>
+        <Left>0.87674in</Left>
         <Height>0.25in</Height>
         <Width>0.84719in</Width>
         <ZIndex>3</ZIndex>
@@ -567,7 +478,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
         <Top>1.26376in</Top>
-        <Left>1.18761in</Left>
+        <Left>0.87674in</Left>
         <Height>0.25in</Height>
         <Width>0.84719in</Width>
         <ZIndex>4</ZIndex>
@@ -590,13 +501,13 @@
               <TextRun>
                 <Value>shs.</Value>
                 <Style>
-                  <FontSize>6.5pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=First(Format(CInt(Fields!grandTotal.Value),"##,##0.##"), "DataSet_details")</Value>
                 <Style>
-                  <FontSize>6.5pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -604,10 +515,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>grandTotal</rd:DefaultName>
-        <Top>0.67682in</Top>
-        <Left>1.98454in</Left>
+        <Top>0.66293in</Top>
+        <Left>1.53994in</Left>
         <Height>0.25in</Height>
-        <Width>0.69792in</Width>
+        <Width>1.11821in</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -628,13 +539,13 @@
               <TextRun>
                 <Value>shs.</Value>
                 <Style>
-                  <FontSize>6.5pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=First(Format(CInt(Fields!discount.Value),"##,##0.##"), "DataSet_details")</Value>
                 <Style>
-                  <FontSize>6.5pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -643,9 +554,9 @@
         </Paragraphs>
         <rd:DefaultName>discount</rd:DefaultName>
         <Top>0.87126in</Top>
-        <Left>1.97065in</Left>
+        <Left>1.43743in</Left>
         <Height>0.25in</Height>
-        <Width>0.5625in</Width>
+        <Width>1.22072in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -666,13 +577,13 @@
               <TextRun>
                 <Value>shs.</Value>
                 <Style>
-                  <FontSize>6.5pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=First(Format(CInt(Fields!Paid_amount.Value),"##,##0.##"), "DataSet_details")</Value>
                 <Style>
-                  <FontSize>6.5pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -680,10 +591,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Paid_amount</rd:DefaultName>
-        <Top>1.06398in</Top>
-        <Left>1.98454in</Left>
+        <Top>1.01376in</Top>
+        <Left>1.56425in</Left>
         <Height>0.25in</Height>
-        <Width>0.67361in</Width>
+        <Width>1.0939in</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -704,13 +615,13 @@
               <TextRun>
                 <Value>shs.</Value>
                 <Style>
-                  <FontSize>6.5pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=First(Format(CInt(Fields!Return_amount.Value),"##,##0.##"), "DataSet_details")</Value>
                 <Style>
-                  <FontSize>6.5pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -719,9 +630,9 @@
         </Paragraphs>
         <rd:DefaultName>Return_amount</rd:DefaultName>
         <Top>1.26376in</Top>
-        <Left>2.07647in</Left>
+        <Left>1.72393in</Left>
         <Height>0.25in</Height>
-        <Width>0.5625in</Width>
+        <Width>0.93422in</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -742,7 +653,7 @@
               <TextRun>
                 <Value>Paid:</Value>
                 <Style>
-                  <FontSize>6.5pt</FontSize>
+                  <FontSize>7pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -752,7 +663,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
         <Top>1.46862in</Top>
-        <Left>1.28146in</Left>
+        <Left>0.87674in</Left>
         <Height>0.25in</Height>
         <Width>0.57632in</Width>
         <ZIndex>9</ZIndex>
@@ -775,7 +686,7 @@
               <TextRun>
                 <Value>=IIf(First(CInt(Fields!Return_amount.Value), "DataSet_details")&gt;=0,"True","False")</Value>
                 <Style>
-                  <FontSize>6.5pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -783,9 +694,9 @@
           </Paragraph>
         </Paragraphs>
         <Top>1.46862in</Top>
-        <Left>1.97065in</Left>
+        <Left>1.22224in</Left>
         <Height>0.25in</Height>
-        <Width>0.6875in</Width>
+        <Width>1.43591in</Width>
         <ZIndex>10</ZIndex>
         <Style>
           <Border>
@@ -822,7 +733,7 @@
   <Width>8.02132cm</Width>
   <Page>
     <PageHeader>
-      <Height>3.54543cm</Height>
+      <Height>3.61598cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -868,7 +779,7 @@
                 <TextRun>
                   <Value>Receipt No :</Value>
                   <Style>
-                    <FontSize>6.5pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -880,7 +791,7 @@
           <Top>0.80903in</Top>
           <Left>0.09036in</Left>
           <Height>0.25in</Height>
-          <Width>0.64583in</Width>
+          <Width>0.78638in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -910,9 +821,9 @@
           </Paragraphs>
           <rd:DefaultName>ID</rd:DefaultName>
           <Top>0.80555in</Top>
-          <Left>0.72401in</Left>
+          <Left>0.87674in</Left>
           <Height>0.25in</Height>
-          <Width>0.19617in</Width>
+          <Width>0.467in</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -1003,7 +914,7 @@
                 <TextRun>
                   <Value>Date sold :</Value>
                   <Style>
-                    <FontSize>6.5pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1015,7 +926,7 @@
           <Top>1.12499in</Top>
           <Left>0.09036in</Left>
           <Height>0.22917in</Height>
-          <Width>0.64583in</Width>
+          <Width>0.78638in</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
@@ -1036,7 +947,7 @@
                 <TextRun>
                   <Value>=First(Fields!transaction_date.Value, "DataSet_details")</Value>
                   <Style>
-                    <FontSize>6.5pt</FontSize>
+                    <FontSize>8pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1044,10 +955,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>transaction_date</rd:DefaultName>
-          <Top>1.10069in</Top>
+          <Top>1.13889in</Top>
           <Left>0.72401in</Left>
           <Height>0.22917in</Height>
-          <Width>0.9964in</Width>
+          <Width>1.49307in</Width>
           <ZIndex>6</ZIndex>
           <Style>
             <Border>
@@ -1068,7 +979,7 @@
                 <TextRun>
                   <Value>Served by :</Value>
                   <Style>
-                    <FontSize>6.5pt</FontSize>
+                    <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1078,9 +989,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox5</rd:DefaultName>
           <Top>0.80903in</Top>
-          <Left>1.61292in</Left>
+          <Left>1.4775in</Left>
           <Height>0.25in</Height>
-          <Width>0.60416in</Width>
+          <Width>0.73958in</Width>
           <ZIndex>7</ZIndex>
           <Style>
             <Border>
@@ -1133,8 +1044,8 @@
                 <TextRun>
                   <Value>Located at Busega,Kampala</Value>
                   <Style>
-                    <FontStyle>Italic</FontStyle>
-                    <FontSize>6.5pt</FontSize>
+                    <FontStyle>Normal</FontStyle>
+                    <FontSize>7pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1166,11 +1077,11 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>0.95751cm</Height>
+      <Height>1.03688cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox122">
+        <Textbox Name="Textbox141">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
@@ -1179,39 +1090,14 @@
                 <TextRun>
                   <Value>Thanks for purchasing </Value>
                   <Style>
-                    <FontSize>6.5pt</FontSize>
+                    <FontSize>8.5pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox122</rd:DefaultName>
-          <Top>0.17639cm</Top>
-          <Left>1.65851cm</Left>
-          <Height>0.44125cm</Height>
-          <Width>3.06024cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox141">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
                 <TextRun>
                   <Value>=First(Fields!dea_cust_name.Value, "DataSet_details")</Value>
                   <Style>
-                    <FontSize>6.5pt</FontSize>
+                    <FontSize>8.5pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1223,10 +1109,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox141</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>4.32629cm</Left>
-          <Height>0.44125cm</Height>
-          <Width>2.5cm</Width>
-          <ZIndex>1</ZIndex>
+          <Left>1.23518cm</Left>
+          <Height>0.86049cm</Height>
+          <Width>6.35838cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1244,7 +1129,7 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>14cm</PageHeight>
+    <PageHeight>17cm</PageHeight>
     <PageWidth>12cm</PageWidth>
     <LeftMargin>0cm</LeftMargin>
     <RightMargin>0cm</RightMargin>
@@ -1271,6 +1156,96 @@
       </RightBorder>
     </Style>
   </Page>
-  <rd:ReportID>a4cda26d-83ac-40ca-b5bf-05921c4114e2</rd:ReportID>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="Abbey_Trading_StoreInvoice">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>f008b058-35f9-44be-af89-d23a91cf5081</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Report">
+      <Query>
+        <DataSourceName>Abbey_Trading_StoreInvoice</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="product_name">
+          <DataField>product_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Qty">
+          <DataField>Qty</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="rate">
+          <DataField>rate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="total">
+          <DataField>total</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Abbey_Trading_Store.Invoice</rd:DataSetName>
+        <rd:TableName>Datatable_invoiceDataTable</rd:TableName>
+        <rd:ObjectDataSourceType>Abbey_Trading_Store.Invoice.Abbey_Trading_StoreDataSet+Datatable_invoiceDataTable, Invoice.Abbey_Trading_StoreDataSet.Designer.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSet_details">
+      <Query>
+        <DataSourceName>Abbey_Trading_StoreInvoice</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="type">
+          <DataField>type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="dea_cust_name">
+          <DataField>dea_cust_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="grandTotal">
+          <DataField>grandTotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="transaction_date">
+          <DataField>transaction_date</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="discount">
+          <DataField>discount</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="added_by">
+          <DataField>added_by</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Paid_amount">
+          <DataField>Paid_amount</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Return_amount">
+          <DataField>Return_amount</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Abbey_Trading_Store.Invoice</rd:DataSetName>
+        <rd:TableName>DataTable_Details2DataTable</rd:TableName>
+        <rd:ObjectDataSourceType>Abbey_Trading_Store.Invoice.Abbey_Trading_StoreDataSet+DataTable_Details2DataTable, Invoice.Abbey_Trading_StoreDataSet.Designer.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>a4cda26d-83ac-40ca-b5bf-05921c4114e2</rd:ReportID>
 </Report>

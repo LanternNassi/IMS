@@ -37,25 +37,30 @@ namespace Abbey_Trading_Store.UI
             categoriesDGV.DataSource = dt;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             Categories category = new Categories();
             category.Title = title.Text;
             category.Description = description.Text;
             category.Added_by = Login_form.user;
             bool affected = category.insert();
+            //var isSuccess = await category.insert2();
+
             if (affected == true)
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Category successfully inserted");
                 clear();
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Category insertion Failed");
             }
             DataTable dt = category.select();
             categoriesDGV.DataSource = dt;
-
+            Cursor = Cursors.Default;
         }
 
         private void categoriesDGV_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -67,15 +72,18 @@ namespace Abbey_Trading_Store.UI
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private async void button4_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             Categories category = new Categories();
             category.Title = title.Text;
             category.Description = description.Text;
             category.ID = id.Text;
             bool affected = category.update();
-            if (affected == true)
+            var isSuccess = await category.Update2();
+            if (affected == true )
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Category successfully updated. Thank you.");
                 clear();
                 DataTable dt = category.select();
@@ -83,17 +91,22 @@ namespace Abbey_Trading_Store.UI
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Category not updated.");
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             Categories category = new Categories();
             category.ID = id.Text;
+            category.Title = title.Text;
             bool affected = category.delete();
+            var isSuccess = await category.Delete2();
             if (affected == true)
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Category deleted successfully ");
                 clear();
                 DataTable dt = category.select();
@@ -101,6 +114,7 @@ namespace Abbey_Trading_Store.UI
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Category not deleted ");
             }
 

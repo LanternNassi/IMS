@@ -99,6 +99,7 @@ namespace Abbey_Trading_Store.UI
             //Printer.Footer = "\r\n\r\n Report for All Inventory";
             //Printer.FooterSpacing = 15;
             //Printer.PrintDataGridView(dgv_Inventory);
+            Cursor = Cursors.WaitCursor;
 
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Abbey_Trading_Store.Reports.Inventory_Report.InventoryReport.rdlc";
             ReportDataSource datasource = new ReportDataSource("InventoryDataSet", dataset.Tables[0]);
@@ -106,7 +107,7 @@ namespace Abbey_Trading_Store.UI
             this.reportViewer1.LocalReport.DataSources.Clear();
             this.reportViewer1.LocalReport.DataSources.Add(datasource);
             this.reportViewer1.RefreshReport();
-            
+            Cursor = Cursors.Default;
         }
 
         private void label1_Click(object sender, EventArgs e)

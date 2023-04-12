@@ -13,6 +13,7 @@ using DGVPrinterHelper;
 using System.Data.OleDb;
 using Microsoft.Reporting.WinForms;
 using Abbey_Trading_Store.Invoice;
+using System.Web.Services.Description;
 
 namespace Abbey_Trading_Store.UI
 {
@@ -142,6 +143,7 @@ namespace Abbey_Trading_Store.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             //Getting 
             string productname = pname.Text;
             decimal rate = decimal.Parse(p_rate.Text);
@@ -163,6 +165,7 @@ namespace Abbey_Trading_Store.UI
 
             if (productname == "")
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Please add a product.");
             }
             else
@@ -180,7 +183,7 @@ namespace Abbey_Trading_Store.UI
                 p_quantity.Text = "0";
 
             }
-
+            Cursor = Cursors.Default;
         }
 
         private void textBox13_TextChanged(object sender, EventArgs e)
@@ -193,7 +196,19 @@ namespace Abbey_Trading_Store.UI
             else
             {
                 // Discount for raw values 
-                int discount = Convert.ToInt32(textBox13.Text);
+                int discount = 0;
+                try
+                {
+                    discount = Convert.ToInt32(textBox13.Text);
+                }
+                catch(Exception) {
+                    MessageBox.Show("Please enter a valid amount");
+                    textBox13.Text = "";
+                }
+                finally
+                {
+
+                }
                 decimal sub = decimal.Parse(subtotal.Text);
                 int subtL = Convert.ToInt32(sub);
                 int overall = subtL - discount;
@@ -222,9 +237,10 @@ namespace Abbey_Trading_Store.UI
 
         
 
-        private void save_Click(object sender, EventArgs e)
+        private async void save_Click(object sender, EventArgs e)
         {
-
+            Cursor = Cursors.WaitCursor;
+            //Cursor.Current = Cursors.WaitCursor;
             string course;
             if (Types.Text == "Sales")
             {
@@ -267,6 +283,7 @@ namespace Abbey_Trading_Store.UI
                 }
                 DC.Type = type;
                 bool test = DC.Insert();
+                var test2 = await DC.insert2();
                 if (test == true)
                 {
 
@@ -347,6 +364,15 @@ namespace Abbey_Trading_Store.UI
             // adding transaction to dataTable dts
             dts.Rows.Add("2", transact.Type, name.Text, grandtotal.Text, DateTime.Now, textBox13.Text, Login_form.user, paid_amount.Text, return_amount.Text);
             int x = transact.Insert();
+            // Inserting to the server
+            var isSuccess_server = await transact.insert2();
+            //if (isSuccess_server)
+            //{
+            //    MessageBox.Show("Transaction added successfully to server");
+            //} else
+            //{
+            //    MessageBox.Show("Transaction upload to server failed");
+            //}
             TransactionDetail TD = new TransactionDetail();
             int recorder = 0;
             int i;
@@ -358,6 +384,7 @@ namespace Abbey_Trading_Store.UI
                 TD.Rate = decimal.Parse(dt.Rows[i][2].ToString());
                 TD.Total = decimal.Parse(dt.Rows[i][3].ToString());
                 TD.profit = int.Parse(dt.Rows[i][4].ToString());
+                TD.type = Types.Text;
                 TD.Dea_Cust_name = name.Text;
                 TD.Added_by = Login_form.user;
                 if (Types.Text == "Sales")
@@ -366,22 +393,23 @@ namespace Abbey_Trading_Store.UI
                 }
                 TD.invoice_id = x;
                 bool y = TD.Insert();
+                var detailsuccess = await TD.insert2();
                 recorder += 1;
                 if (Types.Text == "Sales")
                 {
-                    check = product.DecreaseProduct(TD.qty, TD.Product_name);
+                    check = await product.DecreaseProduct(TD.qty, TD.Product_name);
                        
 
                 }
                 else if (Types.Text == "Purchase")
                 {
-                    check = product.IncreaseProduct(TD.qty, TD.Product_name);
+                    check = await product.IncreaseProduct(TD.qty, TD.Product_name);
 
                 }
                     
             }
                 
-            success = (recorder == dt.Rows.Count) && check;
+            success = (recorder == dt.Rows.Count);
             if (success)
             {
                
@@ -435,6 +463,7 @@ namespace Abbey_Trading_Store.UI
                 }
                 else
                 {
+                    Cursor = Cursors.Default;
                     MessageBox.Show("Purchase saved successfully");
                 }
                
@@ -443,6 +472,7 @@ namespace Abbey_Trading_Store.UI
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Transaction Failed");
             }
 

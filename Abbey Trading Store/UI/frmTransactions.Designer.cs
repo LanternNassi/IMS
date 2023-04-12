@@ -46,6 +46,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtbx_sales = new System.Windows.Forms.TextBox();
+            this.analysis = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_transactions)).BeginInit();
             this.SuspendLayout();
@@ -122,7 +123,7 @@
             this.Show_all.BackColor = System.Drawing.Color.Turquoise;
             this.Show_all.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Show_all.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Show_all.Location = new System.Drawing.Point(476, 59);
+            this.Show_all.Location = new System.Drawing.Point(403, 58);
             this.Show_all.Name = "Show_all";
             this.Show_all.Size = new System.Drawing.Size(119, 41);
             this.Show_all.TabIndex = 27;
@@ -178,7 +179,7 @@
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(12, 434);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 21);
+            this.label4.Size = new System.Drawing.Size(116, 21);
             this.label4.TabIndex = 35;
             this.label4.Text = "Total Purchases";
             // 
@@ -218,7 +219,7 @@
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(303, 434);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(84, 21);
+            this.label6.Size = new System.Drawing.Size(82, 21);
             this.label6.TabIndex = 40;
             this.label6.Text = "Total Sales";
             this.label6.Click += new System.EventHandler(this.label6_Click);
@@ -233,12 +234,26 @@
             this.txtbx_sales.TabIndex = 39;
             this.txtbx_sales.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // analysis
+            // 
+            this.analysis.BackColor = System.Drawing.Color.Turquoise;
+            this.analysis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.analysis.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.analysis.Location = new System.Drawing.Point(544, 58);
+            this.analysis.Name = "analysis";
+            this.analysis.Size = new System.Drawing.Size(119, 41);
+            this.analysis.TabIndex = 41;
+            this.analysis.Text = "ANALYSIS";
+            this.analysis.UseVisualStyleBackColor = false;
+            this.analysis.Click += new System.EventHandler(this.analysis_Click);
+            // 
             // frmTransactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.ClientSize = new System.Drawing.Size(980, 470);
+            this.Controls.Add(this.analysis);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtbx_sales);
             this.Controls.Add(this.checkBox1);
@@ -287,5 +302,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtbx_sales;
+        private System.Windows.Forms.Button analysis;
     }
 }

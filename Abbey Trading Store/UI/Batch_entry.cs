@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using Abbey_Trading_Store.DAL;
+using Abbey_Trading_Store.DAL.DAL_Properties;
 
 namespace Abbey_Trading_Store.UI
 {
@@ -57,11 +58,13 @@ namespace Abbey_Trading_Store.UI
             this.Hide();
         }
 
-        private void Generate_Click(object sender, EventArgs e)
+        private async void Generate_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             int number_of_columns = dtExcel.Columns.Count;
             if (number_of_columns == 7)
             {
+                List<ProductsProps> products = new List<ProductsProps>();
                 int row = 0;
                 for(int i = 1; i<dtExcel.Rows.Count; i++){
                     product new_product = new product();
@@ -73,26 +76,45 @@ namespace Abbey_Trading_Store.UI
                     new_product.Quantity = Convert.ToDecimal(dtExcel.Rows[i][5]);
                     new_product.Added_date = DateTime.Now;
                     new_product.Added_by = dtExcel.Rows[i][6].ToString();
+
+                    // Adding to the props class
+                    ProductsProps product_prop = new ProductsProps();
+                    product_prop.products = dtExcel.Rows[i][0].ToString();
+                    product_prop.Category = dtExcel.Rows[i][1].ToString();
+                    product_prop.Description = dtExcel.Rows[i][2].ToString();
+                    product_prop.Rate = Convert.ToDecimal(dtExcel.Rows[i][3]);
+                    product_prop.Selling_price = Convert.ToDecimal(dtExcel.Rows[i][4]);
+                    product_prop.Quantity = Convert.ToDecimal(dtExcel.Rows[i][5]);
+                    product_prop.Added_date = DateTime.Now;
+                    product_prop.Added_by = dtExcel.Rows[i][6].ToString();
+
+                    products.Add(product_prop);
                     bool created = new_product.add();
+                    
                     if (created)
                     {
                         row += 1;
                     }
                     else
                     {
+                        Cursor = Cursors.Default;
                         MessageBox.Show("There is an error with " + new_product.products);
                     }
                 }
-                    MessageBox.Show("Products inserted successfully");
+                product prod = new product();
+                var success = await prod.Batchupload(products);
+                Cursor = Cursors.Default;
+                MessageBox.Show("Products inserted successfully");
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Seems you are making an error with this function");
             }
+            Cursor = Cursors.Default;
         }
 
-       
 
-       
+
     }
 }

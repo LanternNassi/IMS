@@ -33,72 +33,92 @@ namespace Abbey_Trading_Store.UI
 
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             type = "Sales";
             frmPurchaseandsales form = new frmPurchaseandsales();
             form.Show();
-            
+            Cursor = Cursors.Default;
+
         }
 
         private void purchaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             type = "Purchase";
             frmPurchaseandsales form = new frmPurchaseandsales();
             form.Show();
             //set value
-             
+            Cursor = Cursors.Default;
+
 
         }
 
         private void dealerAndCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             frmDealerAndCustomer form = new frmDealerAndCustomer();
             form.Show();
+            Cursor = Cursors.Default;
         }
 
         private void transactionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             frmTransactions form = new frmTransactions();
             form.Show();
+            Cursor = Cursors.Default;
         }
 
         private void inventoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             ProductsNormal form = new ProductsNormal();
             form.Show();
+            Cursor = Cursors.Default;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             type = "Sales";
             frmPurchaseandsales form = new frmPurchaseandsales();
             form.Show();
+            Cursor = Cursors.Default;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             type = "Purchase";
             frmPurchaseandsales form = new frmPurchaseandsales();
             form.Show();
+            Cursor = Cursors.Default;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             frmTransactions form = new frmTransactions();
             form.Show();
+            Cursor = Cursors.Default;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             frmDealerAndCustomer form = new frmDealerAndCustomer();
             form.Show();
+            Cursor = Cursors.Default;
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
             //Inventory form = new Inventory();
             //form.Show();
+            Cursor = Cursors.WaitCursor;
             ProductsNormal form = new ProductsNormal();
             form.Show();
+            Cursor = Cursors.Default;
         }
     }
 }

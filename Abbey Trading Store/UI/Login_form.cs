@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Abbey_Trading_Store.DAL;
+using Abbey_Trading_Store.UI.Advanced;
 
 namespace Abbey_Trading_Store.UI
 {
@@ -55,6 +56,8 @@ namespace Abbey_Trading_Store.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+            Dashboard form = new Dashboard();
             LoginDAL Login = new LoginDAL();
             Login.Username = username.Text;
             Login.Password = password.Text;
@@ -79,7 +82,8 @@ namespace Abbey_Trading_Store.UI
                             if (admin_priviledge == "admin")
                             {
                                 Admin_dashboard admin = new Admin_dashboard();
-                                admin.Show();
+                                //admin.Show();
+                                form.Show();
                             }
                             else if (admin_priviledge == "normal")
                             {
@@ -94,6 +98,7 @@ namespace Abbey_Trading_Store.UI
                         {
                             if (admin_priviledge == "admin")
                             {
+                                Cursor = Cursors.Default;
                                 MessageBox.Show("You are trying to access an admin panel without administration rights.Please consider informing your administrator for more information");
                                 this.Close();
                             }
@@ -115,6 +120,7 @@ namespace Abbey_Trading_Store.UI
                         break;
                     default:
                         {
+                            Cursor = Cursors.Default;
                             MessageBox.Show("Invalid Usertype");
                         }
                         break;
@@ -123,6 +129,7 @@ namespace Abbey_Trading_Store.UI
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Login Failed");
             }
 

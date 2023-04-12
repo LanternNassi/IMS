@@ -67,8 +67,9 @@ namespace Abbey_Trading_Store.UI
             
         }
 
-        private void Add_Click(object sender, EventArgs e)
+        private async void Add_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (id.Text != "")
             {
                 Transactions transaction = new Transactions();
@@ -90,6 +91,7 @@ namespace Abbey_Trading_Store.UI
                     if (result_paid == DialogResult.Yes)
                     {
                         Success = transaction.UpdatePayment(Int32.Parse(id.Text), (new_return_amount * -1),(total-new_return_amount),cleared);
+                        var resultserver1 = await transaction.UpdatePayment2(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
                     }
                     else
                     {
@@ -100,6 +102,7 @@ namespace Abbey_Trading_Store.UI
                 {
 
                     Success = transaction.UpdatePayment(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
+                    var resultserver = await transaction.UpdatePayment2(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
 
                 }
                 //Inserting the track
@@ -109,18 +112,27 @@ namespace Abbey_Trading_Store.UI
                                 Login_form.user,
                             };
                 bool isSuccess = transaction.InsertTransactionTrack(args);
+                var serverSuccess = await transaction.InsertTransactionTrack2(args);
+                if (serverSuccess)
+                {
+                    Cursor = Cursors.Default;
+                    MessageBox.Show("Server track inserted successfully");
+                }
                 if (isSuccess)
                 {
+                    Cursor = Cursors.Default;
                     MessageBox.Show("Inserted successfully");
                 }
                 else
                 {
+                    Cursor = Cursors.Default;
                     MessageBox.Show("Track not entered");
                 }
 
                 //Confirmation
                 if (isSuccess && Success)
                 {
+                    Cursor = Cursors.Default;
                     MessageBox.Show("Updated successfully");
                     //Refreshing tracks
                     OleDbDataAdapter adapter = transaction.GetAllTrackData(Int32.Parse(id.Text));
@@ -139,9 +151,10 @@ namespace Abbey_Trading_Store.UI
             }
             else
             {
+                Cursor = Cursors.Default;
                 MessageBox.Show("Please select a Debtor");
             }
-           
+            Cursor = Cursors.Default;
 
         }
 
@@ -194,7 +207,7 @@ namespace Abbey_Trading_Store.UI
 
         private void Invoice_Click(object sender, EventArgs e)
         {
-
+            Cursor = Cursors.WaitCursor;
             Abbey_Trading_Store.Reports.Invoice_Report.Invoice dataset = new Reports.Invoice_Report.Invoice();
             OleDbDataAdapter adapter1 = GetTransaction(Int32.Parse(id.Text));
             OleDbDataAdapter adapter2 = Getdetails(Int32.Parse(id.Text));
@@ -207,10 +220,12 @@ namespace Abbey_Trading_Store.UI
             ReportDataSource[] list = { datasource1, datasource2 };
             ReportView form = new ReportView(list);
             form.Show();
+            Cursor = Cursors.Default;
         }
 
         private void PrintDebtors_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             DGVPrinter Printer = new DGVPrinter();
             Printer.Title = "\r\n\r\n\r\n MMAK AGRO CHEMICALS Ltd \r\n\r\n";
             Printer.SubTitle = "Located at Busega Kampala \r\n Phone: 0754066646\r\n\r\n";
@@ -222,10 +237,12 @@ namespace Abbey_Trading_Store.UI
             Printer.Footer = "\r\n\r\n Report";
             Printer.FooterSpacing = 15;
             Printer.PrintDataGridView(DebtsDGV);
+            Cursor = Cursors.Default;
         }
 
         private void Print_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             DGVPrinter Printer = new DGVPrinter();
             Printer.Title = "\r\n\r\n\r\n MMAK AGRO CHEMICALS Ltd \r\n\r\n";
             Printer.SubTitle = "Located at Busega Kampala \r\n Phone: 0754066646\r\n\r\n";
@@ -237,6 +254,7 @@ namespace Abbey_Trading_Store.UI
             Printer.Footer = "\r\n\r\n Report for All the detailed Payment tracks";
             Printer.FooterSpacing = 15;
             Printer.PrintDataGridView(TRACKDGV);
+            Cursor = Cursors.Default;
         }
 
         private void PaidAmount_TextChanged(object sender, EventArgs e)
