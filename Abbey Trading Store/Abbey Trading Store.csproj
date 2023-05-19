@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Abbey_Trading_Store</RootNamespace>
     <AssemblyName>Abbey Trading Store</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -112,8 +112,11 @@
     <Reference Include="CircularProgressBar, Version=2.8.0.16, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
       <HintPath>..\packages\CircularProgressBar.2.8.0.16\lib\net40\CircularProgressBar.dll</HintPath>
     </Reference>
+    <Reference Include="LoadingIndicator.WinForms, Version=1.1.2.0, Culture=neutral, PublicKeyToken=1b7ed145d0f47614, processorArchitecture=MSIL">
+      <HintPath>..\packages\LoadingIndicator.WinForms-Clone.1.1.2\lib\net45\LoadingIndicator.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialSkin.2.2.3.1\lib\net48\MaterialSkin.dll</HintPath>
+      <HintPath>..\packages\MaterialSkin.2.2.3.1\lib\net461\MaterialSkin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -140,6 +143,7 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -153,7 +157,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -163,6 +169,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.WinControls, Version=2023.1.314.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2023.1.314.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="TelerikCommon, Version=2023.1.314.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="WinFormAnimation, Version=1.6.0.4, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
@@ -208,6 +215,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Categories Report\Categories.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Categories.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Inventory Report\InventoryDataSet.cs">
       <DependentUpon>InventoryDataSet.xsd</DependentUpon>
     </Compile>
@@ -220,6 +232,14 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Invoice.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Users Report\Users.cs">
+      <DependentUpon>Users.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Users Report\Users.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Users.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="UI\Advanced\CustomMessageBox\FormMessageBox.cs">
@@ -265,6 +285,12 @@
     <Compile Include="UI\Advanced\Screen_forms\frmDebts.Designer.cs">
       <DependentUpon>frmDebts.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\frmDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\frmDetails.Designer.cs">
+      <DependentUpon>frmDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Advanced\Screen_forms\frmProducts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -288,6 +314,12 @@
     </Compile>
     <Compile Include="UI\Advanced\Screen_forms\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\Overview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\Overview.Designer.cs">
+      <DependentUpon>Overview.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Batch_entry.cs">
       <SubType>Form</SubType>
@@ -395,8 +427,10 @@
     </Compile>
     <EmbeddedResource Include="Invoice\Report1.rdlc" />
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reports\Categories Report\Categories.rdlc" />
     <EmbeddedResource Include="Reports\Inventory Report\InventoryReport.rdlc" />
     <EmbeddedResource Include="Reports\Invoice Report\Invoice.rdlc" />
+    <EmbeddedResource Include="Reports\Users Report\Users.rdlc" />
     <EmbeddedResource Include="UI\Advanced\CustomMessageBox\FormMessageBox.resx">
       <DependentUpon>FormMessageBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -418,6 +452,9 @@
     <EmbeddedResource Include="UI\Advanced\Screen_forms\frmDebts.resx">
       <DependentUpon>frmDebts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Advanced\Screen_forms\frmDetails.resx">
+      <DependentUpon>frmDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Advanced\Screen_forms\frmProducts.resx">
       <DependentUpon>frmProducts.cs</DependentUpon>
     </EmbeddedResource>
@@ -429,6 +466,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Advanced\Screen_forms\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Advanced\Screen_forms\Overview.resx">
+      <DependentUpon>Overview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Batch_entry.resx">
       <DependentUpon>Batch_entry.cs</DependentUpon>
@@ -534,6 +574,7 @@
     <None Include="Properties\DataSources\Abbey_Trading_Store.Invoice.Abbey_Trading_StoreDataSet.datasource" />
     <None Include="Properties\DataSources\Abbey_Trading_Store.Reports.Inventory_Report.InventoryDataSet.datasource" />
     <None Include="Properties\DataSources\Abbey_Trading_Store.Reports.Invoice_Report.Invoice.datasource" />
+    <None Include="Properties\DataSources\Abbey_Trading_Store.Reports.Users_Report.Users.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -547,6 +588,28 @@
   <ItemGroup>
     <Content Include="Abbey Trading Store.accdb" />
     <Content Include="bigstock_business_technology_internet_172708247_600x_Q4R_icon.ico" />
+    <None Include="Reports\Categories Report\Categories.xsc">
+      <DependentUpon>Categories.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Categories Report\Categories.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Categories.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Categories Report\Categories.xss">
+      <DependentUpon>Categories.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Users Report\Users.xsc">
+      <DependentUpon>Users.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Users Report\Users.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Users.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Users Report\Users.xss">
+      <DependentUpon>Users.xsd</DependentUpon>
+    </None>
     <None Include="Resources\App installation-bro.png" />
     <None Include="Resources\App installation-bro1.png" />
     <None Include="Resources\Banking-image-2-1024x683.jpg" />
@@ -584,6 +647,12 @@
     <None Include="Resources\information11.png" />
     <None Include="Resources\diskette.png" />
     <None Include="Resources\debt.png" />
+    <None Include="Resources\profit.png" />
+    <None Include="Resources\profit %281%29.png" />
+    <None Include="Resources\profit %282%29.png" />
+    <None Include="Resources\transaction %281%29.png" />
+    <None Include="Resources\Untitled design.gif" />
+    <None Include="Resources\Untitled design %282%29.gif" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

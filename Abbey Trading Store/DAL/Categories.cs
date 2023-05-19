@@ -295,16 +295,18 @@ namespace Abbey_Trading_Store.DAL
 
 
         #region Local server functions
-        public DataTable select_2()
+        public SqlDataAdapter select_2()
         {
             DataTable dt = new DataTable();
+            SqlDataAdapter dummy_adapter = new SqlDataAdapter();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             const string command = "SELECT * FROM Categories";
             try
             {
                 conn.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(command, conn);
-                adapter.Fill(dt);
+                dummy_adapter = adapter;
+                //adapter.Fill(dt);
             }
             catch (Exception ex)
             {
@@ -315,7 +317,7 @@ namespace Abbey_Trading_Store.DAL
             {
                 conn.Close();
             }
-            return dt;
+            return dummy_adapter;
         }
 
         public DataTable search_2(string search)
@@ -474,6 +476,7 @@ namespace Abbey_Trading_Store.DAL
 
         public DataTable SelectAppropriately()
         {
+
             if (Env.mode == 1)
             {
                 DataTable dt = select();
@@ -482,13 +485,23 @@ namespace Abbey_Trading_Store.DAL
             }
             else if (Env.mode == 2)
             {
-                DataTable dt = select_2();
+                SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+                SqlDataAdapter adapter = select_2();
+                DataTable dt = new DataTable();
+                conn.Open();
+                adapter.Fill(dt);
+                conn.Close();
                 return dt;
 
             }
             else
             {
-                DataTable dt = select_2();
+                SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+                SqlDataAdapter adapter = select_2();
+                DataTable dt = new DataTable();
+                conn.Open();
+                adapter.Fill(dt);
+                conn.Close();
                 return dt;
 
             }

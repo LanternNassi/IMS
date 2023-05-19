@@ -108,7 +108,17 @@ namespace Abbey_Trading_Store.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            dgv_TD.DataSource = filter;
+            Cursor = Cursors.WaitCursor;
+            bool isSuccess = Transactions.DeleteTransaction(frmTransactions.transaction_id);
+            if (isSuccess)
+            {
+                MessageBox.Show("Transaction deleted successfully");
+            }
+            else
+            {
+                MessageBox.Show("An error occured. Try again later");
+            }
+            Cursor = Cursors.Default;
 
         }
     }

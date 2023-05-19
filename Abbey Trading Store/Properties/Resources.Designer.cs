@@ -353,6 +353,36 @@ namespace Abbey_Trading_Store.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap profit {
+            get {
+                object obj = ResourceManager.GetObject("profit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap profit__1_ {
+            get {
+                object obj = ResourceManager.GetObject("profit (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap profit__2_ {
+            get {
+                object obj = ResourceManager.GetObject("profit (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap purchase {
             get {
                 object obj = ResourceManager.GetObject("purchase", resourceCulture);
@@ -423,9 +453,39 @@ namespace Abbey_Trading_Store.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap transaction__1_ {
+            get {
+                object obj = ResourceManager.GetObject("transaction (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Untitled_11 {
             get {
                 object obj = ResourceManager.GetObject("Untitled_11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Untitled_design {
+            get {
+                object obj = ResourceManager.GetObject("Untitled design", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Untitled_design__2_ {
+            get {
+                object obj = ResourceManager.GetObject("Untitled design (2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

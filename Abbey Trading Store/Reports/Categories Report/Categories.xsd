@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Categories" targetNamespace="http://tempuri.org/Categories.xsd" xmlns:mstns="http://tempuri.org/Categories.xsd" xmlns="http://tempuri.org/Categories.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Categories" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="Categories" msprop:Generator_DataSetName="Categories">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Categories" msprop:Generator_RowEvHandlerName="CategoriesRowChangeEventHandler" msprop:Generator_RowDeletedName="CategoriesRowDeleted" msprop:Generator_RowDeletingName="CategoriesRowDeleting" msprop:Generator_RowEvArgName="CategoriesRowChangeEvent" msprop:Generator_TablePropName="_Categories" msprop:Generator_RowChangedName="CategoriesRowChanged" msprop:Generator_RowChangingName="CategoriesRowChanging" msprop:Generator_TableClassName="CategoriesDataTable" msprop:Generator_RowClassName="CategoriesRow" msprop:Generator_TableVarName="tableCategories" msprop:Generator_UserTableName="Categories">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_UserColumnName="id" type="xs:string" minOccurs="0" />
+              <xs:element name="title" msprop:Generator_ColumnPropNameInRow="title" msprop:Generator_ColumnPropNameInTable="titleColumn" msprop:Generator_ColumnVarNameInTable="columntitle" msprop:Generator_UserColumnName="title" type="xs:string" minOccurs="0" />
+              <xs:element name="description" msprop:Generator_ColumnPropNameInRow="description" msprop:Generator_ColumnPropNameInTable="descriptionColumn" msprop:Generator_ColumnVarNameInTable="columndescription" msprop:Generator_UserColumnName="description" type="xs:string" minOccurs="0" />
+              <xs:element name="added_date" msprop:Generator_ColumnPropNameInRow="added_date" msprop:Generator_ColumnPropNameInTable="added_dateColumn" msprop:Generator_ColumnVarNameInTable="columnadded_date" msprop:Generator_UserColumnName="added_date" type="xs:string" minOccurs="0" />
+              <xs:element name="added_by" msprop:Generator_ColumnPropNameInRow="added_by" msprop:Generator_ColumnPropNameInTable="added_byColumn" msprop:Generator_ColumnVarNameInTable="columnadded_by" msprop:Generator_UserColumnName="added_by" type="xs:string" minOccurs="0" />
+              <xs:element name="Server_id" msprop:Generator_ColumnPropNameInRow="Server_id" msprop:Generator_ColumnPropNameInTable="Server_idColumn" msprop:Generator_ColumnVarNameInTable="columnServer_id" msprop:Generator_UserColumnName="Server_id" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

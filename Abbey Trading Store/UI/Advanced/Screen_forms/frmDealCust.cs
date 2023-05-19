@@ -21,6 +21,13 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         public frmDealCust()
         {
             InitializeComponent();
+
+            DealerAndCustomer D_cust = new DealerAndCustomer();
+            DataTable dt = D_cust.SelectAppropriately();
+            dataGridView1.DataSource = dt;
+
+            //this.circularProgressBar1.Value = dt.Rows.Count;
+            this.circularProgressBar1.Text = (dt.Rows.Count).ToString() + "%";
         }
 
         private void clear()
@@ -35,12 +42,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void frmDealCust_Load(object sender, EventArgs e)
         {
-            DealerAndCustomer D_cust = new DealerAndCustomer();
-            DataTable dt = D_cust.SelectAppropriately();
-            dataGridView1.DataSource = dt;
-
-            this.circularProgressBar1.Value = dt.Rows.Count;
-            this.circularProgressBar1.Text = (dt.Rows.Count).ToString() + "%";
+            
         }
 
         private async void materialButton1_Click(object sender, EventArgs e)
@@ -158,6 +160,22 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             this.circularProgressBar2.Value = dt.Rows.Count;
             this.circularProgressBar2.Text = (dt.Rows.Count).ToString() + "%";
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = e.RowIndex;
+            if (row >= 0)
+            {
+                id.Text = dataGridView1.Rows[row].Cells[0].Value.ToString();
+                type_comboBox1.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
+                name.Text = dataGridView1.Rows[row].Cells[2].Value.ToString();
+                Email.Text = dataGridView1.Rows[row].Cells[3].Value.ToString();
+                Contact.Text = dataGridView1.Rows[row].Cells[4].Value.ToString();
+                Address.Text = dataGridView1.Rows[row].Cells[5].Value.ToString();
+            }
+            
+
         }
     }
 }

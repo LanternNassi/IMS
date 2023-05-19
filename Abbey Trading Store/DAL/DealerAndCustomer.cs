@@ -162,7 +162,9 @@ namespace Abbey_Trading_Store.DAL
             response.EnsureSuccessStatusCode();
             if (response.IsSuccessStatusCode)
             {
+               
                 return true;
+                
             }
             else
             {
@@ -556,6 +558,80 @@ namespace Abbey_Trading_Store.DAL
             return isSuccess;
         }
 
+        // Search for customer at purchase time
+        public string[] search_2(string keywords)
+        {
+            string[] results = new string[4];
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            try
+            {
+                DataTable dt = new DataTable();
+                string cmdstring = "SELECT Name , Email , Contact , address FROM DealerCust WHERE ID LIKE '%" + keywords + "%' OR Name LIKE '%" + keywords + "%' ";
+                SqlDataAdapter adapter = new SqlDataAdapter(cmdstring, conn);
+                conn.Open();
+                adapter.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    //Filling in the values into the array for returning
+                    results[0] = dt.Rows[0]["Name"].ToString();
+                    results[1] = dt.Rows[0]["Email"].ToString();
+                    results[2] = dt.Rows[0]["Contact"].ToString();
+                    results[3] = dt.Rows[0]["address"].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+
+            }
+
+            return results;
+
+        }
+
+        public bool checker_2(string name)
+        {
+            bool check = false;
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            DataTable dt = new DataTable();
+            try
+            {
+                string cmds = "SELECT * FROM DealerCust WHERE Name = @Name ";
+                SqlCommand cmd = new SqlCommand(cmds, conn);
+                cmd.Parameters.AddWithValue("@Name", name);
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                conn.Open();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    check = true;
+                }
+                else
+                {
+                    check = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+
+            }
+
+            return check;
+        }
+
         #endregion
 
         #region Appropriates
@@ -671,6 +747,46 @@ namespace Abbey_Trading_Store.DAL
                 return result;
 
             }
+        }
+
+        public string[] searchAppropriately(string keywords)
+        {
+            if (Env.mode == 1)
+            {
+                return search(keywords);
+
+            }
+            else if (Env.mode == 2)
+            {
+                return search_2(keywords);
+
+            }
+            else
+            {
+                return search_2(keywords);
+
+            }
+
+        }
+
+        public bool CheckerAppropriately(string name)
+        {
+            if (Env.mode == 1)
+            {
+                return checker(name);
+
+            }
+            else if (Env.mode == 2)
+            {
+                return checker_2(name);
+
+            }
+            else
+            {
+                return checker_2(name);
+
+            }
+
         }
         #endregion
 

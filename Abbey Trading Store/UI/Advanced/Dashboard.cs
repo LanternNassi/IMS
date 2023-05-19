@@ -29,13 +29,14 @@ namespace Abbey_Trading_Store.UI.Advanced
 
         );
 
-        public frmUser active_form;
+        public frmUser active_form = null;
 
         public Dashboard()
         {
             InitializeComponent();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
-
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
         }
 
         
@@ -45,12 +46,31 @@ namespace Abbey_Trading_Store.UI.Advanced
             pnlNav.Top = btnDashboard.Top;
             pnlNav.Left = btnDashboard.Left;
             btnDashboard.BackColor = Color.FromArgb(46, 51, 73);
+            search.Visible = true;
+            lblTitle.Text = "Overview";
+            this.pnlform.Controls.Clear();
+            Overview FrmDashboard_Vrb = new Overview() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            FrmDashboard_Vrb.FormBorderStyle = FormBorderStyle.None;
+            this.pnlform.Controls.Add(FrmDashboard_Vrb);
+            FrmDashboard_Vrb.Show();
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-           
 
+            pnlNav.Height = btnDashboard.Height;
+            pnlNav.Top = btnDashboard.Top;
+            pnlNav.Left = btnDashboard.Left;
+            btnDashboard.BackColor = Color.FromArgb(46, 51, 73);
+            search.Visible = true;
+            lblTitle.Text = "Overview";
+            this.pnlform.Controls.Clear();
+            Overview FrmDashboard_Vrb = new Overview() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            FrmDashboard_Vrb.FormBorderStyle = FormBorderStyle.None;
+            this.pnlform.Controls.Add(FrmDashboard_Vrb);
+            FrmDashboard_Vrb.Show();
+            Username.Text = Login_form.user;
+            
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
@@ -88,7 +108,7 @@ namespace Abbey_Trading_Store.UI.Advanced
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
-            search.Visible = false;
+            //search.Visible = false;
             pnlNav.Height = btnProducts.Height;
             pnlNav.Top = btnProducts.Top;
             pnlNav.Left = btnProducts.Left;
@@ -196,7 +216,10 @@ namespace Abbey_Trading_Store.UI.Advanced
 
         private void search_TextChanged(object sender, EventArgs e)
         {
-            active_form.search_users();
+            if (active_form != null)
+            {
+                active_form.search_users();
+            }
 
         }
 

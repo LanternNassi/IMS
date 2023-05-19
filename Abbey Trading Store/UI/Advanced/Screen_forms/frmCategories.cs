@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Abbey_Trading_Store.DAL;
 using Abbey_Trading_Store.UI.Advanced.CustomMessageBox;
-
+using Microsoft.Reporting.WinForms;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
@@ -18,6 +19,13 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         public frmCategories()
         {
             InitializeComponent();
+
+            Categories category = new Categories();
+            DataTable dt = category.SelectAppropriately();
+            dataGridView1.DataSource = dt;
+
+            this.circularProgressBar1.Value = dt.Rows.Count * 10;
+            this.circularProgressBar1.Text = (dt.Rows.Count * 10).ToString() + "%";
         }
 
         private void clear()
@@ -35,12 +43,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private async void frmCategories_Load(object sender, EventArgs e)
         {
-            Categories category = new Categories();
-            DataTable dt = category.SelectAppropriately();
-            dataGridView1.DataSource = dt;
-
-            this.circularProgressBar1.Value = dt.Rows.Count * 10;
-            this.circularProgressBar1.Text = (dt.Rows.Count * 10).ToString() + "%";
+            
         }
 
         private async void materialButton1_Click(object sender, EventArgs e)
@@ -136,6 +139,36 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             this.circularProgressBar2.Value = dt.Rows.Count * 10;
             this.circularProgressBar2.Text = (dt.Rows.Count * 10).ToString() + "%";
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = e.RowIndex;
+            if (row >= 0)
+            {
+                id.Text = dataGridView1.Rows[row].Cells[0].Value.ToString();
+                title.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
+                description.Text = dataGridView1.Rows[row].Cells[2].Value.ToString();
+            }
+            
+
+        }
+
+        private void materialButton4_Click(object sender, EventArgs e)
+        {
+            // Generating the Report form 
+            Cursor = Cursors.WaitCursor;
+            Categories category = new Categories();
+            Abbey_Trading_Store.Reports.Categories_Report.Categories dataset = new Reports.Categories_Report.Categories();
+            SqlDataAdapter adapter = category.select_2();
+
+            adapter.Fill(dataset, "Categories");
+            ReportDataSource datasource = new ReportDataSource("Categories", dataset.Tables[0]);
+            ReportDataSource[] list = { datasource };
+
+            ReportView form = new ReportView(list, "Abbey_Trading_Store.Reports.Categories_Report.Categories.rdlc");
+            form.Show();
+            Cursor = Cursors.Default;
         }
     }
 }

@@ -52,7 +52,7 @@ namespace Abbey_Trading_Store.UI
             DC.Address = address.Text;
             DC.Added_by = Login_form.user;
             bool check = DC.Insert();
-            var iSuccess = await DC.insert2();
+            //var iSuccess = await DC.insert2();
             if (check == true)
             {
                 Cursor = Cursors.Default;
@@ -99,7 +99,7 @@ namespace Abbey_Trading_Store.UI
             DC.Contact = contact.Text;
             DC.Address = address.Text;
             bool check = DC.Update();
-            var isSuccess = await DC.update2();
+            //var isSuccess = await DC.update2();
             if (check == true)
             {
                 Cursor = Cursors.Default;
@@ -122,7 +122,7 @@ namespace Abbey_Trading_Store.UI
             DC.Id = Convert.ToInt32(id.Text);
             DC.Name = name.Text;
             bool check = DC.Delete();
-            var success = await DC.delete2();
+            //var success = await DC.delete2();
             if (check == true)
             {
                 Cursor = Cursors.Default;

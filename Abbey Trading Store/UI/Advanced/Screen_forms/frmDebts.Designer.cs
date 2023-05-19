@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
             this.PaidAmount = new MaterialSkin.Controls.MaterialTextBox2();
@@ -419,6 +421,7 @@
             // 
             this.panel2.Controls.Add(this.DebtsDGV);
             this.panel2.Controls.Add(this.label3);
+            this.panel2.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(300, 129);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(818, 240);
@@ -426,31 +429,34 @@
             // 
             // DebtsDGV
             // 
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            this.DebtsDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DebtsDGV.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.DebtsDGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DebtsDGV.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DebtsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DebtsDGV.DefaultCellStyle = dataGridViewCellStyle1;
-            this.DebtsDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DebtsDGV.DefaultCellStyle = dataGridViewCellStyle6;
             this.DebtsDGV.EnableHeadersVisualStyles = false;
             this.DebtsDGV.Location = new System.Drawing.Point(0, 20);
             this.DebtsDGV.Name = "DebtsDGV";
             this.DebtsDGV.RowHeadersVisible = false;
             this.DebtsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DebtsDGV.Size = new System.Drawing.Size(818, 220);
-            this.DebtsDGV.TabIndex = 17;
-            this.DebtsDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DebtsDGV_CellClick);
+            this.DebtsDGV.Size = new System.Drawing.Size(815, 217);
+            this.DebtsDGV.TabIndex = 24;
+            this.DebtsDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DebtsDGV_CellClick_1);
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.TRACKDGV);
+            this.panel3.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
             this.panel3.Location = new System.Drawing.Point(300, 399);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(805, 173);
@@ -458,27 +464,29 @@
             // 
             // TRACKDGV
             // 
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            this.TRACKDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.TRACKDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.TRACKDGV.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.TRACKDGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TRACKDGV.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.TRACKDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.TRACKDGV.DefaultCellStyle = dataGridViewCellStyle2;
-            this.TRACKDGV.Dock = System.Windows.Forms.DockStyle.Bottom;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.TRACKDGV.DefaultCellStyle = dataGridViewCellStyle8;
             this.TRACKDGV.EnableHeadersVisualStyles = false;
-            this.TRACKDGV.Location = new System.Drawing.Point(0, 27);
+            this.TRACKDGV.Location = new System.Drawing.Point(3, 22);
             this.TRACKDGV.Name = "TRACKDGV";
             this.TRACKDGV.RowHeadersVisible = false;
             this.TRACKDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.TRACKDGV.Size = new System.Drawing.Size(805, 146);
-            this.TRACKDGV.TabIndex = 20;
+            this.TRACKDGV.Size = new System.Drawing.Size(799, 151);
+            this.TRACKDGV.TabIndex = 24;
             // 
             // searchtxtbx
             // 

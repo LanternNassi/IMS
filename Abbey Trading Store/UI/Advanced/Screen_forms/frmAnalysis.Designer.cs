@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Added_by = new System.Windows.Forms.ComboBox();
             this.Product = new System.Windows.Forms.ComboBox();
@@ -47,6 +49,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.Overall_dgv = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.Total_profits = new System.Windows.Forms.Label();
             this.Total_sales = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -55,8 +59,6 @@
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.dateTimePicker1 = new Telerik.WinControls.UI.RadDateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -64,8 +66,6 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Overall_dgv)).BeginInit();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateTimePicker2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateTimePicker1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -243,6 +243,7 @@
             // 
             this.panel2.Controls.Add(this.TDD);
             this.panel2.Controls.Add(this.label3);
+            this.panel2.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(300, 121);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(818, 240);
@@ -250,26 +251,28 @@
             // 
             // TDD
             // 
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            this.TDD.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.TDD.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.TDD.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TDD.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.TDD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.TDD.DefaultCellStyle = dataGridViewCellStyle1;
-            this.TDD.Dock = System.Windows.Forms.DockStyle.Bottom;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.TDD.DefaultCellStyle = dataGridViewCellStyle6;
             this.TDD.EnableHeadersVisualStyles = false;
-            this.TDD.Location = new System.Drawing.Point(0, 20);
+            this.TDD.Location = new System.Drawing.Point(3, 20);
             this.TDD.Name = "TDD";
             this.TDD.RowHeadersVisible = false;
             this.TDD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.TDD.Size = new System.Drawing.Size(818, 220);
-            this.TDD.TabIndex = 18;
+            this.TDD.Size = new System.Drawing.Size(812, 207);
+            this.TDD.TabIndex = 24;
             // 
             // label3
             // 
@@ -285,6 +288,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.Overall_dgv);
+            this.panel3.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(300, 391);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(805, 181);
@@ -292,30 +296,34 @@
             // 
             // Overall_dgv
             // 
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            this.Overall_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.Overall_dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Overall_dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.Overall_dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Overall_dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.Overall_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Overall_dgv.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Overall_dgv.Dock = System.Windows.Forms.DockStyle.Bottom;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Overall_dgv.DefaultCellStyle = dataGridViewCellStyle8;
             this.Overall_dgv.EnableHeadersVisualStyles = false;
-            this.Overall_dgv.Location = new System.Drawing.Point(0, 35);
+            this.Overall_dgv.Location = new System.Drawing.Point(0, 20);
             this.Overall_dgv.Name = "Overall_dgv";
             this.Overall_dgv.RowHeadersVisible = false;
             this.Overall_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.Overall_dgv.Size = new System.Drawing.Size(805, 146);
-            this.Overall_dgv.TabIndex = 19;
+            this.Overall_dgv.Size = new System.Drawing.Size(802, 161);
+            this.Overall_dgv.TabIndex = 24;
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.dateTimePicker2);
+            this.panel4.Controls.Add(this.dateTimePicker1);
             this.panel4.Controls.Add(this.Total_profits);
             this.panel4.Controls.Add(this.Total_sales);
             this.panel4.Controls.Add(this.label10);
@@ -324,12 +332,24 @@
             this.panel4.Controls.Add(this.circularProgressBar1);
             this.panel4.Controls.Add(this.label9);
             this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.dateTimePicker2);
-            this.panel4.Controls.Add(this.dateTimePicker1);
             this.panel4.Location = new System.Drawing.Point(300, 3);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(818, 112);
             this.panel4.TabIndex = 26;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(605, 55);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker2.TabIndex = 26;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(16, 55);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 25;
             // 
             // Total_profits
             // 
@@ -462,28 +482,6 @@
             this.label4.TabIndex = 17;
             this.label4.Text = "Start Date";
             // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(632, 53);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(164, 20);
-            this.dateTimePicker2.TabIndex = 1;
-            this.dateTimePicker2.TabStop = false;
-            this.dateTimePicker2.Text = "Monday, April 10, 2023";
-            this.dateTimePicker2.Value = new System.DateTime(2023, 4, 10, 3, 35, 4, 289);
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(16, 53);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(164, 20);
-            this.dateTimePicker1.TabIndex = 0;
-            this.dateTimePicker1.TabStop = false;
-            this.dateTimePicker1.Text = "Monday, April 10, 2023";
-            this.dateTimePicker1.Value = new System.DateTime(2023, 4, 10, 3, 35, 4, 289);
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -518,8 +516,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Overall_dgv)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateTimePicker2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateTimePicker1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -539,10 +535,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label5;
-        private Telerik.WinControls.UI.RadDateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label4;
-        private Telerik.WinControls.UI.RadDateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label10;
         private CircularProgressBar.CircularProgressBar circularProgressBar2;
         private System.Windows.Forms.Label label11;
@@ -555,5 +549,7 @@
         private System.Windows.Forms.Label Total_profits;
         private System.Windows.Forms.DataGridView TDD;
         private System.Windows.Forms.DataGridView Overall_dgv;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

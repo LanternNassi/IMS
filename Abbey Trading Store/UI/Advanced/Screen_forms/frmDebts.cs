@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Microsoft.Reporting.WinForms;
 
 using System.Windows.Forms;
+using Abbey_Trading_Store.DAL.DAL_Properties;
+using System.Data.SqlClient;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
@@ -19,10 +21,34 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         public frmDebts()
         {
             InitializeComponent();
+
+            Transactions transaction = new Transactions();
+            dynamic adapter = transaction.GetAllDebtsCreditsAppropriately("Customer");
+            DataTable dt = new DataTable();
+            Connection().Open();
+            adapter.Fill(dt);
+            DebtsDGV.DataSource = dt;
+            Connection().Close();
+
         }
         int row_overall = 0;
-        const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
-        OleDbConnection conn = new OleDbConnection(connection);
+        
+
+        public dynamic Connection()
+        {
+            if(Env.mode == 1)
+            {
+                OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
+                return conn;
+
+            }
+            else
+            {
+                SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+                return conn;
+            }
+        }
+        
 
         private async void materialButton2_Click(object sender, EventArgs e)
         {
@@ -48,8 +74,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     DialogResult result_paid = MessageBox.Show(message_paid, title_paid, buttons_paid);
                     if (result_paid == DialogResult.Yes)
                     {
-                        Success = transaction.UpdatePayment(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
-                        var resultserver1 = await transaction.UpdatePayment2(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
+                        Success = await transaction.UpdatePaymentAppropriately(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
 
                     }
                     else
@@ -60,8 +85,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 else
                 {
 
-                    Success = transaction.UpdatePayment(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
-                    var resultserver = await transaction.UpdatePayment2(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
+                    Success = await transaction.UpdatePaymentAppropriately(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
 
                 }
                 //Inserting the track
@@ -70,8 +94,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                                 PaidAmount.Text,
                                 Login_form.user,
                             };
-                bool isSuccess = transaction.InsertTransactionTrack(args);
-                var serverSuccess = await transaction.InsertTransactionTrack2(args);
+                bool isSuccess = await transaction.InsertTransactionTrackAppropriately(args);
 
                 if (isSuccess)
                 {
@@ -90,17 +113,17 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     Cursor = Cursors.Default;
                     MessageBox.Show("Updated successfully");
                     //Refreshing tracks
-                    OleDbDataAdapter adapter = transaction.GetAllTrackData(Int32.Parse(id.Text));
+                    dynamic adapter = transaction.GetAllTrackDataAppropriately(Int32.Parse(id.Text));
                     DataTable dttrack = new DataTable();
-                    conn.Open();
+                    Connection().Open();
                     adapter.Fill(dttrack);
                     TRACKDGV.DataSource = dttrack;
                     //Refreshing debts
-                    OleDbDataAdapter adapter2 = transaction.GetAllDebtsCredits("Customer");
+                    dynamic adapter2 = transaction.GetAllDebtsCreditsAppropriately("Customer");
                     DataTable dt = new DataTable();
                     adapter2.Fill(dt);
                     DebtsDGV.DataSource = dt;
-                    conn.Close();
+                    Connection().Close();
                 }
                 Cursor = Cursors.Default;
 
@@ -113,48 +136,20 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             Cursor = Cursors.Default;
         }
 
-        public OleDbDataAdapter GetTransaction(int id)
-        {
-            conn.Open();
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
-            string cmds = "SELECT * FROM Transactions WHERE ID = @id";
-            OleDbCommand cmd = new OleDbCommand(cmds, conn);
-            cmd.Parameters.AddWithValue("@id", id);
-            adapter.SelectCommand = cmd;
-            conn.Close();
-            return adapter;
-
-        }
-
-        public OleDbDataAdapter Getdetails(int id)
-        {
-            conn.Open();
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
-            string cmds = "SELECT * FROM `Transaction Details` WHERE Invoice_id = @id";
-            OleDbCommand cmd = new OleDbCommand(cmds, conn);
-            cmd.Parameters.AddWithValue("@id", id);
-            adapter.SelectCommand = cmd;
-            conn.Close();
-            return adapter;
-        }
+        
 
         private void frmDebts_Load(object sender, EventArgs e)
         {
-            Transactions transaction = new Transactions();
-            OleDbDataAdapter adapter = transaction.GetAllDebtsCredits("Customer");
-            DataTable dt = new DataTable();
-            conn.Open();
-            adapter.Fill(dt);
-            DebtsDGV.DataSource = dt;
-            conn.Close();
+            
         }
 
         private void materialButton3_Click(object sender, EventArgs e)
         {
+            TransactionDetail Td = new TransactionDetail();
             Cursor = Cursors.WaitCursor;
             Abbey_Trading_Store.Reports.Invoice_Report.Invoice dataset = new Reports.Invoice_Report.Invoice();
-            OleDbDataAdapter adapter1 = GetTransaction(Int32.Parse(id.Text));
-            OleDbDataAdapter adapter2 = Getdetails(Int32.Parse(id.Text));
+            dynamic adapter1 = Td.GetTransactionAppropriately(Int32.Parse(id.Text));
+            dynamic adapter2 = Td.GetdetailsAppropriately(Int32.Parse(id.Text));
 
             adapter1.Fill(dataset, "Overall_data");
             adapter2.Fill(dataset, "Invoice_data");
@@ -162,7 +157,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", dataset.Tables[0]);
             ReportDataSource datasource2 = new ReportDataSource("DataSet2", dataset.Tables[1]);
             ReportDataSource[] list = { datasource1, datasource2 };
-            ReportView form = new ReportView(list);
+            ReportView form = new ReportView(list , "Abbey_Trading_Store.Reports.Invoice_Report.Invoice.rdlc");
             form.Show();
             Cursor = Cursors.Default;
         }
@@ -176,16 +171,44 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 id.Text = DebtsDGV.Rows[row].Cells[0].Value.ToString();
                 CustomerName.Text = DebtsDGV.Rows[row].Cells[2].Value.ToString();
                 RemainAmount.Text = DebtsDGV.Rows[row].Cells[8].Value.ToString();
-
-                // Loading the changes track dgv
-                Transactions transaction = new Transactions();
-                OleDbDataAdapter adapter = transaction.GetAllTrackData(Int32.Parse(id.Text));
-                DataTable dttrack = new DataTable();
-                conn.Open();
-                adapter.Fill(dttrack);
-                TRACKDGV.DataSource = dttrack;
-                conn.Close();
+                if (id.Text != "")
+                {
+                    // Loading the changes track dgv
+                    Transactions transaction = new Transactions();
+                    dynamic adapter = transaction.GetAllTrackDataAppropriately(Int32.Parse(id.Text));
+                    DataTable dttrack = new DataTable();
+                    Connection().Open();
+                    adapter.Fill(dttrack);
+                    TRACKDGV.DataSource = dttrack;
+                    Connection().Close();
+                }
+                
             }
+        }
+
+        private void DebtsDGV_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = e.RowIndex;
+            row_overall = e.RowIndex;
+            if (row == 0 || row > 0)
+            {
+                id.Text = DebtsDGV.Rows[row].Cells[0].Value.ToString();
+                CustomerName.Text = DebtsDGV.Rows[row].Cells[2].Value.ToString();
+                RemainAmount.Text = DebtsDGV.Rows[row].Cells[8].Value.ToString();
+                if (id.Text != "")
+                {
+                    // Loading the changes track dgv
+                    Transactions transaction = new Transactions();
+                    dynamic adapter = transaction.GetAllTrackDataAppropriately(Int32.Parse(id.Text));
+                    DataTable dttrack = new DataTable();
+                    Connection().Open();
+                    adapter.Fill(dttrack);
+                    TRACKDGV.DataSource = dttrack;
+                    Connection().Close();
+                }
+
+            }
+
         }
     }
 }

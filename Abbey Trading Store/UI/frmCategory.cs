@@ -80,7 +80,7 @@ namespace Abbey_Trading_Store.UI
             category.Description = description.Text;
             category.ID = id.Text;
             bool affected = category.update();
-            var isSuccess = await category.Update2();
+            //var isSuccess = await category.Update2();
             if (affected == true )
             {
                 Cursor = Cursors.Default;
@@ -103,7 +103,7 @@ namespace Abbey_Trading_Store.UI
             category.ID = id.Text;
             category.Title = title.Text;
             bool affected = category.delete();
-            var isSuccess = await category.Delete2();
+            //var isSuccess = await category.Delete2();
             if (affected == true)
             {
                 Cursor = Cursors.Default;

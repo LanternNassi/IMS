@@ -29,6 +29,18 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Username = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.pnlNav = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.pnlform = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            this.search = new MaterialSkin.Controls.MaterialTextBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSales = new System.Windows.Forms.Button();
@@ -39,20 +51,10 @@
             this.btnCategories = new System.Windows.Forms.Button();
             this.btnUsers = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.pnlNav = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.pnlform = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.search = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,6 +62,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnSales);
@@ -76,6 +79,154 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 710);
             this.panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.Username);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(198, 130);
+            this.panel2.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
+            this.label2.Location = new System.Drawing.Point(43, 103);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 12);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Some User Text Here";
+            // 
+            // Username
+            // 
+            this.Username.AutoSize = true;
+            this.Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Username.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.Username.Location = new System.Drawing.Point(55, 74);
+            this.Username.Name = "Username";
+            this.Username.Size = new System.Drawing.Size(85, 16);
+            this.Username.TabIndex = 4;
+            this.Username.Text = "User Name";
+            // 
+            // button5
+            // 
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(1329, 12);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(25, 25);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "X";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // pnlNav
+            // 
+            this.pnlNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(149)))));
+            this.pnlNav.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlNav.Location = new System.Drawing.Point(0, 173);
+            this.pnlNav.Name = "pnlNav";
+            this.pnlNav.Size = new System.Drawing.Size(3, 378);
+            this.pnlNav.TabIndex = 6;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
+            this.lblTitle.Location = new System.Drawing.Point(244, 59);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(162, 32);
+            this.lblTitle.TabIndex = 7;
+            this.lblTitle.Text = "Dashboard";
+            // 
+            // pnlform
+            // 
+            this.pnlform.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(53)))), ((int)(((byte)(73)))));
+            this.pnlform.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlform.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pnlform.Location = new System.Drawing.Point(200, 138);
+            this.pnlform.Name = "pnlform";
+            this.pnlform.Size = new System.Drawing.Size(1130, 572);
+            this.pnlform.TabIndex = 8;
+            this.pnlform.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
+            this.label3.Location = new System.Drawing.Point(561, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(403, 32);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "BUKASA BUSINESS STORE";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(1299, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(19, 21);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "X";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // materialButton2
+            // 
+            this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton2.Depth = 0;
+            this.materialButton2.HighEmphasis = true;
+            this.materialButton2.Icon = global::Abbey_Trading_Store.Properties.Resources.settings;
+            this.materialButton2.Location = new System.Drawing.Point(1113, 15);
+            this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton2.Name = "materialButton2";
+            this.materialButton2.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton2.Size = new System.Drawing.Size(158, 36);
+            this.materialButton2.TabIndex = 26;
+            this.materialButton2.Text = "Batch upload";
+            this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton2.UseAccentColor = false;
+            this.materialButton2.UseVisualStyleBackColor = true;
+            this.materialButton2.Click += new System.EventHandler(this.materialButton2_Click);
+            // 
+            // search
+            // 
+            this.search.AnimateReadOnly = false;
+            this.search.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.search.Depth = 0;
+            this.search.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.search.LeadingIcon = global::Abbey_Trading_Store.Properties.Resources.search__1_;
+            this.search.Location = new System.Drawing.Point(1014, 75);
+            this.search.MaxLength = 50;
+            this.search.MouseState = MaterialSkin.MouseState.OUT;
+            this.search.Multiline = false;
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(294, 50);
+            this.search.TabIndex = 10;
+            this.search.Text = "";
+            this.search.TrailingIcon = null;
+            this.search.Visible = false;
+            this.search.TextChanged += new System.EventHandler(this.search_TextChanged);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Image = global::Abbey_Trading_Store.Properties.Resources.Untitled_design__2_;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 550);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(198, 158);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
             // 
             // button2
             // 
@@ -258,39 +409,6 @@
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             this.btnDashboard.Leave += new System.EventHandler(this.btnDashboard_Leave);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(198, 130);
-            this.panel2.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            this.label2.Location = new System.Drawing.Point(43, 103);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 12);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Some User Text Here";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label1.Location = new System.Drawing.Point(55, 74);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 16);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "User Name";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.ErrorImage = global::Abbey_Trading_Store.Properties.Resources.Untitled_11;
@@ -302,108 +420,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // button5
-            // 
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(1329, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(25, 25);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "X";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // pnlNav
-            // 
-            this.pnlNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(149)))));
-            this.pnlNav.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlNav.Location = new System.Drawing.Point(0, 173);
-            this.pnlNav.Name = "pnlNav";
-            this.pnlNav.Size = new System.Drawing.Size(3, 378);
-            this.pnlNav.TabIndex = 6;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
-            this.lblTitle.Location = new System.Drawing.Point(244, 59);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(162, 32);
-            this.lblTitle.TabIndex = 7;
-            this.lblTitle.Text = "Dashboard";
-            // 
-            // pnlform
-            // 
-            this.pnlform.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(53)))), ((int)(((byte)(73)))));
-            this.pnlform.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlform.Location = new System.Drawing.Point(200, 138);
-            this.pnlform.Name = "pnlform";
-            this.pnlform.Size = new System.Drawing.Size(1130, 572);
-            this.pnlform.TabIndex = 8;
-            this.pnlform.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
-            this.label3.Location = new System.Drawing.Point(561, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(377, 32);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "MMAK AGRO CHEMICALS";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1299, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(19, 21);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "X";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // search
-            // 
-            this.search.AnimateReadOnly = false;
-            this.search.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.search.Depth = 0;
-            this.search.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.search.LeadingIcon = global::Abbey_Trading_Store.Properties.Resources.search__1_;
-            this.search.Location = new System.Drawing.Point(1014, 75);
-            this.search.MaxLength = 50;
-            this.search.MouseState = MaterialSkin.MouseState.OUT;
-            this.search.Multiline = false;
-            this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(294, 50);
-            this.search.TabIndex = 10;
-            this.search.Text = "";
-            this.search.TrailingIcon = null;
-            this.search.Visible = false;
-            this.search.TextChanged += new System.EventHandler(this.search_TextChanged);
-            // 
-            // materialButton2
-            // 
-            this.materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton2.Depth = 0;
-            this.materialButton2.HighEmphasis = true;
-            this.materialButton2.Icon = global::Abbey_Trading_Store.Properties.Resources.settings;
-            this.materialButton2.Location = new System.Drawing.Point(1113, 15);
-            this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton2.Name = "materialButton2";
-            this.materialButton2.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton2.Size = new System.Drawing.Size(158, 36);
-            this.materialButton2.TabIndex = 26;
-            this.materialButton2.Text = "Batch upload";
-            this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton2.UseAccentColor = false;
-            this.materialButton2.UseVisualStyleBackColor = true;
-            this.materialButton2.Click += new System.EventHandler(this.materialButton2_Click);
             // 
             // Dashboard
             // 
@@ -429,6 +445,7 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -440,7 +457,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Username;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnProducts;
         private System.Windows.Forms.Button btnCategories;
@@ -455,10 +472,11 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlform;
         private System.Windows.Forms.Label label3;
-        private MaterialSkin.Controls.MaterialTextBox search;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private MaterialSkin.Controls.MaterialButton materialButton2;
+        private MaterialSkin.Controls.MaterialTextBox search;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

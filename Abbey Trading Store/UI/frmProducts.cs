@@ -28,7 +28,7 @@ namespace Abbey_Trading_Store.UI
             description.Text = "";
             rate.Text = "";
             SP_txtbx.Text = "";
-
+            WP.Text = "";
         }
 
 
@@ -65,12 +65,13 @@ namespace Abbey_Trading_Store.UI
             product.Description = description.Text;
             product.Rate = decimal.Parse(rate.Text);
             product.Selling_price = decimal.Parse(SP_txtbx.Text);
+            product.Wholesale_price = decimal.Parse(WP.Text);
             product.Quantity = 0;
             product.Added_by = Login_form.user;
             try
             {
                 bool check = product.add();
-                var success = await product.insert2();
+                //var success = await product.insert2();
                 if (check == true)
                 {
                     Cursor = Cursors.Default;
@@ -109,6 +110,7 @@ namespace Abbey_Trading_Store.UI
             id.Text = dgv_product.Rows[row].Cells[0].Value.ToString();
             name.Text = dgv_product.Rows[row].Cells[1].Value.ToString();
             category_comboBox1.Text = dgv_product.Rows[row].Cells[2].Value.ToString();
+            WP.Text = dgv_product.Rows[row].Cells[9].Value.ToString();
             description.Text = dgv_product.Rows[row].Cells[3].Value.ToString();
             rate.Text = dgv_product.Rows[row].Cells[4].Value.ToString();
             SP_txtbx.Text = dgv_product.Rows[row].Cells[5].Value.ToString();
@@ -125,10 +127,11 @@ namespace Abbey_Trading_Store.UI
             product.Category = category_comboBox1.Text;
             product.Description = description.Text;
             product.Rate = decimal.Parse(rate.Text);
+            product.Wholesale_price = decimal.Parse(WP.Text);
             product.Selling_price = decimal.Parse(SP_txtbx.Text);
             product.Added_by = Login_form.user;
             bool check = product.update();
-            var success = await product.update2();
+            //var success = await product.update2();
             if (check == true)
             {
                 Cursor = Cursors.Default;
@@ -165,7 +168,7 @@ namespace Abbey_Trading_Store.UI
             product.Id = Convert.ToInt32(id.Text);
             product.products = name.Text;
             bool check = product.delete();
-            var success = await product.delete2();
+            //var success = await product.delete2();
             if (check == true)
             {
                 Cursor = Cursors.Default;

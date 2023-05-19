@@ -13,10 +13,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Services.Description;
 using System.Windows.Forms;
+using Abbey_Trading_Store.DAL.DAL_Properties;
+using System.Data.SqlClient;
+using MaterialSkin.Controls;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
-    public partial class frmPurchaseAndSales : Form
+    public partial class frmPurchaseAndSales : MaterialForm
     {
         string form_type;
         public frmPurchaseAndSales(string type)
@@ -41,7 +44,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private void frmPurchaseAndSales_Load(object sender, EventArgs e)
         {
 
-            
+            //MessageBox.Show("Loaded");
             dt.Columns.Add("Product");
             dt.Columns.Add("Quantity");
             dt.Columns.Add("Rate");
@@ -57,10 +60,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             dts.Columns.Add("added_by");
             dts.Columns.Add("Paid amount");
             dts.Columns.Add("Return amount");
-            this.reportViewer1.RefreshReport();
             if (this.form_type == "Purchase")
             {
-                p_rate.ReadOnly = true;
+                //p_rate.ReadOnly = true;
             }
 
         }
@@ -77,7 +79,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 return;
             }
             DealerAndCustomer DC = new DealerAndCustomer();
-            string[] result = DC.search(keyword);
+            string[] result = DC.searchAppropriately(keyword);
             name.Text = result[0];
             email.Text = result[1];
             contact.Text = result[2];
@@ -148,14 +150,23 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             string selectedItem = p_search1.Items[p_search1.SelectedIndex].ToString();
             p_name.Text = selectedItem;
             product product = new product();
-            DataTable temp = product.search(selectedItem);
-            if (this.form_type == "Sales")
+            DataTable temp = product.searchAppropriately(selectedItem);
+            if (this.form_type != "Purchase")
             {
-                p_rate.Text = temp.Rows[0]["Selling_Price"].ToString();
+                p_rate.Items.Clear();
+                //p_rate.Text = temp.Rows[0]["Selling_Price"].ToString();
+                this.p_rate.Items.AddRange(new object[] {
+                    temp.Rows[0]["Selling_Price"].ToString(),
+                    temp.Rows[0]["Wholesale_price"].ToString()
+            });
+                this.p_rate.Text = temp.Rows[0]["Selling_Price"].ToString();
+                //p_rate.Items.Add(temp.Rows[0]["Wholesale_price"].ToString());
             }
             else
             {
-                p_rate.Text = temp.Rows[0]["Rate"].ToString();
+                p_rate.Items.Clear();
+                p_rate.Items.Add(temp.Rows[0]["Rate"].ToString());
+                this.p_rate.Text = temp.Rows[0]["Rate"].ToString();
             }
             p_inventory.Text = temp.Rows[0]["Quantity"].ToString();
             if (temp.Rows[0]["Selling_Price"].ToString() == null)
@@ -170,33 +181,44 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void p_search_TextUpdate(object sender, EventArgs e)
         {
-            search.Clear();
             string keyword = p_search1.Text;
             if (keyword == "")
             {
                 p_name.Text = "";
                 p_inventory.Text = "";
-                p_rate.Text = "";
-                search.Clear();
+                this.p_rate.Items.Clear();
+                this.p_rate.Text = "";
+                //search.Clear();
                 return;
             }
             product product = new product();
-            searchdt = product.Search(keyword);
-            for (int i = 0; i < searchdt.Rows.Count; i++)
+            searchdt = product.SearchAppropriately(keyword);
+            int the_count = searchdt.Rows.Count > 30 ? (30) : (searchdt.Rows.Count);
+            for (int i = 0; i < the_count; i++)
             {
-                p_search1.Items.Add(searchdt.Rows[i][0].ToString());
+                p_search1.Items.Add(searchdt.Rows[i][1].ToString());
             }
             //p_search.AutoCompleteSource = search;
             if (searchdt.Rows.Count > 0)
             {
                 p_name.Text = searchdt.Rows[0]["Product"].ToString();
-                if (this.form_type == "Sales")
+                if (this.form_type != "Purchase")
                 {
-                    p_rate.Text = searchdt.Rows[0]["Selling_Price"].ToString();
+                    p_rate.Items.Clear();
+                    //p_rate.Text = searchdt.Rows[0]["Selling_Price"].ToString();
+                    this.p_rate.Items.AddRange(new object[] {
+                    searchdt.Rows[0]["Selling_Price"].ToString(),
+                    searchdt.Rows[0]["Wholesale_price"].ToString()
+            });
+                    this.p_rate.Text = searchdt.Rows[0]["Selling_Price"].ToString();
+                    //p_rate.Items.Add(searchdt.Rows[0]["Wholesale_price"].ToString());
                 }
                 else
                 {
-                    p_rate.Text = searchdt.Rows[0]["Rate"].ToString();
+                    p_rate.Items.Clear();
+                    p_rate.Items.Add(searchdt.Rows[0]["Rate"].ToString());
+                    this.p_rate.Text = searchdt.Rows[0]["Rate"].ToString();
+
                 }
                 p_inventory.Text = searchdt.Rows[0]["Quantity"].ToString();
                 if (searchdt.Rows[0]["Selling_Price"].ToString() == null)
@@ -251,6 +273,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private async void materialButton2_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+            this.reportViewer1.RefreshReport();
             string course;
             if (form_type == "Sales")
             {
@@ -268,7 +291,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             int grand_total = int.Parse((grandtotal.Text).Replace(",", ""));
 
             DealerAndCustomer DC = new DealerAndCustomer();
-            bool check = DC.checker(dea_cust_name);
+            bool check = DC.CheckerAppropriately(dea_cust_name);
             if (check == true)
             {
                 //MessageBox.Show("Successful");
@@ -292,7 +315,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     type = "Dealer";
                 }
                 DC.Type = type;
-                bool test = DC.Insert();
+                bool test = await DC.InsertAppropriately();
                 if (test == true)
                 {
 
@@ -373,17 +396,16 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             // adding transaction to dataTable dts
             dts.Rows.Add("2", transact.Type, name.Text, grandtotal.Text, DateTime.Now, textBox13.Text, Login_form.user, paid_amount.Text, return_amount.Text);
-            int x = transact.Insert();
-            var isSuccess_server = await transact.insert2();
+            int x = await transact.InsertAppropriately();
             TransactionDetail TD = new TransactionDetail();
             int recorder = 0;
             int i;
 
             for (i = 0; i < dt.Rows.Count; i++)
             {
-
                 TD.Product_name = dt.Rows[i][0].ToString();
-                TD.qty = decimal.Parse(dt.Rows[i][1].ToString());
+                TD.qty = String.Format("{0:0.00}", (dt.Rows[i][1].ToString()));
+               
                 TD.Rate = decimal.Parse(dt.Rows[i][2].ToString());
                 TD.Total = decimal.Parse(dt.Rows[i][3].ToString());
                 TD.profit = int.Parse(dt.Rows[i][4].ToString());
@@ -395,22 +417,54 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     TD.profit = int.Parse(dt.Rows[i][4].ToString());
                 }
                 TD.invoice_id = x;
-                bool y = TD.Insert();
-                var detailsuccess = await TD.insert2();
+                bool y = await TD.InsertAppropriately();
                 recorder += 1;
                 if (form_type == "Sales")
                 {
-                    check = await product.DecreaseProduct(TD.qty, TD.Product_name);
+                    Decimal count = decimal.Parse(dt.Rows[i][1].ToString());
+                    check = await product.DecreaseProduct(count, TD.Product_name);
 
 
                 }
                 else if (form_type == "Purchase")
                 {
-                    check = await product.IncreaseProduct(TD.qty, TD.Product_name);
+                    Decimal count = decimal.Parse(dt.Rows[i][1].ToString());
+                    check = await product.IncreaseProduct(count, TD.Product_name);
 
                 }
 
             }
+            //foreach(DataRow dr in dataGridView1.Rows)
+            //{
+
+            //    TD.Product_name = dr[0].ToString();
+            //    TD.qty = decimal.Parse(dr[1].ToString());
+            //    TD.Rate = decimal.Parse(dr[2].ToString());
+            //    TD.Total = decimal.Parse(dr[3].ToString());
+            //    TD.profit = int.Parse(dr[4].ToString());
+            //    TD.type = form_type;
+            //    TD.Dea_Cust_name = name.Text;
+            //    TD.Added_by = Login_form.user;
+            //    if (form_type == "Sales")
+            //    {
+            //        TD.profit = int.Parse(dr[4].ToString());
+            //    }
+            //    TD.invoice_id = x;
+            //    bool y = await TD.InsertAppropriately();
+            //    recorder += 1;
+            //    if (form_type == "Sales")
+            //    {
+            //        check = await product.DecreaseProduct(TD.qty, TD.Product_name);
+
+
+            //    }
+            //    else if (form_type == "Purchase")
+            //    {
+            //        check = await product.IncreaseProduct(TD.qty, TD.Product_name);
+
+            //    }
+
+            //}
 
             success = (recorder == dt.Rows.Count) && check;
             if (success)
@@ -438,30 +492,60 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
                 if (form_type == "Sales")
                 {
-                    // printing an invoice
-                    const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
-                    OleDbConnection conn = new OleDbConnection(connection);
+                    if (Env.mode == 1)
+                    {
+                        // printing an invoice
+                        OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
 
-                    string cmd = "SELECT * FROM `Transactions` WHERE ID = " + x + " ";
-                    string cmd2 = "SELECT `product_name` , `Qty` , `rate` , `total` FROM `Transaction Details` WHERE Invoice_id = " + x + " ";
+                        string cmd = "SELECT * FROM `Transactions` WHERE ID = " + x + " ";
+                        string cmd2 = "SELECT `product_name` , `Qty` , `rate` , `total` FROM `Transaction Details` WHERE Invoice_id = " + x + " ";
 
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(cmd, conn);
-                    OleDbDataAdapter adapter2 = new OleDbDataAdapter(cmd2, conn);
+                        OleDbDataAdapter adapter = new OleDbDataAdapter(cmd, conn);
+                        OleDbDataAdapter adapter2 = new OleDbDataAdapter(cmd2, conn);
 
-                    Abbey_Trading_StoreDataSet dataset = new Abbey_Trading_StoreDataSet();
-                    conn.Open();
+                        Abbey_Trading_StoreDataSet dataset = new Abbey_Trading_StoreDataSet();
+                        conn.Open();
 
-                    adapter2.Fill(dataset, "Datatable_invoice");
-                    adapter.Fill(dataset, "DataTable_Details2");
-                    conn.Close();
+                        adapter2.Fill(dataset, "Datatable_invoice");
+                        adapter.Fill(dataset, "DataTable_Details2");
+                        conn.Close();
 
-                    ReportDataSource datasource = new ReportDataSource("DataSet_Report", dataset.Tables[0]);
-                    ReportDataSource datasource2 = new ReportDataSource("DataSet_details", dataset.Tables[1]);
+                        ReportDataSource datasource = new ReportDataSource("DataSet_Report", dataset.Tables[0]);
+                        ReportDataSource datasource2 = new ReportDataSource("DataSet_details", dataset.Tables[1]);
 
-                    this.reportViewer1.LocalReport.DataSources.Clear();
-                    this.reportViewer1.LocalReport.DataSources.Add(datasource2);
-                    this.reportViewer1.LocalReport.DataSources.Add(datasource);
-                    this.reportViewer1.RefreshReport();
+                        this.reportViewer1.LocalReport.DataSources.Clear();
+                        this.reportViewer1.LocalReport.DataSources.Add(datasource2);
+                        this.reportViewer1.LocalReport.DataSources.Add(datasource);
+                        this.reportViewer1.RefreshReport();
+
+                    }
+                    else
+                    {
+                        // printing an invoice
+                        SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+
+                        string cmd = "SELECT * FROM Transactions WHERE ID = " + x + " ";
+                        string cmd2 = "SELECT product_name , Qty , rate , total FROM [Transaction Details] WHERE Invoice_id = " + x + " ";
+
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd, conn);
+                        SqlDataAdapter adapter2 = new SqlDataAdapter(cmd2, conn);
+
+                        Abbey_Trading_StoreDataSet dataset = new Abbey_Trading_StoreDataSet();
+                        conn.Open();
+
+                        adapter2.Fill(dataset, "Datatable_invoice");
+                        adapter.Fill(dataset, "DataTable_Details2");
+                        conn.Close();
+
+                        ReportDataSource datasource = new ReportDataSource("DataSet_Report", dataset.Tables[0]);
+                        ReportDataSource datasource2 = new ReportDataSource("DataSet_details", dataset.Tables[1]);
+
+                        this.reportViewer1.LocalReport.DataSources.Clear();
+                        this.reportViewer1.LocalReport.DataSources.Add(datasource2);
+                        this.reportViewer1.LocalReport.DataSources.Add(datasource);
+                        this.reportViewer1.RefreshReport();
+                    }
+                    
 
                 }
                 else
@@ -487,7 +571,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         }
 
-        private bool check_validity(OleDbDataAdapter adapter)
+        private bool check_validity(dynamic adapter)
         {
             bool isSuccess = false;
             DataTable check_dt = new DataTable();
@@ -506,41 +590,117 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void materialButton4_Click(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
-            int invoice_id = int.Parse(this.invoice_txtbx.Text);
-            string cmd = "SELECT * FROM Transactions WHERE ID = " + invoice_id + " ";
-            string cmd2 = "SELECT `product_name` , `Qty` , `rate` , `total` FROM `Transaction Details` WHERE Invoice_id = " + invoice_id + " ";
-
-            const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
-
-            OleDbConnection conn = new OleDbConnection(connection);
-
-            OleDbDataAdapter adapter = new OleDbDataAdapter(cmd, conn);
-            if (check_validity(adapter))
+            if (Env.mode == 1)
             {
-                OleDbDataAdapter adapter2 = new OleDbDataAdapter(cmd2, conn);
+                Cursor = Cursors.WaitCursor;
+                int invoice_id = int.Parse(this.invoice_txtbx.Text);
+                string cmd = "SELECT * FROM Transactions WHERE ID = " + invoice_id + " ";
+                string cmd2 = "SELECT `product_name` , `Qty` , `rate` , `total` FROM `Transaction Details` WHERE Invoice_id = " + invoice_id + " ";
 
-                Abbey_Trading_StoreDataSet dataset = new Abbey_Trading_StoreDataSet();
 
-                conn.Open();
-                adapter.Fill(dataset, "DataTable_Details2");
-                adapter2.Fill(dataset, "Datatable_invoice");
-                conn.Close();
+                OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
 
-                ReportDataSource datasource = new ReportDataSource("DataSet_Report", dataset.Tables[0]);
-                ReportDataSource datasource2 = new ReportDataSource("DataSet_details", dataset.Tables[1]);
+                OleDbDataAdapter adapter = new OleDbDataAdapter(cmd, conn);
+                if (check_validity(adapter))
+                {
+                    OleDbDataAdapter adapter2 = new OleDbDataAdapter(cmd2, conn);
 
-                reportViewer1.LocalReport.DataSources.Clear();
-                reportViewer1.LocalReport.DataSources.Add(datasource);
-                reportViewer1.LocalReport.DataSources.Add(datasource2);
-                this.reportViewer1.RefreshReport();
-            }
-            else
-            {
+                    Abbey_Trading_StoreDataSet dataset = new Abbey_Trading_StoreDataSet();
+
+                    conn.Open();
+                    adapter.Fill(dataset, "DataTable_Details2");
+                    adapter2.Fill(dataset, "Datatable_invoice");
+                    conn.Close();
+
+                    ReportDataSource datasource = new ReportDataSource("DataSet_Report", dataset.Tables[0]);
+                    ReportDataSource datasource2 = new ReportDataSource("DataSet_details", dataset.Tables[1]);
+
+                    reportViewer1.LocalReport.DataSources.Clear();
+                    reportViewer1.LocalReport.DataSources.Add(datasource);
+                    reportViewer1.LocalReport.DataSources.Add(datasource2);
+                    this.reportViewer1.RefreshReport();
+                }
+                else
+                {
+                    Cursor = Cursors.Default;
+                    MessageBox.Show("Transaction id " + invoice_id + " is not a receipt type transaction");
+                }
                 Cursor = Cursors.Default;
-                MessageBox.Show("Transaction id " + invoice_id + " is not a receipt type transaction");
+
+            } else
+            {
+                Cursor = Cursors.WaitCursor;
+                int invoice_id = int.Parse(this.invoice_txtbx.Text);
+                string cmd = "SELECT * FROM Transactions WHERE ID = " + invoice_id + " ";
+                string cmd2 = "SELECT product_name , Qty , rate , total FROM [Transaction Details] WHERE Invoice_id = " + invoice_id + " ";
+
+
+                SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd, conn);
+                if (check_validity(adapter))
+                {
+                    SqlDataAdapter adapter2 = new SqlDataAdapter(cmd2, conn);
+
+                    Abbey_Trading_StoreDataSet dataset = new Abbey_Trading_StoreDataSet();
+
+                    conn.Open();
+                    adapter.Fill(dataset, "DataTable_Details2");
+                    adapter2.Fill(dataset, "Datatable_invoice");
+                    conn.Close();
+
+                    ReportDataSource datasource = new ReportDataSource("DataSet_Report", dataset.Tables[0]);
+                    ReportDataSource datasource2 = new ReportDataSource("DataSet_details", dataset.Tables[1]);
+
+                    reportViewer1.LocalReport.DataSources.Clear();
+                    reportViewer1.LocalReport.DataSources.Add(datasource);
+                    reportViewer1.LocalReport.DataSources.Add(datasource2);
+                    this.reportViewer1.RefreshReport();
+                }
+                else
+                {
+                    Cursor = Cursors.Default;
+                    MessageBox.Show("Transaction id " + invoice_id + " is not a receipt type transaction");
+                }
+                Cursor = Cursors.Default;
+
             }
-            Cursor = Cursors.Default;
+            
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            
+            
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = e.RowIndex;
+            if (row >= 0 && !(row == dataGridView1.Rows.Count+1))
+            {
+                p_name.Text = dataGridView1.Rows[row].Cells[0].Value.ToString();
+                p_quantity.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
+                p_rate.Text = dataGridView1.Rows[row].Cells[2].Value.ToString();
+                int total = int.Parse(dataGridView1.Rows[row].Cells[3].Value.ToString());
+                dt.Rows[row].Delete();
+                int subtotals = int.Parse((subtotal.Text).Replace(",", ""));
+                int final_sub = subtotals - total;
+                subtotal.Text = final_sub.ToString("N0");
+
+                textBox13.Text = "";
+                paid_amount.Text = "";
+                grandtotal.Text = "";
+                return_amount.Text = "";
+            }
+            
+
+        }
+
+        private void p_rate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

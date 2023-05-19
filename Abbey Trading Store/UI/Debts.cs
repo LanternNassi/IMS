@@ -91,7 +91,7 @@ namespace Abbey_Trading_Store.UI
                     if (result_paid == DialogResult.Yes)
                     {
                         Success = transaction.UpdatePayment(Int32.Parse(id.Text), (new_return_amount * -1),(total-new_return_amount),cleared);
-                        var resultserver1 = await transaction.UpdatePayment2(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
+                        //var resultserver1 = await transaction.UpdatePayment2(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
                     }
                     else
                     {
@@ -102,7 +102,7 @@ namespace Abbey_Trading_Store.UI
                 {
 
                     Success = transaction.UpdatePayment(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
-                    var resultserver = await transaction.UpdatePayment2(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
+                    //var resultserver = await transaction.UpdatePayment2(Int32.Parse(id.Text), (new_return_amount * -1), (total - new_return_amount), cleared);
 
                 }
                 //Inserting the track
@@ -112,12 +112,8 @@ namespace Abbey_Trading_Store.UI
                                 Login_form.user,
                             };
                 bool isSuccess = transaction.InsertTransactionTrack(args);
-                var serverSuccess = await transaction.InsertTransactionTrack2(args);
-                if (serverSuccess)
-                {
-                    Cursor = Cursors.Default;
-                    MessageBox.Show("Server track inserted successfully");
-                }
+                //var serverSuccess = await transaction.InsertTransactionTrack2(args);
+                
                 if (isSuccess)
                 {
                     Cursor = Cursors.Default;
@@ -218,7 +214,7 @@ namespace Abbey_Trading_Store.UI
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", dataset.Tables[0]);
             ReportDataSource datasource2 = new ReportDataSource("DataSet2", dataset.Tables[1]);
             ReportDataSource[] list = { datasource1, datasource2 };
-            ReportView form = new ReportView(list);
+            ReportView form = new ReportView(list , "Abbey_Trading_Store.Reports.Invoice_Report.Invoice.rdlc");
             form.Show();
             Cursor = Cursors.Default;
         }
@@ -227,8 +223,8 @@ namespace Abbey_Trading_Store.UI
         {
             Cursor = Cursors.WaitCursor;
             DGVPrinter Printer = new DGVPrinter();
-            Printer.Title = "\r\n\r\n\r\n MMAK AGRO CHEMICALS Ltd \r\n\r\n";
-            Printer.SubTitle = "Located at Busega Kampala \r\n Phone: 0754066646\r\n\r\n";
+            Printer.Title = "\r\n\r\n\r\n BUKASA BUSINESS STORE \r\n\r\n";
+            Printer.SubTitle = "Located at Kalisizo \r\n Phone: 0754066646\r\n\r\n";
             Printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
             Printer.PageNumbers = true;
             Printer.PageNumberInHeader = false;
@@ -244,8 +240,8 @@ namespace Abbey_Trading_Store.UI
         {
             Cursor = Cursors.WaitCursor;
             DGVPrinter Printer = new DGVPrinter();
-            Printer.Title = "\r\n\r\n\r\n MMAK AGRO CHEMICALS Ltd \r\n\r\n";
-            Printer.SubTitle = "Located at Busega Kampala \r\n Phone: 0754066646\r\n\r\n";
+            Printer.Title = "\r\n\r\n\r\n BUKASA BUSINESS STORE \r\n\r\n";
+            Printer.SubTitle = "Located at Kalisizo \r\n Phone: 0754066646\r\n\r\n";
             Printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
             Printer.PageNumbers = true;
             Printer.PageNumberInHeader = false;

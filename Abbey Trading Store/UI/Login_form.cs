@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Abbey_Trading_Store.DAL;
+using Abbey_Trading_Store.DAL.DAL_Properties;
 using Abbey_Trading_Store.UI.Advanced;
 
 namespace Abbey_Trading_Store.UI
@@ -56,13 +57,18 @@ namespace Abbey_Trading_Store.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Dashboard form = new Dashboard();
+            //user = "User";
+            //form.Show();
+
+
             Cursor = Cursors.WaitCursor;
             Dashboard form = new Dashboard();
             LoginDAL Login = new LoginDAL();
             Login.Username = username.Text;
             Login.Password = password.Text;
             Login.Usertype = usertype_cmbx.Text;
-            string[] results = Login.login();
+            string[] results = Login.LoginAppropriately();
             string admin_priviledge = usertype_cmbx.Text;
             if (results[0] == "True")
             {
@@ -82,16 +88,20 @@ namespace Abbey_Trading_Store.UI
                             if (admin_priviledge == "admin")
                             {
                                 Admin_dashboard admin = new Admin_dashboard();
-                                //admin.Show();
-                                form.Show();
+                                if (Env.layout ==1) {
+                                    admin.Show();
+                                } else
+                                {
+                                    form.Show();
+                                }
                             }
                             else if (admin_priviledge == "normal")
                             {
                                 frmUserDashboard normal = new frmUserDashboard();
                                 normal.Show();
                             }
-                               
-            
+
+
                         }
                         break;
                     case "normal":
@@ -111,10 +121,10 @@ namespace Abbey_Trading_Store.UI
                                 System.Threading.Thread.Sleep(10000);
                                 ss.Close();
                                 frmUserDashboard normal = new frmUserDashboard();
-                                normal.Show(); 
+                                normal.Show();
 
                             }
-                                
+
 
                         }
                         break;

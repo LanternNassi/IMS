@@ -62,7 +62,7 @@ namespace Abbey_Trading_Store.UI
         {
             Cursor = Cursors.WaitCursor;
             int number_of_columns = dtExcel.Columns.Count;
-            if (number_of_columns == 7)
+            if (number_of_columns == 8)
             {
                 List<ProductsProps> products = new List<ProductsProps>();
                 int row = 0;
@@ -73,6 +73,7 @@ namespace Abbey_Trading_Store.UI
                     new_product.Description = dtExcel.Rows[i][2].ToString();
                     new_product.Rate = Convert.ToDecimal(dtExcel.Rows[i][3]);
                     new_product.Selling_price = Convert.ToDecimal(dtExcel.Rows[i][4]);
+                    new_product.Wholesale_price = Convert.ToDecimal(dtExcel.Rows[i][7]);
                     new_product.Quantity = Convert.ToDecimal(dtExcel.Rows[i][5]);
                     new_product.Added_date = DateTime.Now;
                     new_product.Added_by = dtExcel.Rows[i][6].ToString();
@@ -83,6 +84,7 @@ namespace Abbey_Trading_Store.UI
                     product_prop.Category = dtExcel.Rows[i][1].ToString();
                     product_prop.Description = dtExcel.Rows[i][2].ToString();
                     product_prop.Rate = Convert.ToDecimal(dtExcel.Rows[i][3]);
+                    product_prop.Wholesale_price = Convert.ToDecimal(dtExcel.Rows[i][7]);
                     product_prop.Selling_price = Convert.ToDecimal(dtExcel.Rows[i][4]);
                     product_prop.Quantity = Convert.ToDecimal(dtExcel.Rows[i][5]);
                     product_prop.Added_date = DateTime.Now;
@@ -102,7 +104,7 @@ namespace Abbey_Trading_Store.UI
                     }
                 }
                 product prod = new product();
-                var success = await prod.Batchupload(products);
+                //var success = await prod.Batchupload(products);
                 Cursor = Cursors.Default;
                 MessageBox.Show("Products inserted successfully");
             }

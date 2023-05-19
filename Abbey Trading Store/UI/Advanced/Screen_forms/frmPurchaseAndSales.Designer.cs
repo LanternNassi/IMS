@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
             this.invoice_txtbx = new MaterialSkin.Controls.MaterialTextBox2();
@@ -45,11 +44,11 @@
             this.search = new MaterialSkin.Controls.MaterialTextBox2();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.p_rate = new MaterialSkin.Controls.MaterialComboBox();
             this.p_search1 = new System.Windows.Forms.ComboBox();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.p_quantity = new MaterialSkin.Controls.MaterialTextBox2();
             this.label8 = new System.Windows.Forms.Label();
-            this.p_rate = new MaterialSkin.Controls.MaterialTextBox2();
             this.label7 = new System.Windows.Forms.Label();
             this.p_inventory = new MaterialSkin.Controls.MaterialTextBox2();
             this.label6 = new System.Windows.Forms.Label();
@@ -67,13 +66,13 @@
             this.label14 = new System.Windows.Forms.Label();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.paid_amount = new MaterialSkin.Controls.MaterialTextBox2();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox13 = new MaterialSkin.Controls.MaterialTextBox2();
             this.label11 = new System.Windows.Forms.Label();
             this.subtotal = new MaterialSkin.Controls.MaterialTextBox2();
             this.label10 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -98,9 +97,9 @@
             this.panel1.Controls.Add(this.search);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(3, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1130, 108);
+            this.panel1.Size = new System.Drawing.Size(1124, 108);
             this.panel1.TabIndex = 0;
             // 
             // materialButton4
@@ -346,11 +345,11 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.p_rate);
             this.panel2.Controls.Add(this.p_search1);
             this.panel2.Controls.Add(this.materialButton1);
             this.panel2.Controls.Add(this.p_quantity);
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.p_rate);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.p_inventory);
             this.panel2.Controls.Add(this.label6);
@@ -362,6 +361,30 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1130, 86);
             this.panel2.TabIndex = 1;
+            // 
+            // p_rate
+            // 
+            this.p_rate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.p_rate.AutoResize = false;
+            this.p_rate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.p_rate.Depth = 0;
+            this.p_rate.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.p_rate.DropDownHeight = 174;
+            this.p_rate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.p_rate.DropDownWidth = 121;
+            this.p_rate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.p_rate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.p_rate.FormattingEnabled = true;
+            this.p_rate.IntegralHeight = false;
+            this.p_rate.ItemHeight = 43;
+            this.p_rate.Location = new System.Drawing.Point(686, 26);
+            this.p_rate.MaxDropDownItems = 4;
+            this.p_rate.MouseState = MaterialSkin.MouseState.OUT;
+            this.p_rate.Name = "p_rate";
+            this.p_rate.Size = new System.Drawing.Size(156, 49);
+            this.p_rate.StartIndex = 0;
+            this.p_rate.TabIndex = 26;
+            this.p_rate.SelectedIndexChanged += new System.EventHandler(this.p_rate_SelectedIndexChanged);
             // 
             // p_search1
             // 
@@ -437,34 +460,6 @@
             this.label8.Size = new System.Drawing.Size(28, 17);
             this.label8.TabIndex = 22;
             this.label8.Text = "Qty";
-            // 
-            // p_rate
-            // 
-            this.p_rate.AnimateReadOnly = false;
-            this.p_rate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.p_rate.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.p_rate.Depth = 0;
-            this.p_rate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.p_rate.HideSelection = true;
-            this.p_rate.LeadingIcon = null;
-            this.p_rate.Location = new System.Drawing.Point(686, 27);
-            this.p_rate.MaxLength = 32767;
-            this.p_rate.MouseState = MaterialSkin.MouseState.OUT;
-            this.p_rate.Name = "p_rate";
-            this.p_rate.PasswordChar = '\0';
-            this.p_rate.PrefixSuffixText = null;
-            this.p_rate.ReadOnly = false;
-            this.p_rate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.p_rate.SelectedText = "";
-            this.p_rate.SelectionLength = 0;
-            this.p_rate.SelectionStart = 0;
-            this.p_rate.ShortcutsEnabled = true;
-            this.p_rate.Size = new System.Drawing.Size(156, 48);
-            this.p_rate.TabIndex = 21;
-            this.p_rate.TabStop = false;
-            this.p_rate.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.p_rate.TrailingIcon = null;
-            this.p_rate.UseSystemPasswordChar = false;
             // 
             // label7
             // 
@@ -583,9 +578,9 @@
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 192);
+            this.panel3.Location = new System.Drawing.Point(3, 189);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1130, 380);
+            this.panel3.Size = new System.Drawing.Size(1124, 380);
             this.panel3.TabIndex = 2;
             // 
             // panel5
@@ -722,19 +717,47 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.dataGridView1);
             this.panel4.Controls.Add(this.paid_amount);
             this.panel4.Controls.Add(this.label12);
             this.panel4.Controls.Add(this.textBox13);
             this.panel4.Controls.Add(this.label11);
             this.panel4.Controls.Add(this.subtotal);
             this.panel4.Controls.Add(this.label10);
-            this.panel4.Controls.Add(this.dataGridView1);
             this.panel4.Controls.Add(this.label9);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(525, 380);
             this.panel4.TabIndex = 0;
+            // 
+            // dataGridView1
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(4, 20);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(517, 158);
+            this.dataGridView1.TabIndex = 28;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
             // 
             // paid_amount
             // 
@@ -855,40 +878,6 @@
             this.label10.TabIndex = 22;
             this.label10.Text = "Sub Total";
             // 
-            // dataGridView1
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 20);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(509, 165);
-            this.dataGridView1.TabIndex = 15;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -908,8 +897,9 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
             this.Name = "frmPurchaseAndSales";
+            this.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Text = "frmPurchaseAndSales";
             this.Load += new System.EventHandler(this.frmPurchaseAndSales_Load);
             this.panel1.ResumeLayout(false);
@@ -936,7 +926,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private MaterialSkin.Controls.MaterialTextBox2 p_rate;
         private System.Windows.Forms.Label label7;
         private MaterialSkin.Controls.MaterialTextBox2 p_inventory;
         private System.Windows.Forms.Label label6;
@@ -955,7 +944,6 @@
         private System.Windows.Forms.Label label11;
         private MaterialSkin.Controls.MaterialTextBox2 subtotal;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private MaterialSkin.Controls.MaterialButton materialButton2;
         private MaterialSkin.Controls.MaterialTextBox2 return_amount;
@@ -972,5 +960,7 @@
         private MaterialSkin.Controls.MaterialMultiLineTextBox2 address;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox p_search1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private MaterialSkin.Controls.MaterialComboBox p_rate;
     }
 }

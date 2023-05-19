@@ -16,6 +16,19 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         public frmAnalysis()
         {
             InitializeComponent();
+
+            DateTime start_date = (DateTime.Today).AddDays(-30);
+            dateTimePicker1.Value = start_date;
+
+            DateTime end_date = DateTime.Today;
+            dateTimePicker2.Value = end_date;
+
+            cbbx.Text = "Sales";
+
+            TransactionDetail TD = new TransactionDetail();
+            DataTable dt = TD.QueryTransactionsAppropriately(start_date, end_date, cbbx.Text);
+            TDD.DataSource = dt;
+            cc = dt;
         }
 
         private void materialComboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -39,7 +52,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             //Run the query 
             TransactionDetail TD = new TransactionDetail();
-            DataTable dt = TD.QueryTransactions(
+            DataTable dt = TD.QueryTransactionsAppropriately(
                 start_date,
                 end_date,
                 type,
@@ -135,18 +148,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private void frmAnalysis_Load(object sender, EventArgs e)
         {
 
-            DateTime start_date = (DateTime.Today).AddDays(-30);
-            dateTimePicker1.Value = start_date;
-
-            DateTime end_date = DateTime.Today;
-            dateTimePicker2.Value = end_date;
-
-            cbbx.Text = "Sales";
-
-            TransactionDetail TD = new TransactionDetail();
-            DataTable dt = TD.QueryTransactions(start_date, end_date, cbbx.Text);
-            TDD.DataSource = dt;
-            cc = dt;
+            
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -195,7 +197,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             string keywords = Customer.Text;
             DealerAndCustomer cust = new DealerAndCustomer();
-            DataTable dt = cust.Search(keywords);
+            DataTable dt = cust.SearchAppropriately(keywords);
             foreach (DataRow dr in dt.Rows)
             {
                 Customer.Items.Add(dr[2].ToString());
@@ -213,7 +215,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             string keywords = Product.Text;
             product product = new product();
-            DataTable dt = product.search(keywords);
+            DataTable dt = product.searchAppropriately(keywords);
             foreach (DataRow dr in dt.Rows)
             {
                 Product.Items.Add(dr[1].ToString());
@@ -231,7 +233,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             string keywords = Added_by.Text;
             Users user = new Users();
-            DataTable dt = user.search(keywords);
+            DataTable dt = user.SearchAppropriately(keywords);
             foreach (DataRow dr in dt.Rows)
             {
                 Added_by.Items.Add(dr[1].ToString());

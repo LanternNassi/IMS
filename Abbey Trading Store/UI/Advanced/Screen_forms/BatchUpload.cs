@@ -12,7 +12,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Telerik.WinControls.UI.Barcode.Symbology;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
@@ -109,7 +108,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     product_prop.Added_by = dtExcel.Rows[i][6].ToString();
 
                     products.Add(product_prop);
-                    bool created = new_product.add();
+                    bool created = await new_product.AddAppropriately();
 
                     if (created)
                     {
@@ -122,7 +121,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     }
                 }
                 product prod = new product();
-                var success = await prod.Batchupload(products);
+                if (Env.mode == 3)
+                {
+                    var success = await prod.Batchupload(products);
+                }
                 Cursor = Cursors.Default;
                 MessageBox.Show("Products inserted successfully");
             }

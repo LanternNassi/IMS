@@ -30,13 +30,12 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.search = new MaterialSkin.Controls.MaterialTextBox();
             this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
@@ -56,57 +55,20 @@
             this.label7 = new System.Windows.Forms.Label();
             this.rate = new MaterialSkin.Controls.MaterialTextBox2();
             this.label6 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.WP = new MaterialSkin.Controls.MaterialTextBox2();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(809, 366);
-            this.dataGridView1.TabIndex = 2;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(127, 99);
+            this.label5.Location = new System.Drawing.Point(417, 99);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 15);
             this.label5.TabIndex = 3;
@@ -122,7 +84,7 @@
             this.circularProgressBar2.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
             this.circularProgressBar2.InnerMargin = 2;
             this.circularProgressBar2.InnerWidth = -1;
-            this.circularProgressBar2.Location = new System.Drawing.Point(110, 3);
+            this.circularProgressBar2.Location = new System.Drawing.Point(400, 3);
             this.circularProgressBar2.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar2.Name = "circularProgressBar2";
             this.circularProgressBar2.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
@@ -149,7 +111,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(26, 96);
+            this.label3.Location = new System.Drawing.Point(77, 96);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 15);
             this.label3.TabIndex = 1;
@@ -165,7 +127,7 @@
             this.circularProgressBar1.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
             this.circularProgressBar1.InnerMargin = 2;
             this.circularProgressBar1.InnerWidth = -1;
-            this.circularProgressBar1.Location = new System.Drawing.Point(3, 3);
+            this.circularProgressBar1.Location = new System.Drawing.Point(54, 3);
             this.circularProgressBar1.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar1.Name = "circularProgressBar1";
             this.circularProgressBar1.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
@@ -190,10 +152,38 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
             this.panel2.Location = new System.Drawing.Point(304, 206);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(809, 366);
             this.panel2.TabIndex = 21;
+            // 
+            // dataGridView1
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(809, 366);
+            this.dataGridView1.TabIndex = 24;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
             // 
             // panel3
             // 
@@ -291,7 +281,7 @@
             this.description.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.description.Depth = 0;
             this.description.HideSelection = true;
-            this.description.Location = new System.Drawing.Point(82, 275);
+            this.description.Location = new System.Drawing.Point(82, 224);
             this.description.MaxLength = 32767;
             this.description.MouseState = MaterialSkin.MouseState.OUT;
             this.description.Name = "description";
@@ -317,7 +307,7 @@
             this.name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.name.HideSelection = true;
             this.name.LeadingIcon = null;
-            this.name.Location = new System.Drawing.Point(82, 99);
+            this.name.Location = new System.Drawing.Point(82, 72);
             this.name.MaxLength = 32767;
             this.name.MouseState = MaterialSkin.MouseState.OUT;
             this.name.Name = "name";
@@ -345,7 +335,7 @@
             this.id.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.id.HideSelection = true;
             this.id.LeadingIcon = null;
-            this.id.Location = new System.Drawing.Point(82, 14);
+            this.id.Location = new System.Drawing.Point(82, 3);
             this.id.MaxLength = 32767;
             this.id.MouseState = MaterialSkin.MouseState.OUT;
             this.id.Name = "id";
@@ -370,7 +360,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label4.Location = new System.Drawing.Point(2, 290);
+            this.label4.Location = new System.Drawing.Point(2, 239);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 17);
             this.label4.TabIndex = 7;
@@ -381,7 +371,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label2.Location = new System.Drawing.Point(3, 109);
+            this.label2.Location = new System.Drawing.Point(3, 82);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 17);
             this.label2.TabIndex = 3;
@@ -392,7 +382,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label1.Location = new System.Drawing.Point(3, 26);
+            this.label1.Location = new System.Drawing.Point(3, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(19, 17);
             this.label1.TabIndex = 1;
@@ -421,6 +411,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.WP);
+            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.SP_txtbx);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.category_comboBox1);
@@ -448,7 +440,7 @@
             this.SP_txtbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.SP_txtbx.HideSelection = true;
             this.SP_txtbx.LeadingIcon = null;
-            this.SP_txtbx.Location = new System.Drawing.Point(82, 499);
+            this.SP_txtbx.Location = new System.Drawing.Point(82, 423);
             this.SP_txtbx.MaxLength = 32767;
             this.SP_txtbx.MouseState = MaterialSkin.MouseState.OUT;
             this.SP_txtbx.Name = "SP_txtbx";
@@ -472,7 +464,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label8.Location = new System.Drawing.Point(3, 509);
+            this.label8.Location = new System.Drawing.Point(3, 433);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(78, 17);
             this.label8.TabIndex = 19;
@@ -492,7 +484,7 @@
             this.category_comboBox1.FormattingEnabled = true;
             this.category_comboBox1.IntegralHeight = false;
             this.category_comboBox1.ItemHeight = 43;
-            this.category_comboBox1.Location = new System.Drawing.Point(82, 185);
+            this.category_comboBox1.Location = new System.Drawing.Point(82, 145);
             this.category_comboBox1.MaxDropDownItems = 4;
             this.category_comboBox1.MouseState = MaterialSkin.MouseState.OUT;
             this.category_comboBox1.Name = "category_comboBox1";
@@ -505,7 +497,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label7.Location = new System.Drawing.Point(3, 198);
+            this.label7.Location = new System.Drawing.Point(3, 158);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 17);
             this.label7.TabIndex = 17;
@@ -520,7 +512,7 @@
             this.rate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.rate.HideSelection = true;
             this.rate.LeadingIcon = null;
-            this.rate.Location = new System.Drawing.Point(85, 419);
+            this.rate.Location = new System.Drawing.Point(82, 355);
             this.rate.MaxLength = 32767;
             this.rate.MouseState = MaterialSkin.MouseState.OUT;
             this.rate.Name = "rate";
@@ -545,12 +537,51 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label6.Location = new System.Drawing.Point(6, 429);
+            this.label6.Location = new System.Drawing.Point(3, 365);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(34, 17);
             this.label6.TabIndex = 15;
             this.label6.Text = "Rate";
             this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // WP
+            // 
+            this.WP.AnimateReadOnly = false;
+            this.WP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.WP.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.WP.Depth = 0;
+            this.WP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.WP.HideSelection = true;
+            this.WP.LeadingIcon = null;
+            this.WP.Location = new System.Drawing.Point(82, 495);
+            this.WP.MaxLength = 32767;
+            this.WP.MouseState = MaterialSkin.MouseState.OUT;
+            this.WP.Name = "WP";
+            this.WP.PasswordChar = '\0';
+            this.WP.PrefixSuffixText = null;
+            this.WP.ReadOnly = false;
+            this.WP.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.WP.SelectedText = "";
+            this.WP.SelectionLength = 0;
+            this.WP.SelectionStart = 0;
+            this.WP.ShortcutsEnabled = true;
+            this.WP.Size = new System.Drawing.Size(177, 48);
+            this.WP.TabIndex = 22;
+            this.WP.TabStop = false;
+            this.WP.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.WP.TrailingIcon = null;
+            this.WP.UseSystemPasswordChar = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.label9.Location = new System.Drawing.Point(3, 505);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(68, 17);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "Wholesale";
             // 
             // frmProducts
             // 
@@ -569,8 +600,8 @@
             this.Name = "frmProducts";
             this.Text = "frmProducts";
             this.Load += new System.EventHandler(this.frmProducts_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -581,8 +612,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label5;
         private CircularProgressBar.CircularProgressBar circularProgressBar2;
         private System.Windows.Forms.Label label3;
@@ -607,5 +636,8 @@
         private System.Windows.Forms.Label label8;
         private MaterialSkin.Controls.MaterialComboBox category_comboBox1;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private MaterialSkin.Controls.MaterialTextBox2 WP;
+        private System.Windows.Forms.Label label9;
     }
 }

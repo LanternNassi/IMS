@@ -15,9 +15,11 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         private string description;
         private decimal rate;
         private decimal selling_price;
+        private decimal wholesale_price;
         private decimal quantity;
         private DateTime added_date;
         private string added_by;
+        private int server_id;
 
         // properties
         public int Id { get { return id; } set { id = value; } }
@@ -26,8 +28,11 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         public string Description { get { return description; } set { description = value; } }
         public decimal Rate { get { return rate; } set { rate = value; } }
         public decimal Selling_price { get { return selling_price; } set { selling_price = value; } }
+        public decimal Wholesale_price { get { return wholesale_price; } set { wholesale_price = value; } }
         public decimal Quantity { get { return quantity; } set { quantity = value; } }
         public DateTime Added_date { get { return added_date; } set { added_date = value; } }
         public string Added_by { get { return added_by; } set { added_by = value; } }
+        public int Server_id { get { return server_id; } set { server_id = value; } }
+
     }
 }

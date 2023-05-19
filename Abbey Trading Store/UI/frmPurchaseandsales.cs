@@ -14,6 +14,8 @@ using System.Data.OleDb;
 using Microsoft.Reporting.WinForms;
 using Abbey_Trading_Store.Invoice;
 using System.Web.Services.Description;
+using System.Data.SqlTypes;
+using Microsoft.VisualBasic;
 
 namespace Abbey_Trading_Store.UI
 {
@@ -72,7 +74,7 @@ namespace Abbey_Trading_Store.UI
             this.reportViewer1.RefreshReport();
             if (Types.Text == "Purchase")
             {
-                p_rate.ReadOnly = true;
+                //p_rate.ReadOnly = true;
             }
         }
 
@@ -102,6 +104,7 @@ namespace Abbey_Trading_Store.UI
             string keyword = p_search.Text;
             if (keyword == "")
             {
+                p_rate.Items.Clear();
                 pname.Text = "";
                 p_inventory.Text = "";
                 p_rate.Text = "";
@@ -110,7 +113,9 @@ namespace Abbey_Trading_Store.UI
             }
             product product = new product();
             search = product.Search(keyword);
-            for (int i = 0; i < search.Rows.Count; i++)
+            int the_count = search.Rows.Count>30 ? (30) :(search.Rows.Count);
+           
+            for (int i = 0; i < the_count; i++)
             {
                 p_search.Items.Add(search.Rows[i][0].ToString());
             }
@@ -120,11 +125,15 @@ namespace Abbey_Trading_Store.UI
                 pname.Text = search.Rows[0]["Product"].ToString();
                 if (Types.Text == "Sales")
                 {
+                    p_rate.Items.Clear();
                     p_rate.Text = search.Rows[0]["Selling_Price"].ToString();
+                    p_rate.Items.Add(search.Rows[0]["Wholesale_price"].ToString());
                 }
                 else
                 {
+                    p_rate.Items.Clear();
                     p_rate.Text = search.Rows[0]["Rate"].ToString();
+                    p_rate.Items.Add(search.Rows[0]["Wholesale_price"].ToString());
                 }
                 p_inventory.Text = search.Rows[0]["Quantity"].ToString();
                 if (search.Rows[0]["Selling_Price"].ToString() == null)
@@ -144,11 +153,26 @@ namespace Abbey_Trading_Store.UI
         private void button2_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+            grandtotal.Text = "";
+            textBox13.Text = "";
             //Getting 
             string productname = pname.Text;
-            decimal rate = decimal.Parse(p_rate.Text);
             decimal quantity = decimal.Parse(p_quantity.Text);
-            decimal total = rate * quantity;
+            decimal rate = 0;
+            decimal total = 0;
+            if (p_quantity.Text.Contains("."))
+            {
+                decimal calculated = decimal.Parse(p_quantity.Text) * decimal.Parse(p_rate.Text);
+                string amount = Interaction.InputBox("Confirm the amount?", "Amount", calculated.ToString());
+                total = decimal.Parse(amount);
+                rate = decimal.Parse(p_rate.Text);
+            }
+            else
+            {
+                rate = decimal.Parse(p_rate.Text);
+                total = rate * quantity;
+            }
+            //decimal total = rate * quantity;
             decimal subtotals = 0;
             if (subtotal.Text == "")
             {
@@ -180,7 +204,9 @@ namespace Abbey_Trading_Store.UI
                 p_search.Text = "";
                 p_inventory.Text = "";
                 p_rate.Text = "0";
+                p_rate.Items.Clear();
                 p_quantity.Text = "0";
+                p_rate.Items.Clear();
 
             }
             Cursor = Cursors.Default;
@@ -283,7 +309,7 @@ namespace Abbey_Trading_Store.UI
                 }
                 DC.Type = type;
                 bool test = DC.Insert();
-                var test2 = await DC.insert2();
+                //var test2 = await DC.insert2();
                 if (test == true)
                 {
 
@@ -305,7 +331,25 @@ namespace Abbey_Trading_Store.UI
             int ovp = 0;
             for (int h = 0; h <= ((dt.Rows.Count) - 1); h++)
             {
-                ovp += int.Parse(dt.Rows[h][4].ToString());
+                //ovp += int.Parse(dt.Rows[h][4].ToString());
+                //int profit1 = int.Parse(dt.Rows[h][4].ToString())
+                //ovp += Decimal.Round(profit1;
+
+                //Decimal t = 1.345;
+                try
+                {
+                    ovp += int.Parse(dt.Rows[h][4].ToString());
+
+                }
+                catch (Exception ex)
+                {
+                    Decimal profit1 = Decimal.Parse(dt.Rows[h][4].ToString());
+                    ovp += Convert.ToInt32(profit1);
+                }
+                finally
+                {
+
+                }
             }
             //Veryfying whether the product is taken
             //string message = "Are the items taken ?";
@@ -365,7 +409,7 @@ namespace Abbey_Trading_Store.UI
             dts.Rows.Add("2", transact.Type, name.Text, grandtotal.Text, DateTime.Now, textBox13.Text, Login_form.user, paid_amount.Text, return_amount.Text);
             int x = transact.Insert();
             // Inserting to the server
-            var isSuccess_server = await transact.insert2();
+            //var isSuccess_server = await transact.insert2();
             //if (isSuccess_server)
             //{
             //    MessageBox.Show("Transaction added successfully to server");
@@ -380,30 +424,61 @@ namespace Abbey_Trading_Store.UI
             for (i=0; i<dt.Rows.Count; i++){
 
                 TD.Product_name = dt.Rows[i][0].ToString();
-                TD.qty = decimal.Parse(dt.Rows[i][1].ToString());
+                string test = dt.Rows[i][1].ToString();
+                TD.qty = String.Format("{0:0.00}", dt.Rows[i][1].ToString());
+                //TD.qty = decimal.Parse(dt.Rows[i][1].ToString());
                 TD.Rate = decimal.Parse(dt.Rows[i][2].ToString());
+                
                 TD.Total = decimal.Parse(dt.Rows[i][3].ToString());
-                TD.profit = int.Parse(dt.Rows[i][4].ToString());
+                try
+                {
+                    TD.profit = int.Parse(dt.Rows[i][4].ToString());
+
+                }
+                catch (Exception ex)
+                {
+                    Decimal profit_hold = Decimal.Parse(dt.Rows[i][4].ToString());
+                    TD.profit = Convert.ToInt32(profit_hold);
+                }
+                finally
+                {
+
+                }
                 TD.type = Types.Text;
                 TD.Dea_Cust_name = name.Text;
                 TD.Added_by = Login_form.user;
                 if (Types.Text == "Sales")
                 {
-                    TD.profit = int.Parse(dt.Rows[i][4].ToString());   
+                    try
+                    {
+                        TD.profit = int.Parse(dt.Rows[i][4].ToString());
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Decimal profit_hold = Decimal.Parse(dt.Rows[i][4].ToString());
+                        TD.profit = Convert.ToInt32(profit_hold);
+                    }
+                    finally
+                    {
+
+                    }
                 }
                 TD.invoice_id = x;
                 bool y = TD.Insert();
-                var detailsuccess = await TD.insert2();
+                //var detailsuccess = await TD.insert2();
                 recorder += 1;
                 if (Types.Text == "Sales")
                 {
-                    check = await product.DecreaseProduct(TD.qty, TD.Product_name);
+                    Decimal count = decimal.Parse(dt.Rows[i][1].ToString());
+                    check = await product.DecreaseProduct(count, TD.Product_name);
                        
 
                 }
                 else if (Types.Text == "Purchase")
                 {
-                    check = await product.IncreaseProduct(TD.qty, TD.Product_name);
+                    Decimal count = decimal.Parse(dt.Rows[i][1].ToString());
+                    check = await product.IncreaseProduct(count, TD.Product_name);
 
                 }
                     
@@ -418,7 +493,7 @@ namespace Abbey_Trading_Store.UI
                 name.Text = course;
                 email.Text = "Lanternnassi@gmail.com";
                 contact.Text = "0753103488";
-                address.Text = "Masaka";
+                address.Text = "Kalisizo";
                 p_search.Text = "";
                 pname.Text = "";
                 p_inventory.Text = "";
@@ -565,10 +640,13 @@ namespace Abbey_Trading_Store.UI
             DataTable temp = product.search(selectedItem);
             if (Types.Text == "Sales")
             {
+                p_rate.Items.Clear();
                 p_rate.Text = temp.Rows[0]["Selling_Price"].ToString();
+                p_rate.Items.Add(temp.Rows[0]["Wholesale_price"].ToString());
             }
             else
             {
+                p_rate.Items.Clear();
                 p_rate.Text = temp.Rows[0]["Rate"].ToString();
             }
             p_inventory.Text = temp.Rows[0]["Quantity"].ToString();

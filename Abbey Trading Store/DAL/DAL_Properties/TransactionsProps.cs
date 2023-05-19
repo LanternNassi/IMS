@@ -21,6 +21,7 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         private int total_profit;
         private string paid;
         private string taken;
+        private int server_id;
 
         // properties
         public int id { get { return ID; } set { ID = value; } }
@@ -35,6 +36,8 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         public int Total_Profit { get { return total_profit; } set { total_profit = value; } }
         public string Paid { get { return paid; } set { paid = value; } }
         public string Taken { get { return taken; } set { taken = value; } }
+        public int Server_id { get { return server_id; } set { server_id= value; } }
+
 
 
     }

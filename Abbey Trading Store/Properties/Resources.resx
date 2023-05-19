@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="people" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\people.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="home" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\home.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -126,6 +129,12 @@
   </data>
   <data name="chart_diagram1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chart-diagram1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="purchase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\purchase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Contact_us_bro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Contact us-bro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="search__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,9 +157,6 @@
   <data name="diskette" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\diskette.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="chat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\chat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="product" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\product.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -160,26 +166,32 @@
   <data name="error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="people" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\people.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="profit (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profit (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="diagram1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\diagram1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="profit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="calendar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\calendar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Untitled design" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Untitled design.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="print" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\print.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Untitled_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Untitled-11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="chat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="debt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\debt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="App_installation_bro1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\App installation-bro1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="information1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\information1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="exclamation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exclamation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,14 +199,17 @@
   <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="purchase" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\purchase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="transaction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transaction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="question" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\question.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="App_installation_bro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\App installation-bro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="transaction (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transaction (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="recovery" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\recovery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,8 +220,11 @@
   <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="transaction" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\transaction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="profit (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profit (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="information1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\information1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="diagram" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\diagram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,8 +232,8 @@
   <data name="chart_diagram" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chart-diagram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Contact_us_bro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Contact us-bro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Untitled_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Untitled-11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,7 +244,7 @@
   <data name="Dizzy_face_rafiki" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Dizzy face-rafiki.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="debt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\debt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Untitled design (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Untitled design (2).gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

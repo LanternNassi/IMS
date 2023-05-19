@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Abbey_Trading_Store.DAL.DAL_Properties;
 using System.Runtime.CompilerServices;
+using System.Data.SqlClient;
+using System.Transactions;
 
 namespace Abbey_Trading_Store.DAL
 {
@@ -30,6 +32,7 @@ namespace Abbey_Trading_Store.DAL
         private int total_profit;
         private string paid;
         private string taken;
+        private int server_id = 0;
 
         // Instantiating a new object of TransactionsProps
         TransactionsProps newtransaction = new TransactionsProps();
@@ -96,6 +99,11 @@ namespace Abbey_Trading_Store.DAL
                 newtransaction.Taken = value;
             }
         }
+        public int Server_id { get { return server_id; } set { 
+                server_id = value;
+                newtransaction.Server_id = value;
+            }
+        }
 
         // Declaring the new HTTP client
         HttpClient client = new HttpClient();
@@ -107,13 +115,12 @@ namespace Abbey_Trading_Store.DAL
 
 
 
-        #region Insert Transactions
+        #region local functions
         public int Insert()
         {
             //TransactionID = -1;
             int transID = 0;
-            const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
-            OleDbConnection conn = new OleDbConnection(connection);
+            OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
             string cmdstring = "INSERT INTO `Transactions`(`type`,`dea_cust_name`,`grandTotal`,`discount`,`added_by`,`Paid_amount`,`Return_amount`,`Total_Profit`,`Paid`,`Taken`)VALUES(@type,@dea_cust_name,@grandTotal,@discount,@added_by,@Paid_amount,@Return_amount,@Total_Profit,@Paid,@Taken)";
             string cmdstring2 = "SELECT @@Identity";
             try
@@ -128,7 +135,7 @@ namespace Abbey_Trading_Store.DAL
                 cmd.Parameters.AddWithValue("@Return_amount", return_amount);
                 cmd.Parameters.AddWithValue("@Total_Profit", total_profit);
                 cmd.Parameters.AddWithValue("@Paid", paid);
-                cmd.Parameters.AddWithValue("@Taken" , taken);
+                cmd.Parameters.AddWithValue("@Taken", taken);
                 conn.Open();
                 // Inserting the data into the database
                 cmd.ExecuteNonQuery();
@@ -139,7 +146,7 @@ namespace Abbey_Trading_Store.DAL
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message+"Transaction");
+                MessageBox.Show(ex.Message + "Transaction");
 
             }
             finally
@@ -148,42 +155,14 @@ namespace Abbey_Trading_Store.DAL
             }
             return transID;
         }
-        #endregion
-
-        public async Task<bool> insert2()
-        {
-            //Posting to online server
-            string derived_uri = uri + "/createTransaction/";
-            var stringPayload = JsonConvert.SerializeObject(newtransaction);
-
-            // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
-            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = await client.PostAsync(derived_uri, httpContent);
-
-            response.EnsureSuccessStatusCode();
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-        
-
-        #region Showing all Transactions 
         public DataTable DisplayAllTransactions()
         {
             DataTable dt = new DataTable();
-            const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
-            OleDbConnection conn = new OleDbConnection(connection);
+            OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
             try
             {
                 string cmds = "SELECT * FROM Transactions";
-                OleDbDataAdapter adapter = new OleDbDataAdapter(cmds,conn);
+                OleDbDataAdapter adapter = new OleDbDataAdapter(cmds, conn);
                 adapter.Fill(dt);
 
             }
@@ -195,48 +174,13 @@ namespace Abbey_Trading_Store.DAL
             {
 
             }
-            
-            return dt;
-        }
-        #endregion
-
-        #region Showing Transactions based on type
-        public DataTable DisplayTransactionsBasedOnType(string type)
-        {
-            DataTable dt = new DataTable();
-            const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
-            OleDbConnection conn = new OleDbConnection(connection);
-            try
-            {
-                string cmds = "SELECT * FROM Transactions WHERE type = @type";
-                OleDbCommand cmd = new OleDbCommand(cmds, conn);
-                cmd.Parameters.AddWithValue("@type", type);
-                OleDbDataAdapter adapter = new OleDbDataAdapter();
-                conn.Open();
-                adapter.SelectCommand = cmd;
-                adapter.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-
-            }
-            finally
-            {
-                conn.Close();
-
-            }
 
             return dt;
         }
-        #endregion
-
-        #region Veryfing payment
-        public bool UpdatePayment(int TransactionId , int amount , int paid_amount , bool cleared)
+        public bool UpdatePayment(int TransactionId, int amount, int paid_amount, bool cleared)
         {
             bool isSuccess = false;
-            const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
-            OleDbConnection conn = new OleDbConnection(connection);
+            OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
             try
             {
 
@@ -276,10 +220,217 @@ namespace Abbey_Trading_Store.DAL
 
             return isSuccess;
         }
+        public DataTable SearchCreditorsDebtors(string type, string keywords)
+        {
+            DataTable dt = new DataTable();
+            OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
+            try
+            {
+                string cmds = "SELECT * FROM Transactions WHERE ID LIKE '%" + keywords + "%' OR dea_cust_name LIKE '%" + keywords + "%' OR added_by LIKE '%" + keywords + "%' AND type = @type AND NOT Paid = @Paid OR Return_amount < 0 ";
+                OleDbDataAdapter adapter = new OleDbDataAdapter();
+                OleDbCommand cmd = new OleDbCommand(cmds, conn);
+                cmd.Parameters.AddWithValue("@type", type);
+                cmd.Parameters.AddWithValue("@Paid", "True");
+                adapter.SelectCommand = cmd;
+                conn.Open();
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return dt;
+        }
+        public bool InsertTransactionTrack(string[] args)
+        {
+            bool isSuccess = false;
+            OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
+            try
+            {
+                string cmds = "INSERT INTO `Transaction Tracker`(`Transaction_id`,`Paid_amount`,`Added_date`,`Updated_by`)VALUES(@Transaction_id,@Paid_amount,@Added_date,@Updated_by)";
+                OleDbCommand cmd = new OleDbCommand(cmds, conn);
+                cmd.Parameters.AddWithValue("@Transaction_id", args[0]);
+                cmd.Parameters.AddWithValue("@Paid_amount", args[1]);
+                cmd.Parameters.AddWithValue("@Added_date", DateTime.Now.ToString());
+                cmd.Parameters.AddWithValue("@Updated_by", args[2]);
+                conn.Open();
+                int rows = cmd.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    isSuccess = true;
+                }
+                else
+                {
+                    isSuccess = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
 
-    
+            return isSuccess;
+        }
+        public OleDbDataAdapter GetAllDebtsCredits(string type)
+        {
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
+            try
+            {
+                string cmds = "SELECT * FROM Transactions WHERE (type = @type AND NOT Paid = @Paid) OR Return_amount < 0";
+                OleDbCommand cmd = new OleDbCommand(cmds, conn);
+                cmd.Parameters.AddWithValue("@type", type);
+                cmd.Parameters.AddWithValue("@Paid", "True");
+                adapter.SelectCommand = cmd;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return adapter;
+        }
+        public OleDbDataAdapter GetAllTrackData(int id)
+        {
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
+            try
+            {
+                string cmds = "SELECT * FROM `Transaction Tracker` WHERE Transaction_id = @id";
+                OleDbCommand cmd = new OleDbCommand(cmds, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                adapter.SelectCommand = cmd;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return adapter;
+        }
+
+        public static bool DeleteTransaction(int id)
+        {
+            bool success = true;
+            OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
+            try
+            {
+                conn.Open();
+                string cmd_text = "DELETE * FROM Transactions WHERE ID = @ID";
+                OleDbCommand cmd = new OleDbCommand(cmd_text, conn);
+                cmd.Parameters.AddWithValue("@ID", id);
+                int rows = cmd.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    DataTable dt = new DataTable();
+                    string cmd_text2 = "SELECT * FROM `Transaction Details` WHERE Invoice_id = @Invoice_id";
+                    OleDbDataAdapter adapter = new OleDbDataAdapter();
+                    // Deleting the transaction details and updating the products
+                    OleDbCommand cmd2 = new OleDbCommand(cmd_text2, conn);
+                    cmd2.Parameters.AddWithValue("@Invoice_id", id);
+                    adapter.SelectCommand = cmd2;
+                    adapter.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach(DataRow dr in dt.Rows)
+                        {
+                            if (success == false)
+                            {
+                                return false;
+                            }
+                            string cmd_text3 = "UPDATE Products SET Quantity = Quantity + @Quantity WHERE Product = @Product";
+                            OleDbCommand cmd3 = new OleDbCommand(cmd_text3, conn);
+                            cmd3.Parameters.AddWithValue("@Quantity", Convert.ToInt32(dr[3]));
+                            cmd3.Parameters.AddWithValue("@Product", dr[1].ToString());
+                            int rows_affected = cmd3.ExecuteNonQuery();
+                            if (rows_affected > 0)
+                            {
+                                string cmd_text4 = "DELETE * FROM `Transaction Details` WHERE ID = @ID";
+                                OleDbCommand cmd4 = new OleDbCommand(cmd_text4, conn);
+                                cmd4.Parameters.AddWithValue("@ID", Convert.ToInt32(dr[0]));
+                                int rows_deleted = cmd4.ExecuteNonQuery();
+                                if (rows_deleted <= 0)
+                                {
+                                    MessageBox.Show("Encoutered a problem with deleting the transaction details");
+                                    success = false;
+                                }
+                            }
+
+
+                        }
+                    }else
+                    {
+                        MessageBox.Show("No transaction details exist for this transaction");
+                    }
+                    
+
+                }
+                else
+                {
+                    MessageBox.Show("Transaction doesnot exist");
+                    return false;
+                }
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+
+            }
+
+
+            return success;
+        }
         #endregion
 
+
+        #region Api requests
+
+        public async Task<bool> insert2()
+        {
+            //Posting to online server
+            string derived_uri = uri + "/createTransaction/";
+            var stringPayload = JsonConvert.SerializeObject(newtransaction);
+
+            // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
+            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(derived_uri, httpContent);
+
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                dynamic response_content = await response.Content.ReadAsStringAsync();
+                dynamic deserialized = JsonConvert.DeserializeObject(response_content);
+                Server_id = Convert.ToInt32(deserialized.id);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+    
         public async Task<bool> UpdatePayment2(int TransactionId, int amount, int paid_amount, bool cleared)
         {
             //Posting to online server
@@ -302,73 +453,6 @@ namespace Abbey_Trading_Store.DAL
             }
 
         }
-
-        #region Search DebtsOrCredits
-        public DataTable SearchCreditorsDebtors(string type, string keywords)
-        {
-            DataTable dt = new DataTable();
-            const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
-            OleDbConnection conn = new OleDbConnection(connection);
-            try
-            {
-                string cmds = "SELECT * FROM Transactions WHERE ID LIKE '%" + keywords + "%' OR dea_cust_name LIKE '%" + keywords + "%' OR added_by LIKE '%" + keywords + "%' AND type = @type AND NOT Paid = @Paid OR Return_amount < 0 ";
-                OleDbDataAdapter adapter = new OleDbDataAdapter();
-                OleDbCommand cmd = new OleDbCommand(cmds, conn);
-                cmd.Parameters.AddWithValue("@type", type);
-                cmd.Parameters.AddWithValue("@Paid", "True");
-                adapter.SelectCommand = cmd;
-                conn.Open();
-                adapter.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return dt;
-        }
-        #endregion
-
-        #region Insert TransactionTrack
-        public bool InsertTransactionTrack(string[] args)
-        {
-            bool isSuccess = false;
-            const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
-            OleDbConnection conn = new OleDbConnection(connection);
-            try
-            {
-                string cmds = "INSERT INTO `Transaction Tracker`(`Transaction_id`,`Paid_amount`,`Added_date`,`Updated_by`)VALUES(@Transaction_id,@Paid_amount,@Added_date,@Updated_by)";
-                OleDbCommand cmd = new OleDbCommand(cmds , conn);
-                cmd.Parameters.AddWithValue("@Transaction_id" , args[0]);
-                cmd.Parameters.AddWithValue("@Paid_amount" , args[1]);
-                cmd.Parameters.AddWithValue("@Added_date" , DateTime.Now.ToString());
-                cmd.Parameters.AddWithValue("@Updated_by" , args[2]);
-                conn.Open();
-                int rows = cmd.ExecuteNonQuery();
-                if (rows > 0)
-                {
-                    isSuccess = true;
-                }
-                else
-                {
-                    isSuccess = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            
-            return isSuccess;
-        }
-        #endregion
 
         public async Task<bool> InsertTransactionTrack2(string[] args)
         {
@@ -394,16 +478,217 @@ namespace Abbey_Trading_Store.DAL
 
         }
 
-        #region Getting all Debts or Credits
-        public OleDbDataAdapter GetAllDebtsCredits(string type)
+        #endregion
+
+
+        #region Local server functions 
+
+        public int Insert_2()
         {
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
-            const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
-            OleDbConnection conn = new OleDbConnection(connection);
+            //TransactionID = -1;
+            int transID = 0;
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            string cmdstring = "INSERT INTO Transactions(type,dea_cust_name,grandTotal,discount,added_by,Paid_amount,Return_amount,Total_Profit,Paid,Taken) VALUES(@type,@dea_cust_name,@grandTotal,@discount,@added_by,@Paid_amount,@Return_amount,@Total_Profit,@Paid,@Taken); SELECT @MyPK = SCOPE_IDENTITY()";
+            //string cmdstring2 = "SELECT IDENT_CURRENT('Transactions')";
+            //string cmdstring2 = "SELECT @MyPK = @@SCOPE_IDENTITY";
+            try
+            {
+                SqlCommand cmd = new SqlCommand(cmdstring, conn);
+                cmd.Parameters.AddWithValue("@type", type);
+                cmd.Parameters.AddWithValue("@dea_cust_name", dea_cust_name);
+                cmd.Parameters.AddWithValue("@grandTotal", grandTotal);
+                cmd.Parameters.AddWithValue("@discount", discount);
+                cmd.Parameters.AddWithValue("@added_by", added_by);
+                cmd.Parameters.AddWithValue("@Paid_amount", paid_amount);
+                cmd.Parameters.AddWithValue("@Return_amount", return_amount);
+                cmd.Parameters.AddWithValue("@Total_Profit", total_profit);
+                cmd.Parameters.AddWithValue("@Paid", paid);
+                cmd.Parameters.AddWithValue("@Taken", taken);
+                cmd.Parameters.Add("@MyPK", SqlDbType.Int);
+                cmd.Parameters["@MyPK"].Direction = ParameterDirection.Output;
+                conn.Open();
+                // Inserting the data into the database
+                cmd.ExecuteNonQuery();
+                //returning an id of the input data
+                transID = (int)cmd.Parameters["@MyPK"].Value;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "Transaction");
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return transID;
+        }
+
+        public DataTable DisplayAllTransactions_2()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            try
+            {
+                string cmds = "SELECT * FROM Transactions";
+                SqlDataAdapter adapter = new SqlDataAdapter(cmds, conn);
+                adapter.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+            }
+
+            return dt;
+        }
+
+        public DataTable DisplayTransactionsBasedOnType_2(string type)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            try
+            {
+                string cmds = "SELECT * FROM Transactions WHERE type = @type";
+                SqlCommand cmd = new SqlCommand(cmds, conn);
+                cmd.Parameters.AddWithValue("@type", type);
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                conn.Open();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+
+            }
+
+            return dt;
+        }
+
+        public bool UpdatePayment_2(int TransactionId, int amount, int paid_amount, bool cleared)
+        {
+            bool isSuccess = false;
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            try
+            {
+
+                string cmds = "UPDATE Transactions SET Return_amount = @Return_amount , Paid_amount = @Paid_amount , Paid = @Paid WHERE id = @id";
+                SqlCommand cmd = new SqlCommand(cmds, conn);
+                cmd.Parameters.AddWithValue("@Return_amount", amount);
+                cmd.Parameters.AddWithValue("@Paid_amount", paid_amount);
+                if (cleared)
+                {
+                    cmd.Parameters.AddWithValue("@Paid", "Cleared");
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Paid", "False");
+                }
+
+                cmd.Parameters.AddWithValue("@id", TransactionId);
+                conn.Open();
+                int rows = cmd.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    isSuccess = true;
+                }
+                else
+                {
+                    isSuccess = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return isSuccess;
+        }
+
+        public DataTable SearchCreditorsDebtors_2(string type, string keywords)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            try
+            {
+                string cmds = "SELECT * FROM Transactions WHERE ID LIKE '%" + keywords + "%' OR dea_cust_name LIKE '%" + keywords + "%' OR added_by LIKE '%" + keywords + "%' AND type = @type AND NOT Paid = @Paid OR Return_amount < 0 ";
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand cmd = new SqlCommand(cmds, conn);
+                cmd.Parameters.AddWithValue("@type", type);
+                cmd.Parameters.AddWithValue("@Paid", "True");
+                adapter.SelectCommand = cmd;
+                conn.Open();
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return dt;
+        }
+
+        public bool InsertTransactionTrack_2(string[] args)
+        {
+            bool isSuccess = false;
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            try
+            {
+                string cmds = "INSERT INTO [Transaction Tracker](Transaction_id,Paid_amount,Added_date,Updated_by)VALUES(@Transaction_id,@Paid_amount,@Added_date,@Updated_by)";
+                SqlCommand cmd = new SqlCommand(cmds, conn);
+                cmd.Parameters.AddWithValue("@Transaction_id", args[0]);
+                cmd.Parameters.AddWithValue("@Paid_amount", args[1]);
+                cmd.Parameters.AddWithValue("@Added_date", DateTime.Now.ToString());
+                cmd.Parameters.AddWithValue("@Updated_by", args[2]);
+                conn.Open();
+                int rows = cmd.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    isSuccess = true;
+                }
+                else
+                {
+                    isSuccess = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return isSuccess;
+        }
+
+        public SqlDataAdapter GetAllDebtsCredits_2(string type)
+        {
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
                 string cmds = "SELECT * FROM Transactions WHERE (type = @type AND NOT Paid = @Paid) OR Return_amount < 0";
-                OleDbCommand cmd = new OleDbCommand(cmds, conn);
+                SqlCommand cmd = new SqlCommand(cmds, conn);
                 cmd.Parameters.AddWithValue("@type", type);
                 cmd.Parameters.AddWithValue("@Paid", "True");
                 adapter.SelectCommand = cmd;
@@ -419,18 +704,15 @@ namespace Abbey_Trading_Store.DAL
             }
             return adapter;
         }
-        #endregion
 
-        #region Getting all Tracks
-        public OleDbDataAdapter GetAllTrackData(int id)
+        public SqlDataAdapter GetAllTrackData_2(int id)
         {
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
-            const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
-            OleDbConnection conn = new OleDbConnection(connection);
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                string cmds = "SELECT * FROM `Transaction Tracker` WHERE Transaction_id = @id";
-                OleDbCommand cmd = new OleDbCommand(cmds, conn);
+                string cmds = "SELECT * FROM [Transaction Tracker] WHERE Transaction_id = @id";
+                SqlCommand cmd = new SqlCommand(cmds, conn);
                 cmd.Parameters.AddWithValue("@id", id);
                 adapter.SelectCommand = cmd;
             }
@@ -444,6 +726,130 @@ namespace Abbey_Trading_Store.DAL
             }
             return adapter;
         }
+
+        #endregion
+
+        #region Appropriates
+
+        public async Task<int> InsertAppropriately()
+        {
+            if (Env.mode == 1)
+            {
+                return Insert();
+
+            } else if (Env.mode == 2)
+            {
+                return Insert_2();
+            } else
+            {
+                await insert2();
+                return Insert_2();
+            }
+
+        }
+        public DataTable DisplayAllTransactionsAppropriately()
+        {
+            if (Env.mode == 1)
+            {
+                return DisplayAllTransactions();
+
+            }
+            else if (Env.mode == 2)
+            {
+                return DisplayAllTransactions_2();
+            }
+            else
+            {
+                return DisplayAllTransactions_2();
+            }
+
+        }
+        public async Task<bool> UpdatePaymentAppropriately(int TransactionId, int amount, int paid_amount, bool cleared)
+        {
+            if (Env.mode == 1)
+            {
+                return UpdatePayment(TransactionId,  amount, paid_amount,  cleared);
+
+            }
+            else if (Env.mode == 2)
+            {
+                return UpdatePayment_2(TransactionId, amount, paid_amount, cleared);
+            }
+            else
+            {
+                await UpdatePayment2(TransactionId, amount, paid_amount, cleared);
+                return UpdatePayment_2(TransactionId, amount, paid_amount, cleared);
+            }
+
+        }
+        public DataTable SearchCreditorsDebtorsAppropriately(string type, string keywords)
+        {
+            if (Env.mode == 1)
+            {
+                return SearchCreditorsDebtors(type , keywords);
+
+            }
+            else if (Env.mode == 2)
+            {
+                return SearchCreditorsDebtors_2(type, keywords);
+            }
+            else
+            {
+                return SearchCreditorsDebtors_2(type, keywords);
+            }
+
+        }
+        public async Task<bool> InsertTransactionTrackAppropriately(string[] args)
+        {
+            if (Env.mode == 1)
+            {
+                return InsertTransactionTrack(args);
+
+            }
+            else if (Env.mode == 2)
+            {
+                return InsertTransactionTrack_2(args);
+            }
+            else
+            {
+                bool result = await InsertTransactionTrack2(args);
+                return InsertTransactionTrack_2(args);
+            }
+        }
+        public dynamic GetAllDebtsCreditsAppropriately(string type)
+        {
+            if (Env.mode == 1)
+            {
+                return GetAllDebtsCredits(type);
+
+            }
+            else if (Env.mode == 2)
+            {
+                return GetAllDebtsCredits_2(type);
+            }
+            else
+            {
+                return GetAllDebtsCredits_2(type);
+            }
+        }
+        public dynamic GetAllTrackDataAppropriately(int id)
+        {
+            if (Env.mode == 1)
+            {
+                return GetAllTrackData(id);
+
+            }
+            else if (Env.mode == 2)
+            {
+                return GetAllTrackData_2(id);
+            }
+            else
+            {
+                return GetAllTrackData_2(id);
+            }
+        }
+
+
         #endregion
 
     }

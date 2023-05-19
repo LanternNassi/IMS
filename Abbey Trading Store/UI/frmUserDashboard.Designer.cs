@@ -45,16 +45,16 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -98,9 +98,9 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(441, 142);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(481, 45);
+            this.label4.Size = new System.Drawing.Size(415, 45);
             this.label4.TabIndex = 5;
-            this.label4.Text = "MMAK AGRO CHEMICALS LTD";
+            this.label4.Text = "BUKASA BUSINESS STORE";
             // 
             // panel1
             // 
@@ -222,16 +222,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.GreenYellow;
-            this.panel3.Controls.Add(this.pictureBox3);
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Location = new System.Drawing.Point(188, 294);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(247, 176);
-            this.panel3.TabIndex = 12;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
@@ -241,6 +231,16 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.GreenYellow;
+            this.panel3.Controls.Add(this.pictureBox3);
+            this.panel3.Controls.Add(this.button3);
+            this.panel3.Location = new System.Drawing.Point(188, 294);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(247, 176);
+            this.panel3.TabIndex = 12;
             // 
             // frmUserDashboard
             // 
@@ -272,8 +272,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -107,6 +107,117 @@ namespace Abbey_Trading_Store.DAL
 
         }
 
+        public DataTable Overview()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+
+            try
+            {
+                conn.Open();
+                const string command = "CREATE TABLE #counts(table_name varchar(255),row_count int) EXEC sp_MSForEachTable @command1='INSERT #counts (table_name, row_count) SELECT ''?'', COUNT(*) FROM ?' SELECT table_name, row_count FROM #counts ORDER BY table_name, row_count DESC DROP TABLE #counts;";
+                SqlDataAdapter adapter = new SqlDataAdapter(command, conn);
+                adapter.Fill(dt);
+
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+            
+
+
+            return dt;
+        }
+
+        public DataTable Overview_2()
+        {
+            DataTable dt = new DataTable();
+            OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
+
+            try
+            {
+                conn.Open();
+                const string command = "CREATE TABLE Temp([table_name] CHAR(255), [row_count] INT);EXEC sp_MSForEachTable @command1=INSERT temp(table_name, row_count);SELECT ''?'', COUNT(*) FROM ?';SELECT table_name, row_count FROM temp ORDER BY table_name, row_count DESC ;DROP TABLE temp;";
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command, conn);
+                adapter.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+
+
+            return dt;
+        }
+
+
+
+        public DataTable TransactionsOverview()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+
+            try
+            {
+                conn.Open();
+                const string command = "SELECT SUM(CAST(Total_profit AS int)), SUM(grandTotal), MONTH(transaction_date) FROM Transactions GROUP BY MONTH(transaction_date)";
+                SqlDataAdapter adapter = new SqlDataAdapter(command, conn);
+                adapter.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return dt;
+
+        }
+
+        public DataTable TransactionsOverview_2()
+        {
+            DataTable dt = new DataTable();
+            OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
+
+            try
+            {
+                conn.Open();
+                const string command = "SELECT SUM(CAST(Total_profit AS int)), SUM(grandTotal), MONTH(transaction_date) FROM Transactions GROUP BY MONTH(transaction_date)";
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command, conn);
+                adapter.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return dt;
+
+        }
+
 
         public bool insert()
         {
@@ -324,16 +435,18 @@ namespace Abbey_Trading_Store.DAL
 
         // All modifier functions for the database server 
 
-        public DataTable select_2()
+        public SqlDataAdapter select_2()
         {
             DataTable dt = new DataTable();
+            SqlDataAdapter adapter_dummy = new SqlDataAdapter();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
                 const string command = "SELECT * FROM Users";
                 SqlDataAdapter adapter = new SqlDataAdapter(command, conn);
-                conn.Open();
-                adapter.Fill(dt);
+                adapter_dummy = adapter;
+                //conn.Open();
+                //adapter.Fill(dt);
             }
             catch (Exception ex)
             {
@@ -346,7 +459,7 @@ namespace Abbey_Trading_Store.DAL
 
             }
 
-            return dt;
+            return adapter_dummy;
 
         }
 
@@ -504,12 +617,22 @@ namespace Abbey_Trading_Store.DAL
 
             }else if (Env.mode == 2)
             {
-                DataTable dt = select_2();
+                SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+                SqlDataAdapter adapter = select_2();
+                DataTable dt = new DataTable();
+                conn.Open();
+                adapter.Fill(dt);
+                conn.Close();
                 return dt;
 
             }else
             {
-                DataTable dt = select_2();
+                SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+                SqlDataAdapter adapter = select_2();
+                DataTable dt = new DataTable();
+                conn.Open();
+                adapter.Fill(dt);
+                conn.Close();
                 return dt;
 
             }

@@ -12,6 +12,8 @@ using Abbey_Trading_Store.DAL;
 using MaterialSkin.Controls;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using Abbey_Trading_Store.UI.Advanced.CustomMessageBox;
+using System.Data.SqlClient;
+using Microsoft.Reporting.WinForms;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
@@ -23,9 +25,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             InitializeComponent();
             search = search_control;
-            //var materialSkinManager = MaterialSkinManager.Instance;
-            //materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
 
+            Users user = new Users();
+            DataTable dt = user.SelectAppropriately();
+            this.dataGridView1.DataSource = dt;
+            this.dataGridView1.Columns[2].Visible = false;
+            for (var i = 0; i < dt.Columns.Count - 1; i++)
+            {
+                this.dataGridView1.Columns[i].Width = 160;
+
+            }
             //materialSkinManager.ColorScheme = new ColorScheme(Primary.Pink400, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
 
@@ -42,15 +53,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void frmUser_Load(object sender, EventArgs e)
         {
-            Users user = new Users();
-            DataTable dt = user.SelectAppropriately();
-            this.dataGridView1.DataSource = dt;
-            this.dataGridView1.Columns[2].Visible = false;
-            for (var i =0; i<dt.Columns.Count-1; i++)
-            {
-                this.dataGridView1.Columns[i].Width = 160;
-
-            }
+            
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -175,7 +178,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void materialButton4_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+            Users user = new Users();
+            Abbey_Trading_Store.Reports.Users_Report.Users dataset = new Reports.Users_Report.Users();
+            SqlDataAdapter adapter = user.select_2();
 
+            adapter.Fill(dataset , "Users");
+            ReportDataSource datasource = new ReportDataSource("Users" , dataset.Tables[0]);
+            ReportDataSource[] list = { datasource };
+
+            ReportView form = new ReportView(list, "Abbey_Trading_Store.Reports.Users_Report.Users.rdlc");
+            form.Show();
+            Cursor = Cursors.Default;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -201,6 +215,28 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DataTable dt = user.SearchAppropriately(search.Text);
             dataGridView1.DataSource = dt;
             clear();
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowindex = e.RowIndex;
+            if (rowindex >= 0)
+            {
+                name.Text = dataGridView1.Rows[rowindex].Cells[1].Value.ToString();
+                if (Login_form.user == name.Text)
+                {
+                    password.Text = dataGridView1.Rows[rowindex].Cells[2].Value.ToString();
+                }
+                else
+                {
+                    password.Text = "XXXXXX";
+                }
+                gender_cmbx.Text = dataGridView1.Rows[rowindex].Cells[3].Value.ToString();
+                added_by.Text = dataGridView1.Rows[rowindex].Cells[4].Value.ToString();
+                materialComboBox2.Text = dataGridView1.Rows[rowindex].Cells[5].Value.ToString();
+                active_user_id = dataGridView1.Rows[rowindex].Cells[0].Value.ToString();
+            }
+            
         }
     }
 }

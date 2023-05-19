@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.dgv_transactions = new System.Windows.Forms.DataGridView();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtbx_discounts = new System.Windows.Forms.Label();
             this.txtbx_sales = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -38,52 +37,20 @@
             this.label11 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dtp_transactions = new System.Windows.Forms.DateTimePicker();
             this.checkBox1 = new MaterialSkin.Controls.MaterialCheckbox();
             this.button2 = new MaterialSkin.Controls.MaterialButton();
             this.Show_all = new MaterialSkin.Controls.MaterialButton();
-            this.dtp_transactions = new Telerik.WinControls.UI.RadDateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Cateory_combobox = new MaterialSkin.Controls.MaterialComboBox();
             this.circularProgressBar3 = new CircularProgressBar.CircularProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.txtbx_total = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_transactions)).BeginInit();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtp_transactions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.dgv_transactions);
-            this.panel1.Location = new System.Drawing.Point(24, 145);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1079, 403);
-            this.panel1.TabIndex = 0;
-            // 
-            // dgv_transactions
-            // 
-            this.dgv_transactions.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.dgv_transactions.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgv_transactions.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgv_transactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_transactions.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_transactions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_transactions.EnableHeadersVisualStyles = false;
-            this.dgv_transactions.Location = new System.Drawing.Point(0, 0);
-            this.dgv_transactions.Name = "dgv_transactions";
-            this.dgv_transactions.RowHeadersVisible = false;
-            this.dgv_transactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgv_transactions.Size = new System.Drawing.Size(1079, 403);
-            this.dgv_transactions.TabIndex = 19;
             // 
             // txtbx_discounts
             // 
@@ -195,10 +162,10 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.dtp_transactions);
             this.panel2.Controls.Add(this.checkBox1);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.Show_all);
-            this.panel2.Controls.Add(this.dtp_transactions);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.Cateory_combobox);
@@ -215,6 +182,13 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1079, 127);
             this.panel2.TabIndex = 31;
+            // 
+            // dtp_transactions
+            // 
+            this.dtp_transactions.Location = new System.Drawing.Point(54, 87);
+            this.dtp_transactions.Name = "dtp_transactions";
+            this.dtp_transactions.Size = new System.Drawing.Size(200, 25);
+            this.dtp_transactions.TabIndex = 41;
             // 
             // checkBox1
             // 
@@ -270,16 +244,6 @@
             this.Show_all.UseAccentColor = false;
             this.Show_all.UseVisualStyleBackColor = true;
             this.Show_all.Click += new System.EventHandler(this.Show_all_Click);
-            // 
-            // dtp_transactions
-            // 
-            this.dtp_transactions.Location = new System.Drawing.Point(54, 87);
-            this.dtp_transactions.Name = "dtp_transactions";
-            this.dtp_transactions.Size = new System.Drawing.Size(204, 20);
-            this.dtp_transactions.TabIndex = 37;
-            this.dtp_transactions.TabStop = false;
-            this.dtp_transactions.Text = "Monday, April 10, 2023";
-            this.dtp_transactions.Value = new System.DateTime(2023, 4, 10, 21, 18, 3, 177);
             // 
             // label3
             // 
@@ -383,29 +347,52 @@
             this.txtbx_total.TabIndex = 33;
             this.txtbx_total.Text = "Total Sales ";
             // 
+            // dataGridView1
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(24, 145);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1079, 402);
+            this.dataGridView1.TabIndex = 19;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
             // frmTransactions
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1130, 572);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTransactions";
             this.Text = "frmTransactions";
             this.Load += new System.EventHandler(this.frmTransactions_Load);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_transactions)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtp_transactions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label txtbx_discounts;
         private System.Windows.Forms.Label txtbx_sales;
         private System.Windows.Forms.Label label10;
@@ -416,13 +403,13 @@
         private CircularProgressBar.CircularProgressBar circularProgressBar3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label txtbx_total;
-        private System.Windows.Forms.DataGridView dgv_transactions;
         private MaterialSkin.Controls.MaterialComboBox Cateory_combobox;
-        private Telerik.WinControls.UI.RadDateTimePicker dtp_transactions;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private MaterialSkin.Controls.MaterialButton button2;
         private MaterialSkin.Controls.MaterialButton Show_all;
         private MaterialSkin.Controls.MaterialCheckbox checkBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DateTimePicker dtp_transactions;
     }
 }

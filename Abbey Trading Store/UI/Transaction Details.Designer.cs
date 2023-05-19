@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl2 = new System.Windows.Forms.Label();
             this.lbltop = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.dgv_TD = new System.Windows.Forms.DataGridView();
             this.Show_all = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.lbl2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_TD)).BeginInit();
             this.SuspendLayout();
@@ -51,6 +51,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(768, 46);
             this.panel1.TabIndex = 24;
+            // 
+            // lbl2
+            // 
+            this.lbl2.AutoSize = true;
+            this.lbl2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl2.ForeColor = System.Drawing.Color.Black;
+            this.lbl2.Location = new System.Drawing.Point(337, 9);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Size = new System.Drawing.Size(58, 30);
+            this.lbl2.TabIndex = 33;
+            this.lbl2.Text = "Date";
             // 
             // lbltop
             // 
@@ -104,7 +115,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(119, 41);
             this.button2.TabIndex = 31;
-            this.button2.Text = "RE-FILTER";
+            this.button2.Text = "DELETE";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -120,17 +131,6 @@
             this.button3.Text = "SHOW ALL";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // lbl2
-            // 
-            this.lbl2.AutoSize = true;
-            this.lbl2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2.ForeColor = System.Drawing.Color.Black;
-            this.lbl2.Location = new System.Drawing.Point(337, 9);
-            this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(58, 30);
-            this.lbl2.TabIndex = 33;
-            this.lbl2.Text = "Date";
             // 
             // Transaction_Details
             // 

@@ -31,10 +31,15 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.InvoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.InvoiceBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // InvoiceBindingSource
+            // 
+            this.InvoiceBindingSource.DataMember = "Invoice_data";
+            this.InvoiceBindingSource.DataSource = typeof(Abbey_Trading_Store.Reports.Invoice_Report.Invoice);
             // 
             // reportViewer1
             // 
@@ -47,14 +52,10 @@
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Abbey_Trading_Store.Reports.Invoice Report.Invoice.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(4, 3);
             this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(840, 550);
             this.reportViewer1.TabIndex = 0;
             this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
-            // 
-            // InvoiceBindingSource
-            // 
-            this.InvoiceBindingSource.DataMember = "Invoice_data";
-            this.InvoiceBindingSource.DataSource = typeof(Abbey_Trading_Store.Reports.Invoice_Report.Invoice);
             // 
             // ReportView
             // 

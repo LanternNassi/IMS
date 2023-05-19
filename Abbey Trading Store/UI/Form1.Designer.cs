@@ -140,21 +140,21 @@
             this.showToolStripMenuItem,
             this.manageDebtsToolStripMenuItem});
             this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
-            this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
+            this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
             this.transactionsToolStripMenuItem.Text = "Transactions";
             this.transactionsToolStripMenuItem.Click += new System.EventHandler(this.transactionsToolStripMenuItem_Click);
             // 
             // showToolStripMenuItem
             // 
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.showToolStripMenuItem.Text = "Show Transactions";
             this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
             // manageDebtsToolStripMenuItem
             // 
             this.manageDebtsToolStripMenuItem.Name = "manageDebtsToolStripMenuItem";
-            this.manageDebtsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.manageDebtsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.manageDebtsToolStripMenuItem.Text = "Manage Debts";
             this.manageDebtsToolStripMenuItem.Click += new System.EventHandler(this.manageDebtsToolStripMenuItem_Click);
             // 
@@ -201,9 +201,9 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(457, 92);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(483, 45);
+            this.label4.Size = new System.Drawing.Size(415, 45);
             this.label4.TabIndex = 4;
-            this.label4.Text = "MMAK AGRO CHEMICALS LTD";
+            this.label4.Text = "BUKASA BUSINESS STORE";
             // 
             // user
             // 
@@ -464,7 +464,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Admin_dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MMAK AGRO CHEMICALS (Admin)";
+            this.Text = "BUKASA BUSINESS STORE";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Admin_dashboard_FormClosed);
             this.Load += new System.EventHandler(this.Admin_dashboard_Load);

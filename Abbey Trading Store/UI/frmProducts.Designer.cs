@@ -50,6 +50,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.SP_txtbx = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.WP = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_product)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +64,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(701, 46);
+            this.panel1.Size = new System.Drawing.Size(820, 46);
             this.panel1.TabIndex = 21;
             // 
             // label1
@@ -70,7 +72,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(287, 8);
+            this.label1.Location = new System.Drawing.Point(375, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 30);
             this.label1.TabIndex = 0;
@@ -79,7 +81,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(609, 8);
+            this.button1.Location = new System.Drawing.Point(742, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 34);
             this.button1.TabIndex = 1;
@@ -190,7 +192,7 @@
             this.dgv_product.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_product.Location = new System.Drawing.Point(314, 104);
             this.dgv_product.Name = "dgv_product";
-            this.dgv_product.Size = new System.Drawing.Size(375, 336);
+            this.dgv_product.Size = new System.Drawing.Size(494, 385);
             this.dgv_product.TabIndex = 32;
             this.dgv_product.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_product_RowHeaderMouseClick);
             // 
@@ -198,7 +200,7 @@
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.Red;
-            this.textBox1.Location = new System.Drawing.Point(440, 69);
+            this.textBox1.Location = new System.Drawing.Point(573, 64);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(235, 25);
             this.textBox1.TabIndex = 34;
@@ -208,7 +210,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(319, 69);
+            this.label7.Location = new System.Drawing.Point(452, 64);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(115, 21);
             this.label7.TabIndex = 33;
@@ -220,7 +222,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(153, 466);
+            this.button2.Location = new System.Drawing.Point(229, 511);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(107, 41);
             this.button2.TabIndex = 35;
@@ -234,7 +236,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(429, 466);
+            this.button3.Location = new System.Drawing.Point(505, 511);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(107, 41);
             this.button3.TabIndex = 36;
@@ -248,7 +250,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Black;
-            this.button4.Location = new System.Drawing.Point(292, 466);
+            this.button4.Location = new System.Drawing.Point(368, 511);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(107, 41);
             this.button4.TabIndex = 37;
@@ -260,28 +262,48 @@
             // 
             this.SP_txtbx.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SP_txtbx.ForeColor = System.Drawing.Color.Red;
-            this.SP_txtbx.Location = new System.Drawing.Point(146, 415);
+            this.SP_txtbx.Location = new System.Drawing.Point(146, 464);
             this.SP_txtbx.Name = "SP_txtbx";
             this.SP_txtbx.Size = new System.Drawing.Size(161, 25);
             this.SP_txtbx.TabIndex = 39;
-            
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(12, 412);
+            this.label8.Location = new System.Drawing.Point(12, 461);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(95, 21);
             this.label8.TabIndex = 38;
             this.label8.Text = "Selling Price";
+            // 
+            // WP
+            // 
+            this.WP.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WP.ForeColor = System.Drawing.Color.Red;
+            this.WP.Location = new System.Drawing.Point(147, 415);
+            this.WP.Name = "WP";
+            this.WP.Size = new System.Drawing.Size(161, 25);
+            this.WP.TabIndex = 41;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(13, 412);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(120, 21);
+            this.label9.TabIndex = 40;
+            this.label9.Text = "Wholesale Price";
             // 
             // frmProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.ClientSize = new System.Drawing.Size(701, 519);
+            this.ClientSize = new System.Drawing.Size(820, 564);
+            this.Controls.Add(this.WP);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.SP_txtbx);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button4);
@@ -337,5 +359,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox SP_txtbx;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox WP;
+        private System.Windows.Forms.Label label9;
     }
 }

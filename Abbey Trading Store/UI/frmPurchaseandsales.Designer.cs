@@ -50,7 +50,6 @@
             this.p_search = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.p_quantity = new System.Windows.Forms.TextBox();
-            this.p_rate = new System.Windows.Forms.TextBox();
             this.p_inventory = new System.Windows.Forms.TextBox();
             this.pname = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -78,6 +77,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.p_rate = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -269,10 +269,10 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.p_rate);
             this.panel3.Controls.Add(this.p_search);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.p_quantity);
-            this.panel3.Controls.Add(this.p_rate);
             this.panel3.Controls.Add(this.p_inventory);
             this.panel3.Controls.Add(this.pname);
             this.panel3.Controls.Add(this.label14);
@@ -326,16 +326,6 @@
             this.p_quantity.Size = new System.Drawing.Size(131, 27);
             this.p_quantity.TabIndex = 15;
             this.p_quantity.Text = "0";
-            // 
-            // p_rate
-            // 
-            this.p_rate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.p_rate.ForeColor = System.Drawing.Color.Red;
-            this.p_rate.Location = new System.Drawing.Point(678, 48);
-            this.p_rate.Name = "p_rate";
-            this.p_rate.Size = new System.Drawing.Size(131, 27);
-            this.p_rate.TabIndex = 14;
-            this.p_rate.Text = "0.00";
             // 
             // p_inventory
             // 
@@ -484,6 +474,7 @@
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Abbey_Trading_Store.Invoice.Report1.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(6, 41);
             this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(535, 343);
             this.reportViewer1.TabIndex = 4;
             // 
@@ -493,7 +484,7 @@
             this.label16.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(3, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(65, 17);
+            this.label16.Size = new System.Drawing.Size(66, 17);
             this.label16.TabIndex = 3;
             this.label16.Text = "Overview";
             // 
@@ -574,7 +565,7 @@
             this.label20.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(17, 556);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(63, 17);
+            this.label20.Size = new System.Drawing.Size(62, 17);
             this.label20.TabIndex = 10;
             this.label20.Text = "Sub Total";
             // 
@@ -594,7 +585,7 @@
             this.label18.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(614, 647);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(77, 17);
+            this.label18.Size = new System.Drawing.Size(76, 17);
             this.label18.TabIndex = 8;
             this.label18.Text = "Grand Total";
             // 
@@ -607,6 +598,19 @@
             this.label17.Size = new System.Drawing.Size(82, 17);
             this.label17.TabIndex = 7;
             this.label17.Text = "Paid Amount";
+            // 
+            // p_rate
+            // 
+            this.p_rate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.p_rate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.p_rate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p_rate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.p_rate.FormattingEnabled = true;
+            this.p_rate.Location = new System.Drawing.Point(669, 47);
+            this.p_rate.Name = "p_rate";
+            this.p_rate.Size = new System.Drawing.Size(149, 28);
+            this.p_rate.Sorted = true;
+            this.p_rate.TabIndex = 18;
             // 
             // frmPurchaseandsales
             // 
@@ -673,7 +677,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox p_quantity;
-        private System.Windows.Forms.TextBox p_rate;
         private System.Windows.Forms.TextBox p_inventory;
         private System.Windows.Forms.TextBox pname;
         private System.Windows.Forms.Label label14;
@@ -703,5 +706,6 @@
         private System.Windows.Forms.TextBox invoice_txtbx;
         private System.Windows.Forms.Button generate_invoice;
         private System.Windows.Forms.ComboBox p_search;
+        private System.Windows.Forms.ComboBox p_rate;
     }
 }

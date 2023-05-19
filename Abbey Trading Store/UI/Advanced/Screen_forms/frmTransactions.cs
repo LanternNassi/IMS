@@ -17,18 +17,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         public frmTransactions()
         {
             InitializeComponent();
-        }
-        Transactions Ts = new Transactions();
-        public static string lblName;
-        public static DateTime date;
-        public static int transaction_id;
-        DataTable flexible = new DataTable();
 
-        private void frmTransactions_Load(object sender, EventArgs e)
-        {
-            DataTable dt = Ts.DisplayAllTransactions();
+            DataTable dt = Ts.DisplayAllTransactionsAppropriately();
             flexible = dt;
-            dgv_transactions.DataSource = dt;
+            dataGridView1.DataSource = dt;
             int purchase_holder = 0;
             int sales_holder = 0;
             int profit_holder = 0;
@@ -65,15 +57,25 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             txtbx_total.Text = "Shs. " + purchase_holder.ToString("N0");
             txtbx_sales.Text = "Shs. " + sales_holder.ToString("N0");
             txtbx_discounts.Text = "Shs. " + profit_holder.ToString("N0");
+        }
+        Transactions Ts = new Transactions();
+        public static string lblName;
+        public static DateTime date;
+        public static int transaction_id;
+        DataTable flexible = new DataTable();
+
+        private void frmTransactions_Load(object sender, EventArgs e)
+        {
+            
 
         }
 
         private void Show_all_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            DataTable dt_showAll = Ts.DisplayAllTransactions();
+            DataTable dt_showAll = Ts.DisplayAllTransactionsAppropriately();
             flexible = dt_showAll;
-            dgv_transactions.DataSource = flexible;
+            dataGridView1.DataSource = flexible;
             int purchase_holder = 0;
             int sales_holder = 0;
             int profit_holder = 0;
@@ -170,7 +172,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             }
 
             flexible = holder;
-            dgv_transactions.DataSource = flexible;
+            dataGridView1.DataSource = flexible;
             int purchase_holder = 0;
             int sales_holder = 0;
             int profit_holder = 0;
@@ -252,7 +254,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 if (holder.Rows.Count > 0)
                 {
                     flexible = holder;
-                    dgv_transactions.DataSource = flexible;
+                    dataGridView1.DataSource = flexible;
                     int purchase_holder = 0;
                     int sales_holder = 0;
                     int profit_holder = 0;
@@ -289,7 +291,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 else
                 {
 
-                    dgv_transactions.DataSource = holder;
+                    dataGridView1.DataSource = holder;
                     int purchase_holder = 0;
                     int sales_holder = 0;
                     int profit_holder = 0;
@@ -307,6 +309,24 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
 
             }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = e.RowIndex;
+            if (row >= 0)
+            {
+                string name = dataGridView1.Rows[row].Cells[2].Value.ToString();
+                DateTime time = Convert.ToDateTime(dataGridView1.Rows[row].Cells[4].Value.ToString());
+                transaction_id = int.Parse(dataGridView1.Rows[row].Cells[0].Value.ToString());
+                lblName = name;
+                date = time;
+                //TransactionDetail Td = new TransactionDetail();
+                //dts = Td.GetTransactionDetail(name);
+                frmDetails TD = new frmDetails();
+                TD.Show();
+            }
+            
         }
     }
 }
