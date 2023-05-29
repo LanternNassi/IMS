@@ -9,7 +9,7 @@
   <Identity
     Name="7dcaf813-be42-4a69-ae55-eaf71a5de0e3"
     Publisher="CN=Multiorg"
-    Version="1.0.8.0" />
+    Version="1.0.10.0" />
 
   <Properties>
     <DisplayName>IMS</DisplayName>
