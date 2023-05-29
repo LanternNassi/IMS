@@ -38,7 +38,7 @@ jobs:
     # Decode the base 64 encoded pfx and save the Signing_Certificate
     - name: Decode the pfx
       run: |
-        $fileContentBytes = get-content 'IMS_TemporaryKey.pfx' -AsByteStream
+        $fileContentBytes = get-content 'IMS/IMS_TemporaryKey.pfx' -AsByteStream
         $pfx_cert_byte = [System.Convert]::FromBase64String($fileContentBytes)
         $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
         [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
