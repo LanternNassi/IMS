@@ -2,10 +2,8 @@
 name: Build artifact 
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "MMAK_FARM_SUPPLY" ]
 
 jobs:
 
