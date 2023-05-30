@@ -458,7 +458,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(440, 96);
+            this.label5.Location = new System.Drawing.Point(127, 99);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 15);
             this.label5.TabIndex = 3;
@@ -474,7 +474,7 @@
             this.circularProgressBar2.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
             this.circularProgressBar2.InnerMargin = 2;
             this.circularProgressBar2.InnerWidth = -1;
-            this.circularProgressBar2.Location = new System.Drawing.Point(423, 0);
+            this.circularProgressBar2.Location = new System.Drawing.Point(110, 3);
             this.circularProgressBar2.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar2.Name = "circularProgressBar2";
             this.circularProgressBar2.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));

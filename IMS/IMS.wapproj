@@ -57,7 +57,7 @@
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <NoWarn>$(NoWarn);NU1702</NoWarn>
     <EntryPointProjectUniqueName>..\Abbey Trading Store\Abbey Trading Store.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>6E6BFF77A1DD680656955B5D43A7EEEA1D9267D0</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>10EFE1F976808289EC151B1582933DCB6DDDF861</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>

@@ -15,9 +15,7 @@ using System.Web.Services.Description;
 using System.Windows.Forms;
 using Abbey_Trading_Store.DAL.DAL_Properties;
 using System.Data.SqlClient;
-using System.Speech.Synthesis;
 using MaterialSkin.Controls;
-using Microsoft.VisualBasic;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
@@ -89,80 +87,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         }
 
-        private async void materialButton1_Click(object sender, EventArgs e)
+        private void materialButton1_Click(object sender, EventArgs e)
         {
-            if (p_quantity.Text != "" && int.Parse(p_quantity.Text) > 0)
-            {
-                Cursor = Cursors.WaitCursor;
-                grandtotal.Text = "";
-                textBox13.Text = "";
-                //Getting 
-                string productname = p_name.Text;
-                decimal quantity = decimal.Parse(p_quantity.Text);
-                decimal rate = 0;
-                decimal total = 0;
-                if (p_quantity.Text.Contains("."))
-                {
-                    decimal calculated = decimal.Parse(p_quantity.Text) * decimal.Parse(p_rate.Text);
-                    string amount = Interaction.InputBox("Confirm the amount?", "Amount", calculated.ToString());
-                    total = decimal.Parse(amount);
-                    rate = decimal.Parse(p_rate.Text);
-                }
-                else
-                {
-                    rate = decimal.Parse(p_rate.Text);
-                    total = rate * quantity;
-                }
-                //decimal total = rate * quantity;
-                decimal subtotals = 0;
-                if (subtotal.Text == "")
-                {
-                }
-                else
-                {
-                    subtotals = decimal.Parse(subtotal.Text);
-                }
-                decimal profit = ((quantity * rate) - (quantity * initial_price));
-
-                //calulations
-                subtotals += total;
-                subtotal.Text = subtotals.ToString("N0");
-
-                if (productname == "")
-                {
-                    Cursor = Cursors.Default;
-                    MessageBox.Show("Please add a product.");
-                }
-                else
-                {
-                    dt.Rows.Add(productname, quantity, rate, total, profit);
-                    dataGridView1.DataSource = dt;
-                    //hiding the profit column
-                    dataGridView1.Columns[4].Visible = false;
-                    //NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
-                    //dgv_products.Columns["Total"].DefaultCellStyle.Format = "C";
-                    p_name.Text = "";
-                    p_search1.Text = "";
-                    p_inventory.Text = "";
-                    p_rate.Text = "0";
-                    p_rate.Items.Clear();
-                    p_quantity.Text = "";
-                    p_rate.Items.Clear();
-
-                }
-                Cursor = Cursors.Default;
-
-            } else
-            {
-                MessageBox.Show("Invalid entry . Add a quantity");
-            }
-            
-
-        }
-
-        private void test()
-        {
-
             Cursor = Cursors.WaitCursor;
             //Getting 
             if (p_quantity.Text == "")
@@ -171,8 +97,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     "Sales Management Portal",
                     MessageBoxButtons.OK);
 
-            }
-            else
+            } else
             {
                 string productname = p_name.Text;
                 decimal rate = decimal.Parse(p_rate.Text);
@@ -187,8 +112,6 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     subtotals = decimal.Parse(subtotal.Text);
                 }
                 decimal profit = ((quantity * rate) - (quantity * initial_price));
-
-
 
                 //calulations
                 subtotals += total;
@@ -215,15 +138,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     p_rate.Text = "0";
                     p_quantity.Text = "0";
 
-                    SpeechSynthesizer SS = new SpeechSynthesizer();
-                    SS.SpeakAsync(productname + " is added at a quantity of " + quantity + " and a total of " + total + " Ugandan shillings");
-
                 }
 
             }
-
+            
             Cursor = Cursors.Default;
-
         }
 
         private void p_search_SelectedIndexChanged(object sender, EventArgs e)
@@ -325,24 +244,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             else
             {
                 // Discount for raw values 
-                try
-                {
-                    int discount = Convert.ToInt32(textBox13.Text);
-                    decimal sub = decimal.Parse(subtotal.Text);
-                    int subtL = Convert.ToInt32(sub);
-                    int overall = subtL - discount;
-                    grandtotal.Text = overall.ToString("N0");
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show("Input a valid discount");
-
-                }
-                finally
-                {
-
-                }
-                
+                int discount = Convert.ToInt32(textBox13.Text);
+                decimal sub = decimal.Parse(subtotal.Text);
+                int subtL = Convert.ToInt32(sub);
+                int overall = subtL - discount;
+                grandtotal.Text = overall.ToString("N0");
 
             }
         }
@@ -432,19 +338,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             int ovp = 0;
             for (int h = 0; h <= ((dt.Rows.Count) - 1); h++)
             {
-                try
-                {
-                    ovp += int.Parse(dt.Rows[h][4].ToString());
-
-                }catch(Exception ex)
-                {
-                    Decimal profit1 = Decimal.Parse(dt.Rows[h][4].ToString());
-                    ovp += Convert.ToInt32(profit1);
-                }
-                finally
-                {
-
-                }
+                ovp += int.Parse(dt.Rows[h][4].ToString());
             }
             //Veryfying whether the product is taken
             //string message = "Are the items taken ?";
@@ -514,39 +408,13 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                
                 TD.Rate = decimal.Parse(dt.Rows[i][2].ToString());
                 TD.Total = decimal.Parse(dt.Rows[i][3].ToString());
-                try
-                {
-                    TD.profit = int.Parse(dt.Rows[i][4].ToString());
-
-                }
-                catch (Exception ex)
-                {
-                    Decimal profit_hold = Decimal.Parse(dt.Rows[i][4].ToString());
-                    TD.profit = Convert.ToInt32(profit_hold);
-                }
-                finally
-                {
-
-                }
+                TD.profit = int.Parse(dt.Rows[i][4].ToString());
                 TD.type = form_type;
                 TD.Dea_Cust_name = name.Text;
                 TD.Added_by = Login_form.user;
                 if (form_type == "Sales")
                 {
-                    try
-                    {
-                        TD.profit = int.Parse(dt.Rows[i][4].ToString());
-
-                    }
-                    catch (Exception ex)
-                    {
-                        Decimal profit_hold = Decimal.Parse(dt.Rows[i][4].ToString());
-                        TD.profit = Convert.ToInt32(profit_hold);
-                    }
-                    finally
-                    {
-
-                    }
+                    TD.profit = int.Parse(dt.Rows[i][4].ToString());
                 }
                 TD.invoice_id = x;
                 bool y = await TD.InsertAppropriately();

@@ -40,41 +40,30 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void regenerate()
         {
-            try
-            {
-                //Getting all the query parameters from the form 
-                DateTime start_date = dateTimePicker1.Value;
-                DateTime end_date = dateTimePicker2.Value;
-                string type = cbbx.Text;
-                string customer_name = Customer.Text;
-                string product_name = Product.Text;
-                string quantity = Quantity.Text;
-                string added_by = Added_by.Text;
 
-                //Run the query 
-                TransactionDetail TD = new TransactionDetail();
-                DataTable dt = TD.QueryTransactionsAppropriately(
-                    start_date,
-                    end_date,
-                    type,
-                    (product_name != "") ? (product_name) : (null),
-                    (customer_name != "") ? (customer_name) : (null),
-                    (quantity != "") ? (Convert.ToInt32(quantity)) : (0),
-                    (added_by != "") ? (added_by) : (null)
-                );
-                TDD.DataSource = dt;
-                cc = dt;
-                update_overall();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                
-            }
-            
+            //Getting all the query parameters from the form 
+            DateTime start_date = dateTimePicker1.Value;
+            DateTime end_date = dateTimePicker2.Value;
+            string type = cbbx.Text;
+            string customer_name = Customer.Text;
+            string product_name = Product.Text;
+            string quantity = Quantity.Text;
+            string added_by = Added_by.Text;
+
+            //Run the query 
+            TransactionDetail TD = new TransactionDetail();
+            DataTable dt = TD.QueryTransactionsAppropriately(
+                start_date,
+                end_date,
+                type,
+                (product_name != "") ? (product_name) : (null),
+                (customer_name != "") ? (customer_name) : (null),
+                (quantity != "") ? (Convert.ToInt32(quantity)) : (0),
+                (added_by != "") ? (added_by) : (null)
+            );
+            TDD.DataSource = dt;
+            cc = dt;
+            update_overall();
         }
 
 
@@ -249,16 +238,6 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
                 Added_by.Items.Add(dr[1].ToString());
             }
-        }
-
-        private void dateTimePicker1_ValueChanged_1(object sender, EventArgs e)
-        {
-            regenerate();
-        }
-
-        private void dateTimePicker2_ValueChanged_1(object sender, EventArgs e)
-        {
-            regenerate();
         }
     }
 }

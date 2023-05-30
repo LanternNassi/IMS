@@ -346,8 +346,8 @@ namespace Abbey_Trading_Store.DAL
             {
                 string cmd_text = "SELECT * FROM [Transaction Details] WHERE type = '" + type + "' AND added_date >= @start_date AND added_date <= @end_date " + ((product_name != null) ? ("AND product_name = '" + product_name + "' ") : ("")) + ((quantity != 0) ? ("AND Qty=@Qty ") : ("")) + ((added_by != null) ? ("AND added_by='" + added_by + "' ") : ("") + ((customer_name != null) ? ("AND dea_cust_name='" + customer_name + "' ") : ("")));
                 SqlCommand cmd = new SqlCommand(cmd_text, conn);
-                cmd.Parameters.AddWithValue("@start_date", start_date);
-                cmd.Parameters.AddWithValue("@end_date", end_date);
+                cmd.Parameters.AddWithValue("@start_date", start_date.ToString());
+                cmd.Parameters.AddWithValue("@end_date", end_date.ToString());
                 //cmd.Parameters.AddWithValue("@product_name", product_name);
                 cmd.Parameters.AddWithValue("@Qty", quantity);
                 //cmd.Parameters.AddWithValue("@dea_cust_name", "Osho");
@@ -370,7 +370,7 @@ namespace Abbey_Trading_Store.DAL
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + " From Analysis");
+                MessageBox.Show(ex.Message);
             }
             finally
             {
