@@ -62,7 +62,7 @@ jobs:
     
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: msBuild $env:Wap_Project_Path /p:Configuration=Release;AppxBundle=Always;AppxBundlePlatforms="x64" /p:PackageCertificateKeyFile=$env:SigningCertificate /p:PackageCertificatePassword=${{ secrets.PFX_KEY }}  
+      run: msBuild $env:Wap_Project_Path /p:Configuration=Release /p:AppxBundle=Always /p:Platform="x64" /p:PackageCertificateKeyFile=$env:SigningCertificate /p:PackageCertificatePassword=${{ secrets.PFX_KEY }}  
       env:
         Appx_Bundle: Always
         Appx_Bundle_Platforms: x64
