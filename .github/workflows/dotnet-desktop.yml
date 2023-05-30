@@ -15,14 +15,13 @@ jobs:
       matrix:
         configuration: [Release]
 
-    runs-on: windows-latest  # For a list of available runner types, refer to
-                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
-
+    runs-on: windows-latest  
+    
     env:
-      Solution_Name: Abbey Trading Store.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
+      Solution_Name: Abbey Trading Store.sln                         
       SigningCertificate: IMS_TemporaryKey.pfx
-      Wap_Project_Directory: IMS    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
-      Wap_Project_Path: IMS\IMS.wapproj                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
+      Wap_Project_Directory: IMS    
+      Wap_Project_Path: IMS\IMS.wapproj                   
 
     steps:
     - name: Checkout
