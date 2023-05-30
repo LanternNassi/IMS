@@ -369,9 +369,9 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
             this.label3.Location = new System.Drawing.Point(561, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(358, 32);
+            this.label3.Size = new System.Drawing.Size(403, 32);
             this.label3.TabIndex = 9;
-            this.label3.Text = "TEST BUSINESS STORE";
+            this.label3.Text = "BUKASA BUSINESS STORE";
             // 
             // label4
             // 
