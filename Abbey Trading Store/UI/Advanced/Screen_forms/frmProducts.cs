@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Abbey_Trading_Store.DAL;
+using Abbey_Trading_Store.DAL.DAL_Properties;
 using Abbey_Trading_Store.UI.Advanced.CustomMessageBox;
 using Newtonsoft.Json.Serialization;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -31,10 +33,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             product product = new product();
             DataTable dt = new DataTable();
             dynamic adapter = product.SelectAppropriately();
-            conn.Open();
+            Connection().Open();
             adapter.Fill(dt);
             dataGridView1.DataSource = dt;
-            conn.Close();
+            Connection().Close();
 
             if (dt.Rows.Count > 100)
             {
@@ -62,8 +64,22 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         }
 
-        const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
-        OleDbConnection conn = new OleDbConnection(connection);
+        private dynamic Connection()
+        {
+            if (Env.mode == 1)
+            {
+                const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
+                OleDbConnection conn = new OleDbConnection(connection);
+                return conn;
+            }else
+            {
+                SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+                return conn;
+            }
+        }
+
+        //const string connection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
+        //OleDbConnection conn = new OleDbConnection(connection);
 
         private void clear()
         {
@@ -154,10 +170,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
                 DataTable dt = new DataTable();
                 OleDbDataAdapter adapter = product.select();
-                conn.Open();
+                Connection().Open();
                 adapter.Fill(dt);
                 dataGridView1.DataSource = dt;
-                conn.Close();
+                Connection().Close();
             }
         }
 
@@ -203,10 +219,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             }
             DataTable dt = new DataTable();
             dynamic adapter = product.SelectAppropriately();
-            conn.Open();
+            Connection().Open();
             adapter.Fill(dt);
             dataGridView1.DataSource = dt;
-            conn.Close();
+            Connection().Close();
         }
 
         private async void materialButton3_Click(object sender, EventArgs e)
@@ -244,10 +260,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             }
             DataTable dt = new DataTable();
             dynamic adapter = product.SelectAppropriately();
-            conn.Open();
+            Connection().Open();
             adapter.Fill(dt);
             dataGridView1.DataSource = dt;
-            conn.Close();
+            Connection().Close();
         }
 
         private void search_TextChanged(object sender, EventArgs e)

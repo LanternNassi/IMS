@@ -440,7 +440,7 @@ namespace Abbey_Trading_Store.DAL
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + "Error at Decrease product");
             }
             finally
             {
@@ -665,7 +665,7 @@ namespace Abbey_Trading_Store.DAL
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " Most selling product");
             }
             finally
             {
@@ -940,7 +940,7 @@ namespace Abbey_Trading_Store.DAL
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + "Error at updating.");
 
             }
             finally
