@@ -20,7 +20,7 @@ jobs:
 
     env:
       Solution_Name: Abbey Trading Store.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
-      SigningCertificate: IMS\IMS_TemporaryKey.pfx
+      SigningCertificate: IMS_TemporaryKey.pfx
       Wap_Project_Directory: IMS    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
       Wap_Project_Path: IMS\IMS.wapproj                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
