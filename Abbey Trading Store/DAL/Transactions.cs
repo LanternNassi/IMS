@@ -656,7 +656,7 @@ namespace Abbey_Trading_Store.DAL
                 SqlCommand cmd = new SqlCommand(cmds, conn);
                 cmd.Parameters.AddWithValue("@Transaction_id", args[0]);
                 cmd.Parameters.AddWithValue("@Paid_amount", args[1]);
-                cmd.Parameters.AddWithValue("@Added_date", DateTime.Now);
+                cmd.Parameters.AddWithValue("@Added_date", DateTime.Now.ToString());
                 cmd.Parameters.AddWithValue("@Updated_by", args[2]);
                 conn.Open();
                 int rows = cmd.ExecuteNonQuery();

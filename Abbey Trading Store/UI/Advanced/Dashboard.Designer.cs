@@ -28,8 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Username = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.pnlNav = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.pnlform = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            this.search = new MaterialSkin.Controls.MaterialTextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -41,21 +51,10 @@
             this.btnCategories = new System.Windows.Forms.Button();
             this.btnUsers = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Username = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.pnlNav = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.pnlform = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
-            this.search = new MaterialSkin.Controls.MaterialTextBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,198 +79,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 710);
             this.panel1.TabIndex = 0;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = global::Abbey_Trading_Store.Properties.Resources.Untitled_design__2_;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 551);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(198, 157);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 12;
-            this.pictureBox2.TabStop = false;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.button2.Image = global::Abbey_Trading_Store.Properties.Resources.debt;
-            this.button2.Location = new System.Drawing.Point(0, 509);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(198, 42);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Debts";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            this.button2.Leave += new System.EventHandler(this.button2_Leave);
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.button1.Image = global::Abbey_Trading_Store.Properties.Resources.recovery;
-            this.button1.Location = new System.Drawing.Point(0, 467);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(198, 42);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Analysis  ";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            this.button1.Leave += new System.EventHandler(this.button1_Leave);
-            // 
-            // btnSales
-            // 
-            this.btnSales.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSales.FlatAppearance.BorderSize = 0;
-            this.btnSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSales.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnSales.Image = global::Abbey_Trading_Store.Properties.Resources.purchase;
-            this.btnSales.Location = new System.Drawing.Point(0, 425);
-            this.btnSales.Name = "btnSales";
-            this.btnSales.Size = new System.Drawing.Size(198, 42);
-            this.btnSales.TabIndex = 9;
-            this.btnSales.Text = "Sales   ";
-            this.btnSales.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnSales.UseVisualStyleBackColor = true;
-            this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
-            this.btnSales.Leave += new System.EventHandler(this.btnSales_Leave);
-            // 
-            // btnPurchases
-            // 
-            this.btnPurchases.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnPurchases.FlatAppearance.BorderSize = 0;
-            this.btnPurchases.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPurchases.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPurchases.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnPurchases.Image = global::Abbey_Trading_Store.Properties.Resources.transaction;
-            this.btnPurchases.Location = new System.Drawing.Point(0, 383);
-            this.btnPurchases.Name = "btnPurchases";
-            this.btnPurchases.Size = new System.Drawing.Size(198, 42);
-            this.btnPurchases.TabIndex = 8;
-            this.btnPurchases.Text = "Purchases";
-            this.btnPurchases.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnPurchases.UseVisualStyleBackColor = true;
-            this.btnPurchases.Click += new System.EventHandler(this.btnPurchases_Click);
-            this.btnPurchases.Leave += new System.EventHandler(this.btnPurchases_Leave);
-            // 
-            // btnTransactions
-            // 
-            this.btnTransactions.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnTransactions.FlatAppearance.BorderSize = 0;
-            this.btnTransactions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTransactions.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTransactions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnTransactions.Image = global::Abbey_Trading_Store.Properties.Resources.transaction;
-            this.btnTransactions.Location = new System.Drawing.Point(0, 341);
-            this.btnTransactions.Name = "btnTransactions";
-            this.btnTransactions.Size = new System.Drawing.Size(198, 42);
-            this.btnTransactions.TabIndex = 7;
-            this.btnTransactions.Text = "Transactions";
-            this.btnTransactions.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnTransactions.UseVisualStyleBackColor = true;
-            this.btnTransactions.Click += new System.EventHandler(this.btnTransactions_Click);
-            this.btnTransactions.Leave += new System.EventHandler(this.btnTransactions_Leave);
-            // 
-            // btnCustomers
-            // 
-            this.btnCustomers.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCustomers.FlatAppearance.BorderSize = 0;
-            this.btnCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCustomers.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnCustomers.Image = global::Abbey_Trading_Store.Properties.Resources.people;
-            this.btnCustomers.Location = new System.Drawing.Point(0, 299);
-            this.btnCustomers.Name = "btnCustomers";
-            this.btnCustomers.Size = new System.Drawing.Size(198, 42);
-            this.btnCustomers.TabIndex = 6;
-            this.btnCustomers.Text = "Customers";
-            this.btnCustomers.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnCustomers.UseVisualStyleBackColor = true;
-            this.btnCustomers.Click += new System.EventHandler(this.btnCustomers_Click);
-            this.btnCustomers.Leave += new System.EventHandler(this.btnCustomers_Leave);
-            // 
-            // btnProducts
-            // 
-            this.btnProducts.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnProducts.FlatAppearance.BorderSize = 0;
-            this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProducts.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProducts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnProducts.Image = global::Abbey_Trading_Store.Properties.Resources.product;
-            this.btnProducts.Location = new System.Drawing.Point(0, 257);
-            this.btnProducts.Name = "btnProducts";
-            this.btnProducts.Size = new System.Drawing.Size(198, 42);
-            this.btnProducts.TabIndex = 2;
-            this.btnProducts.Text = "Products";
-            this.btnProducts.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnProducts.UseVisualStyleBackColor = true;
-            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
-            this.btnProducts.Leave += new System.EventHandler(this.btnProducts_Leave);
-            // 
-            // btnCategories
-            // 
-            this.btnCategories.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCategories.FlatAppearance.BorderSize = 0;
-            this.btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCategories.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCategories.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnCategories.Image = global::Abbey_Trading_Store.Properties.Resources.diagram;
-            this.btnCategories.Location = new System.Drawing.Point(0, 215);
-            this.btnCategories.Name = "btnCategories";
-            this.btnCategories.Size = new System.Drawing.Size(198, 42);
-            this.btnCategories.TabIndex = 3;
-            this.btnCategories.Text = "Categories";
-            this.btnCategories.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnCategories.UseVisualStyleBackColor = true;
-            this.btnCategories.Click += new System.EventHandler(this.btnCategories_Click);
-            this.btnCategories.Leave += new System.EventHandler(this.btnCategories_Leave);
-            // 
-            // btnUsers
-            // 
-            this.btnUsers.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnUsers.FlatAppearance.BorderSize = 0;
-            this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsers.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnUsers.Image = global::Abbey_Trading_Store.Properties.Resources.Conact;
-            this.btnUsers.Location = new System.Drawing.Point(0, 173);
-            this.btnUsers.Name = "btnUsers";
-            this.btnUsers.Size = new System.Drawing.Size(198, 42);
-            this.btnUsers.TabIndex = 4;
-            this.btnUsers.Text = "Users ";
-            this.btnUsers.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnUsers.UseVisualStyleBackColor = true;
-            this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
-            this.btnUsers.Leave += new System.EventHandler(this.btnUsers_Leave);
-            // 
-            // btnDashboard
-            // 
-            this.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDashboard.FlatAppearance.BorderSize = 0;
-            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDashboard.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnDashboard.Image = global::Abbey_Trading_Store.Properties.Resources.home;
-            this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDashboard.Location = new System.Drawing.Point(0, 130);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(198, 43);
-            this.btnDashboard.TabIndex = 5;
-            this.btnDashboard.Text = "Dashboard       ";
-            this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnDashboard.UseVisualStyleBackColor = true;
-            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
-            this.btnDashboard.Leave += new System.EventHandler(this.btnDashboard_Leave);
             // 
             // panel2
             // 
@@ -300,23 +107,11 @@
             this.Username.AutoSize = true;
             this.Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Username.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.Username.Location = new System.Drawing.Point(70, 76);
+            this.Username.Location = new System.Drawing.Point(55, 74);
             this.Username.Name = "Username";
             this.Username.Size = new System.Drawing.Size(85, 16);
             this.Username.TabIndex = 4;
             this.Username.Text = "User Name";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.ErrorImage = global::Abbey_Trading_Store.Properties.Resources.Untitled_11;
-            this.pictureBox1.Image = global::Abbey_Trading_Store.Properties.Resources.Untitled_11;
-            this.pictureBox1.InitialImage = global::Abbey_Trading_Store.Properties.Resources.Untitled_11;
-            this.pictureBox1.Location = new System.Drawing.Point(67, 8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(63, 63);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // button5
             // 
@@ -369,9 +164,9 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
             this.label3.Location = new System.Drawing.Point(561, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(358, 32);
+            this.label3.Size = new System.Drawing.Size(403, 32);
             this.label3.TabIndex = 9;
-            this.label3.Text = "TEST BUSINESS STORE";
+            this.label3.Text = "BUKASA BUSINESS STORE";
             // 
             // label4
             // 
@@ -422,6 +217,210 @@
             this.search.Visible = false;
             this.search.TextChanged += new System.EventHandler(this.search_TextChanged);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Image = global::Abbey_Trading_Store.Properties.Resources.Untitled_design__2_;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 550);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(198, 158);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.button2.Image = global::Abbey_Trading_Store.Properties.Resources.debt;
+            this.button2.Location = new System.Drawing.Point(0, 508);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(198, 42);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Debts";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Leave += new System.EventHandler(this.button2_Leave);
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.button1.Image = global::Abbey_Trading_Store.Properties.Resources.recovery;
+            this.button1.Location = new System.Drawing.Point(0, 466);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(198, 42);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Analysis  ";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Leave += new System.EventHandler(this.button1_Leave);
+            // 
+            // btnSales
+            // 
+            this.btnSales.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSales.FlatAppearance.BorderSize = 0;
+            this.btnSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSales.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnSales.Image = global::Abbey_Trading_Store.Properties.Resources.purchase;
+            this.btnSales.Location = new System.Drawing.Point(0, 424);
+            this.btnSales.Name = "btnSales";
+            this.btnSales.Size = new System.Drawing.Size(198, 42);
+            this.btnSales.TabIndex = 9;
+            this.btnSales.Text = "Sales   ";
+            this.btnSales.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnSales.UseVisualStyleBackColor = true;
+            this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
+            this.btnSales.Leave += new System.EventHandler(this.btnSales_Leave);
+            // 
+            // btnPurchases
+            // 
+            this.btnPurchases.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPurchases.FlatAppearance.BorderSize = 0;
+            this.btnPurchases.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPurchases.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPurchases.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnPurchases.Image = global::Abbey_Trading_Store.Properties.Resources.transaction;
+            this.btnPurchases.Location = new System.Drawing.Point(0, 382);
+            this.btnPurchases.Name = "btnPurchases";
+            this.btnPurchases.Size = new System.Drawing.Size(198, 42);
+            this.btnPurchases.TabIndex = 8;
+            this.btnPurchases.Text = "Purchases";
+            this.btnPurchases.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnPurchases.UseVisualStyleBackColor = true;
+            this.btnPurchases.Click += new System.EventHandler(this.btnPurchases_Click);
+            this.btnPurchases.Leave += new System.EventHandler(this.btnPurchases_Leave);
+            // 
+            // btnTransactions
+            // 
+            this.btnTransactions.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTransactions.FlatAppearance.BorderSize = 0;
+            this.btnTransactions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransactions.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTransactions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnTransactions.Image = global::Abbey_Trading_Store.Properties.Resources.transaction;
+            this.btnTransactions.Location = new System.Drawing.Point(0, 340);
+            this.btnTransactions.Name = "btnTransactions";
+            this.btnTransactions.Size = new System.Drawing.Size(198, 42);
+            this.btnTransactions.TabIndex = 7;
+            this.btnTransactions.Text = "Transactions";
+            this.btnTransactions.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnTransactions.UseVisualStyleBackColor = true;
+            this.btnTransactions.Click += new System.EventHandler(this.btnTransactions_Click);
+            this.btnTransactions.Leave += new System.EventHandler(this.btnTransactions_Leave);
+            // 
+            // btnCustomers
+            // 
+            this.btnCustomers.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCustomers.FlatAppearance.BorderSize = 0;
+            this.btnCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustomers.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnCustomers.Image = global::Abbey_Trading_Store.Properties.Resources.people;
+            this.btnCustomers.Location = new System.Drawing.Point(0, 298);
+            this.btnCustomers.Name = "btnCustomers";
+            this.btnCustomers.Size = new System.Drawing.Size(198, 42);
+            this.btnCustomers.TabIndex = 6;
+            this.btnCustomers.Text = "Customers";
+            this.btnCustomers.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnCustomers.UseVisualStyleBackColor = true;
+            this.btnCustomers.Click += new System.EventHandler(this.btnCustomers_Click);
+            this.btnCustomers.Leave += new System.EventHandler(this.btnCustomers_Leave);
+            // 
+            // btnProducts
+            // 
+            this.btnProducts.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnProducts.FlatAppearance.BorderSize = 0;
+            this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProducts.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProducts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnProducts.Image = global::Abbey_Trading_Store.Properties.Resources.product;
+            this.btnProducts.Location = new System.Drawing.Point(0, 256);
+            this.btnProducts.Name = "btnProducts";
+            this.btnProducts.Size = new System.Drawing.Size(198, 42);
+            this.btnProducts.TabIndex = 2;
+            this.btnProducts.Text = "Products";
+            this.btnProducts.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnProducts.UseVisualStyleBackColor = true;
+            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
+            this.btnProducts.Leave += new System.EventHandler(this.btnProducts_Leave);
+            // 
+            // btnCategories
+            // 
+            this.btnCategories.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCategories.FlatAppearance.BorderSize = 0;
+            this.btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCategories.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCategories.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnCategories.Image = global::Abbey_Trading_Store.Properties.Resources.diagram;
+            this.btnCategories.Location = new System.Drawing.Point(0, 214);
+            this.btnCategories.Name = "btnCategories";
+            this.btnCategories.Size = new System.Drawing.Size(198, 42);
+            this.btnCategories.TabIndex = 3;
+            this.btnCategories.Text = "Categories";
+            this.btnCategories.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnCategories.UseVisualStyleBackColor = true;
+            this.btnCategories.Click += new System.EventHandler(this.btnCategories_Click);
+            this.btnCategories.Leave += new System.EventHandler(this.btnCategories_Leave);
+            // 
+            // btnUsers
+            // 
+            this.btnUsers.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUsers.FlatAppearance.BorderSize = 0;
+            this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsers.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnUsers.Image = global::Abbey_Trading_Store.Properties.Resources.Conact;
+            this.btnUsers.Location = new System.Drawing.Point(0, 172);
+            this.btnUsers.Name = "btnUsers";
+            this.btnUsers.Size = new System.Drawing.Size(198, 42);
+            this.btnUsers.TabIndex = 4;
+            this.btnUsers.Text = "Users ";
+            this.btnUsers.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnUsers.UseVisualStyleBackColor = true;
+            this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
+            this.btnUsers.Leave += new System.EventHandler(this.btnUsers_Leave);
+            // 
+            // btnDashboard
+            // 
+            this.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDashboard.FlatAppearance.BorderSize = 0;
+            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDashboard.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnDashboard.Image = global::Abbey_Trading_Store.Properties.Resources.home;
+            this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDashboard.Location = new System.Drawing.Point(0, 130);
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.Size = new System.Drawing.Size(198, 42);
+            this.btnDashboard.TabIndex = 5;
+            this.btnDashboard.Text = "Dashboard       ";
+            this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnDashboard.UseVisualStyleBackColor = true;
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
+            this.btnDashboard.Leave += new System.EventHandler(this.btnDashboard_Leave);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.ErrorImage = global::Abbey_Trading_Store.Properties.Resources.Untitled_11;
+            this.pictureBox1.Image = global::Abbey_Trading_Store.Properties.Resources.Untitled_11;
+            this.pictureBox1.InitialImage = global::Abbey_Trading_Store.Properties.Resources.Untitled_11;
+            this.pictureBox1.Location = new System.Drawing.Point(67, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(63, 63);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // Dashboard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -439,15 +438,14 @@
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.Dashboard_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
