@@ -2,7 +2,7 @@
 name: Build artifact 
 
 on:
-  pull_request:
+  push:
     branches: [ "BukasaBusinessStore" ]
 
 jobs:
