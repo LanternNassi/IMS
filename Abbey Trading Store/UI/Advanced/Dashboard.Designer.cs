@@ -291,9 +291,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
             this.label2.Location = new System.Drawing.Point(43, 103);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 12);
+            this.label2.Size = new System.Drawing.Size(97, 12);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Some User Text Here";
+            this.label2.Text = "MMAK work force";
             // 
             // Username
             // 
