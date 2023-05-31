@@ -1,4 +1,4 @@
-# Inventory-management-software 🇺🇬 🇺🇬 🕴️
+# Inventory-management-software 🇺🇬 🕴️
 Helps in managing stock, transactions, printing invoices , etc. This software is meant to solve the problem most of the problems Ugandan businesss face
 
 ## Features included
