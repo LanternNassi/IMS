@@ -744,7 +744,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>BUKASA BUSINESS STORE</Value>
+                  <Value>MMAK AGRO CHEMICALS LTD</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -757,7 +757,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Left>0.42746in</Left>
+          <Left>0.51647in</Left>
           <Height>0.18056in</Height>
           <Width>2.23069in</Width>
           <Style>
@@ -842,7 +842,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Dealers Farm Supplies and Building materials </Value>
+                  <Value>Dealers Farm Supplies and Fertilisers </Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -856,7 +856,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox3</rd:DefaultName>
           <Top>0.18056in</Top>
-          <Left>0.33923in</Left>
+          <Left>0.37395in</Left>
           <Height>0.22875in</Height>
           <Width>2.65036in</Width>
           <ZIndex>3</ZIndex>
@@ -877,7 +877,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Tel : 0752570164 , 0776560164, 0756273300</Value>
+                  <Value>Tel : 0705208807 , 0754066646</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -890,8 +890,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox15</rd:DefaultName>
-          <Top>0.35417in</Top>
-          <Left>0.33923in</Left>
+          <Top>0.34028in</Top>
+          <Left>0.51647in</Left>
           <Height>0.18378in</Height>
           <Width>2.31892in</Width>
           <ZIndex>4</ZIndex>
@@ -977,7 +977,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Located at Kalisizo</Value>
+                  <Value>Located at Busega, Kampala</Value>
                   <Style>
                     <FontStyle>Normal</FontStyle>
                     <FontSize>7pt</FontSize>
@@ -991,8 +991,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>1.36639cm</Top>
-          <Left>1.83899cm</Left>
+          <Top>1.30178cm</Top>
+          <Left>2.37841cm</Left>
           <Height>0.46804cm</Height>
           <Width>3.55833cm</Width>
           <ZIndex>7</ZIndex>
@@ -1006,60 +1006,6 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Textbox Name="Textbox141">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value xml:space="preserve"> </Value>
-                  <Style>
-                    <FontSize>8.5pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-                <TextRun>
-                  <Value>=First(Fields!dea_cust_name.Value, "DataSet_details")</Value>
-                  <Style>
-                    <FontSize>8.5pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox141</rd:DefaultName>
-          <Top>1.94621cm</Top>
-          <Left>3.43709cm</Left>
-          <Height>0.71938cm</Height>
-          <Width>4.15647cm</Width>
-          <ZIndex>8</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-      </ReportItems>
-      <Style>
-        <Border>
-          <Style>None</Style>
-        </Border>
-      </Style>
-    </PageHeader>
-    <PageFooter>
-      <Height>1.03688cm</Height>
-      <PrintOnFirstPage>true</PrintOnFirstPage>
-      <PrintOnLastPage>true</PrintOnLastPage>
-      <ReportItems>
         <Textbox Name="Textbox5">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -1078,10 +1024,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox5</rd:DefaultName>
-          <Top>0.07664in</Top>
-          <Left>1.30791in</Left>
+          <Top>0.79154in</Top>
+          <Left>1.72393in</Left>
           <Height>0.25in</Height>
           <Width>0.73958in</Width>
+          <ZIndex>8</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1109,11 +1056,64 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>added_by</rd:DefaultName>
-          <Top>0.09413in</Top>
-          <Left>1.99187in</Left>
+          <Top>0.80903in</Top>
+          <Left>2.39747in</Left>
           <Height>0.23611in</Height>
           <Width>0.55552in</Width>
-          <ZIndex>1</ZIndex>
+          <ZIndex>9</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>1.03688cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox141">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Thanks for purchasing </Value>
+                  <Style>
+                    <FontSize>8.5pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=First(Fields!dea_cust_name.Value, "DataSet_details")</Value>
+                  <Style>
+                    <FontSize>8.5pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox141</rd:DefaultName>
+          <Top>0.17639cm</Top>
+          <Left>1.31183cm</Left>
+          <Height>0.71938cm</Height>
+          <Width>4.68362cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
