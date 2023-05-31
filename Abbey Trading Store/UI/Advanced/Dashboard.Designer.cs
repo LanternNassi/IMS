@@ -291,9 +291,6 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
             this.label2.Location = new System.Drawing.Point(52, 102);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 12);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Some user text here";
             this.label2.Size = new System.Drawing.Size(97, 12);
             this.label2.TabIndex = 5;
             this.label2.Text = "MMAK work force";
@@ -372,7 +369,7 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
             this.label3.Location = new System.Drawing.Point(561, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(403, 32);
+            this.label3.Size = new System.Drawing.Size(358, 32);
             this.label3.TabIndex = 9;
             this.label3.Text = "TEST BUSINESS STORE";
             // 
@@ -393,7 +390,7 @@
             this.materialButton2.Depth = 0;
             this.materialButton2.HighEmphasis = true;
             this.materialButton2.Icon = global::Abbey_Trading_Store.Properties.Resources.settings;
-            this.materialButton2.Location = new System.Drawing.Point(1113, 15);
+            this.materialButton2.Location = new System.Drawing.Point(1048, 13);
             this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton2.Name = "materialButton2";
