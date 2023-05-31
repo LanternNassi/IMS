@@ -203,7 +203,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(415, 45);
             this.label4.TabIndex = 4;
-            this.label4.Text = "BUKASA BUSINESS STORE";
+            this.label4.Text = "MMAK AGRO CHEMICALS";
             // 
             // user
             // 
@@ -464,7 +464,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Admin_dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BUKASA BUSINESS STORE";
+            this.Text = "MMAK AGRO";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Admin_dashboard_FormClosed);
             this.Load += new System.EventHandler(this.Admin_dashboard_Load);

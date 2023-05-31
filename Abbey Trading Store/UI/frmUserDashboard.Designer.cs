@@ -100,7 +100,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(415, 45);
             this.label4.TabIndex = 5;
-            this.label4.Text = "BUKASA BUSINESS STORE";
+            this.label4.Text = "MMAK AGRO CHEMICALS";
             // 
             // panel1
             // 

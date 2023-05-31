@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>BUKASA BUSINESS STORE</Value>
+                <Value>MMAK AGRO CHEMICALS LTD</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -21,7 +21,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.18417in</Top>
-        <Left>2.92721in</Left>
+        <Left>3.08346in</Left>
         <Height>0.25in</Height>
         <Width>3.17709in</Width>
         <Style>
@@ -41,7 +41,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Dealers in farm supply and building materials</Value>
+                <Value>Dealers in farm supply and fertilisers</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -75,7 +75,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tel : 0752570164 , Tel : 0776560164 </Value>
+                <Value>Tel : 0705208807 , Tel : 0754066646 </Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>

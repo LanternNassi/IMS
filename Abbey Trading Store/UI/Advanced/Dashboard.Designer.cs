@@ -293,7 +293,10 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 12);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Bukasa Work Force";
+            this.label2.Text = "Some user text here";
+            this.label2.Size = new System.Drawing.Size(97, 12);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "MMAK work force";
             // 
             // Username
             // 
@@ -371,7 +374,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(403, 32);
             this.label3.TabIndex = 9;
-            this.label3.Text = "BUKASA BUSINESS STORE";
+            this.label3.Text = "TEST BUSINESS STORE";
             // 
             // label4
             // 
