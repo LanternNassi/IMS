@@ -661,5 +661,14 @@ namespace Abbey_Trading_Store.UI
            
 
         }
+
+        private void dgv_products_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            
+            //int column = dgv_products.CurrentCell.ColumnIndex;
+            //string headerText = dgv_products.Columns[column].HeaderText;
+            //MessageBox.Show("Editing is taking place at " + headerText + " " + dgv_products.CurrentCell.Value.ToString());
+
+        }
     }
 }
