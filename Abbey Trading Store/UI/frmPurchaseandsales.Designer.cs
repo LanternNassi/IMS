@@ -47,6 +47,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.p_rate = new System.Windows.Forms.ComboBox();
             this.p_search = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.p_quantity = new System.Windows.Forms.TextBox();
@@ -77,7 +78,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.p_rate = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -287,6 +287,19 @@
             this.panel3.TabIndex = 24;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
+            // p_rate
+            // 
+            this.p_rate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.p_rate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.p_rate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p_rate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.p_rate.FormattingEnabled = true;
+            this.p_rate.Location = new System.Drawing.Point(669, 47);
+            this.p_rate.Name = "p_rate";
+            this.p_rate.Size = new System.Drawing.Size(149, 28);
+            this.p_rate.Sorted = true;
+            this.p_rate.TabIndex = 18;
+            // 
             // p_search
             // 
             this.p_search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -424,6 +437,7 @@
             this.dgv_products.Name = "dgv_products";
             this.dgv_products.Size = new System.Drawing.Size(580, 257);
             this.dgv_products.TabIndex = 3;
+            this.dgv_products.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgv_products_EditingControlShowing);
             this.dgv_products.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_products_RowHeaderMouseClick);
             // 
             // label15
@@ -598,19 +612,6 @@
             this.label17.Size = new System.Drawing.Size(82, 17);
             this.label17.TabIndex = 7;
             this.label17.Text = "Paid Amount";
-            // 
-            // p_rate
-            // 
-            this.p_rate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.p_rate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.p_rate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.p_rate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.p_rate.FormattingEnabled = true;
-            this.p_rate.Location = new System.Drawing.Point(669, 47);
-            this.p_rate.Name = "p_rate";
-            this.p_rate.Size = new System.Drawing.Size(149, 28);
-            this.p_rate.Sorted = true;
-            this.p_rate.TabIndex = 18;
             // 
             // frmPurchaseandsales
             // 

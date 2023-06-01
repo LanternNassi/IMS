@@ -13,8 +13,8 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         public static string debug_url = "http://localhost:8000";
         public static bool debug_enabled = false;
 
-        public static int mode = 2;
-        public static int layout = 2;
+        public static int mode = 1;
+        public static int layout = 1;
         public static string local_database_conn_string = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Abbey Trading Store.accdb;";
 
         //public static string local_server_database_conn_string = "Data Source=192.168.43.6,1433;User ID=Nessim;password=bukasa;Initial Catalog=master;Integrated Security=True;";
