@@ -113,6 +113,7 @@ namespace Abbey_Trading_Store.UI
             if (isSuccess)
             {
                 MessageBox.Show("Transaction deleted successfully");
+                this.Close();
             }
             else
             {

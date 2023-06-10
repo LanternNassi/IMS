@@ -164,7 +164,7 @@ namespace Abbey_Trading_Store.DAL
 
 
 
-        public DataTable TransactionsOverview()
+        public DataTable TransactionsOverview(string type)
         {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
@@ -172,7 +172,7 @@ namespace Abbey_Trading_Store.DAL
             try
             {
                 conn.Open();
-                const string command = "SELECT SUM(CAST(Total_profit AS int)), SUM(grandTotal), MONTH(transaction_date) FROM Transactions GROUP BY MONTH(transaction_date)";
+                string command = "SELECT SUM(CAST(Total_profit AS int)), SUM(grandTotal), MONTH(transaction_date) FROM Transactions WHERE type = 'Customer' GROUP BY MONTH(transaction_date)";
                 SqlDataAdapter adapter = new SqlDataAdapter(command, conn);
                 adapter.Fill(dt);
 
@@ -199,7 +199,7 @@ namespace Abbey_Trading_Store.DAL
             try
             {
                 conn.Open();
-                const string command = "SELECT SUM(CAST(Total_profit AS int)), SUM(grandTotal), MONTH(transaction_date) FROM Transactions GROUP BY MONTH(transaction_date)";
+                const string command = "SELECT SUM(CAST(Total_profit AS int)), SUM(grandTotal), MONTH(transaction_date) , type FROM Transactions GROUP BY MONTH(transaction_date)";
                 OleDbDataAdapter adapter = new OleDbDataAdapter(command, conn);
                 adapter.Fill(dt);
 

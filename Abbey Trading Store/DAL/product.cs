@@ -654,7 +654,7 @@ namespace Abbey_Trading_Store.DAL
         {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
-            const string cmd = "SELECT product_name , COUNT(product_name) AS value_occurrence , SUM(CAST(Qty as int)) AS Total_quantity FROM [Transaction Details] GROUP BY product_name ORDER BY value_occurrence DESC;";
+            const string cmd = "SELECT product_name , COUNT(product_name) AS value_occurrence , SUM(CAST(Qty as int)) AS Total_quantity FROM [Transaction Details] WHERE Type = 'Sales' GROUP BY product_name ORDER BY value_occurrence DESC;";
             SqlDataAdapter adapter = new SqlDataAdapter(cmd, conn);
             try
             {

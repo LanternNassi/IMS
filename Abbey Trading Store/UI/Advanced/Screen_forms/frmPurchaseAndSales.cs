@@ -91,7 +91,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private async void materialButton1_Click(object sender, EventArgs e)
         {
-            if (p_quantity.Text != "" && int.Parse(p_quantity.Text) > 0)
+            if (p_quantity.Text != "" && decimal.Parse(p_quantity.Text) > 0)
             {
                 Cursor = Cursors.WaitCursor;
                 grandtotal.Text = "";

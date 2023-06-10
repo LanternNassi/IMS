@@ -32,9 +32,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 Users user = new Users();
                 DataTable dt = Product.MostSellingProductsAppropriatetly();
                 DataTable dt_2 = DAL.DAL_Properties.Env.mode == 1 ? (user.Overview_2()) : (user.Overview());
-                DataTable dt_3 = DAL.DAL_Properties.Env.mode == 1 ? (user.TransactionsOverview_2()) : (user.TransactionsOverview());
+                DataTable dt_3 = DAL.DAL_Properties.Env.mode == 1 ? (user.TransactionsOverview_2()) : (user.TransactionsOverview("Customer"));
                 foreach (DataRow dr in dt_3.Rows)
                 {
+                    
                     chart1.Series["Transactions"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[1]));
                     chart1.Series["Profit Accummulation"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[0]));
 
@@ -46,8 +47,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
                     circularProgressBar1.Text = Convert.ToInt32(dr[1]) / 1000000000 * 100 + "%";
                     Profits.Text = Convert.ToInt32(dr[0]) / 1000000000 * 100 + "%";
-
-
+                    
 
                 }
 
@@ -59,10 +59,15 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 Transactions.Text = "Transactions : " + dt_2.Rows[5][1].ToString();
                 TD.Text = "Details : " + dt_2.Rows[3][1].ToString();
 
-                for (int i = 0; i < 7; i++)
+                if(dt.Rows.Count > 0)
                 {
-                    chart2.Series["S2"].Points.AddXY(dt.Rows[i][0].ToString(), Convert.ToInt32(dt.Rows[i][2].ToString()));
+                    int determinant = dt.Rows.Count >= 7 ? 7 : dt.Rows.Count;
+                    for (int i = 0; i < determinant; i++)
+                    {
+                        chart2.Series["S2"].Points.AddXY(dt.Rows[i][0].ToString(), Convert.ToInt32(dt.Rows[i][2].ToString()));
+                    }
                 }
+                
 
             } else
             {
@@ -70,7 +75,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 Users user = new Users();
                 //DataTable dt = Product.MostSellingProductsAppropriatetly();
                 //DataTable dt_2 = DAL.DAL_Properties.Env.mode == 1 ? (user.Overview_2()) : (user.Overview());
-                DataTable dt_3 = DAL.DAL_Properties.Env.mode == 1 ? (user.TransactionsOverview_2()) : (user.TransactionsOverview());
+                DataTable dt_3 = DAL.DAL_Properties.Env.mode == 1 ? (user.TransactionsOverview_2()) : (user.TransactionsOverview("Customer"));
                 foreach (DataRow dr in dt_3.Rows)
                 {
                     chart1.Series["Transactions"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[1]));

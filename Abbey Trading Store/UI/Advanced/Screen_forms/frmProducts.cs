@@ -169,7 +169,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
 
                 DataTable dt = new DataTable();
-                OleDbDataAdapter adapter = product.select();
+                dynamic adapter = product.SelectAppropriately();
                 Connection().Open();
                 adapter.Fill(dt);
                 dataGridView1.DataSource = dt;
