@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.ServiceProcess;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,6 +13,15 @@ using System.Windows.Forms;
 using Abbey_Trading_Store.DAL;
 using Abbey_Trading_Store.DAL.DAL_Properties;
 using Abbey_Trading_Store.UI.Advanced;
+using Abbey_Trading_Store.Configurations;
+
+
+using Microsoft.SqlServer;
+using Abbey_Trading_Store.UI.Advanced.Screen_forms;
+//using Microsoft.SqlServer.ConnectionInfo.dll;
+//using Microsoft.SqlServer.Management.Sdk.Sfc.dll;
+//using Microsoft.SqlServer.Smo.dll;
+//using Microsoft.SqlServer.SqlEnum;
 
 namespace Abbey_Trading_Store.UI
 {
@@ -19,7 +30,12 @@ namespace Abbey_Trading_Store.UI
         
         public Login_form()
         {
+
+
+            
+
             InitializeComponent();
+
         }
 
         public static string user;
@@ -148,8 +164,27 @@ namespace Abbey_Trading_Store.UI
         private void Login_form_Load(object sender, EventArgs e)
         {
             username.Focus();
+            
         }
-        
+
+        private void Login_form_Shown(object sender, EventArgs e)
+        {
+            
         }
+
+        private void Login_form_VisibleChanged(object sender, EventArgs e)
+        {
+
+            //this.Hide();
+            //frmSetup form = new frmSetup();
+            //form.Show();
+        }
+
+        private void Login_form_BackColorChanged(object sender, EventArgs e)
+        {
+            
+
+        }
+    }
     }
 

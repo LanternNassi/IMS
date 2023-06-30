@@ -122,7 +122,7 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(15, 211);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 20);
+            this.label3.Size = new System.Drawing.Size(72, 20);
             this.label3.TabIndex = 2;
             this.label3.Text = "UserType";
             // 
@@ -173,6 +173,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login_form";
             this.Load += new System.EventHandler(this.Login_form_Load);
+            this.Shown += new System.EventHandler(this.Login_form_Shown);
+            this.BackColorChanged += new System.EventHandler(this.Login_form_BackColorChanged);
+            this.VisibleChanged += new System.EventHandler(this.Login_form_VisibleChanged);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
