@@ -53,6 +53,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
             this.search = new MaterialSkin.Controls.MaterialTextBox();
+            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -345,7 +346,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
-            this.lblTitle.Location = new System.Drawing.Point(244, 59);
+            this.lblTitle.Location = new System.Drawing.Point(236, 77);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(162, 32);
             this.lblTitle.TabIndex = 7;
@@ -422,11 +423,31 @@
             this.search.Visible = false;
             this.search.TextChanged += new System.EventHandler(this.search_TextChanged);
             // 
+            // materialButton1
+            // 
+            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton1.Depth = 0;
+            this.materialButton1.HighEmphasis = true;
+            this.materialButton1.Icon = global::Abbey_Trading_Store.Properties.Resources.product;
+            this.materialButton1.Location = new System.Drawing.Point(227, 15);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton1.Name = "materialButton1";
+            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton1.Size = new System.Drawing.Size(125, 36);
+            this.materialButton1.TabIndex = 27;
+            this.materialButton1.Text = "Products";
+            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton1.UseAccentColor = false;
+            this.materialButton1.UseVisualStyleBackColor = true;
+            // 
             // Dashboard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(53)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1330, 710);
+            this.Controls.Add(this.materialButton1);
             this.Controls.Add(this.materialButton2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.search);
@@ -480,5 +501,6 @@
         private MaterialSkin.Controls.MaterialButton materialButton2;
         private MaterialSkin.Controls.MaterialTextBox search;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
     }
 }

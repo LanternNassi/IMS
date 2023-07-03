@@ -1,4 +1,6 @@
-﻿namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
+﻿using Abbey_Trading_Store.DAL.DAL_Properties;
+
+namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
     partial class frmDebts
     {
@@ -52,9 +54,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.DebtsDGV = new System.Windows.Forms.DataGridView();
+            this.DebtsDGV = new DGV();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.TRACKDGV = new System.Windows.Forms.DataGridView();
+            this.TRACKDGV = new DGV();
             this.searchtxtbx = new MaterialSkin.Controls.MaterialTextBox();
             this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
             this.panel1.SuspendLayout();

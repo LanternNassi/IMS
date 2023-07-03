@@ -369,6 +369,9 @@
     <Reference Include="Telerik.WinControls.GridView, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2023.1.314.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="TelerikCommon, Version=2023.1.314.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="UnitsNet, Version=5.0.0.0, Culture=neutral, PublicKeyToken=f8601875a1f041da, processorArchitecture=MSIL">
+      <HintPath>..\packages\UnitsNet.5.21.0\lib\netstandard2.0\UnitsNet.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WinFormAnimation, Version=1.6.0.4, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
       <HintPath>..\packages\WinFormAnimation.1.6.0.4\lib\net40\WinFormAnimation.dll</HintPath>
@@ -386,6 +389,9 @@
     <Compile Include="Configurations\Install_SQL.cs" />
     <Compile Include="DAL\DAL_Properties\CategoriesProps.cs" />
     <Compile Include="DAL\DAL_Properties\DealersCustProps.cs" />
+    <Compile Include="DAL\DAL_Properties\DGV.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DAL\DAL_Properties\Env.cs" />
     <Compile Include="DAL\DAL_Properties\ProductsProps.cs" />
     <Compile Include="DAL\DAL_Properties\TransactionDetailProps.cs" />
@@ -861,6 +867,7 @@
     <None Include="Resources\transaction %281%29.png" />
     <None Include="Resources\Untitled design.gif" />
     <None Include="Resources\Untitled design %282%29.gif" />
+    <None Include="Resources\Copy of Untitled Design.gif" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

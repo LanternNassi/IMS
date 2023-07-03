@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
@@ -178,9 +179,14 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             int profit_holder = 0;
             for (int i = 0; (i <= flexible.Rows.Count - 1); i++)
             {
+                string paid = flexible.Rows[i][10].ToString();
                 if (flexible.Rows[i][1].ToString() == "Customer")
                 {
-                    sales_holder += int.Parse(flexible.Rows[i][3].ToString());
+
+                    if (paid == "True" || paid == "Cleared")
+                    {
+                        sales_holder += int.Parse(flexible.Rows[i][3].ToString());
+                    }
 
                 }
                 else
@@ -190,7 +196,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 }
                 try
                 {
-                    profit_holder += int.Parse(flexible.Rows[i][9].ToString());
+                    if (paid == "True" || paid == "Cleared")
+                    {
+                        profit_holder += int.Parse(flexible.Rows[i][9].ToString());
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -263,7 +273,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                         string paid = flexible.Rows[i][10].ToString();
                         if (flexible.Rows[i][1].ToString() == "Customer" && (flexible.Rows[i][10].ToString() == "True" || flexible.Rows[i][10].ToString() == "Cleared"))
                         {
-                            sales_holder += int.Parse(flexible.Rows[i][3].ToString());
+                            if (paid == "True" || paid == "Cleared")
+                            {
+                                sales_holder += int.Parse(flexible.Rows[i][3].ToString());
+                            }
+
 
                         }
                         else if (flexible.Rows[i][1].ToString() == "Dealer")
@@ -275,7 +289,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                         {
                             if (flexible.Rows[i][10].ToString() == "True" || flexible.Rows[i][10].ToString() == "Cleared")
                             {
-                                profit_holder += int.Parse(flexible.Rows[i][9].ToString());
+                                if(paid == "True" || paid == "Cleared")
+                                {
+                                    profit_holder += int.Parse(flexible.Rows[i][9].ToString());
+                                }
                             }
                         }
                         catch (Exception ex)
@@ -327,6 +344,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 TD.Show();
             }
             
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

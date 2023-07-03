@@ -20,6 +20,7 @@ using System.IO;
 using System.Threading;
 using System.Diagnostics;
 using System.Net;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
@@ -107,6 +108,21 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             return isSuccess;
         }
 
+        void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            this.BeginInvoke((MethodInvoker)delegate {
+                double bytesIn = double.Parse(e.BytesReceived.ToString());
+                double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+                
+                decimal total_mbs = UnitsNet.Information.FromBytes(e.TotalBytesToReceive).Megabytes;
+                decimal current_mbs = UnitsNet.Information.FromBytes(e.BytesReceived).Megabytes;
+
+                double percentage = bytesIn / totalBytes * 100;
+                label_1.Text = decimal.Round(current_mbs,2) + " MB / " + decimal.Round(total_mbs,2) + " MB";
+                P_b_1.Value = int.Parse(Math.Truncate(percentage).ToString());
+            });
+        }
+
         public void DownloadSQL()
         {
             string output = string.Empty;
@@ -115,6 +131,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             string filePath = "http://127.0.0.1:8080/SQLEXPR_x86_ENU_2012.exe";
             var files = filePath.Split('/');
             pathUser = pathUser + @"/" + files[files.Count() - 1];
+            wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
             wc.DownloadFileCompleted += new AsyncCompletedEventHandler(Client_DownloadFileCompleted);
             Console.WriteLine("Downloading SQL server file....");
             wc.DownloadFileAsync(new Uri(filePath), pathUser);
@@ -128,18 +145,42 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         public void Client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            box_1.Checked = true;
+            this.box_1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Dat_action.Visible = true;
             string pathUser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             Console.WriteLine("Installing SQL server file....");
             string new_path = pathUser + @"\SQLEXPR_x86_ENU_2012.exe";
+            P_b_2.Value = 10;
             Process processobj = Process.Start(new_path, @"/q /Action=Install /IACCEPTSQLSERVERLICENSETERMS /Hideconsole /Features=SQLEngine /InstanceName=SQLSERVER2012   /UPDATEENABLED=false /SQLSYSADMINACCOUNTS=""NT AUTHORITY\SYSTEM"" /SQLSVCACCOUNT=""NT AUTHORITY\SYSTEM"" /BROWSERSVCSTARTUPTYPE=""Automatic""");
             processobj.WaitForExit();
-            box_2.Checked = true;
+            //Adding animations
+            this.Dat_action.Visible = false;
+            P_b_2.Value = 20;
+            System.Threading.Thread.Sleep(800);
+            P_b_2.Value = 40;
+            System.Threading.Thread.Sleep(1000);
+            P_b_2.Value = 80;
+            System.Threading.Thread.Sleep(1800);
+            P_b_2.Value = 100;
+            System.Threading.Thread.Sleep(2000);
+            this.box_2.CheckState = System.Windows.Forms.CheckState.Checked;
+
             Console.WriteLine("Done installing SQL server file....");
             bool database_created = Create_database();
             if (database_created)
             {
-                box_3.Checked = true;
+                //Adding animations
+                P_b_3.Value = 20;
+                System.Threading.Thread.Sleep(800);
+                P_b_3.Value = 40;
+                System.Threading.Thread.Sleep(1000);
+                P_b_3.Value = 80;
+                System.Threading.Thread.Sleep(3000);
+                P_b_3.Value = 100;
+                System.Threading.Thread.Sleep(1500);
+                this.box_3.CheckState = System.Windows.Forms.CheckState.Checked;
+
+                
                 DAL.Users user = new DAL.Users();
                 user.user = "User";
                 user.password = "0000";
@@ -149,7 +190,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 bool user_created = user.insert_2();
                 if (user_created)
                 {
-                    box_4.Checked = true;
+                    //Adding animations
+                    P_b_4.Value = 20;
+                    System.Threading.Thread.Sleep(800);
+                    P_b_4.Value = 40;
+                    System.Threading.Thread.Sleep(800);
+                    P_b_4.Value = 80;
+                    System.Threading.Thread.Sleep(1000);
+                    P_b_4.Value = 100;
+                    System.Threading.Thread.Sleep(500);
+                    this.box_4.CheckState = System.Windows.Forms.CheckState.Checked;
+
+                    
                     this.Hide();
                     Login_form Lform = new Login_form();
                     Lform.Show();

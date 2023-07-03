@@ -1,4 +1,6 @@
-﻿namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
+﻿using Abbey_Trading_Store.DAL.DAL_Properties;
+
+namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
     partial class frmUser
     {
@@ -42,7 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
@@ -422,6 +424,6 @@
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private MaterialSkin.Controls.MaterialButton materialButton3;
         private MaterialSkin.Controls.MaterialButton materialButton4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private DGV dataGridView1;
     }
 }

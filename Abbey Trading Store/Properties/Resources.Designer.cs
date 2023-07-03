@@ -173,6 +173,16 @@ namespace Abbey_Trading_Store.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Copy_of_Untitled_Design {
+            get {
+                object obj = ResourceManager.GetObject("Copy of Untitled Design", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap debt {
             get {
                 object obj = ResourceManager.GetObject("debt", resourceCulture);

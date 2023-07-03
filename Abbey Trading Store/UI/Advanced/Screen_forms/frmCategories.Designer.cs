@@ -1,4 +1,6 @@
-﻿namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
+﻿using Abbey_Trading_Store.DAL.DAL_Properties;
+
+namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
     partial class frmCategories
     {
@@ -48,7 +50,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new DGV();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();

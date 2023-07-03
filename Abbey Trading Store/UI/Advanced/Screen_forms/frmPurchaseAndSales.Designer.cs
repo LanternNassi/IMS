@@ -1,4 +1,6 @@
-﻿namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
+﻿using Abbey_Trading_Store.DAL.DAL_Properties;
+
+namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
     partial class frmPurchaseAndSales
     {
@@ -66,7 +68,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new DGV();
             this.paid_amount = new MaterialSkin.Controls.MaterialTextBox2();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox13 = new MaterialSkin.Controls.MaterialTextBox2();

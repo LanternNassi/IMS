@@ -1,4 +1,6 @@
-﻿namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
+﻿using Abbey_Trading_Store.DAL.DAL_Properties;
+
+namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
     partial class frmAnalysis
     {
@@ -44,10 +46,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.TDD = new System.Windows.Forms.DataGridView();
+            this.TDD = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.Overall_dgv = new System.Windows.Forms.DataGridView();
+            this.Overall_dgv = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -60,6 +62,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TDD)).BeginInit();
@@ -70,6 +73,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.materialButton1);
             this.panel1.Controls.Add(this.Added_by);
             this.panel1.Controls.Add(this.Product);
             this.panel1.Controls.Add(this.Customer);
@@ -495,6 +499,25 @@
             this.label5.TabIndex = 27;
             this.label5.Text = "Overall";
             // 
+            // materialButton1
+            // 
+            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton1.Depth = 0;
+            this.materialButton1.HighEmphasis = true;
+            this.materialButton1.Icon = global::Abbey_Trading_Store.Properties.Resources.recovery;
+            this.materialButton1.Location = new System.Drawing.Point(47, 22);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton1.Name = "materialButton1";
+            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton1.Size = new System.Drawing.Size(175, 36);
+            this.materialButton1.TabIndex = 30;
+            this.materialButton1.Text = "Export to Excel";
+            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton1.UseAccentColor = false;
+            this.materialButton1.UseVisualStyleBackColor = true;
+            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
+            // 
             // frmAnalysis
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -549,9 +572,10 @@
         private System.Windows.Forms.ComboBox cbbx;
         private System.Windows.Forms.Label Total_sales;
         private System.Windows.Forms.Label Total_profits;
-        private System.Windows.Forms.DataGridView TDD;
-        private System.Windows.Forms.DataGridView Overall_dgv;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private DGV TDD;
+        private DGV Overall_dgv;
     }
 }

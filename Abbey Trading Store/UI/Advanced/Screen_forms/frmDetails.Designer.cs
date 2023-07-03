@@ -1,4 +1,6 @@
-﻿namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
+﻿using Abbey_Trading_Store.DAL.DAL_Properties;
+
+namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
     partial class frmDetails
     {
@@ -30,7 +32,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
-            this.dgv_TD = new System.Windows.Forms.DataGridView();
+            this.dgv_TD = new DGV();
             this.lbltop = new System.Windows.Forms.Label();
             this.lbl2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_TD)).BeginInit();

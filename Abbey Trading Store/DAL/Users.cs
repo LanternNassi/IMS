@@ -172,7 +172,7 @@ namespace Abbey_Trading_Store.DAL
             try
             {
                 conn.Open();
-                string command = "SELECT SUM(CAST(Total_profit AS int)), SUM(grandTotal), MONTH(transaction_date) FROM Transactions WHERE type = 'Customer' GROUP BY MONTH(transaction_date)";
+                string command = "SELECT SUM(CAST(Total_profit AS int)), SUM(grandTotal), MONTH(transaction_date) FROM Transactions WHERE type = 'Customer' AND (PAID = 'Cleared' OR PAID = 'True') GROUP BY MONTH(transaction_date)";
                 SqlDataAdapter adapter = new SqlDataAdapter(command, conn);
                 adapter.Fill(dt);
 

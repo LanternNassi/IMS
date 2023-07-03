@@ -1,4 +1,6 @@
-﻿namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
+﻿using Abbey_Trading_Store.DAL.DAL_Properties;
+
+namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
     partial class frmTransactions
     {
@@ -47,7 +49,7 @@
             this.circularProgressBar3 = new CircularProgressBar.CircularProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.txtbx_total = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +59,7 @@
             this.txtbx_discounts.AutoSize = true;
             this.txtbx_discounts.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbx_discounts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.txtbx_discounts.Location = new System.Drawing.Point(755, 107);
+            this.txtbx_discounts.Location = new System.Drawing.Point(807, 104);
             this.txtbx_discounts.Name = "txtbx_discounts";
             this.txtbx_discounts.Size = new System.Drawing.Size(73, 15);
             this.txtbx_discounts.TabIndex = 30;
@@ -68,7 +70,7 @@
             this.txtbx_sales.AutoSize = true;
             this.txtbx_sales.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbx_sales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.txtbx_sales.Location = new System.Drawing.Point(591, 107);
+            this.txtbx_sales.Location = new System.Drawing.Point(621, 107);
             this.txtbx_sales.Name = "txtbx_sales";
             this.txtbx_sales.Size = new System.Drawing.Size(66, 15);
             this.txtbx_sales.TabIndex = 29;
@@ -79,7 +81,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(673, 107);
+            this.label10.Location = new System.Drawing.Point(725, 104);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(76, 15);
             this.label10.TabIndex = 28;
@@ -95,7 +97,7 @@
             this.circularProgressBar2.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
             this.circularProgressBar2.InnerMargin = 2;
             this.circularProgressBar2.InnerWidth = -1;
-            this.circularProgressBar2.Location = new System.Drawing.Point(689, 20);
+            this.circularProgressBar2.Location = new System.Drawing.Point(741, 17);
             this.circularProgressBar2.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar2.Name = "circularProgressBar2";
             this.circularProgressBar2.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
@@ -122,7 +124,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(513, 107);
+            this.label11.Location = new System.Drawing.Point(543, 107);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(72, 15);
             this.label11.TabIndex = 26;
@@ -138,7 +140,7 @@
             this.circularProgressBar1.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
             this.circularProgressBar1.InnerMargin = 2;
             this.circularProgressBar1.InnerWidth = -1;
-            this.circularProgressBar1.Location = new System.Drawing.Point(534, 17);
+            this.circularProgressBar1.Location = new System.Drawing.Point(564, 17);
             this.circularProgressBar1.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar1.Name = "circularProgressBar1";
             this.circularProgressBar1.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
@@ -224,6 +226,7 @@
             this.button2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.button2.UseAccentColor = false;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Show_all
             // 
@@ -409,7 +412,7 @@
         private MaterialSkin.Controls.MaterialButton button2;
         private MaterialSkin.Controls.MaterialButton Show_all;
         private MaterialSkin.Controls.MaterialCheckbox checkBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DateTimePicker dtp_transactions;
+        private DGV dataGridView1;
     }
 }

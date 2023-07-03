@@ -260,5 +260,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             regenerate();
         }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
