@@ -130,7 +130,7 @@
             this.start_btn.Depth = 0;
             this.start_btn.HighEmphasis = true;
             this.start_btn.Icon = null;
-            this.start_btn.Location = new System.Drawing.Point(480, 292);
+            this.start_btn.Location = new System.Drawing.Point(490, 292);
             this.start_btn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.start_btn.MouseState = MaterialSkin.MouseState.HOVER;
             this.start_btn.Name = "start_btn";

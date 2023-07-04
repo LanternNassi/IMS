@@ -55,7 +55,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 TransactionDetail TD = new TransactionDetail();
                 DataTable dt = TD.QueryTransactionsAppropriately(
                     start_date,
-                    end_date,
+                    end_date.AddDays(1),
                     type,
                     (product_name != "") ? (product_name) : (null),
                     (customer_name != "") ? (customer_name) : (null),
@@ -151,6 +151,93 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         }
 
+        public void generate_excel_transaction_details()
+        {
+            
+            Cursor = Cursors.WaitCursor;
+
+            try
+            {
+                int ColumnsCount;
+
+                if (cc == null || (ColumnsCount = cc.Columns.Count) == 0)
+                    throw new Exception("ExportToExcel: Null or empty input table!\n");
+
+                // load excel, and create a new workbook
+                Microsoft.Office.Interop.Excel.Application Excel = new Microsoft.Office.Interop.Excel.Application();
+                Excel.Workbooks.Add();
+
+                // single worksheet
+                Microsoft.Office.Interop.Excel._Worksheet Worksheet = Excel.ActiveSheet;
+
+                object[] Header = new object[ColumnsCount];
+
+                // column headings               
+                for (int i = 0; i < ColumnsCount; i++)
+                    Header[i] = cc.Columns[i].ColumnName;
+
+                Microsoft.Office.Interop.Excel.Range HeaderRange = Worksheet.get_Range((Microsoft.Office.Interop.Excel.Range)(Worksheet.Cells[1, 1]), (Microsoft.Office.Interop.Excel.Range)(Worksheet.Cells[1, ColumnsCount]));
+                HeaderRange.Value = Header;
+                HeaderRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
+                HeaderRange.Font.Bold = true;
+
+
+                // DataCells
+                int RowsCount = cc.Rows.Count;
+                object[,] Cells = new object[RowsCount, ColumnsCount];
+
+                Worksheet.Columns[2].ColumnWidth = 30;
+                Worksheet.Columns[6].ColumnWidth = 20;
+
+                for (int j = 0; j < RowsCount; j++)
+                    for (int i = 0; i < ColumnsCount; i++)
+                        if (cc.Columns[i].ColumnName == "added_date")
+                        {
+                            Cells[j, i] = " " + cc.Rows[j][i].ToString() + " ";
+
+                        }
+                        else
+                        {
+                            Cells[j, i] = cc.Rows[j][i];
+                        }
+
+                Worksheet.get_Range((Microsoft.Office.Interop.Excel.Range)(Worksheet.Cells[2, 1]), (Microsoft.Office.Interop.Excel.Range)(Worksheet.Cells[RowsCount + 1, ColumnsCount])).Value = Cells;
+
+                // check fielpath
+
+                //string get_name = dateTimePicker1.Value.ToString() + "&" + dateTimePicker2.Value.ToString();
+                //string path_to_file = @"C:\Users\" + Environment.UserName + @"\Documents\" + get_name + ".xlsx";
+                string path_to_file = null;
+
+                if (path_to_file != null && path_to_file != "")
+                {
+                    try
+                    {
+                        Worksheet.SaveAs(path_to_file);
+                        Excel.Quit();
+                        MessageBox.Show("Excel file saved!");
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("ExportToExcel: Excel file could not be saved! Check filepath.\n"
+                            + ex.Message);
+                    }
+                }
+                else    // no filepath is given
+                {
+                    Cursor = Cursors.Default;
+                    Excel.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Cursor = Cursors.Default;
+                throw new Exception("ExportToExcel: \n" + ex.Message);
+            }
+            Cursor = Cursors.Default;
+
+        }
+
         private void label11_Click(object sender, EventArgs e)
         {
 
@@ -159,7 +246,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private void frmAnalysis_Load(object sender, EventArgs e)
         {
 
-            
+            regenerate();
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -263,7 +350,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
-
+            generate_excel_transaction_details();
         }
     }
 }

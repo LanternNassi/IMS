@@ -790,7 +790,7 @@ namespace Abbey_Trading_Store.DAL
             SqlConnection connector = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                string command = "DELETE * FROM Products WHERE id = @id ";
+                string command = "DELETE  FROM Products WHERE id = @id ";
                 SqlCommand cmd = new SqlCommand(command, connector);
                 cmd.Parameters.AddWithValue("@id", id);
                 connector.Open();

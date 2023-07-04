@@ -84,5 +84,21 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             
 
         }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            bool isSuccess = Transactions.DeleteTransaction_2(frmTransactions.transaction_id);
+            if (isSuccess)
+            {
+                MessageBox.Show("Transaction deleted successfully");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("An error occured. Try again later");
+            }
+            Cursor = Cursors.Default;
+        }
     }
 }

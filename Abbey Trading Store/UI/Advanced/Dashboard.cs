@@ -11,6 +11,8 @@ using System.Runtime.InteropServices;
 using Abbey_Trading_Store.UI;
 using MaterialSkin;
 using Abbey_Trading_Store.UI.Advanced.Screen_forms;
+using System.Net;
+using System.Threading;
 
 namespace Abbey_Trading_Store.UI.Advanced
 {
@@ -30,6 +32,8 @@ namespace Abbey_Trading_Store.UI.Advanced
         );
 
         public frmUser active_form = null;
+        
+
 
         public Dashboard()
         {
@@ -70,8 +74,9 @@ namespace Abbey_Trading_Store.UI.Advanced
             this.pnlform.Controls.Add(FrmDashboard_Vrb);
             FrmDashboard_Vrb.Show();
             Username.Text = Login_form.user;
-            
         }
+
+        
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
@@ -289,6 +294,12 @@ namespace Abbey_Trading_Store.UI.Advanced
             Screen_forms.BatchUpload  FrmUpload = new Screen_forms.BatchUpload();
             FrmUpload.Show();
 
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            QuickProducts form = new QuickProducts();
+            form.Show();
         }
     }
 }

@@ -727,6 +727,91 @@ namespace Abbey_Trading_Store.DAL
             return adapter;
         }
 
+
+        public static bool DeleteTransaction_2(int id)
+        {
+            bool success = true;
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            try
+            {
+                conn.Open();
+                string cmd_text = "DELETE FROM Transactions WHERE ID = @ID";
+                SqlCommand cmd = new SqlCommand(cmd_text, conn);
+                cmd.Parameters.AddWithValue("@ID", id);
+                int rows = cmd.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    DataTable dt = new DataTable();
+                    string cmd_text2 = "SELECT * FROM [Transaction Details] WHERE Invoice_id = @Invoice_id";
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    // Deleting the transaction details and updating the products
+                    SqlCommand cmd2 = new SqlCommand(cmd_text2, conn);
+                    cmd2.Parameters.AddWithValue("@Invoice_id", id);
+                    adapter.SelectCommand = cmd2;
+                    adapter.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            if (success == false)
+                            {
+                                return false;
+                            }
+                            string cmd_text3 = "UPDATE Products SET Quantity = Quantity + @Quantity WHERE Product = @Product";
+                            SqlCommand cmd3 = new SqlCommand(cmd_text3, conn);
+                            cmd3.Parameters.AddWithValue("@Quantity", Convert.ToInt32(dr[3]));
+                            cmd3.Parameters.AddWithValue("@Product", dr[1].ToString());
+                            int rows_affected = cmd3.ExecuteNonQuery();
+                            if (rows_affected > 0)
+                            {
+                                string cmd_text4 = "DELETE FROM [Transaction Details] WHERE ID = @ID";
+                                SqlCommand cmd4 = new SqlCommand(cmd_text4, conn);
+                                cmd4.Parameters.AddWithValue("@ID", Convert.ToInt32(dr[0]));
+                                int rows_deleted = cmd4.ExecuteNonQuery();
+                                if (rows_deleted <= 0)
+                                {
+                                    MessageBox.Show("Encoutered a problem with deleting the transaction details");
+                                    success = false;
+                                }
+                            }
+
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No transaction details exist for this transaction");
+                    }
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Transaction doesnot exist");
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                success = true;
+
+            }
+            finally
+            {
+                conn.Close();
+
+            }
+
+
+            return success;
+        }
+
+
+
+
+
         #endregion
 
         #region Appropriates

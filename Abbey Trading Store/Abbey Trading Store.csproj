@@ -532,6 +532,12 @@
     <Compile Include="UI\Advanced\Screen_forms\Overview.Designer.cs">
       <DependentUpon>Overview.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\QuickProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\QuickProducts.Designer.cs">
+      <DependentUpon>QuickProducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Batch_entry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -683,6 +689,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Advanced\Screen_forms\Overview.resx">
       <DependentUpon>Overview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Advanced\Screen_forms\QuickProducts.resx">
+      <DependentUpon>QuickProducts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Batch_entry.resx">
       <DependentUpon>Batch_entry.cs</DependentUpon>

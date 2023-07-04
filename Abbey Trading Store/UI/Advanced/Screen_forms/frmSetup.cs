@@ -40,8 +40,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         );
 
         private static WebClient wc = new WebClient();
+        private static WebClient wc_2 = new WebClient();
         private static ManualResetEvent handle = new ManualResetEvent(true);
         private static string pathUser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private static string pathUser_2 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private static Thread thread;
         private BackgroundWorker worker = null;
         public string derived_conn_str = null;
@@ -72,7 +74,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
                 //SqlConnection conn = new SqlConnection(derived_conn_str);
                 //conn.Open();
-                string script = File.ReadAllText(@"C:\Users\SHANY\Documents\SS12_Script.sql");
+                string location = @"C:\Users\" + Environment.UserName + @"\Documents\SS12_Script.sql";
+                string script = File.ReadAllText(location);
                 //SqlCommand cmd = new SqlCommand(script, conn);
                 //cmd.ExecuteNonQuery();
 
@@ -127,18 +130,37 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             string output = string.Empty;
             pathUser = pathUser.Replace("\\", "/");
-            //string filePath = "http://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x86_ENU_2012.exe";
-            string filePath = "http://127.0.0.1:8080/SQLEXPR_x86_ENU_2012.exe";
+            string filePath = "http://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x86_ENU_2012.exe";
+            //string filePath = "http://127.0.0.1:8080/SQLEXPR_x86_ENU_2012.exe";
             var files = filePath.Split('/');
             pathUser = pathUser + @"/" + files[files.Count() - 1];
             wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
-            wc.DownloadFileCompleted += new AsyncCompletedEventHandler(Client_DownloadFileCompleted);
+            wc.DownloadFileCompleted += new AsyncCompletedEventHandler(DownloadSS12);
             Console.WriteLine("Downloading SQL server file....");
             wc.DownloadFileAsync(new Uri(filePath), pathUser);
             handle.WaitOne(); // wait for the async event to complete
             //thread = new Thread(() =>
             //{
                 
+            //});
+            //thread.Start();
+        }
+
+        public void DownloadSS12(object sender, AsyncCompletedEventArgs e)
+        {
+            string output = string.Empty;
+            pathUser_2 = pathUser_2.Replace("\\", "/");
+            string filePath = "https://mulapp.s3.eu-west-2.amazonaws.com/IMS/SS12_Script.sql";
+            var files = filePath.Split('/');
+            pathUser_2 = pathUser_2 + @"/" + files[files.Count() - 1];
+            wc_2.DownloadFileCompleted += new AsyncCompletedEventHandler(Client_DownloadFileCompleted);
+            Console.WriteLine("Downloading SQ server file structure....");
+            wc_2.DownloadFileAsync(new Uri(filePath), pathUser_2);
+            handle.WaitOne(); 
+            // wait for the async event to complete
+                              //thread = new Thread(() =>
+                              //{
+
             //});
             //thread.Start();
         }
