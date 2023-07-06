@@ -64,7 +64,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     int determinant = dt.Rows.Count >= 7 ? 7 : dt.Rows.Count;
                     for (int i = 0; i < determinant; i++)
                     {
-                        chart2.Series["S2"].Points.AddXY(dt.Rows[i][0].ToString(), Convert.ToInt32(dt.Rows[i][2].ToString()));
+                        chart2.Series["S2"].Points.AddXY(dt.Rows[i][0].ToString(), Convert.ToDecimal(dt.Rows[i][2].ToString()));
                     }
                 }
                 
