@@ -620,17 +620,17 @@ namespace Abbey_Trading_Store.DAL
             return isSuccess;
         }
 
-        public DataTable SearchCreditorsDebtors_2(string type, string keywords)
+        public DataTable SearchCreditorsDebtors_2(string keywords)
         {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                string cmds = "SELECT * FROM Transactions WHERE ID LIKE '%" + keywords + "%' OR dea_cust_name LIKE '%" + keywords + "%' OR added_by LIKE '%" + keywords + "%' AND type = @type AND NOT Paid = @Paid OR Return_amount < 0 ";
+                string cmds = "SELECT * FROM Transactions WHERE dea_cust_name LIKE '%" + keywords + "%' AND type = 'Customer' AND (Paid = 'False' OR Paid = 'Cleared') ";
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 SqlCommand cmd = new SqlCommand(cmds, conn);
-                cmd.Parameters.AddWithValue("@type", type);
-                cmd.Parameters.AddWithValue("@Paid", "True");
+                //cmd.Parameters.AddWithValue("@type", type);
+                //cmd.Parameters.AddWithValue("@Paid", "True");
                 adapter.SelectCommand = cmd;
                 conn.Open();
                 adapter.Fill(dt);
@@ -757,10 +757,21 @@ namespace Abbey_Trading_Store.DAL
                             {
                                 return false;
                             }
-                            string cmd_text3 = "UPDATE Products SET Quantity = Quantity + @Quantity WHERE Product = @Product";
+
+
+                            string cmd_text3 = "";
+                            if (dr[10].ToString() == "Sales")
+                            {
+                                cmd_text3 = "UPDATE Products SET Quantity = Quantity + @Quantity WHERE Product = @Product";
+                            }else
+                            {
+                                cmd_text3 = "UPDATE Products SET Quantity = Quantity - @Quantity WHERE Product = @Product";
+                            }
+
                             SqlCommand cmd3 = new SqlCommand(cmd_text3, conn);
-                            cmd3.Parameters.AddWithValue("@Quantity", Convert.ToInt32(dr[3]));
+                            cmd3.Parameters.AddWithValue("@Quantity", Convert.ToDecimal(dr[3]));
                             cmd3.Parameters.AddWithValue("@Product", dr[1].ToString());
+                           
                             int rows_affected = cmd3.ExecuteNonQuery();
                             if (rows_affected > 0)
                             {
@@ -806,6 +817,39 @@ namespace Abbey_Trading_Store.DAL
 
 
             return success;
+        }
+
+
+        public SqlDataAdapter GetDebtorsOnly(string name = "")
+        {
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+
+            try
+            {
+                conn.Open();
+                string cmd_string = "SELECT * FROM Transactions WHERE type = 'Customer' AND Paid = 'False'";
+                if (name == "")
+                {
+                    cmd_string = "SELECT * FROM Transactions WHERE type = 'Customer' AND Paid = 'False'";
+                }
+                else
+                {
+                    cmd_string = "SELECT * FROM Transactions WHERE type = 'Customer' AND Paid = 'False' AND dea_cust_name LIKE '%" + name + "%'";
+
+                }
+                adapter = new SqlDataAdapter(cmd_string, conn);
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return adapter;
         }
 
 
@@ -867,20 +911,20 @@ namespace Abbey_Trading_Store.DAL
             }
 
         }
-        public DataTable SearchCreditorsDebtorsAppropriately(string type, string keywords)
+        public DataTable SearchCreditorsDebtorsAppropriately(string keywords)
         {
             if (Env.mode == 1)
             {
-                return SearchCreditorsDebtors(type , keywords);
+                return SearchCreditorsDebtors("type" , keywords);
 
             }
             else if (Env.mode == 2)
             {
-                return SearchCreditorsDebtors_2(type, keywords);
+                return SearchCreditorsDebtors_2(keywords);
             }
             else
             {
-                return SearchCreditorsDebtors_2(type, keywords);
+                return SearchCreditorsDebtors_2(keywords);
             }
 
         }

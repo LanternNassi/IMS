@@ -30,8 +30,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtbx_discounts = new System.Windows.Forms.Label();
             this.txtbx_sales = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.txtbx_discounts.AutoSize = true;
             this.txtbx_discounts.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbx_discounts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.txtbx_discounts.Location = new System.Drawing.Point(807, 104);
+            this.txtbx_discounts.Location = new System.Drawing.Point(879, 104);
             this.txtbx_discounts.Name = "txtbx_discounts";
             this.txtbx_discounts.Size = new System.Drawing.Size(73, 15);
             this.txtbx_discounts.TabIndex = 30;
@@ -70,7 +70,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.txtbx_sales.AutoSize = true;
             this.txtbx_sales.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbx_sales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.txtbx_sales.Location = new System.Drawing.Point(621, 107);
+            this.txtbx_sales.Location = new System.Drawing.Point(650, 104);
             this.txtbx_sales.Name = "txtbx_sales";
             this.txtbx_sales.Size = new System.Drawing.Size(66, 15);
             this.txtbx_sales.TabIndex = 29;
@@ -81,7 +81,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(725, 104);
+            this.label10.Location = new System.Drawing.Point(797, 104);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(76, 15);
             this.label10.TabIndex = 28;
@@ -97,7 +97,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.circularProgressBar2.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
             this.circularProgressBar2.InnerMargin = 2;
             this.circularProgressBar2.InnerWidth = -1;
-            this.circularProgressBar2.Location = new System.Drawing.Point(741, 17);
+            this.circularProgressBar2.Location = new System.Drawing.Point(813, 17);
             this.circularProgressBar2.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar2.Name = "circularProgressBar2";
             this.circularProgressBar2.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
@@ -124,7 +124,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(543, 107);
+            this.label11.Location = new System.Drawing.Point(572, 104);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(72, 15);
             this.label11.TabIndex = 26;
@@ -140,7 +140,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.circularProgressBar1.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
             this.circularProgressBar1.InnerMargin = 2;
             this.circularProgressBar1.InnerWidth = -1;
-            this.circularProgressBar1.Location = new System.Drawing.Point(564, 17);
+            this.circularProgressBar1.Location = new System.Drawing.Point(593, 14);
             this.circularProgressBar1.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar1.Name = "circularProgressBar1";
             this.circularProgressBar1.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
@@ -180,9 +180,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.panel2.Controls.Add(this.txtbx_sales);
             this.panel2.Controls.Add(this.circularProgressBar2);
             this.panel2.Controls.Add(this.label10);
-            this.panel2.Location = new System.Drawing.Point(24, 12);
+            this.panel2.Location = new System.Drawing.Point(12, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1079, 127);
+            this.panel2.Size = new System.Drawing.Size(1106, 127);
             this.panel2.TabIndex = 31;
             // 
             // dtp_transactions
@@ -215,7 +215,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.button2.Depth = 0;
             this.button2.HighEmphasis = true;
             this.button2.Icon = global::Abbey_Trading_Store.Properties.Resources.print;
-            this.button2.Location = new System.Drawing.Point(905, 77);
+            this.button2.Location = new System.Drawing.Point(981, 80);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button2.MouseState = MaterialSkin.MouseState.HOVER;
             this.button2.Name = "button2";
@@ -235,7 +235,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.Show_all.Depth = 0;
             this.Show_all.HighEmphasis = true;
             this.Show_all.Icon = global::Abbey_Trading_Store.Properties.Resources.settings;
-            this.Show_all.Location = new System.Drawing.Point(905, 17);
+            this.Show_all.Location = new System.Drawing.Point(981, 20);
             this.Show_all.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Show_all.MouseState = MaterialSkin.MouseState.HOVER;
             this.Show_all.Name = "Show_all";
@@ -352,21 +352,21 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(24, 145);
             this.dataGridView1.Name = "dataGridView1";

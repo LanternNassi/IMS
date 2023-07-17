@@ -632,6 +632,75 @@ namespace Abbey_Trading_Store.DAL
             return check;
         }
 
+        private string Contact_Cleaner(string Contact)
+        {
+            if (Contact.Contains("/"))
+            {
+                Contact = Contact.Substring(0,10);
+            }
+            return "+256" + Contact.Remove(0, 1);
+        }
+
+        public DataTable BulkSendCustomerContacts()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+
+
+            try
+            {
+                string contact = "SELECT Contact FROM DealerCust WHERE type = 'Customer' AND NOT (Contact = '0753103488' OR Contact = '')";
+                SqlDataAdapter adapter = new SqlDataAdapter(contact, conn);
+                adapter.Fill(dt);
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return dt;
+        }
+
+        public bool SendMessage(DataTable dt , string Message)
+        {
+            bool sent = false;
+            try
+            {
+                //Converting to a string 
+                string phonebook = "";
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (phonebook == "")
+                    {
+                        phonebook += Contact_Cleaner(row[0].ToString());
+                    }
+                    else
+                    {
+                        phonebook += ("," + Contact_Cleaner(row[0].ToString()));
+
+                    }
+                }
+                MessageBox.Show(phonebook);
+
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+            }
+            return sent;
+        }
+
+         
+
         #endregion
 
         #region Appropriates

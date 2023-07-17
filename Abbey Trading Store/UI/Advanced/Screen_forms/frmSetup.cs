@@ -130,8 +130,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             string output = string.Empty;
             pathUser = pathUser.Replace("\\", "/");
-            string filePath = "https://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x86_ENU_2012.exe";
-            //string filePath = "http://192.168.43.90:8080/SQLEXPR_x86_ENU_2012.exe";
+            //string filePath = "https://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x86_ENU_2012.exe";
+            string filePath = "http://192.168.43.90:8080/SQLEXPR_x86_ENU_2012.exe";
             var files = filePath.Split('/');
             pathUser = pathUser + @"/" + files[files.Count() - 1];
             wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
@@ -139,12 +139,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             Console.WriteLine("Downloading SQL server file....");
             wc.DownloadFileAsync(new Uri(filePath), pathUser);
             handle.WaitOne();
-                // wait for the async event to complete
-            //thread = new Thread(() =>
-            //{
-                
-            //});
-            //thread.Start();
+           
         }
 
         //object sender, AsyncCompletedEventArgs e
@@ -176,8 +171,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             Console.WriteLine("Installing SQL server file....");
             string new_path = pathUser + @"\SQLEXPR_x86_ENU_2012.exe";
             P_b_2.Value = 10;
-            Process processobj = Process.Start(new_path, @"/q /Action=Install /IACCEPTSQLSERVERLICENSETERMS /Hideconsole /Features=SQLEngine /InstanceName=SQLSERVER2012   /UPDATEENABLED=false /SQLSYSADMINACCOUNTS=""NT AUTHORITY\SYSTEM"" /SQLSVCACCOUNT=""NT AUTHORITY\SYSTEM"" /BROWSERSVCSTARTUPTYPE=""Automatic""");
-          
+            Process processobj = Process.Start(new_path, @"/q /Action=Install /IACCEPTSQLSERVERLICENSETERMS /Hideconsole /Features=SQLEngine /InstanceName=SQLSERVER2012 /UPDATEENABLED=false /SQLSYSADMINACCOUNTS=""NT AUTHORITY\SYSTEM"" /SQLSVCACCOUNT=""NT AUTHORITY\SYSTEM"" /BROWSERSVCSTARTUPTYPE=""Automatic""");
             processobj.WaitForExit();
             //Adding animations
             this.Dat_action.Visible = false;

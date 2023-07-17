@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>BUKASA BUSINESS STORE</Value>
+                <Value>MMAK AGRO CHEMICALS LTD</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -41,7 +41,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Dealers in farm supply and building materials</Value>
+                <Value>Dealers in farm supply and Fertilisers</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -75,7 +75,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tel : 0752570164 , Tel : 0776560164 </Value>
+                <Value>Tel : 0705208807 , Tel : 054066646</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -119,8 +119,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>1.31958in</Top>
-        <Left>5.94459in</Left>
+        <Top>1.83333in</Top>
+        <Left>5.88905in</Left>
         <Height>0.25in</Height>
         <Width>1.19445in</Width>
         <ZIndex>3</ZIndex>
@@ -149,8 +149,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>1.31958in</Top>
-        <Left>7.10083in</Left>
+        <Top>1.83333in</Top>
+        <Left>7.04529in</Left>
         <Height>0.25in</Height>
         <Width>1.07987in</Width>
         <ZIndex>4</ZIndex>
@@ -177,15 +177,19 @@
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
+              <TextRun>
+                <Value>=First(Fields!dea_cust_name.Value, "DataSet2")</Value>
+                <Style />
+              </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>1.31958in</Top>
-        <Left>1.08346in</Left>
+        <Top>1.83333in</Top>
+        <Left>1.02792in</Left>
         <Height>0.25in</Height>
-        <Width>1in</Width>
+        <Width>2.54167in</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -669,8 +673,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>1.88395in</Top>
-        <Left>0.93417in</Left>
+        <Top>2.3977in</Top>
+        <Left>0.87863in</Left>
         <Height>0.5in</Height>
         <Width>6.85069in</Width>
         <ZIndex>6</ZIndex>
@@ -697,8 +701,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox27</rd:DefaultName>
-        <Top>2.83186in</Top>
-        <Left>4.94111in</Left>
+        <Top>3.34561in</Top>
+        <Left>4.88557in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>7</ZIndex>
@@ -737,8 +741,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox28</rd:DefaultName>
-        <Top>2.82144in</Top>
-        <Left>6.10778in</Left>
+        <Top>3.33519in</Top>
+        <Left>6.05224in</Left>
         <Height>0.25in</Height>
         <Width>2.07292in</Width>
         <ZIndex>8</ZIndex>
@@ -769,8 +773,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox27</rd:DefaultName>
-        <Top>3.26749in</Top>
-        <Left>4.94111in</Left>
+        <Top>3.78124in</Top>
+        <Left>4.88557in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>9</ZIndex>
@@ -809,8 +813,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox28</rd:DefaultName>
-        <Top>3.26749in</Top>
-        <Left>6.10778in</Left>
+        <Top>3.78124in</Top>
+        <Left>6.05224in</Left>
         <Height>0.25in</Height>
         <Width>2.07292in</Width>
         <ZIndex>10</ZIndex>
@@ -841,8 +845,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox27</rd:DefaultName>
-        <Top>3.74665in</Top>
-        <Left>4.94111in</Left>
+        <Top>4.2604in</Top>
+        <Left>4.88557in</Left>
         <Height>0.25in</Height>
         <Width>1.48264in</Width>
         <ZIndex>11</ZIndex>
@@ -881,8 +885,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox28</rd:DefaultName>
-        <Top>3.73623in</Top>
-        <Left>6.4932in</Left>
+        <Top>4.24998in</Top>
+        <Left>6.43766in</Left>
         <Height>0.25in</Height>
         <Width>1.6875in</Width>
         <ZIndex>12</ZIndex>
@@ -913,41 +917,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox33</rd:DefaultName>
-        <Top>5.02791in</Top>
-        <Left>6.83695in</Left>
+        <Top>5.71542in</Top>
+        <Left>6.78141in</Left>
         <Height>0.25in</Height>
         <Width>1.34375in</Width>
         <ZIndex>13</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox9">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=First(Fields!dea_cust_name.Value, "DataSet2")</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox9</rd:DefaultName>
-        <Top>1.31958in</Top>
-        <Left>2.25013in</Left>
-        <Height>0.25in</Height>
-        <Width>1.22917in</Width>
-        <ZIndex>14</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -975,11 +949,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.95687in</Top>
-        <Left>0.37167in</Left>
+        <Top>4.36645in</Top>
+        <Left>0.52096in</Left>
         <Height>0.25in</Height>
         <Width>0.47917in</Width>
-        <ZIndex>15</ZIndex>
+        <ZIndex>14</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -991,19 +965,95 @@
         </Style>
       </Textbox>
       <Line Name="Line2">
-        <Top>4.1027in</Top>
-        <Left>0.83in</Left>
+        <Top>4.61645in</Top>
+        <Left>1.02792in</Left>
         <Height>0in</Height>
         <Width>1.53125in</Width>
-        <ZIndex>16</ZIndex>
+        <ZIndex>15</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
           </Border>
         </Style>
       </Line>
+      <Textbox Name="Textbox10">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Language : </Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=User!Language</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox8</rd:DefaultName>
+        <Top>1.31582in</Top>
+        <Left>1.02792in</Left>
+        <Height>0.25in</Height>
+        <Width>2.39584in</Width>
+        <ZIndex>16</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox12">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Disclaimer</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> : This is a computer generated invoice.</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox12</rd:DefaultName>
+        <Top>5.71542in</Top>
+        <Left>0.52096in</Left>
+        <Height>0.25in</Height>
+        <Width>3.20833in</Width>
+        <ZIndex>17</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>5.39583in</Height>
+    <Height>6.28125in</Height>
     <Style />
   </Body>
   <Width>8.59375in</Width>

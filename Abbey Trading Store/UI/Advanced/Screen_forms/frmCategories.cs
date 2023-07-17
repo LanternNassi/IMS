@@ -26,13 +26,22 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             this.circularProgressBar1.Value = dt.Rows.Count * 10;
             this.circularProgressBar1.Text = (dt.Rows.Count * 10).ToString() + "%";
+
+            
         }
+
+        public bool item_active = false;
 
         private void clear()
         {
             id.Text = "";
             title.Text = "";
             description.Text = "";
+
+            materialButton1.Enabled = false;
+            materialButton2.Enabled = false;
+            materialButton3.Enabled = false;
+
 
         }
 
@@ -79,6 +88,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             id.Text = dataGridView1.Rows[row].Cells[0].Value.ToString();
             title.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
             description.Text = dataGridView1.Rows[row].Cells[2].Value.ToString();
+
+            materialButton1.Enabled = false;
+            materialButton2.Enabled = true;
+            materialButton3.Enabled = true;
+
         }
 
         private async void materialButton3_Click(object sender, EventArgs e)
@@ -89,6 +103,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             bool affected = await category.DeleteAppropriately();
             if (affected == true)
             {
+                item_active = false;
                 Cursor = Cursors.Default;
                 RJMessageBox.Show("Category deleted successfully",
                     "Categories Management Portal",
@@ -115,6 +130,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             bool affected = await category.UpdateAppropriately();
             if (affected == true)
             {
+                item_active = false;
                 Cursor = Cursors.Default;
                 RJMessageBox.Show("Category successfully updated. Thank you.",
                     "Categories Management Portal",
@@ -146,9 +162,14 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             int row = e.RowIndex;
             if (row >= 0)
             {
+                item_active = true;
                 id.Text = dataGridView1.Rows[row].Cells[0].Value.ToString();
                 title.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
                 description.Text = dataGridView1.Rows[row].Cells[2].Value.ToString();
+
+                materialButton1.Enabled = false;
+                materialButton2.Enabled = true;
+                materialButton3.Enabled = true;
             }
             
 
@@ -169,6 +190,25 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             ReportView form = new ReportView(list, "Abbey_Trading_Store.Reports.Categories_Report.Categories.rdlc");
             form.Show();
             Cursor = Cursors.Default;
+        }
+
+        private void id_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void title_TextChanged(object sender, EventArgs e)
+        {
+            if (title.Text.Length > 0 && !item_active)
+            {
+                materialButton1.Enabled = true;
+
+            }
+            else
+            {
+                materialButton1.Enabled = false;    
+            }
+
         }
     }
 }

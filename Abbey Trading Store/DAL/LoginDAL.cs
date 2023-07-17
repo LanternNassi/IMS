@@ -75,10 +75,10 @@ namespace Abbey_Trading_Store.DAL
             bool isSuccess = false;
             SqlConnection conn = new SqlConnection(DAL_Properties.Env.local_server_database_conn_string);
             conn.Open();
-            string cmds = "SELECT * FROM Users WHERE [User] = @User AND Type = @Usertype AND Contact = @Password ";
+            string cmds = "SELECT * FROM Users WHERE [User] = @User AND Contact = @Password ";
             SqlCommand cmd = new SqlCommand(cmds, conn);
             cmd.Parameters.AddWithValue("@User", username);
-            cmd.Parameters.AddWithValue("@Usertype", usertype);
+            //cmd.Parameters.AddWithValue("@Usertype", usertype);
             cmd.Parameters.AddWithValue("@Password", password);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();

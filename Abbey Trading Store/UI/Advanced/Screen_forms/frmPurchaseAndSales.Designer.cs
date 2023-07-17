@@ -60,6 +60,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.materialButton5 = new MaterialSkin.Controls.MaterialButton();
             this.label15 = new System.Windows.Forms.Label();
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
             this.return_amount = new MaterialSkin.Controls.MaterialTextBox2();
@@ -68,7 +69,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label14 = new System.Windows.Forms.Label();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new DGV();
+            this.dataGridView1 = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.paid_amount = new MaterialSkin.Controls.MaterialTextBox2();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox13 = new MaterialSkin.Controls.MaterialTextBox2();
@@ -109,6 +110,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.materialButton4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton4.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton4.Depth = 0;
+            this.materialButton4.Enabled = false;
             this.materialButton4.HighEmphasis = true;
             this.materialButton4.Icon = global::Abbey_Trading_Store.Properties.Resources.settings;
             this.materialButton4.Location = new System.Drawing.Point(882, 64);
@@ -151,6 +153,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.invoice_txtbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.invoice_txtbx.TrailingIcon = null;
             this.invoice_txtbx.UseSystemPasswordChar = false;
+            this.invoice_txtbx.TextChanged += new System.EventHandler(this.invoice_txtbx_TextChanged);
             // 
             // address
             // 
@@ -587,6 +590,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.materialButton5);
             this.panel5.Controls.Add(this.label15);
             this.panel5.Controls.Add(this.materialButton2);
             this.panel5.Controls.Add(this.return_amount);
@@ -598,6 +602,27 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(600, 377);
             this.panel5.TabIndex = 1;
+            // 
+            // materialButton5
+            // 
+            this.materialButton5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton5.Depth = 0;
+            this.materialButton5.Enabled = false;
+            this.materialButton5.HighEmphasis = true;
+            this.materialButton5.Icon = global::Abbey_Trading_Store.Properties.Resources.diskette;
+            this.materialButton5.Location = new System.Drawing.Point(382, 272);
+            this.materialButton5.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton5.Name = "materialButton5";
+            this.materialButton5.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton5.Size = new System.Drawing.Size(209, 36);
+            this.materialButton5.TabIndex = 34;
+            this.materialButton5.Text = "Generate Qoutation";
+            this.materialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton5.UseAccentColor = false;
+            this.materialButton5.UseVisualStyleBackColor = true;
+            this.materialButton5.Click += new System.EventHandler(this.materialButton5_Click);
             // 
             // label15
             // 
@@ -615,9 +640,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton2.Depth = 0;
+            this.materialButton2.Enabled = false;
             this.materialButton2.HighEmphasis = true;
             this.materialButton2.Icon = global::Abbey_Trading_Store.Properties.Resources.diskette;
-            this.materialButton2.Location = new System.Drawing.Point(382, 310);
+            this.materialButton2.Location = new System.Drawing.Point(392, 329);
             this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton2.Name = "materialButton2";
@@ -657,6 +683,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.return_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.return_amount.TrailingIcon = null;
             this.return_amount.UseSystemPasswordChar = false;
+            this.return_amount.TextChanged += new System.EventHandler(this.return_amount_TextChanged);
             // 
             // label13
             // 
@@ -714,7 +741,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.reportViewer1.Location = new System.Drawing.Point(8, 17);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(583, 249);
+            this.reportViewer1.Size = new System.Drawing.Size(583, 229);
             this.reportViewer1.TabIndex = 0;
             // 
             // panel4
@@ -760,6 +787,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.dataGridView1.Size = new System.Drawing.Size(517, 158);
             this.dataGridView1.TabIndex = 28;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
+            this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
+            this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsRemoved);
             // 
             // paid_amount
             // 
@@ -962,7 +991,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private MaterialSkin.Controls.MaterialMultiLineTextBox2 address;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox p_search1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private MaterialSkin.Controls.MaterialComboBox p_rate;
+        private MaterialSkin.Controls.MaterialButton materialButton5;
+        private DGV dataGridView1;
     }
 }

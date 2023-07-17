@@ -13,11 +13,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Net;
 using Abbey_Trading_Store.UI.Advanced.CustomMessageBox;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
     public partial class frmDealCust : Form
     {
+        public bool item_active = false;
+
         public frmDealCust()
         {
             InitializeComponent();
@@ -38,6 +41,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             Contact.Text = "";
             Address.Text = "";
             type_comboBox1.Text = "";
+
+            materialButton1.Enabled = false;
+            materialButton2.Enabled = false;
+            materialButton3.Enabled = false;
         }
 
         private void frmDealCust_Load(object sender, EventArgs e)
@@ -67,8 +74,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 DataTable dt =  DC.SelectAppropriately();
                 dataGridView1.DataSource = dt;
 
-                this.circularProgressBar1.Value = dt.Rows.Count;
-                this.circularProgressBar1.Text = (dt.Rows.Count).ToString() + "%";
+                
             }
             else
             {
@@ -93,6 +99,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             bool check = await DC.UpdateAppropriately();
             if (check == true)
             {
+                item_active = false;
                 Cursor = Cursors.Default;
                 DataTable dt = DC.SelectAppropriately();
                 dataGridView1.DataSource = dt;
@@ -101,8 +108,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                                     MessageBoxButtons.OK);
                 clear();
 
-                this.circularProgressBar1.Value = dt.Rows.Count;
-                this.circularProgressBar1.Text = (dt.Rows.Count).ToString() + "%";
+                
             }
             else
             {
@@ -132,6 +138,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             bool check = await DC.DeleteAppropriately();
             if (check == true)
             {
+                item_active = false;
                 Cursor = Cursors.Default;
                 DataTable dt = DC.SelectAppropriately();
                 dataGridView1.DataSource = dt;
@@ -139,8 +146,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                                    "Customery Management Portal",
                                    MessageBoxButtons.OK);
                 clear();
-                this.circularProgressBar1.Value = dt.Rows.Count;
-                this.circularProgressBar1.Text = (dt.Rows.Count).ToString() + "%";
+                
             }
             else
             {
@@ -158,8 +164,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DataTable dt = DC.SearchAppropriately(keyword);
             dataGridView1.DataSource = dt;
 
-            this.circularProgressBar2.Value = dt.Rows.Count;
-            this.circularProgressBar2.Text = (dt.Rows.Count).ToString() + "%";
+            
         }
 
         private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
@@ -173,9 +178,26 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 Email.Text = dataGridView1.Rows[row].Cells[3].Value.ToString();
                 Contact.Text = dataGridView1.Rows[row].Cells[4].Value.ToString();
                 Address.Text = dataGridView1.Rows[row].Cells[5].Value.ToString();
+
+                materialButton1.Enabled = false;
+                materialButton2.Enabled = true;
+                materialButton3.Enabled = true;
             }
             
 
+        }
+
+        private void name_TextChanged(object sender, EventArgs e)
+        {
+            if (name.Text.Length > 0 && !item_active)
+            {
+                materialButton1.Enabled = true;
+
+            }
+            else
+            {
+                materialButton1.Enabled = false;
+            }
         }
     }
 }

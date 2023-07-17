@@ -1,5 +1,6 @@
 ﻿using Abbey_Trading_Store.DAL;
 using Abbey_Trading_Store.DAL.DAL_Properties;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             InitializeComponent();
         }
+
+        System.Data.SqlClient.SqlDataAdapter low_on_stock= null;
 
         private void chart1_Click(object sender, EventArgs e)
         {
@@ -52,12 +55,12 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 }
 
 
-                Users.Text = "Users : " + dt_2.Rows[6][1].ToString();
-                Categories.Text = "Categories : " + dt_2.Rows[0][1].ToString();
-                Products.Text = "Products : " + dt_2.Rows[2][1].ToString();
-                Customers.Text = "Customers : " + dt_2.Rows[1][1].ToString();
-                Transactions.Text = "Transactions : " + dt_2.Rows[5][1].ToString();
-                TD.Text = "Details : " + dt_2.Rows[3][1].ToString();
+                Users.Text = "Users : " + dt_2.Rows[18][1].ToString();
+                Categories.Text = "Categories : " + dt_2.Rows[8][1].ToString();
+                Products.Text = "Products : " + dt_2.Rows[14][1].ToString();
+                Customers.Text = "Customers : " + dt_2.Rows[9][1].ToString();
+                Transactions.Text = "Transactions : " + dt_2.Rows[17][1].ToString();
+                TD.Text = "Details : " + dt_2.Rows[15][1].ToString();
 
                 if(dt.Rows.Count > 0)
                 {
@@ -67,7 +70,21 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                         chart2.Series["S2"].Points.AddXY(dt.Rows[i][0].ToString(), Convert.ToDecimal(dt.Rows[i][2].ToString()));
                     }
                 }
-                
+
+                //Getting low on stock
+                low_on_stock = Product.LowStock();
+                DataTable LST = new DataTable();
+                low_on_stock.Fill(LST);
+                materialButton1.Text = LST.Rows.Count.ToString() + " Low on stock";
+
+                //Unsettled debts
+                Abbey_Trading_Store.DAL.Transactions transact = new Transactions();
+                System.Data.SqlClient.SqlDataAdapter adapter_G = transact.GetDebtorsOnly();
+                DataTable Gt = new DataTable();
+                adapter_G.Fill(Gt);
+                materialButton2.Text = Gt.Rows.Count.ToString() + " Unsettled debts";
+
+
 
             } else
             {
@@ -94,6 +111,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
                 }
 
+                
+
+
 
                 //Users.Text = "Users : " + dt_2.Rows[6][1].ToString();
                 //Categories.Text = "Categories : " + dt_2.Rows[0][1].ToString();
@@ -115,6 +135,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            LowStock form = new LowStock(low_on_stock);
+            form.Show();
+        }
+
+        private void materialButton2_Click(object sender, EventArgs e)
+        {
+            UnsettledDebts form = new UnsettledDebts();
+            form.Show();
         }
     }
 }

@@ -819,6 +819,94 @@ namespace Abbey_Trading_Store.DAL
 
         }
 
+        public SqlDataAdapter LowStock()
+        {
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            try
+            {
+                conn.Open();
+                const string cmd_string = "SELECT * FROM Products WHERE Quantity < 10.0000";
+                adapter = new SqlDataAdapter(cmd_string, conn);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return adapter;
+        }
+
+        public bool update_product_quantity(int id , int Quantity , string Reason , string Added_by)
+        {
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            bool success = false;
+            try
+            {
+                string cmd_str = "UPDATE Products SET Quantity = @Quantity WHERE id = @id";
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(cmd_str, conn);
+                cmd.Parameters.AddWithValue("@Quantity", Quantity);
+                cmd.Parameters.AddWithValue("@id", id);
+                int rows_1 = cmd.ExecuteNonQuery();
+
+                // Adding the modifications 
+                string cmd_str_2 = "INSERT INTO Modifications(Action , Reason , Added_by , added_date) VALUES(@Action , @Reason , @Added_by , @added_date)";
+                SqlCommand cmd_2 = new SqlCommand(cmd_str_2, conn);
+                cmd_2.Parameters.AddWithValue("@Action", "Quantity Update");
+                cmd_2.Parameters.AddWithValue("@Reason", Reason);
+                cmd_2.Parameters.AddWithValue("@Added_by", Added_by);
+                cmd_2.Parameters.AddWithValue("@added_date", DateTime.Now);
+
+                int rows_2 = cmd_2.ExecuteNonQuery();
+
+                if (rows_1 > 0 && rows_2> 0)
+                {
+                    success = true;
+                }
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return success;
+        }
+
+        public DataTable Select_Modifications(string change_type = null , dynamic date_added = null)
+        {
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            DataTable dt = new DataTable();
+            try
+            {
+                string cmd_str = "SELECT * FROM Modifications";
+                
+                if (change_type != null || date_added != null)
+                {
+                    cmd_str = "SELECT * FROM Modifications WHERE" + ((change_type != null) ? (" Action = '" + change_type + "'") : ("")) + ((date_added != null) ? (" added_date >= '" + date_added + "'") : (""));
+                }
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd_str , conn);
+                adapter.Fill(dt);
+
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return dt;
+
+        }
+
         public DataTable Search_2(string keywords)
         {
             string[] results = new string[4];

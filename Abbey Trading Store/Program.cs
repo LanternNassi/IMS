@@ -28,6 +28,7 @@ namespace Abbey_Trading_Store
                 Console.WriteLine("Testing SQL server...");
                 conn.Open();
                 Console.WriteLine("Testing SQL server successful...");
+                //Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmCompany());
                 Application.Run(new Abbey_Trading_Store.UI.Login_form());
 
                 //this.BackColor = Color.White;

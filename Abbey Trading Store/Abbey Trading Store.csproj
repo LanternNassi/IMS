@@ -365,10 +365,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.WinControls, Version=2023.1.314.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
-    <Reference Include="Telerik.WinControls.GridView, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.WinControls.UI, Version=2023.1.314.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
-    <Reference Include="TelerikCommon, Version=2023.1.314.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="UnitsNet, Version=5.0.0.0, Culture=neutral, PublicKeyToken=f8601875a1f041da, processorArchitecture=MSIL">
       <HintPath>..\packages\UnitsNet.5.21.0\lib\netstandard2.0\UnitsNet.dll</HintPath>
     </Reference>
@@ -387,6 +383,8 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Configurations\Install_SQL.cs" />
+    <Compile Include="DAL\BusinessAccount.cs" />
+    <Compile Include="DAL\DAL_Properties\BusinessAccountProps.cs" />
     <Compile Include="DAL\DAL_Properties\CategoriesProps.cs" />
     <Compile Include="DAL\DAL_Properties\DealersCustProps.cs" />
     <Compile Include="DAL\DAL_Properties\DGV.cs">
@@ -438,6 +436,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Invoice.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Quotation Report\QuotationDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuotationDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Users Report\Users.cs">
       <DependentUpon>Users.xsd</DependentUpon>
     </Compile>
@@ -477,6 +480,12 @@
     </Compile>
     <Compile Include="UI\Advanced\Screen_forms\frmCategories.Designer.cs">
       <DependentUpon>frmCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\frmCompanyDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\frmCompanyDetails.Designer.cs">
+      <DependentUpon>frmCompanyDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Advanced\Screen_forms\frmDealCust.cs">
       <SubType>Form</SubType>
@@ -526,6 +535,18 @@
     <Compile Include="UI\Advanced\Screen_forms\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\LowStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\LowStock.Designer.cs">
+      <DependentUpon>LowStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\Modifications.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\Modifications.Designer.cs">
+      <DependentUpon>Modifications.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Advanced\Screen_forms\Overview.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -537,6 +558,24 @@
     </Compile>
     <Compile Include="UI\Advanced\Screen_forms\QuickProducts.Designer.cs">
       <DependentUpon>QuickProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\SyncChanges.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\SyncChanges.Designer.cs">
+      <DependentUpon>SyncChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\UnsettledDebts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\UnsettledDebts.Designer.cs">
+      <DependentUpon>UnsettledDebts.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Batch_entry.cs">
       <SubType>Form</SubType>
@@ -647,6 +686,7 @@
     <EmbeddedResource Include="Reports\Categories Report\Categories.rdlc" />
     <EmbeddedResource Include="Reports\Inventory Report\InventoryReport.rdlc" />
     <EmbeddedResource Include="Reports\Invoice Report\Invoice.rdlc" />
+    <EmbeddedResource Include="Reports\Quotation Report\Report1.rdlc" />
     <EmbeddedResource Include="Reports\Users Report\Users.rdlc" />
     <EmbeddedResource Include="UI\Advanced\CustomMessageBox\FormMessageBox.resx">
       <DependentUpon>FormMessageBox.cs</DependentUpon>
@@ -662,6 +702,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Advanced\Screen_forms\frmCategories.resx">
       <DependentUpon>frmCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Advanced\Screen_forms\frmCompanyDetails.resx">
+      <DependentUpon>frmCompanyDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Advanced\Screen_forms\frmDealCust.resx">
       <DependentUpon>frmDealCust.cs</DependentUpon>
@@ -687,11 +730,23 @@
     <EmbeddedResource Include="UI\Advanced\Screen_forms\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Advanced\Screen_forms\LowStock.resx">
+      <DependentUpon>LowStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Advanced\Screen_forms\Modifications.resx">
+      <DependentUpon>Modifications.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Advanced\Screen_forms\Overview.resx">
       <DependentUpon>Overview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Advanced\Screen_forms\QuickProducts.resx">
       <DependentUpon>QuickProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Advanced\Screen_forms\SyncChanges.resx">
+      <DependentUpon>SyncChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Advanced\Screen_forms\UnsettledDebts.resx">
+      <DependentUpon>UnsettledDebts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Batch_entry.resx">
       <DependentUpon>Batch_entry.cs</DependentUpon>
@@ -821,6 +876,17 @@
     </None>
     <None Include="Reports\Categories Report\Categories.xss">
       <DependentUpon>Categories.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Quotation Report\QuotationDataSet.xsc">
+      <DependentUpon>QuotationDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Quotation Report\QuotationDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuotationDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Quotation Report\QuotationDataSet.xss">
+      <DependentUpon>QuotationDataSet.xsd</DependentUpon>
     </None>
     <None Include="Reports\Users Report\Users.xsc">
       <DependentUpon>Users.xsd</DependentUpon>

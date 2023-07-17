@@ -145,21 +145,35 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void materialButton3_Click(object sender, EventArgs e)
         {
-            TransactionDetail Td = new TransactionDetail();
-            Cursor = Cursors.WaitCursor;
-            Abbey_Trading_Store.Reports.Invoice_Report.Invoice dataset = new Reports.Invoice_Report.Invoice();
-            dynamic adapter1 = Td.GetTransactionAppropriately(Int32.Parse(id.Text));
-            dynamic adapter2 = Td.GetdetailsAppropriately(Int32.Parse(id.Text));
+            try
+            {
+                TransactionDetail Td = new TransactionDetail();
+                Cursor = Cursors.WaitCursor;
+                Abbey_Trading_Store.Reports.Invoice_Report.Invoice dataset = new Reports.Invoice_Report.Invoice();
+                dynamic adapter1 = Td.GetTransactionAppropriately(Int32.Parse(id.Text));
+                dynamic adapter2 = Td.GetdetailsAppropriately(Int32.Parse(id.Text));
 
-            adapter1.Fill(dataset, "Overall_data");
-            adapter2.Fill(dataset, "Invoice_data");
+                adapter1.Fill(dataset, "Overall_data");
+                adapter2.Fill(dataset, "Invoice_data");
 
-            ReportDataSource datasource1 = new ReportDataSource("DataSet1", dataset.Tables[0]);
-            ReportDataSource datasource2 = new ReportDataSource("DataSet2", dataset.Tables[1]);
-            ReportDataSource[] list = { datasource1, datasource2 };
-            ReportView form = new ReportView(list , "Abbey_Trading_Store.Reports.Invoice_Report.Invoice.rdlc");
-            form.Show();
-            Cursor = Cursors.Default;
+                ReportDataSource datasource1 = new ReportDataSource("DataSet1", dataset.Tables[0]);
+                ReportDataSource datasource2 = new ReportDataSource("DataSet2", dataset.Tables[1]);
+                ReportDataSource[] list = { datasource1, datasource2 };
+                ReportView form = new ReportView(list, "Abbey_Trading_Store.Reports.Invoice_Report.Invoice.rdlc");
+                form.Show();
+                Cursor = Cursors.Default;
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Please select an entry");
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+
+            }
+
         }
 
         private void DebtsDGV_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -209,6 +223,28 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             }
 
+        }
+
+        private void searchtxtbx_TextChanged(object sender, EventArgs e)
+        {
+            if (searchtxtbx.Text != "")
+            {
+                Transactions transact = new Transactions();
+                DataTable dt = transact.SearchCreditorsDebtors_2(searchtxtbx.Text);
+                DebtsDGV.DataSource = dt;
+            }
+            else
+            {
+                Transactions transaction = new Transactions();
+                dynamic adapter = transaction.GetAllDebtsCreditsAppropriately("Customer");
+                DataTable dt = new DataTable();
+                Connection().Open();
+                adapter.Fill(dt);
+                DebtsDGV.DataSource = dt;
+                Connection().Close();
+
+            }
+            
         }
     }
 }

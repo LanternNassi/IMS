@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using Microsoft.Data.SqlClient;
+using System.Runtime.CompilerServices;
 
 namespace Abbey_Trading_Store.DAL.DAL_Properties
 {
@@ -27,6 +30,12 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         static string strComputerName = Environment.MachineName.ToString();
         static string computed_server_name = strComputerName + @"\SQLSERVER2012";
         public static string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=IMS;Integrated Security=True;TrustServerCertificate=True";
+
+        //Loading the account information
+        
+        //public static SqlDataAdapter account_adapter = BusinessAccount.Select();
+        
+
 
 
     }

@@ -30,8 +30,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.added_by = new MaterialSkin.Controls.MaterialTextBox2();
             this.materialComboBox2 = new MaterialSkin.Controls.MaterialComboBox();
@@ -69,7 +69,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(210, 572);
+            this.panel1.Size = new System.Drawing.Size(297, 572);
             this.panel1.TabIndex = 0;
             // 
             // added_by
@@ -81,7 +81,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.added_by.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.added_by.HideSelection = true;
             this.added_by.LeadingIcon = null;
-            this.added_by.Location = new System.Drawing.Point(60, 240);
+            this.added_by.Location = new System.Drawing.Point(76, 389);
             this.added_by.MaxLength = 32767;
             this.added_by.MouseState = MaterialSkin.MouseState.OUT;
             this.added_by.Name = "added_by";
@@ -93,7 +93,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.added_by.SelectionLength = 0;
             this.added_by.SelectionStart = 0;
             this.added_by.ShortcutsEnabled = true;
-            this.added_by.Size = new System.Drawing.Size(144, 48);
+            this.added_by.Size = new System.Drawing.Size(198, 48);
             this.added_by.TabIndex = 14;
             this.added_by.TabStop = false;
             this.added_by.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -117,11 +117,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.materialComboBox2.Items.AddRange(new object[] {
             "admin",
             "normal"});
-            this.materialComboBox2.Location = new System.Drawing.Point(60, 324);
+            this.materialComboBox2.Location = new System.Drawing.Point(76, 497);
             this.materialComboBox2.MaxDropDownItems = 4;
             this.materialComboBox2.MouseState = MaterialSkin.MouseState.OUT;
             this.materialComboBox2.Name = "materialComboBox2";
-            this.materialComboBox2.Size = new System.Drawing.Size(144, 49);
+            this.materialComboBox2.Size = new System.Drawing.Size(198, 49);
             this.materialComboBox2.StartIndex = 0;
             this.materialComboBox2.TabIndex = 13;
             this.materialComboBox2.SelectedIndexChanged += new System.EventHandler(this.materialComboBox2_SelectedIndexChanged);
@@ -131,7 +131,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label5.Location = new System.Drawing.Point(3, 336);
+            this.label5.Location = new System.Drawing.Point(3, 509);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 17);
             this.label5.TabIndex = 12;
@@ -146,7 +146,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.password.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.password.HideSelection = true;
             this.password.LeadingIcon = null;
-            this.password.Location = new System.Drawing.Point(60, 94);
+            this.password.Location = new System.Drawing.Point(76, 146);
             this.password.MaxLength = 32767;
             this.password.MouseState = MaterialSkin.MouseState.OUT;
             this.password.Name = "password";
@@ -158,7 +158,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.password.SelectionLength = 0;
             this.password.SelectionStart = 0;
             this.password.ShortcutsEnabled = true;
-            this.password.Size = new System.Drawing.Size(144, 48);
+            this.password.Size = new System.Drawing.Size(198, 48);
             this.password.TabIndex = 10;
             this.password.TabStop = false;
             this.password.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -174,7 +174,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.name.HideSelection = true;
             this.name.LeadingIcon = null;
-            this.name.Location = new System.Drawing.Point(60, 21);
+            this.name.Location = new System.Drawing.Point(76, 36);
             this.name.MaxLength = 32767;
             this.name.MouseState = MaterialSkin.MouseState.OUT;
             this.name.Name = "name";
@@ -186,12 +186,13 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.name.SelectionLength = 0;
             this.name.SelectionStart = 0;
             this.name.ShortcutsEnabled = true;
-            this.name.Size = new System.Drawing.Size(144, 48);
+            this.name.Size = new System.Drawing.Size(198, 48);
             this.name.TabIndex = 9;
             this.name.TabStop = false;
             this.name.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.name.TrailingIcon = null;
             this.name.UseSystemPasswordChar = false;
+            this.name.TextChanged += new System.EventHandler(this.name_TextChanged);
             // 
             // gender_cmbx
             // 
@@ -210,11 +211,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.gender_cmbx.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.gender_cmbx.Location = new System.Drawing.Point(60, 167);
+            this.gender_cmbx.Location = new System.Drawing.Point(76, 270);
             this.gender_cmbx.MaxDropDownItems = 4;
             this.gender_cmbx.MouseState = MaterialSkin.MouseState.OUT;
             this.gender_cmbx.Name = "gender_cmbx";
-            this.gender_cmbx.Size = new System.Drawing.Size(144, 49);
+            this.gender_cmbx.Size = new System.Drawing.Size(198, 49);
             this.gender_cmbx.StartIndex = 0;
             this.gender_cmbx.TabIndex = 8;
             // 
@@ -223,7 +224,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label4.Location = new System.Drawing.Point(2, 251);
+            this.label4.Location = new System.Drawing.Point(2, 400);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 17);
             this.label4.TabIndex = 7;
@@ -235,7 +236,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label3.Location = new System.Drawing.Point(3, 179);
+            this.label3.Location = new System.Drawing.Point(3, 282);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 17);
             this.label3.TabIndex = 5;
@@ -246,7 +247,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label2.Location = new System.Drawing.Point(3, 105);
+            this.label2.Location = new System.Drawing.Point(3, 157);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 17);
             this.label2.TabIndex = 3;
@@ -257,7 +258,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label1.Location = new System.Drawing.Point(3, 31);
+            this.label1.Location = new System.Drawing.Point(3, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 17);
             this.label1.TabIndex = 1;
@@ -267,36 +268,36 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             // 
             this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
-            this.panel2.Location = new System.Drawing.Point(226, 70);
+            this.panel2.Location = new System.Drawing.Point(318, 70);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(893, 490);
+            this.panel2.Size = new System.Drawing.Size(801, 490);
             this.panel2.TabIndex = 2;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(893, 490);
+            this.dataGridView1.Size = new System.Drawing.Size(801, 490);
             this.dataGridView1.TabIndex = 24;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
             // 
@@ -307,7 +308,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.materialButton4.Depth = 0;
             this.materialButton4.HighEmphasis = true;
             this.materialButton4.Icon = global::Abbey_Trading_Store.Properties.Resources.print;
-            this.materialButton4.Location = new System.Drawing.Point(607, 12);
+            this.materialButton4.Location = new System.Drawing.Point(1007, 15);
             this.materialButton4.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton4.Name = "materialButton4";
@@ -325,9 +326,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton3.Depth = 0;
+            this.materialButton3.Enabled = false;
             this.materialButton3.HighEmphasis = true;
             this.materialButton3.Icon = global::Abbey_Trading_Store.Properties.Resources.delete;
-            this.materialButton3.Location = new System.Drawing.Point(487, 12);
+            this.materialButton3.Location = new System.Drawing.Point(796, 15);
             this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton3.Name = "materialButton3";
@@ -345,9 +347,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton2.Depth = 0;
+            this.materialButton2.Enabled = false;
             this.materialButton2.HighEmphasis = true;
             this.materialButton2.Icon = global::Abbey_Trading_Store.Properties.Resources.recovery;
-            this.materialButton2.Location = new System.Drawing.Point(365, 12);
+            this.materialButton2.Location = new System.Drawing.Point(558, 15);
             this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton2.Name = "materialButton2";
@@ -365,9 +368,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton1.Depth = 0;
+            this.materialButton1.Enabled = false;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = global::Abbey_Trading_Store.Properties.Resources.people;
-            this.materialButton1.Location = new System.Drawing.Point(261, 12);
+            this.materialButton1.Location = new System.Drawing.Point(339, 15);
             this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
@@ -382,10 +386,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             // 
             // frmUser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(843, 572);
+            this.ClientSize = new System.Drawing.Size(1130, 572);
             this.Controls.Add(this.materialButton4);
             this.Controls.Add(this.materialButton3);
             this.Controls.Add(this.materialButton2);

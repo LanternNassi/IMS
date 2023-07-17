@@ -39,6 +39,7 @@ namespace Abbey_Trading_Store.UI
         }
 
         public static string user;
+        public static string account_type;
         int active_index = 0;
 
 
@@ -90,6 +91,7 @@ namespace Abbey_Trading_Store.UI
             {
                 //MessageBox.Show("Login successful");
                 user = Login.Username;
+                account_type = Login.Usertype;
                 //Open Respective dashboard
                 switch (results[1])
                 {
@@ -113,8 +115,9 @@ namespace Abbey_Trading_Store.UI
                             }
                             else if (admin_priviledge == "normal")
                             {
-                                frmUserDashboard normal = new frmUserDashboard();
-                                normal.Show();
+                                //frmUserDashboard normal = new frmUserDashboard();
+                                //normal.Show();
+                                form.Show();
                             }
 
 
@@ -136,8 +139,9 @@ namespace Abbey_Trading_Store.UI
                                 ss.Update();
                                 System.Threading.Thread.Sleep(10000);
                                 ss.Close();
-                                frmUserDashboard normal = new frmUserDashboard();
-                                normal.Show();
+                                //frmUserDashboard normal = new frmUserDashboard();
+                                //normal.Show();
+                                form.Show();
 
                             }
 

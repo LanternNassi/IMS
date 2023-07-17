@@ -425,8 +425,8 @@ namespace Abbey_Trading_Store.UI
 
                 TD.Product_name = dt.Rows[i][0].ToString();
                 string test = dt.Rows[i][1].ToString();
-                TD.qty = String.Format("{0:0.00}", dt.Rows[i][1].ToString());
-                //TD.qty = decimal.Parse(dt.Rows[i][1].ToString());
+                //TD.qty = String.Format("{0:0.00}", dt.Rows[i][1].ToString());
+                TD.qty = decimal.Parse(dt.Rows[i][1].ToString());
                 TD.Rate = decimal.Parse(dt.Rows[i][2].ToString());
                 
                 TD.Total = decimal.Parse(dt.Rows[i][3].ToString());
@@ -491,9 +491,9 @@ namespace Abbey_Trading_Store.UI
                 //MessageBox.Show("Transaction successfully completed.");
                 textBox1.Text = "";
                 name.Text = course;
-                email.Text = "Lanternnassi@gmail.com";
-                contact.Text = "0753103488";
-                address.Text = "Kalisizo";
+                email.Text = "";
+                contact.Text = "";
+                address.Text = "";
                 p_search.Text = "";
                 pname.Text = "";
                 p_inventory.Text = "";

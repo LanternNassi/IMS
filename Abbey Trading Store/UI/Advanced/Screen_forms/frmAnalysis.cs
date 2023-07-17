@@ -26,9 +26,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             cbbx.Text = "Sales";
 
             TransactionDetail TD = new TransactionDetail();
-            DataTable dt = TD.QueryTransactionsAppropriately(start_date, end_date, cbbx.Text);
-            TDD.DataSource = dt;
-            cc = dt;
+            //DataTable dt = TD.QueryTransactionsAppropriately(start_date, end_date, cbbx.Text);
+            //TDD.DataSource = dt;
+            //cc = dt;
         }
 
         private void materialComboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     type,
                     (product_name != "") ? (product_name) : (null),
                     (customer_name != "") ? (customer_name) : (null),
-                    (quantity != "") ? (Convert.ToInt32(quantity)) : (0),
+                    (quantity != "") ? Convert.ToDecimal(quantity) : (0),
                     (added_by != "") ? (added_by) : (null)
                 );
                 TDD.DataSource = dt;
@@ -68,7 +68,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " From regenerate");
             }
             finally
             {
@@ -83,7 +83,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DataTable dt = new DataTable();
             dt.Columns.Add("id", typeof(Int32));
             dt.Columns.Add("Product", typeof(String));
-            dt.Columns.Add("Quantity", typeof(Int32));
+            dt.Columns.Add("Quantity", typeof(decimal));
             dt.Columns.Add("Total Sales", typeof(Int32));
             dt.Columns.Add("Total profits", typeof(Int32));
 
@@ -105,7 +105,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                         {
                             if (dr[1].ToString() == prod.Value)
                             {
-                                dt.Rows[prod.Key]["Quantity"] = Convert.ToInt32(dt.Rows[prod.Key]["Quantity"]) + Convert.ToInt32(dr[3]);
+                                dt.Rows[prod.Key]["Quantity"] = Convert.ToDecimal(dt.Rows[prod.Key]["Quantity"]) + Convert.ToDecimal(dr[3]);
 
                                 dt.Rows[prod.Key]["Total Sales"] = Convert.ToInt32(dt.Rows[prod.Key]["ToTal Sales"]) + Convert.ToInt32(dr[4]);
                                 total_sales += Convert.ToInt32(dr[4]);
@@ -123,7 +123,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     }
                     else
                     {
-                        dt.Rows.Add(Convert.ToInt32(dr[0]), dr[1].ToString(), Convert.ToInt32(dr[3]), Convert.ToInt32(dr[4]), Convert.ToInt32(dr[9]));
+                        dt.Rows.Add(Convert.ToInt32(dr[0]), dr[1].ToString(), Convert.ToDecimal(dr[3]), Convert.ToInt32(dr[4]), Convert.ToInt32(dr[9]));
 
                         total_sales += Convert.ToInt32(dr[4]);
                         total_profits += Convert.ToInt32(dr[9]);

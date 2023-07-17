@@ -91,71 +91,79 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private async void materialButton1_Click(object sender, EventArgs e)
         {
-            if (p_quantity.Text != "" && decimal.Parse(p_quantity.Text) > 0)
+            if(Convert.ToDecimal(p_inventory.Text) >= 0)
             {
-                Cursor = Cursors.WaitCursor;
-                grandtotal.Text = "";
-                textBox13.Text = "";
-                //Getting 
-                string productname = p_name.Text;
-                decimal quantity = decimal.Parse(p_quantity.Text);
-                decimal rate = 0;
-                decimal total = 0;
-                if (p_quantity.Text.Contains("."))
+                if (p_quantity.Text != "" && decimal.Parse(p_quantity.Text) > 0)
                 {
-                    decimal calculated = decimal.Parse(p_quantity.Text) * decimal.Parse(p_rate.Text);
-                    string amount = Interaction.InputBox("Confirm the amount?", "Amount", calculated.ToString());
-                    total = decimal.Parse(amount);
-                    rate = decimal.Parse(p_rate.Text);
-                }
-                else
-                {
-                    rate = decimal.Parse(p_rate.Text);
-                    total = rate * quantity;
-                }
-                //decimal total = rate * quantity;
-                decimal subtotals = 0;
-                if (subtotal.Text == "")
-                {
-                }
-                else
-                {
-                    subtotals = decimal.Parse(subtotal.Text);
-                }
-                decimal profit = ((quantity * rate) - (quantity * initial_price));
+                    Cursor = Cursors.WaitCursor;
+                    grandtotal.Text = "";
+                    textBox13.Text = "";
+                    //Getting 
+                    string productname = p_name.Text;
+                    decimal quantity = decimal.Parse(p_quantity.Text);
+                    decimal rate = 0;
+                    decimal total = 0;
+                    if (p_quantity.Text.Contains("."))
+                    {
+                        decimal calculated = decimal.Parse(p_quantity.Text) * decimal.Parse(p_rate.Text);
+                        string amount = Interaction.InputBox("Confirm the amount?", "Amount", calculated.ToString());
+                        total = decimal.Parse(amount);
+                        rate = decimal.Parse(p_rate.Text);
+                    }
+                    else
+                    {
+                        rate = decimal.Parse(p_rate.Text);
+                        total = rate * quantity;
+                    }
+                    //decimal total = rate * quantity;
+                    decimal subtotals = 0;
+                    if (subtotal.Text == "")
+                    {
+                    }
+                    else
+                    {
+                        subtotals = decimal.Parse(subtotal.Text);
+                    }
+                    decimal profit = ((quantity * rate) - (quantity * initial_price));
 
-                //calulations
-                subtotals += total;
-                subtotal.Text = subtotals.ToString("N0");
+                    //calulations
+                    subtotals += total;
+                    subtotal.Text = subtotals.ToString("N0");
 
-                if (productname == "")
-                {
+                    if (productname == "")
+                    {
+                        Cursor = Cursors.Default;
+                        MessageBox.Show("Please add a product.");
+                    }
+                    else
+                    {
+                        dt.Rows.Add(productname, quantity, rate, total, profit);
+                        dataGridView1.DataSource = dt;
+                        //hiding the profit column
+                        dataGridView1.Columns[4].Visible = false;
+                        //NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
+                        //dgv_products.Columns["Total"].DefaultCellStyle.Format = "C";
+                        p_name.Text = "";
+                        p_search1.Text = "";
+                        p_inventory.Text = "";
+                        p_rate.Text = "0";
+                        p_rate.Items.Clear();
+                        p_quantity.Text = "";
+                        p_rate.Items.Clear();
+
+                    }
                     Cursor = Cursors.Default;
-                    MessageBox.Show("Please add a product.");
+
                 }
                 else
                 {
-                    dt.Rows.Add(productname, quantity, rate, total, profit);
-                    dataGridView1.DataSource = dt;
-                    //hiding the profit column
-                    dataGridView1.Columns[4].Visible = false;
-                    //NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
-                    //dgv_products.Columns["Total"].DefaultCellStyle.Format = "C";
-                    p_name.Text = "";
-                    p_search1.Text = "";
-                    p_inventory.Text = "";
-                    p_rate.Text = "0";
-                    p_rate.Items.Clear();
-                    p_quantity.Text = "";
-                    p_rate.Items.Clear();
-
+                    MessageBox.Show("Invalid entry . Add a quantity");
                 }
-                Cursor = Cursors.Default;
-
             } else
             {
-                MessageBox.Show("Invalid entry . Add a quantity");
+                MessageBox.Show("You are trying to add a product whose inventory count is depleted. Consider clearing the conflict before trying again");
             }
+           
             
 
         }
@@ -510,7 +518,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             for (i = 0; i < dt.Rows.Count; i++)
             {
                 TD.Product_name = dt.Rows[i][0].ToString();
-                TD.qty = String.Format("{0:0.00}", (dt.Rows[i][1].ToString()));
+                TD.qty = Convert.ToDecimal(dt.Rows[i][1].ToString());
+                //TD.qty = String.Format("{0:0.00}", (dt.Rows[i][1].ToString()));
                
                 TD.Rate = decimal.Parse(dt.Rows[i][2].ToString());
                 TD.Total = decimal.Parse(dt.Rows[i][3].ToString());
@@ -605,9 +614,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 //MessageBox.Show("Transaction successfully completed.");
                 search.Text = "";
                 name.Text = course;
-                email.Text = "Lanternnassi@gmail.com";
-                contact.Text = "0753103488";
-                address.Text = "Masaka";
+                email.Text = "";
+                contact.Text = "";
+                address.Text = "";
                 p_search1.Text = "";
                 p_name.Text = "";
                 p_inventory.Text = "";
@@ -779,14 +788,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     conn.Open();
                     adapter.Fill(dataset, "DataTable_Details2");
                     adapter2.Fill(dataset, "Datatable_invoice");
+                    //Env.account_adapter.Fill(dataset, "DataTable_Company");
                     conn.Close();
 
                     ReportDataSource datasource = new ReportDataSource("DataSet_Report", dataset.Tables[0]);
                     ReportDataSource datasource2 = new ReportDataSource("DataSet_details", dataset.Tables[1]);
+                    //ReportDataSource datasource3 = new ReportDataSource("DataSet_Company", dataset.Tables[2]);
+
 
                     reportViewer1.LocalReport.DataSources.Clear();
                     reportViewer1.LocalReport.DataSources.Add(datasource);
                     reportViewer1.LocalReport.DataSources.Add(datasource2);
+                    //reportViewer1.LocalReport.DataSources.Add(datasource3);
                     this.reportViewer1.RefreshReport();
                 }
                 else
@@ -833,6 +846,91 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private void p_rate_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void materialButton3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void invoice_txtbx_TextChanged(object sender, EventArgs e)
+        {
+            if (invoice_txtbx.Text.Length > 0)
+            {
+                materialButton4.Enabled = true;
+
+            }else
+            {
+                materialButton4.Enabled = false;
+            }
+        }
+
+        private void return_amount_TextChanged(object sender, EventArgs e)
+        {
+            if (return_amount.Text.Length > 0)
+            {
+                materialButton2.Enabled = true;
+            }else
+            {
+                materialButton2.Enabled = false;
+            }
+        }
+
+        private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                materialButton5.Enabled = true;
+            }else
+            {
+                materialButton5.Enabled = false;
+            }
+        }
+
+        private void dataGridView1_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            if (dataGridView1.Rows.Count == 1)
+            {
+                materialButton5.Enabled = true;
+            }
+            else
+            {
+                materialButton5.Enabled = false;
+            }
+        }
+
+        private void materialButton5_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+
+            //Creating a temporary dataTable 
+            DataTable temp_dt = new DataTable();
+            temp_dt.Columns.Add("Served_by");
+            temp_dt.Columns.Add("Grand_total");
+            temp_dt.Columns.Add("Customer_name");
+            temp_dt.Columns.Add("Discount");
+            try
+            {
+                temp_dt.Rows.Add(Login_form.user, grandtotal.Text, name.Text, textBox13.Text);
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Please enter a valid disocunt");
+            }
+            finally
+            {
+
+            }
+            Users user = new Users();
+            Abbey_Trading_Store.Reports.Quotation_Report.QuotationDataSet dataset = new Reports.Quotation_Report.QuotationDataSet();
+
+            ReportDataSource datasource = new ReportDataSource("Overall", temp_dt);
+            ReportDataSource datasource_2 = new ReportDataSource("Products", dt);
+
+            ReportDataSource[] list = { datasource , datasource_2 };
+
+            ReportView form = new ReportView(list, "Abbey_Trading_Store.Reports.Quotation_Report.Report1.rdlc");
+            form.Show();
+            Cursor = Cursors.Default;
         }
     }
 }

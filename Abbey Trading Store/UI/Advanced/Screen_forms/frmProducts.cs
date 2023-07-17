@@ -9,9 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Abbey_Trading_Store.DAL;
 using Abbey_Trading_Store.DAL.DAL_Properties;
 using Abbey_Trading_Store.UI.Advanced.CustomMessageBox;
+using Microsoft.VisualBasic;
 using Newtonsoft.Json.Serialization;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -19,6 +21,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
     public partial class frmProducts : Form
     {
+
+        public bool item_active = false;
+        public DataTable product_changes = new DataTable();
+        public DataGridViewRow product_row = null;
+
         public frmProducts()
         {
             InitializeComponent();
@@ -62,6 +69,12 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             }
 
+            //Initialising the product changes dataTable
+            product_changes.Columns.Add("Type");
+            product_changes.Columns.Add("Product");
+            product_changes.Columns.Add("Initial_price");
+            product_changes.Columns.Add("Set_price");
+
         }
 
         private dynamic Connection()
@@ -90,6 +103,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             rate.Text = "";
             SP_txtbx.Text = "";
             WP.Text = "";
+
+            materialButton1.Enabled = false;
+            materialButton2.Enabled = false;
+            materialButton3.Enabled = false;
 
         }
 
@@ -136,9 +153,22 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 if (check == true)
                 {
                     Cursor = Cursors.Default;
-                    RJMessageBox.Show("Product added successfully",
-                    "Product Management Portal",
-                    MessageBoxButtons.OK);
+
+                    //MessageBox.Show("Product added successfully",
+                    //"Product Management Portal",
+                    //MessageBoxButtons.OK);
+                    if (MessageBox.Show("Product added successfully. Do you wish to send out messages to clients informing them of the new product?", "Product Management", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        // user clicked yes
+                    }
+                    else
+                    {
+
+                        // user clicked no
+                        product_changes.Rows.Add("Add", name.Text," ", "Shs." + SP_txtbx.Text);
+                        materialButton5.Enabled = true;
+                        materialButton5.Text = product_changes.Rows.Count.ToString() + " Changes";
+                    }
                     clear();
                     if (dataGridView1.Rows.Count > 100)
                     {
@@ -192,10 +222,27 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             bool check = await product.UpdateAppropriately();
             if (check == true)
             {
+                item_active = false;
                 Cursor = Cursors.Default;
-                RJMessageBox.Show("Updated product successfully",
-                    "Product Management Portal",
-                    MessageBoxButtons.OK);
+                string old_price = product_row.Cells[5].Value.ToString();
+                if (old_price != SP_txtbx.Text)
+                {
+                    if (MessageBox.Show("Product updated successfully. Do you wish to send out messages to clients informing them of the new changes made immediately?", "Product Management", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        // user clicked yes
+                    }
+                    else
+                    {
+                        // user clicked no
+                        product_changes.Rows.Add("Update", name.Text, "Shs." + old_price, "Shs." + SP_txtbx.Text);
+                        materialButton5.Enabled = true;
+                        materialButton5.Text = product_changes.Rows.Count.ToString() + " Changes";
+                    }
+                } else
+                {
+                    MessageBox.Show("Product updated successfully.");
+                }
+                
                 clear();
 
                 if (dataGridView1.Rows.Count > 100)
@@ -218,7 +265,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     MessageBoxButtons.OK);
             }
             DataTable dt = new DataTable();
-            dynamic adapter = product.SelectAppropriately();
+            dynamic adapter = product.select_2();
             Connection().Open();
             adapter.Fill(dt);
             dataGridView1.DataSource = dt;
@@ -233,6 +280,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             bool check = await product.DeleteAppropriately();
             if (check == true)
             {
+                item_active = false;
                 Cursor = Cursors.Default;
                 RJMessageBox.Show("Product deleted successfully",
                                     "Product Management Portal",
@@ -311,6 +359,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             SP_txtbx.Text = dataGridView1.Rows[row].Cells[5].Value.ToString();
             WP.Text = dataGridView1.Rows[row].Cells[10].Value.ToString();
 
+            materialButton1.Enabled = false;
+            materialButton2.Enabled = true;
+            materialButton3.Enabled = true;
+
         }
 
         private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
@@ -318,6 +370,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             int row = e.RowIndex;
             if (row >= 0)
             {
+                product_row = dataGridView1.Rows[row];
                 id.Text = dataGridView1.Rows[row].Cells[0].Value.ToString();
                 name.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
                 category_comboBox1.Text = dataGridView1.Rows[row].Cells[2].Value.ToString();
@@ -326,8 +379,64 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 SP_txtbx.Text = dataGridView1.Rows[row].Cells[5].Value.ToString();
                 WP.Text = dataGridView1.Rows[row].Cells[10].Value.ToString();
 
+                materialButton1.Enabled = false;
+                materialButton2.Enabled = true;
+                materialButton3.Enabled = true;
+                materialButton6.Enabled = true;
+
             }
 
+
+        }
+
+        private void name_TextChanged(object sender, EventArgs e)
+        {
+            if (name.Text.Length > 0 && !item_active)
+            {
+                materialButton1.Enabled = true;
+
+            }
+            else
+            {
+                materialButton1.Enabled = false;
+            }
+        }
+
+        private void materialButton5_Click(object sender, EventArgs e)
+        {
+            SyncChanges form = new SyncChanges(product_changes);
+            form.Show();
+        }
+
+        private void materialButton6_Click(object sender, EventArgs e)
+        {
+
+            string Reason = Interaction.InputBox("Enter the reason for the change", "Enter the description", "");
+
+            if(Reason != "")
+            {
+                string quantity = Interaction.InputBox("Enter the new Quantity", "Enter quantity", "");
+                if (quantity != "")
+                {
+                    product Product = new product();
+                    bool success = Product.update_product_quantity(Convert.ToInt32(product_row.Cells[0].Value), Convert.ToInt32(quantity), Reason, Login_form.user);
+                    if (success)
+                    {
+                        MessageBox.Show("Quantity updated successfully");
+                        DataTable dt = new DataTable();
+                        dynamic adapter = Product.SelectAppropriately();
+                        Connection().Open();
+                        adapter.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                        Connection().Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occured. Try again later");
+                    }
+                }
+                
+            }
 
         }
     }

@@ -21,10 +21,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
     {
         MaterialTextBox search;
         public string active_user_id;
-        public frmUser(MaterialTextBox search_control)
+        public frmUser()
         {
             InitializeComponent();
-            search = search_control;
+            //search = search_control;
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
 
@@ -48,6 +48,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.gender_cmbx.Text = "";
             added_by.Text = "";
             materialComboBox2.Text = "";
+
+            //
+            materialButton1.Enabled = false;
+            materialButton2.Enabled = false;
+            materialButton3.Enabled = false;
 
         }
 
@@ -120,7 +125,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     Cursor = Cursors.Default;
                     MessageBox.Show("An error occcurred.");
                 }
-                DataTable dt = user.SearchAppropriately(search.Text);
+                DataTable dt = user.SelectAppropriately();
                 dataGridView1.DataSource = dt;
                 clear();
             }
@@ -158,7 +163,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     MessageBox.Show("An error occured...");
                 }
                 clear();
-                search.Text = "";
+               
                 DataTable dt = user.SelectAppropriately();
                 dataGridView1.DataSource = dt;
 
@@ -235,8 +240,25 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 added_by.Text = dataGridView1.Rows[rowindex].Cells[4].Value.ToString();
                 materialComboBox2.Text = dataGridView1.Rows[rowindex].Cells[5].Value.ToString();
                 active_user_id = dataGridView1.Rows[rowindex].Cells[0].Value.ToString();
+
+                //Activating buttons
+                materialButton2.Enabled = true;
+                materialButton3.Enabled = true;
+                materialButton1.Enabled = false;
+
             }
             
+        }
+
+        private void name_TextChanged(object sender, EventArgs e)
+        {
+            if (((name.Text).Length > 0))
+            {
+                materialButton1.Enabled = true;
+            } else
+            {
+                materialButton1.Enabled = false;
+            }
         }
     }
 }

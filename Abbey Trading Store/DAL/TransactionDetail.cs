@@ -22,7 +22,7 @@ namespace Abbey_Trading_Store.DAL
         private int ID;
         private string product_name;
         private decimal rate;
-        private string Qty;
+        private decimal Qty;
         private decimal total;
         private string dea_cust_name;
         private DateTime added_date;
@@ -49,7 +49,7 @@ namespace Abbey_Trading_Store.DAL
                 detail.Rate = value;
             }
         }
-        public string qty { get { return Qty; } set {
+        public decimal qty { get { return Qty; } set {
                 Qty = value;
                 detail.qty = value;
             }
@@ -194,7 +194,7 @@ namespace Abbey_Trading_Store.DAL
             }
             return dt;
         }
-        public DataTable QueryTransactions(DateTime start_date, DateTime end_date, string type, string product_name = null, string customer_name = null, int quantity = 0, string added_by = null)
+        public DataTable QueryTransactions(DateTime start_date, DateTime end_date, string type, string product_name = null, string customer_name = null, decimal quantity = 0, string added_by = null)
         {
             DataTable dt = new DataTable();
             OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
@@ -338,7 +338,7 @@ namespace Abbey_Trading_Store.DAL
             return dt;
         }
 
-        public DataTable QueryTransactions_2(DateTime start_date, DateTime end_date, string type, string product_name = null, string customer_name = null, int quantity = 0, string added_by = null)
+        public DataTable QueryTransactions_2(DateTime start_date, DateTime end_date, string type, string product_name = null, string customer_name = null, decimal quantity = 0, string added_by = null)
         {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
@@ -445,7 +445,7 @@ namespace Abbey_Trading_Store.DAL
 
         }
 
-        public DataTable QueryTransactionsAppropriately(DateTime start_date, DateTime end_date, string type, string product_name = null, string customer_name = null, int quantity = 0, string added_by = null)
+        public DataTable QueryTransactionsAppropriately(DateTime start_date, DateTime end_date, string type, string product_name = null, string customer_name = null, decimal quantity = 0, string added_by = null)
         {
             if (Env.mode == 1)
             {

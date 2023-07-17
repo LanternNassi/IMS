@@ -30,6 +30,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProducts));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label5 = new System.Windows.Forms.Label();
@@ -37,7 +38,6 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new DGV();
             this.panel3 = new System.Windows.Forms.Panel();
             this.search = new MaterialSkin.Controls.MaterialTextBox();
             this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
@@ -51,18 +51,21 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label1 = new System.Windows.Forms.Label();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.WP = new MaterialSkin.Controls.MaterialTextBox2();
+            this.label9 = new System.Windows.Forms.Label();
             this.SP_txtbx = new MaterialSkin.Controls.MaterialTextBox2();
             this.label8 = new System.Windows.Forms.Label();
             this.category_comboBox1 = new MaterialSkin.Controls.MaterialComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.rate = new MaterialSkin.Controls.MaterialTextBox2();
             this.label6 = new System.Windows.Forms.Label();
-            this.WP = new MaterialSkin.Controls.MaterialTextBox2();
-            this.label9 = new System.Windows.Forms.Label();
+            this.materialButton5 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton6 = new MaterialSkin.Controls.MaterialButton();
+            this.dataGridView1 = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -160,33 +163,6 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.panel2.Size = new System.Drawing.Size(809, 366);
             this.panel2.TabIndex = 21;
             // 
-            // dataGridView1
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(809, 366);
-            this.dataGridView1.TabIndex = 24;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.label5);
@@ -203,9 +179,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.search.AnimateReadOnly = false;
             this.search.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.search.Depth = 0;
-            this.search.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.search.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.search.LeadingIcon = global::Abbey_Trading_Store.Properties.Resources.search__1_;
-            this.search.Location = new System.Drawing.Point(819, 26);
+            this.search.Location = new System.Drawing.Point(824, 49);
             this.search.MaxLength = 50;
             this.search.MouseState = MaterialSkin.MouseState.OUT;
             this.search.Multiline = false;
@@ -240,6 +216,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton3.Depth = 0;
+            this.materialButton3.Enabled = false;
             this.materialButton3.HighEmphasis = true;
             this.materialButton3.Icon = global::Abbey_Trading_Store.Properties.Resources.delete;
             this.materialButton3.Location = new System.Drawing.Point(818, 129);
@@ -260,6 +237,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton2.Depth = 0;
+            this.materialButton2.Enabled = false;
             this.materialButton2.HighEmphasis = true;
             this.materialButton2.Icon = global::Abbey_Trading_Store.Properties.Resources.recovery;
             this.materialButton2.Location = new System.Drawing.Point(593, 129);
@@ -327,6 +305,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.name.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.name.TrailingIcon = null;
             this.name.UseSystemPasswordChar = false;
+            this.name.TextChanged += new System.EventHandler(this.name_TextChanged);
             // 
             // id
             // 
@@ -396,6 +375,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton1.Depth = 0;
+            this.materialButton1.Enabled = false;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = global::Abbey_Trading_Store.Properties.Resources.people;
             this.materialButton1.Location = new System.Drawing.Point(398, 129);
@@ -432,6 +412,45 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(262, 572);
             this.panel1.TabIndex = 14;
+            // 
+            // WP
+            // 
+            this.WP.AnimateReadOnly = false;
+            this.WP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.WP.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.WP.Depth = 0;
+            this.WP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.WP.HideSelection = true;
+            this.WP.LeadingIcon = null;
+            this.WP.Location = new System.Drawing.Point(82, 495);
+            this.WP.MaxLength = 32767;
+            this.WP.MouseState = MaterialSkin.MouseState.OUT;
+            this.WP.Name = "WP";
+            this.WP.PasswordChar = '\0';
+            this.WP.PrefixSuffixText = null;
+            this.WP.ReadOnly = false;
+            this.WP.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.WP.SelectedText = "";
+            this.WP.SelectionLength = 0;
+            this.WP.SelectionStart = 0;
+            this.WP.ShortcutsEnabled = true;
+            this.WP.Size = new System.Drawing.Size(177, 48);
+            this.WP.TabIndex = 22;
+            this.WP.TabStop = false;
+            this.WP.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.WP.TrailingIcon = null;
+            this.WP.UseSystemPasswordChar = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.label9.Location = new System.Drawing.Point(3, 505);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(68, 17);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "Wholesale";
             // 
             // SP_txtbx
             // 
@@ -546,50 +565,82 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label6.Text = "Rate";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
-            // WP
+            // materialButton5
             // 
-            this.WP.AnimateReadOnly = false;
-            this.WP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.WP.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.WP.Depth = 0;
-            this.WP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.WP.HideSelection = true;
-            this.WP.LeadingIcon = null;
-            this.WP.Location = new System.Drawing.Point(82, 495);
-            this.WP.MaxLength = 32767;
-            this.WP.MouseState = MaterialSkin.MouseState.OUT;
-            this.WP.Name = "WP";
-            this.WP.PasswordChar = '\0';
-            this.WP.PrefixSuffixText = null;
-            this.WP.ReadOnly = false;
-            this.WP.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.WP.SelectedText = "";
-            this.WP.SelectionLength = 0;
-            this.WP.SelectionStart = 0;
-            this.WP.ShortcutsEnabled = true;
-            this.WP.Size = new System.Drawing.Size(177, 48);
-            this.WP.TabIndex = 22;
-            this.WP.TabStop = false;
-            this.WP.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.WP.TrailingIcon = null;
-            this.WP.UseSystemPasswordChar = false;
+            this.materialButton5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton5.Depth = 0;
+            this.materialButton5.Enabled = false;
+            this.materialButton5.HighEmphasis = true;
+            this.materialButton5.Icon = ((System.Drawing.Image)(resources.GetObject("materialButton5.Icon")));
+            this.materialButton5.Location = new System.Drawing.Point(955, 4);
+            this.materialButton5.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton5.Name = "materialButton5";
+            this.materialButton5.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton5.Size = new System.Drawing.Size(129, 36);
+            this.materialButton5.TabIndex = 22;
+            this.materialButton5.Text = "0 Changes";
+            this.materialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton5.UseAccentColor = false;
+            this.materialButton5.UseVisualStyleBackColor = true;
+            this.materialButton5.Click += new System.EventHandler(this.materialButton5_Click);
             // 
-            // label9
+            // materialButton6
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label9.Location = new System.Drawing.Point(3, 505);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(68, 17);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "Wholesale";
+            this.materialButton6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton6.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton6.Depth = 0;
+            this.materialButton6.Enabled = false;
+            this.materialButton6.HighEmphasis = true;
+            this.materialButton6.Icon = global::Abbey_Trading_Store.Properties.Resources.recovery;
+            this.materialButton6.Location = new System.Drawing.Point(818, 6);
+            this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton6.Name = "materialButton6";
+            this.materialButton6.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton6.Size = new System.Drawing.Size(107, 36);
+            this.materialButton6.TabIndex = 23;
+            this.materialButton6.Text = "Alt Qty";
+            this.materialButton6.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton6.UseAccentColor = false;
+            this.materialButton6.UseVisualStyleBackColor = true;
+            this.materialButton6.Click += new System.EventHandler(this.materialButton6_Click);
+            // 
+            // dataGridView1
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(809, 366);
+            this.dataGridView1.TabIndex = 24;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
             // 
             // frmProducts
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1130, 572);
+            this.Controls.Add(this.materialButton6);
+            this.Controls.Add(this.materialButton5);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.search);
@@ -603,11 +654,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.Text = "frmProducts";
             this.Load += new System.EventHandler(this.frmProducts_Load);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -638,8 +689,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private System.Windows.Forms.Label label8;
         private MaterialSkin.Controls.MaterialComboBox category_comboBox1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private MaterialSkin.Controls.MaterialTextBox2 WP;
         private System.Windows.Forms.Label label9;
+        private DGV dataGridView1;
+        private MaterialSkin.Controls.MaterialButton materialButton5;
+        private MaterialSkin.Controls.MaterialButton materialButton6;
     }
 }

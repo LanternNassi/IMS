@@ -13,6 +13,8 @@ using MaterialSkin;
 using Abbey_Trading_Store.UI.Advanced.Screen_forms;
 using System.Net;
 using System.Threading;
+using Abbey_Trading_Store.DAL.DAL_Properties;
+using Abbey_Trading_Store.DAL;
 
 namespace Abbey_Trading_Store.UI.Advanced
 {
@@ -41,6 +43,12 @@ namespace Abbey_Trading_Store.UI.Advanced
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+
+            //DataTable dt = new DataTable();
+            //Env.account_adapter.Fill(dt);
+
+            //CompanyName.Text = dt.Rows[0][1].ToString();
+
         }
 
         
@@ -50,7 +58,7 @@ namespace Abbey_Trading_Store.UI.Advanced
             pnlNav.Top = btnDashboard.Top;
             pnlNav.Left = btnDashboard.Left;
             btnDashboard.BackColor = Color.FromArgb(46, 51, 73);
-            search.Visible = true;
+            //search.Visible = true;
             lblTitle.Text = "Overview";
             this.pnlform.Controls.Clear();
             Overview FrmDashboard_Vrb = new Overview() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
@@ -62,18 +70,57 @@ namespace Abbey_Trading_Store.UI.Advanced
         private void Dashboard_Load(object sender, EventArgs e)
         {
 
-            pnlNav.Height = btnDashboard.Height;
-            pnlNav.Top = btnDashboard.Top;
-            pnlNav.Left = btnDashboard.Left;
-            btnDashboard.BackColor = Color.FromArgb(46, 51, 73);
-            search.Visible = true;
-            lblTitle.Text = "Overview";
-            this.pnlform.Controls.Clear();
-            Overview FrmDashboard_Vrb = new Overview() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            FrmDashboard_Vrb.FormBorderStyle = FormBorderStyle.None;
-            this.pnlform.Controls.Add(FrmDashboard_Vrb);
-            FrmDashboard_Vrb.Show();
-            Username.Text = Login_form.user;
+            if (Login_form.account_type == "admin")
+            {
+                //Switching on the panels
+                btnDashboard.Enabled = true;
+                btnUsers.Enabled = true;
+                btnCategories.Enabled = true;
+                btnProducts.Enabled = true;
+                btnCustomers.Enabled = true;
+                btnTransactions.Enabled = true;
+                btnPurchases.Enabled = true;
+                button1.Enabled = true;
+                button2.Enabled= true;
+                materialButton2.Enabled = true;
+                materialButton3.Enabled = true;
+                materialButton4.Enabled = true;
+
+                pnlNav.Height = btnDashboard.Height;
+                pnlNav.Top = btnDashboard.Top;
+                pnlNav.Left = btnDashboard.Left;
+                btnDashboard.BackColor = Color.FromArgb(46, 51, 73);
+                //search.Visible = true;
+                lblTitle.Text = "Overview";
+                this.pnlform.Controls.Clear();
+                Overview FrmDashboard_Vrb = new Overview() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+                FrmDashboard_Vrb.FormBorderStyle = FormBorderStyle.None;
+                this.pnlform.Controls.Add(FrmDashboard_Vrb);
+                FrmDashboard_Vrb.Show();
+                Username.Text = Login_form.user;
+
+                //Getting the quick fixes 
+                product Product = new product();
+                DataTable dt = Product.Select_Modifications();
+                materialButton4.Text = "Quick fixes (" + dt.Rows.Count.ToString() + ")";
+            }
+            else
+            {
+                pnlNav.Height = btnSales.Height;
+                pnlNav.Top = btnSales.Top;
+                pnlNav.Left = btnSales.Left;
+                btnSales.BackColor = Color.FromArgb(46, 51, 73);
+                lblTitle.Text = "Sales";
+                this.pnlform.Controls.Clear();
+                Username.Text = Login_form.user;
+                Screen_forms.frmPurchaseAndSales FrmSales = new Screen_forms.frmPurchaseAndSales("Sales") { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+                FrmSales.FormBorderStyle = FormBorderStyle.None;
+                this.pnlform.Controls.Add(FrmSales);
+                FrmSales.Show();
+
+            }
+
+            
         }
 
         
@@ -84,11 +131,11 @@ namespace Abbey_Trading_Store.UI.Advanced
             pnlNav.Top = btnUsers.Top;
             pnlNav.Left = btnUsers.Left;
             btnUsers.BackColor = Color.FromArgb(46, 51, 73);
-            search.Visible = true;
+            //search.Visible = true;
             lblTitle.Text = "Users";
             this.pnlform.Controls.Clear();
             //registrationForm FrmDashboard_Vrb = new registrationForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            frmUser FrmDashboard_Vrb = new frmUser(this.search) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            frmUser FrmDashboard_Vrb = new frmUser() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             FrmDashboard_Vrb.FormBorderStyle = FormBorderStyle.None;
             this.pnlform.Controls.Add(FrmDashboard_Vrb);
             FrmDashboard_Vrb.Show();
@@ -98,7 +145,7 @@ namespace Abbey_Trading_Store.UI.Advanced
 
         private void btnCategories_Click(object sender, EventArgs e)
         {
-            search.Visible = false;
+            //search.Visible = false;
             pnlNav.Height = btnCategories.Height;
             pnlNav.Top = btnCategories.Top;
             pnlNav.Left = btnCategories.Left;
@@ -231,6 +278,9 @@ namespace Abbey_Trading_Store.UI.Advanced
         private void label4_Click(object sender, EventArgs e)
         {
             this.Close();
+            Login_form form = new Login_form();
+            form.Show();
+            
         }
 
         private void btnSales_Click(object sender, EventArgs e)
@@ -299,6 +349,18 @@ namespace Abbey_Trading_Store.UI.Advanced
         private void materialButton1_Click(object sender, EventArgs e)
         {
             QuickProducts form = new QuickProducts();
+            form.Show();
+        }
+
+        private void materialButton3_Click(object sender, EventArgs e)
+        {
+            DealerAndCustomer cust = new DealerAndCustomer();
+            DataTable dt = cust.BulkSendCustomerContacts();
+        }
+
+        private void materialButton4_Click(object sender, EventArgs e)
+        {
+            Modifications form = new Modifications();
             form.Show();
         }
     }
