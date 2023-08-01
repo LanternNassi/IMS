@@ -50,11 +50,11 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlform = new System.Windows.Forms.Panel();
             this.CompanyName = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -384,16 +384,6 @@
             this.CompanyName.TabIndex = 9;
             this.CompanyName.Text = "MMAK AGRO CHEMICALS";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1299, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(19, 21);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "X";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
             // materialButton4
             // 
             this.materialButton4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -402,7 +392,7 @@
             this.materialButton4.Enabled = false;
             this.materialButton4.HighEmphasis = true;
             this.materialButton4.Icon = ((System.Drawing.Image)(resources.GetObject("materialButton4.Icon")));
-            this.materialButton4.Location = new System.Drawing.Point(1142, 79);
+            this.materialButton4.Location = new System.Drawing.Point(1182, 79);
             this.materialButton4.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton4.Name = "materialButton4";
@@ -464,7 +454,7 @@
             this.materialButton2.Enabled = false;
             this.materialButton2.HighEmphasis = true;
             this.materialButton2.Icon = global::Abbey_Trading_Store.Properties.Resources.settings;
-            this.materialButton2.Location = new System.Drawing.Point(1113, 15);
+            this.materialButton2.Location = new System.Drawing.Point(1131, 16);
             this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton2.Name = "materialButton2";
@@ -477,16 +467,28 @@
             this.materialButton2.UseVisualStyleBackColor = true;
             this.materialButton2.Click += new System.EventHandler(this.materialButton2_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(1307, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 24);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "-";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(53)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1330, 710);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.materialButton4);
             this.Controls.Add(this.materialButton3);
             this.Controls.Add(this.materialButton1);
             this.Controls.Add(this.materialButton2);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.CompanyName);
             this.Controls.Add(this.pnlform);
             this.Controls.Add(this.lblTitle);
@@ -531,7 +533,6 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlform;
         private System.Windows.Forms.Label CompanyName;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private MaterialSkin.Controls.MaterialButton materialButton2;
@@ -539,5 +540,6 @@
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private MaterialSkin.Controls.MaterialButton materialButton3;
         private MaterialSkin.Controls.MaterialButton materialButton4;
+        private System.Windows.Forms.Label label1;
     }
 }

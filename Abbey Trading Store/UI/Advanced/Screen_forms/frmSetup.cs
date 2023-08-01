@@ -130,8 +130,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             string output = string.Empty;
             pathUser = pathUser.Replace("\\", "/");
-            //string filePath = "https://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x86_ENU_2012.exe";
-            string filePath = "http://192.168.43.90:8080/SQLEXPR_x86_ENU_2012.exe";
+            string filePath = "https://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x86_ENU_2012.exe";
+            //string filePath = "http://192.168.43.90:8080/SQLEXPR_x86_ENU_2012.exe";
             var files = filePath.Split('/');
             pathUser = pathUser + @"/" + files[files.Count() - 1];
             wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);

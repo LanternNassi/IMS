@@ -217,7 +217,20 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             product.Description = description.Text;
             product.Rate = decimal.Parse(rate.Text);
             product.Selling_price = decimal.Parse(SP_txtbx.Text);
-            product.Wholesale_price = decimal.Parse(WP.Text);
+            try
+            {
+                product.Wholesale_price = decimal.Parse(WP.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please validate your wholesale price.");
+                Cursor = Cursors.Default;
+                return;
+            }
+            finally
+            {
+                
+            }
             product.Added_by = Login_form.user;
             bool check = await product.UpdateAppropriately();
             if (check == true)

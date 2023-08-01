@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Runtime.CompilerServices;
+using AfricasTalkingCS;
+
+
 
 namespace Abbey_Trading_Store.DAL.DAL_Properties
 {
@@ -32,9 +35,18 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         public static string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=IMS;Integrated Security=True;TrustServerCertificate=True";
 
         //Loading the account information
-        
+
         //public static SqlDataAdapter account_adapter = BusinessAccount.Select();
-        
+
+        //AfricasTalking info
+        public static string MessageLiveUri = "https://api.africastalking.com/version1/messaging";
+        public static string MessageAPIKey = "aa89df14cd9e0d7227966787a7d3147856382952dd919ae9b0c8bcbe0dc88472";
+        public static string MessageUsername = "MMAK";
+        public static string MessageFrom = null;
+
+        public static dynamic MessageGateway = new AfricasTalkingGateway(MessageUsername, MessageAPIKey);
+
+
 
 
 

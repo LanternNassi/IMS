@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Abbey_Trading_Store.DAL.DAL_Properties;
 using Newtonsoft.Json;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using AfricasTalkingCS;
 
 namespace Abbey_Trading_Store.DAL
 {
@@ -649,7 +650,7 @@ namespace Abbey_Trading_Store.DAL
 
             try
             {
-                string contact = "SELECT Contact FROM DealerCust WHERE type = 'Customer' AND NOT (Contact = '0753103488' OR Contact = '')";
+                string contact = "SELECT Name , Contact FROM DealerCust WHERE type = 'Customer' AND NOT (Contact = '0753103488' OR Contact = '')";
                 SqlDataAdapter adapter = new SqlDataAdapter(contact, conn);
                 adapter.Fill(dt);
 
@@ -665,27 +666,84 @@ namespace Abbey_Trading_Store.DAL
             return dt;
         }
 
-        public bool SendMessage(DataTable dt , string Message)
+        public bool SendMessage(DataTable dt , string Message , bool Bulk = true)
         {
             bool sent = false;
             try
             {
-                //Converting to a string 
+
                 string phonebook = "";
                 foreach (DataRow row in dt.Rows)
                 {
                     if (phonebook == "")
                     {
-                        phonebook += Contact_Cleaner(row[0].ToString());
+                        phonebook += Contact_Cleaner(row[1].ToString());
                     }
                     else
                     {
-                        phonebook += ("," + Contact_Cleaner(row[0].ToString()));
+                        phonebook += ("," + Contact_Cleaner(row[1].ToString()));
 
                     }
                 }
                 MessageBox.Show(phonebook);
 
+                string temp_phone = "+256758989094";
+
+                //Converting to a string 
+                if (Bulk)
+                {
+                    
+
+                    //Sending the message via AfricasTalking
+                    var sms = Env.MessageGateway.SendMessage(temp_phone, Message);
+                    foreach (var res in sms["SMSMessageData"]["Recipients"])
+                    {
+                        Console.WriteLine((string)res["status"] + ": ");
+                        Console.WriteLine((string)res["number"]);
+
+
+                    }
+                    sent = true;
+
+
+                } else
+                {
+
+                    foreach(DataRow dr in dt.Rows)
+                    {
+                        string new_message = Message;
+
+                        //Checking whether the name is mentioned somewhere
+                        if (new_message.Contains("<<Name>>"))
+                        {
+                            new_message = new_message.Replace("<<Name>>", dr[0].ToString());
+                        }
+
+                        //Checking whether the contact is mentioned somewhere
+                        if (new_message.Contains("<<Contact>>"))
+                        {
+                            new_message = new_message.Replace("<<Contact>>", Contact_Cleaner(dr[1].ToString()));
+                        }
+
+                        MessageBox.Show(new_message);
+
+                        //Sending the message via AfricasTalking
+                        //var sms = Env.MessageGateway.SendMessage(temp_phone, new_message);
+                        //foreach (var res in sms["SMSMessageData"]["Recipients"])
+                        //{
+                        //    Console.WriteLine((string)res["status"] + ": ");
+                        //    Console.WriteLine((string)res["number"]);
+
+
+                        //}
+                        
+
+                    }
+                    sent = true;
+
+
+                }
+                
 
             }
             catch(Exception ex)
@@ -698,6 +756,7 @@ namespace Abbey_Trading_Store.DAL
             }
             return sent;
         }
+
 
          
 

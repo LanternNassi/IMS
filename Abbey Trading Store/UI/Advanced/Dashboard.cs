@@ -40,9 +40,22 @@ namespace Abbey_Trading_Store.UI.Advanced
         public Dashboard()
         {
             InitializeComponent();
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            //this.Size = Screen.PrimaryScreen.Bounds.Size;
+
+            System.Drawing.Rectangle workingRectangle =
+                Screen.PrimaryScreen.WorkingArea;
+
+            // Set the size of the form slightly less than size of 
+            // working rectangle.
+            this.Size = new System.Drawing.Size(
+                workingRectangle.Width - 10 , workingRectangle.Height - 10);
+
+            // Set the location so the entire form is visible.
+            this.Location = new System.Drawing.Point(5, 5);
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
+
 
             //DataTable dt = new DataTable();
             //Env.account_adapter.Fill(dt);
@@ -51,7 +64,7 @@ namespace Abbey_Trading_Store.UI.Advanced
 
         }
 
-        
+
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             pnlNav.Height = btnDashboard.Height;
@@ -354,14 +367,24 @@ namespace Abbey_Trading_Store.UI.Advanced
 
         private void materialButton3_Click(object sender, EventArgs e)
         {
-            DealerAndCustomer cust = new DealerAndCustomer();
-            DataTable dt = cust.BulkSendCustomerContacts();
+            //DealerAndCustomer cust = new DealerAndCustomer();
+            //DataTable dt = cust.BulkSendCustomerContacts();
+            //bool success = cust.SendMessage(dt, "Hello <<Name>> , How are you doing from MMAK Agro Chemicals . Is <<Contact>> your phone number ?" , false);
+            CustomMessage form = new CustomMessage();
+            form.Show();
+
+
         }
 
         private void materialButton4_Click(object sender, EventArgs e)
         {
             Modifications form = new Modifications();
             form.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

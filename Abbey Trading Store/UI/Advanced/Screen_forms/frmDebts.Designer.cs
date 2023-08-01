@@ -443,7 +443,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -452,8 +452,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.DebtsDGV.Location = new System.Drawing.Point(0, 20);
             this.DebtsDGV.Name = "DebtsDGV";
             this.DebtsDGV.RowHeadersVisible = false;
+            this.DebtsDGV.RowTemplate.Height = 30;
             this.DebtsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DebtsDGV.Size = new System.Drawing.Size(815, 217);
+            this.DebtsDGV.Size = new System.Drawing.Size(830, 217);
             this.DebtsDGV.TabIndex = 24;
             this.DebtsDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DebtsDGV_CellClick_1);
             // 
@@ -489,7 +490,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.TRACKDGV.Name = "TRACKDGV";
             this.TRACKDGV.RowHeadersVisible = false;
             this.TRACKDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.TRACKDGV.Size = new System.Drawing.Size(799, 151);
+            this.TRACKDGV.Size = new System.Drawing.Size(827, 151);
             this.TRACKDGV.TabIndex = 24;
             // 
             // searchtxtbx
