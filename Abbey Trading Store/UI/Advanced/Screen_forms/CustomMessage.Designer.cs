@@ -34,23 +34,24 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomMessage));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.materialCheckbox3 = new MaterialSkin.Controls.MaterialCheckbox();
+            this.materialCheckbox2 = new MaterialSkin.Controls.MaterialCheckbox();
+            this.materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.materialTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.materialMultiLineTextBox21 = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
-            this.materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
-            this.materialCheckbox2 = new MaterialSkin.Controls.MaterialCheckbox();
-            this.materialCheckbox3 = new MaterialSkin.Controls.MaterialCheckbox();
             this.Username = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.materialTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
+            this.SendProgress = new CircularProgressBar.CircularProgressBar();
             this.dgv1 = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.dataGridView1 = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -65,6 +66,57 @@
             this.panel1.Size = new System.Drawing.Size(901, 78);
             this.panel1.TabIndex = 0;
             // 
+            // materialCheckbox3
+            // 
+            this.materialCheckbox3.AutoSize = true;
+            this.materialCheckbox3.Depth = 0;
+            this.materialCheckbox3.Location = new System.Drawing.Point(684, 26);
+            this.materialCheckbox3.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckbox3.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckbox3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckbox3.Name = "materialCheckbox3";
+            this.materialCheckbox3.ReadOnly = false;
+            this.materialCheckbox3.Ripple = true;
+            this.materialCheckbox3.Size = new System.Drawing.Size(137, 37);
+            this.materialCheckbox3.TabIndex = 2;
+            this.materialCheckbox3.Text = "All Customers ";
+            this.materialCheckbox3.UseVisualStyleBackColor = true;
+            this.materialCheckbox3.CheckedChanged += new System.EventHandler(this.materialCheckbox3_CheckedChanged);
+            // 
+            // materialCheckbox2
+            // 
+            this.materialCheckbox2.AutoSize = true;
+            this.materialCheckbox2.Depth = 0;
+            this.materialCheckbox2.Location = new System.Drawing.Point(412, 26);
+            this.materialCheckbox2.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckbox2.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckbox2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckbox2.Name = "materialCheckbox2";
+            this.materialCheckbox2.ReadOnly = false;
+            this.materialCheckbox2.Ripple = true;
+            this.materialCheckbox2.Size = new System.Drawing.Size(131, 37);
+            this.materialCheckbox2.TabIndex = 1;
+            this.materialCheckbox2.Text = "Only Selected";
+            this.materialCheckbox2.UseVisualStyleBackColor = true;
+            this.materialCheckbox2.CheckedChanged += new System.EventHandler(this.materialCheckbox2_CheckedChanged);
+            // 
+            // materialCheckbox1
+            // 
+            this.materialCheckbox1.AutoSize = true;
+            this.materialCheckbox1.Depth = 0;
+            this.materialCheckbox1.Location = new System.Drawing.Point(29, 26);
+            this.materialCheckbox1.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckbox1.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckbox1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckbox1.Name = "materialCheckbox1";
+            this.materialCheckbox1.ReadOnly = false;
+            this.materialCheckbox1.Ripple = true;
+            this.materialCheckbox1.Size = new System.Drawing.Size(248, 37);
+            this.materialCheckbox1.TabIndex = 0;
+            this.materialCheckbox1.Text = "All Customers Except Selected";
+            this.materialCheckbox1.UseVisualStyleBackColor = true;
+            this.materialCheckbox1.CheckedChanged += new System.EventHandler(this.materialCheckbox1_CheckedChanged);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.materialTextBox1);
@@ -73,6 +125,34 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(411, 288);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // materialTextBox1
+            // 
+            this.materialTextBox1.AnimateReadOnly = false;
+            this.materialTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.materialTextBox1.Depth = 0;
+            this.materialTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialTextBox1.LeadingIcon = global::Abbey_Trading_Store.Properties.Resources.search;
+            this.materialTextBox1.Location = new System.Drawing.Point(12, 7);
+            this.materialTextBox1.MaxLength = 50;
+            this.materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialTextBox1.Multiline = false;
+            this.materialTextBox1.Name = "materialTextBox1";
+            this.materialTextBox1.Size = new System.Drawing.Size(375, 50);
+            this.materialTextBox1.TabIndex = 1;
+            this.materialTextBox1.Text = "";
+            this.materialTextBox1.TrailingIcon = null;
+            this.materialTextBox1.TextChanged += new System.EventHandler(this.materialTextBox1_TextChanged);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.dataGridView1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 69);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(411, 219);
+            this.panel4.TabIndex = 0;
             // 
             // panel3
             // 
@@ -114,7 +194,7 @@
             this.materialButton1.Depth = 0;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(754, 488);
+            this.materialButton1.Location = new System.Drawing.Point(769, 494);
             this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
@@ -125,57 +205,7 @@
             this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton1.UseAccentColor = false;
             this.materialButton1.UseVisualStyleBackColor = true;
-            // 
-            // materialCheckbox1
-            // 
-            this.materialCheckbox1.AutoSize = true;
-            this.materialCheckbox1.Depth = 0;
-            this.materialCheckbox1.Location = new System.Drawing.Point(29, 26);
-            this.materialCheckbox1.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCheckbox1.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialCheckbox1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCheckbox1.Name = "materialCheckbox1";
-            this.materialCheckbox1.ReadOnly = false;
-            this.materialCheckbox1.Ripple = true;
-            this.materialCheckbox1.Size = new System.Drawing.Size(248, 37);
-            this.materialCheckbox1.TabIndex = 0;
-            this.materialCheckbox1.Text = "All Customers Except Selected";
-            this.materialCheckbox1.UseVisualStyleBackColor = true;
-            this.materialCheckbox1.CheckedChanged += new System.EventHandler(this.materialCheckbox1_CheckedChanged);
-            // 
-            // materialCheckbox2
-            // 
-            this.materialCheckbox2.AutoSize = true;
-            this.materialCheckbox2.Depth = 0;
-            this.materialCheckbox2.Location = new System.Drawing.Point(412, 26);
-            this.materialCheckbox2.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCheckbox2.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialCheckbox2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCheckbox2.Name = "materialCheckbox2";
-            this.materialCheckbox2.ReadOnly = false;
-            this.materialCheckbox2.Ripple = true;
-            this.materialCheckbox2.Size = new System.Drawing.Size(131, 37);
-            this.materialCheckbox2.TabIndex = 1;
-            this.materialCheckbox2.Text = "Only Selected";
-            this.materialCheckbox2.UseVisualStyleBackColor = true;
-            this.materialCheckbox2.CheckedChanged += new System.EventHandler(this.materialCheckbox2_CheckedChanged);
-            // 
-            // materialCheckbox3
-            // 
-            this.materialCheckbox3.AutoSize = true;
-            this.materialCheckbox3.Depth = 0;
-            this.materialCheckbox3.Location = new System.Drawing.Point(684, 26);
-            this.materialCheckbox3.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCheckbox3.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialCheckbox3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCheckbox3.Name = "materialCheckbox3";
-            this.materialCheckbox3.ReadOnly = false;
-            this.materialCheckbox3.Ripple = true;
-            this.materialCheckbox3.Size = new System.Drawing.Size(137, 37);
-            this.materialCheckbox3.TabIndex = 2;
-            this.materialCheckbox3.Text = "All Customers ";
-            this.materialCheckbox3.UseVisualStyleBackColor = true;
-            this.materialCheckbox3.CheckedChanged += new System.EventHandler(this.materialCheckbox3_CheckedChanged);
+            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
             // 
             // Username
             // 
@@ -199,32 +229,37 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Enter the message";
             // 
-            // panel4
+            // SendProgress
             // 
-            this.panel4.Controls.Add(this.dataGridView1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 69);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(411, 219);
-            this.panel4.TabIndex = 0;
-            // 
-            // materialTextBox1
-            // 
-            this.materialTextBox1.AnimateReadOnly = false;
-            this.materialTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox1.Depth = 0;
-            this.materialTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTextBox1.LeadingIcon = global::Abbey_Trading_Store.Properties.Resources.search;
-            this.materialTextBox1.Location = new System.Drawing.Point(12, 7);
-            this.materialTextBox1.MaxLength = 50;
-            this.materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox1.Multiline = false;
-            this.materialTextBox1.Name = "materialTextBox1";
-            this.materialTextBox1.Size = new System.Drawing.Size(375, 50);
-            this.materialTextBox1.TabIndex = 1;
-            this.materialTextBox1.Text = "";
-            this.materialTextBox1.TrailingIcon = null;
-            this.materialTextBox1.TextChanged += new System.EventHandler(this.materialTextBox1_TextChanged);
+            this.SendProgress.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.CircularEaseIn;
+            this.SendProgress.AnimationSpeed = 500;
+            this.SendProgress.BackColor = System.Drawing.Color.Transparent;
+            this.SendProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SendProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.SendProgress.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.SendProgress.InnerMargin = 2;
+            this.SendProgress.InnerWidth = -1;
+            this.SendProgress.Location = new System.Drawing.Point(781, 395);
+            this.SendProgress.MarqueeAnimationSpeed = 2000;
+            this.SendProgress.Name = "SendProgress";
+            this.SendProgress.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.SendProgress.OuterMargin = -25;
+            this.SendProgress.OuterWidth = 26;
+            this.SendProgress.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.SendProgress.ProgressWidth = 10;
+            this.SendProgress.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SendProgress.Size = new System.Drawing.Size(92, 90);
+            this.SendProgress.StartAngle = 270;
+            this.SendProgress.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.SendProgress.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
+            this.SendProgress.SubscriptText = "";
+            this.SendProgress.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.SendProgress.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
+            this.SendProgress.SuperscriptText = "";
+            this.SendProgress.TabIndex = 7;
+            this.SendProgress.Text = "0%";
+            this.SendProgress.TextMargin = new System.Windows.Forms.Padding(4, 4, 0, 0);
+            this.SendProgress.Value = 1;
             // 
             // dgv1
             // 
@@ -288,6 +323,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(53)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(925, 539);
+            this.Controls.Add(this.SendProgress);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Username);
             this.Controls.Add(this.materialButton1);
@@ -304,8 +340,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -329,5 +365,6 @@
         private DAL.DAL_Properties.DGV dgv1;
         private MaterialSkin.Controls.MaterialTextBox materialTextBox1;
         private System.Windows.Forms.Panel panel4;
+        private CircularProgressBar.CircularProgressBar SendProgress;
     }
 }

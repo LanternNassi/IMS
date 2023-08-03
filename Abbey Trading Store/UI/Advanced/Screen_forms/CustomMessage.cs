@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,7 +25,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private void CustomMessage_Load(object sender, EventArgs e)
         {
             DealerAndCustomer cust = new DealerAndCustomer();
-            dt = cust.Select_2();
+            dt = cust.BulkSendCustomerContacts();
             dataGridView1.DataSource = dt;
 
             //
@@ -174,6 +175,61 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 this.materialCheckbox3.Checked = true;
                 this.materialCheckbox3.CheckState = System.Windows.Forms.CheckState.Checked;
             }
+        }
+
+        public void updateSendMessageProgress(int value)
+        {
+            SendProgress.Value = value;
+            SendProgress.Text = value + "%";
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            if(materialMultiLineTextBox21.Text == "")
+            {
+                MessageBox.Show("Please enter the message before sending");
+            }else
+            {
+                //Determining what is selected
+                DataTable chosen_dt = new DataTable();
+                if(this.materialCheckbox1.CheckState.ToString() == "Checked")
+                {
+                    chosen_dt = dt;
+                }else if (this.materialCheckbox2.CheckState.ToString() == "Checked")
+                {
+                    chosen_dt = selected;
+                }
+                else
+                {
+                    if (selected.Rows.Count > 0)
+                    {
+                        foreach(DataRow dr in selected.Rows)
+                        {
+                            dt.ImportRow(dr);
+                        }
+                        selected.Clear();
+                    }
+
+                    chosen_dt = dt;
+
+                }
+
+                DealerAndCustomer cust = new DealerAndCustomer();
+                bool success = cust.SendMessage(chosen_dt, materialMultiLineTextBox21.Text, updateSendMessageProgress , false);
+                if (success)
+                {
+                    MessageBox.Show(chosen_dt.Rows.Count + " Messages sent successfully");
+                }
+                else
+                {
+                    MessageBox.Show("An error occured.Try again later");
+                }
+            }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

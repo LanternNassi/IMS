@@ -14,6 +14,7 @@ using Abbey_Trading_Store.DAL.DAL_Properties;
 using Newtonsoft.Json;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using AfricasTalkingCS;
+using MaterialSkin.Controls;
 
 namespace Abbey_Trading_Store.DAL
 {
@@ -635,11 +636,18 @@ namespace Abbey_Trading_Store.DAL
 
         private string Contact_Cleaner(string Contact)
         {
-            if (Contact.Contains("/"))
+            if (Contact != "")
             {
-                Contact = Contact.Substring(0,10);
+                if (Contact.Contains("/"))
+                {
+                    Contact = Contact.Substring(0, 10);
+                }
+                return "+256" + Contact.Remove(0, 1);
             }
-            return "+256" + Contact.Remove(0, 1);
+
+            return "";
+            
+            
         }
 
         public DataTable BulkSendCustomerContacts()
@@ -650,7 +658,7 @@ namespace Abbey_Trading_Store.DAL
 
             try
             {
-                string contact = "SELECT Name , Contact FROM DealerCust WHERE type = 'Customer' AND NOT (Contact = '0753103488' OR Contact = '')";
+                string contact = "SELECT * FROM DealerCust WHERE type = 'Customer' AND NOT (Contact = '0753103488' OR Contact = '')";
                 SqlDataAdapter adapter = new SqlDataAdapter(contact, conn);
                 adapter.Fill(dt);
 
@@ -666,7 +674,7 @@ namespace Abbey_Trading_Store.DAL
             return dt;
         }
 
-        public bool SendMessage(DataTable dt , string Message , bool Bulk = true)
+        public bool SendMessage(DataTable dt , string Message , Action<int>UpdateProgress , bool Bulk = true)
         {
             bool sent = false;
             try
@@ -677,15 +685,15 @@ namespace Abbey_Trading_Store.DAL
                 {
                     if (phonebook == "")
                     {
-                        phonebook += Contact_Cleaner(row[1].ToString());
+                        phonebook += Contact_Cleaner(row[4].ToString());
                     }
                     else
                     {
-                        phonebook += ("," + Contact_Cleaner(row[1].ToString()));
+                        phonebook += ("," + Contact_Cleaner(row[4].ToString()));
 
                     }
                 }
-                MessageBox.Show(phonebook);
+                //MessageBox.Show(phonebook);
 
                 string temp_phone = "+256758989094";
 
@@ -709,6 +717,8 @@ namespace Abbey_Trading_Store.DAL
                 } else
                 {
 
+                    int dt_index = 1;
+
                     foreach(DataRow dr in dt.Rows)
                     {
                         string new_message = Message;
@@ -716,16 +726,41 @@ namespace Abbey_Trading_Store.DAL
                         //Checking whether the name is mentioned somewhere
                         if (new_message.Contains("<<Name>>"))
                         {
-                            new_message = new_message.Replace("<<Name>>", dr[0].ToString());
+                            new_message = new_message.Replace("<<Name>>", dr[2].ToString());
                         }
 
                         //Checking whether the contact is mentioned somewhere
                         if (new_message.Contains("<<Contact>>"))
                         {
-                            new_message = new_message.Replace("<<Contact>>", Contact_Cleaner(dr[1].ToString()));
+                            new_message = new_message.Replace("<<Contact>>", Contact_Cleaner(dr[4].ToString()));
                         }
 
-                        MessageBox.Show(new_message);
+                        // Email
+                        if (new_message.Contains("<<Email>>"))
+                        {
+                            new_message = new_message.Replace("<<Email>>", dr[3].ToString());
+
+                        }
+
+                        if (dt_index == 1)
+                        {
+                            if (MessageBox.Show(new_message, "Sample Message " + dt_index, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                // user clicked yes
+                               
+                            }
+                            else
+                            {
+                                return false;
+
+                            }
+
+                        }
+
+                        UpdateProgress(dt_index / dt.Rows.Count * 100);
+
+                        dt_index++;
+
 
                         //Sending the message via AfricasTalking
                         //var sms = Env.MessageGateway.SendMessage(temp_phone, new_message);
@@ -736,6 +771,8 @@ namespace Abbey_Trading_Store.DAL
 
 
                         //}
+                        
+
                         
 
                     }
