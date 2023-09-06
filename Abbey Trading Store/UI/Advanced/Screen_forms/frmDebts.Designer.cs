@@ -30,10 +30,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
             this.PaidAmount = new MaterialSkin.Controls.MaterialTextBox2();
@@ -54,17 +54,19 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.DebtsDGV = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.TRACKDGV = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.searchtxtbx = new MaterialSkin.Controls.MaterialTextBox();
             this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TRACKDGV = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
+            this.DebtsDGV = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DebtsDGV)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TRACKDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DebtsDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -262,15 +264,19 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.materialButton3);
             this.panel4.Controls.Add(this.materialButton1);
+            this.panel4.Controls.Add(this.searchtxtbx);
             this.panel4.Controls.Add(this.materialButton4);
             this.panel4.Controls.Add(this.label10);
             this.panel4.Controls.Add(this.circularProgressBar2);
             this.panel4.Controls.Add(this.label11);
             this.panel4.Controls.Add(this.circularProgressBar1);
-            this.panel4.Location = new System.Drawing.Point(300, 11);
+            this.panel4.Location = new System.Drawing.Point(300, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(552, 109);
+            this.panel4.Size = new System.Drawing.Size(818, 126);
             this.panel4.TabIndex = 30;
             // 
             // materialButton1
@@ -315,12 +321,13 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             // 
             // label10
             // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(468, 93);
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.label10.Location = new System.Drawing.Point(430, 106);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(75, 15);
+            this.label10.Size = new System.Drawing.Size(96, 20);
             this.label10.TabIndex = 22;
             this.label10.Text = "search count";
             // 
@@ -334,7 +341,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.circularProgressBar2.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
             this.circularProgressBar2.InnerMargin = 2;
             this.circularProgressBar2.InnerWidth = -1;
-            this.circularProgressBar2.Location = new System.Drawing.Point(457, 6);
+            this.circularProgressBar2.Location = new System.Drawing.Point(434, 29);
             this.circularProgressBar2.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar2.Name = "circularProgressBar2";
             this.circularProgressBar2.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
@@ -343,7 +350,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.circularProgressBar2.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.circularProgressBar2.ProgressWidth = 10;
             this.circularProgressBar2.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.circularProgressBar2.Size = new System.Drawing.Size(86, 84);
+            this.circularProgressBar2.Size = new System.Drawing.Size(76, 69);
             this.circularProgressBar2.StartAngle = 270;
             this.circularProgressBar2.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
             this.circularProgressBar2.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
@@ -358,14 +365,16 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             // 
             // label11
             // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(254, 93);
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.label11.Location = new System.Drawing.Point(224, 106);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(38, 15);
+            this.label11.Size = new System.Drawing.Size(48, 20);
             this.label11.TabIndex = 20;
             this.label11.Text = "count";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // circularProgressBar1
             // 
@@ -377,7 +386,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.circularProgressBar1.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
             this.circularProgressBar1.InnerMargin = 2;
             this.circularProgressBar1.InnerWidth = -1;
-            this.circularProgressBar1.Location = new System.Drawing.Point(230, 3);
+            this.circularProgressBar1.Location = new System.Drawing.Point(228, 33);
             this.circularProgressBar1.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar1.Name = "circularProgressBar1";
             this.circularProgressBar1.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
@@ -386,7 +395,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.circularProgressBar1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.circularProgressBar1.ProgressWidth = 10;
             this.circularProgressBar1.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.circularProgressBar1.Size = new System.Drawing.Size(84, 87);
+            this.circularProgressBar1.Size = new System.Drawing.Size(74, 66);
             this.circularProgressBar1.StartAngle = 270;
             this.circularProgressBar1.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
             this.circularProgressBar1.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
@@ -431,33 +440,6 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.panel2.Size = new System.Drawing.Size(818, 240);
             this.panel2.TabIndex = 28;
             // 
-            // DebtsDGV
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            this.DebtsDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DebtsDGV.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.DebtsDGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DebtsDGV.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.DebtsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DebtsDGV.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DebtsDGV.EnableHeadersVisualStyles = false;
-            this.DebtsDGV.Location = new System.Drawing.Point(0, 20);
-            this.DebtsDGV.Name = "DebtsDGV";
-            this.DebtsDGV.RowHeadersVisible = false;
-            this.DebtsDGV.RowTemplate.Height = 30;
-            this.DebtsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DebtsDGV.Size = new System.Drawing.Size(830, 217);
-            this.DebtsDGV.TabIndex = 24;
-            this.DebtsDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DebtsDGV_CellClick_1);
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.TRACKDGV);
@@ -466,6 +448,68 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(805, 173);
             this.panel3.TabIndex = 29;
+            // 
+            // searchtxtbx
+            // 
+            this.searchtxtbx.AnimateReadOnly = false;
+            this.searchtxtbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.searchtxtbx.Depth = 0;
+            this.searchtxtbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.searchtxtbx.LeadingIcon = global::Abbey_Trading_Store.Properties.Resources.search__1_;
+            this.searchtxtbx.Location = new System.Drawing.Point(544, 5);
+            this.searchtxtbx.MaxLength = 50;
+            this.searchtxtbx.MouseState = MaterialSkin.MouseState.OUT;
+            this.searchtxtbx.Multiline = false;
+            this.searchtxtbx.Name = "searchtxtbx";
+            this.searchtxtbx.Size = new System.Drawing.Size(272, 50);
+            this.searchtxtbx.TabIndex = 32;
+            this.searchtxtbx.Text = "";
+            this.searchtxtbx.TrailingIcon = null;
+            this.searchtxtbx.TextChanged += new System.EventHandler(this.searchtxtbx_TextChanged);
+            // 
+            // materialButton3
+            // 
+            this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton3.Depth = 0;
+            this.materialButton3.HighEmphasis = true;
+            this.materialButton3.Icon = global::Abbey_Trading_Store.Properties.Resources.print;
+            this.materialButton3.Location = new System.Drawing.Point(653, 64);
+            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton3.Name = "materialButton3";
+            this.materialButton3.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton3.Size = new System.Drawing.Size(152, 36);
+            this.materialButton3.TabIndex = 33;
+            this.materialButton3.Text = "Print Invoice";
+            this.materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton3.UseAccentColor = false;
+            this.materialButton3.UseVisualStyleBackColor = true;
+            this.materialButton3.Click += new System.EventHandler(this.materialButton3_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.label1.Location = new System.Drawing.Point(224, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(117, 20);
+            this.label1.TabIndex = 37;
+            this.label1.Text = "Unsettled Debts";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.label4.Location = new System.Drawing.Point(427, 6);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(99, 20);
+            this.label4.TabIndex = 38;
+            this.label4.Text = "Settled Debts";
             // 
             // TRACKDGV
             // 
@@ -493,51 +537,38 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.TRACKDGV.Size = new System.Drawing.Size(827, 151);
             this.TRACKDGV.TabIndex = 24;
             // 
-            // searchtxtbx
+            // DebtsDGV
             // 
-            this.searchtxtbx.AnimateReadOnly = false;
-            this.searchtxtbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.searchtxtbx.Depth = 0;
-            this.searchtxtbx.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.searchtxtbx.LeadingIcon = global::Abbey_Trading_Store.Properties.Resources.search__1_;
-            this.searchtxtbx.Location = new System.Drawing.Point(858, 11);
-            this.searchtxtbx.MaxLength = 50;
-            this.searchtxtbx.MouseState = MaterialSkin.MouseState.OUT;
-            this.searchtxtbx.Multiline = false;
-            this.searchtxtbx.Name = "searchtxtbx";
-            this.searchtxtbx.Size = new System.Drawing.Size(272, 50);
-            this.searchtxtbx.TabIndex = 32;
-            this.searchtxtbx.Text = "";
-            this.searchtxtbx.TrailingIcon = null;
-            this.searchtxtbx.TextChanged += new System.EventHandler(this.searchtxtbx_TextChanged);
-            // 
-            // materialButton3
-            // 
-            this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton3.Depth = 0;
-            this.materialButton3.HighEmphasis = true;
-            this.materialButton3.Icon = global::Abbey_Trading_Store.Properties.Resources.print;
-            this.materialButton3.Location = new System.Drawing.Point(915, 73);
-            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton3.Name = "materialButton3";
-            this.materialButton3.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton3.Size = new System.Drawing.Size(152, 36);
-            this.materialButton3.TabIndex = 33;
-            this.materialButton3.Text = "Print Invoice";
-            this.materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton3.UseAccentColor = false;
-            this.materialButton3.UseVisualStyleBackColor = true;
-            this.materialButton3.Click += new System.EventHandler(this.materialButton3_Click);
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.DebtsDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DebtsDGV.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.DebtsDGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DebtsDGV.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.DebtsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DebtsDGV.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DebtsDGV.EnableHeadersVisualStyles = false;
+            this.DebtsDGV.Location = new System.Drawing.Point(0, 20);
+            this.DebtsDGV.Name = "DebtsDGV";
+            this.DebtsDGV.RowHeadersVisible = false;
+            this.DebtsDGV.RowTemplate.Height = 30;
+            this.DebtsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DebtsDGV.Size = new System.Drawing.Size(830, 217);
+            this.DebtsDGV.TabIndex = 24;
+            this.DebtsDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DebtsDGV_CellClick_1);
             // 
             // frmDebts
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1130, 572);
-            this.Controls.Add(this.materialButton3);
-            this.Controls.Add(this.searchtxtbx);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.panel3);
@@ -553,9 +584,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DebtsDGV)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TRACKDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DebtsDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -588,5 +619,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private MaterialSkin.Controls.MaterialButton materialButton3;
         private DGV DebtsDGV;
         private DGV TRACKDGV;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label1;
     }
 }

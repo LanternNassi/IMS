@@ -642,12 +642,33 @@ namespace Abbey_Trading_Store.DAL
                 {
                     Contact = Contact.Substring(0, 10);
                 }
-                return "+256" + Contact.Remove(0, 1);
+                if (Contact.Substring(0,4) == "+256")
+                {
+                    return Contact;
+                }
+                else
+                {
+                    return "+256" + Contact.Remove(0, 1);
+
+                }
             }
 
             return "";
             
             
+        }
+
+        private string Contact_identifier(string Contact)
+        {
+            string identity = Contact.Substring(4, 2);
+            if (identity == "75" || identity == "70" || identity == "74" || identity == "20")
+            {
+                return "Airtel";
+            }
+            else
+            {
+                return "MTN";
+            }
         }
 
         public DataTable BulkSendCustomerContacts()
@@ -703,15 +724,15 @@ namespace Abbey_Trading_Store.DAL
                     
 
                     //Sending the message via AfricasTalking
-                    var sms = Env.MessageGateway.SendMessage(temp_phone, Message);
-                    foreach (var res in sms["SMSMessageData"]["Recipients"])
-                    {
-                        Console.WriteLine((string)res["status"] + ": ");
-                        Console.WriteLine((string)res["number"]);
+                    //var sms = Env.MessageGateway.SendMessage(temp_phone, Message);
+                    //foreach (var res in sms["SMSMessageData"]["Recipients"])
+                    //{
+                    //    Console.WriteLine((string)res["status"] + ": ");
+                    //    Console.WriteLine((string)res["number"]);
 
 
-                    }
-                    sent = true;
+                    //}
+                    //sent = true;
 
 
                 } else
@@ -761,19 +782,28 @@ namespace Abbey_Trading_Store.DAL
 
                         dt_index++;
 
+                        if (Contact_identifier(Contact_Cleaner(dr[4].ToString())) != "Airtel")
+                        {
+                            MessageBox.Show(dr[2].ToString() + " has an MTN number " + Contact_Cleaner(dr[4].ToString()) + " which is not yet supported hence it will be ignored");
+                        }else
+                        {
+                            //Sending the message via AfricasTalking
+                            //var sms = Env.MessageGateway.SendMessage(temp_phone, new_message , "MMAK");
+                            //foreach (var res in sms["SMSMessageData"]["Recipients"])
+                            //{
+                            //    Console.WriteLine((string)res["status"] + ": ");
+                            //    Console.WriteLine((string)res["number"]);
 
-                        //Sending the message via AfricasTalking
-                        //var sms = Env.MessageGateway.SendMessage(temp_phone, new_message);
-                        //foreach (var res in sms["SMSMessageData"]["Recipients"])
-                        //{
-                        //    Console.WriteLine((string)res["status"] + ": ");
-                        //    Console.WriteLine((string)res["number"]);
+
+                            //}
+
+                        }
 
 
-                        //}
-                        
 
-                        
+
+
+
 
                     }
                     sent = true;

@@ -30,8 +30,25 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DebtsDGV.DataSource = dt;
             Connection().Close();
 
+            calculate_debt(dt);
+            
         }
         int row_overall = 0;
+        string rem_amount = "";
+
+        public void calculate_debt(DataTable dt)
+        {
+            //Calculating unsettled debts
+            int unsettled_amount = 0;
+            int settled_amount = 0;
+            foreach (DataRow dr in dt.Rows)
+            {
+                unsettled_amount += (Convert.ToInt32(dr[8].ToString()) * -1);
+                settled_amount += (Convert.ToInt32(dr[7].ToString()));
+            }
+            label11.Text = "shs." + unsettled_amount.ToString("N0");
+            label10.Text = "shs." + settled_amount.ToString("N0");
+        }
         
 
         public dynamic Connection()
@@ -61,7 +78,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 bool cleared = false;
                 bool Success = false;
                 int total = Int32.Parse(DebtsDGV.Rows[row_overall].Cells[3].Value.ToString());
-                int new_return_amount = ((Int32.Parse(RemainAmount.Text) * -1) - Int32.Parse(PaidAmount.Text));
+                int new_return_amount = ((Int32.Parse(rem_amount) * -1) - Int32.Parse(PaidAmount.Text));
                 if (new_return_amount == 0)
                 {
                     cleared = true;
@@ -184,7 +201,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
                 id.Text = DebtsDGV.Rows[row].Cells[0].Value.ToString();
                 CustomerName.Text = DebtsDGV.Rows[row].Cells[2].Value.ToString();
-                RemainAmount.Text = DebtsDGV.Rows[row].Cells[8].Value.ToString();
+                rem_amount = DebtsDGV.Rows[row].Cells[8].Value.ToString();
+                RemainAmount.Text = (Convert.ToInt32(DebtsDGV.Rows[row].Cells[8].Value)*-1).ToString("N0");
                 if (id.Text != "")
                 {
                     // Loading the changes track dgv
@@ -208,7 +226,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
                 id.Text = DebtsDGV.Rows[row].Cells[0].Value.ToString();
                 CustomerName.Text = DebtsDGV.Rows[row].Cells[2].Value.ToString();
-                RemainAmount.Text = DebtsDGV.Rows[row].Cells[8].Value.ToString();
+                RemainAmount.Text = (Convert.ToInt32(DebtsDGV.Rows[row].Cells[8].Value) * -1).ToString("N0");
+                rem_amount = DebtsDGV.Rows[row].Cells[8].Value.ToString();
                 if (id.Text != "")
                 {
                     // Loading the changes track dgv
@@ -232,6 +251,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 Transactions transact = new Transactions();
                 DataTable dt = transact.SearchCreditorsDebtors_2(searchtxtbx.Text);
                 DebtsDGV.DataSource = dt;
+                calculate_debt(dt);
             }
             else
             {
@@ -242,9 +262,15 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 adapter.Fill(dt);
                 DebtsDGV.DataSource = dt;
                 Connection().Close();
+                calculate_debt(dt);
 
             }
             
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

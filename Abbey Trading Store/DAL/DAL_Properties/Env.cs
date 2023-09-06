@@ -40,7 +40,7 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
 
         //AfricasTalking info
         public static string MessageLiveUri = "https://api.africastalking.com/version1/messaging";
-        public static string MessageAPIKey = "aa89df14cd9e0d7227966787a7d3147856382952dd919ae9b0c8bcbe0dc88472";
+        public static string MessageAPIKey = "db368250139725030ff5413c68f65ac1d3817c80990679741d5a32f1f35ba8c6";
         public static string MessageUsername = "MMAK";
         public static string MessageFrom = null;
 

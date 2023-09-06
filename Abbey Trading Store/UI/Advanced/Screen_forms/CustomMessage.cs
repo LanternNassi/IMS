@@ -185,17 +185,25 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            if(materialMultiLineTextBox21.Text == "")
+            if (materialMultiLineTextBox21.Text == "")
             {
                 MessageBox.Show("Please enter the message before sending");
-            }else
+            }
+            else if (materialMultiLineTextBox21.Text.Count() > 320)
+            {
+                MessageBox.Show("Cannot send message with morethan 320 characters");
+                return;
+
+            }
+            else
             {
                 //Determining what is selected
                 DataTable chosen_dt = new DataTable();
-                if(this.materialCheckbox1.CheckState.ToString() == "Checked")
+                if (this.materialCheckbox1.CheckState.ToString() == "Checked")
                 {
                     chosen_dt = dt;
-                }else if (this.materialCheckbox2.CheckState.ToString() == "Checked")
+                }
+                else if (this.materialCheckbox2.CheckState.ToString() == "Checked")
                 {
                     chosen_dt = selected;
                 }
@@ -203,7 +211,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 {
                     if (selected.Rows.Count > 0)
                     {
-                        foreach(DataRow dr in selected.Rows)
+                        foreach (DataRow dr in selected.Rows)
                         {
                             dt.ImportRow(dr);
                         }
@@ -215,7 +223,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 }
 
                 DealerAndCustomer cust = new DealerAndCustomer();
-                bool success = cust.SendMessage(chosen_dt, materialMultiLineTextBox21.Text, updateSendMessageProgress , false);
+                bool success = cust.SendMessage(chosen_dt, materialMultiLineTextBox21.Text, updateSendMessageProgress, false);
                 if (success)
                 {
                     MessageBox.Show(chosen_dt.Rows.Count + " Messages sent successfully");
@@ -230,6 +238,17 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void materialMultiLineTextBox21_TextChanged(object sender, EventArgs e)
+        {
+            if (materialMultiLineTextBox21.Text.Count() > 320)
+            {
+                MessageBox.Show("Characters entered shoud not exceed 320 characters");
+            }else
+            {
+                label1.Text = "Message (" + materialMultiLineTextBox21.Text.Count() + " / 320 characters)";
+            }
         }
     }
 }
