@@ -352,5 +352,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             generate_excel_transaction_details();
         }
+
+        private void frmAnalysis_Layout(object sender, LayoutEventArgs e)
+        {
+            panel1.Width = Convert.ToInt32(0.25 * Dashboard.PnlContainer.Width);
+
+            panel5.Width = panel6.Width = panel7.Width = panel8.Width = panel9.Width = panel10.Width = Dashboard.PnlContainer.Height / 6;
+
+            panel4.Height = Convert.ToInt32(0.2 * Dashboard.PnlContainer.Height);
+            panel11.Width = panel12.Width = panel13.Width = panel14.Width = panel4.Width / 4;
+
+            panel2.Height = panel3.Height = Convert.ToInt32(0.7 * Dashboard.PnlContainer.Height)/2;
+            panel15.Height = panel16.Height = (Dashboard.PnlContainer.Height - (panel4.Height + panel2.Height + panel3.Height)) / 2;
+        }
     }
 }

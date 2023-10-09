@@ -18,6 +18,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         public Overview()
         {
             InitializeComponent();
+            
+            this.flowLayoutPanel1.Height = LayoutFlex.overview_flowlayout_panel1;
+            this.flowLayoutPanel2.Height = LayoutFlex.overview_flowlayout_panel2;
         }
 
         System.Data.SqlClient.SqlDataAdapter low_on_stock= null;

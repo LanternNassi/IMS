@@ -75,7 +75,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tel : 0705208807 , Tel : 054066646</Value>
+                <Value>Tel : 0743061508 , Tel : 0754066646 , Tel :0780757304 </Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -88,9 +88,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
         <Top>0.82306in</Top>
-        <Left>2.7918in</Left>
+        <Left>2.68763in</Left>
         <Height>0.25in</Height>
-        <Width>3.46875in</Width>
+        <Width>3.57292in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>

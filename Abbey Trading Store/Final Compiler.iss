@@ -446,6 +446,10 @@ Source: "C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\bin\x64\Debug\
 Source: "C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\bin\x64\Debug\zh-CHT\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\bin\x64\Debug\zh-Hans\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\bin\x64\Debug\zh-Hant\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\bin\x64\Debug\AfricasTalkingCS.dll"; DestDir: "{app}"; Flags: ignoreversion
+
+
+
 
 Source: "C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\bin\x64\Debug\SqlServerTypes\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files

@@ -350,5 +350,32 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = e.RowIndex;
+            if (row >= 0)
+            {
+                string name = dataGridView1.Rows[row].Cells[2].Value.ToString();
+                DateTime time = Convert.ToDateTime(dataGridView1.Rows[row].Cells[4].Value.ToString());
+                transaction_id = int.Parse(dataGridView1.Rows[row].Cells[0].Value.ToString());
+                lblName = name;
+                date = time;
+                //TransactionDetail Td = new TransactionDetail();
+                //dts = Td.GetTransactionDetail(name);
+                frmDetails TD = new frmDetails();
+                TD.Show();
+            }
+        }
+
+        private void frmTransactions_Layout(object sender, LayoutEventArgs e)
+        {
+            panel2.Height = Convert.ToInt32(0.2 * Dashboard.PnlContainer.Height);
+
+            panel1.Width = Convert.ToInt32(0.25 * panel2.Width);
+
+            panel4.Width = panel5.Width = panel3.Width = panel6.Width = (panel2.Width - panel1.Width)/4;
+
+        }
     }
 }

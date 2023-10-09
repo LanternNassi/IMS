@@ -28,6 +28,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
 
+            //this.panel3.Height = LayoutFlex.user_panel_1;
+            //this.panel2.Height = LayoutFlex.user_panel_2;
+
             Users user = new Users();
             DataTable dt = user.SelectAppropriately();
             this.dataGridView1.DataSource = dt;
@@ -259,6 +262,28 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
                 materialButton1.Enabled = false;
             }
+        }
+
+        private void frmUser_Layout(object sender, LayoutEventArgs e)
+        {
+            //Calculating the base height and width of components 
+            panel1.Width = Convert.ToInt32(Dashboard.PnlContainer.Width * 0.25);
+
+            //Calculating the height of the mini panels in the panel1
+            panel8.Height = panel9.Height = panel10.Height = panel11.Height = panel12.Height = Convert.ToInt32(Dashboard.PnlContainer.Height / 5);
+
+
+            //Calulating for panel 3
+            panel3.Height = Convert.ToInt32(Dashboard.PnlContainer.Height * 0.13);
+
+            //Calculating the width for the button panels
+            panel4.Width = panel5.Width = panel6.Width = panel7.Width = Convert.ToInt32(Dashboard.PnlContainer.Width - panel1.Width) / 4;
+
+
+            panel4.Height = panel5.Height = panel6.Height = panel7.Height = panel3.Height;
+
+
+
         }
     }
 }

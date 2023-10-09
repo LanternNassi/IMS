@@ -24,6 +24,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DataTable dt = category.SelectAppropriately();
             dataGridView1.DataSource = dt;
 
+            //this.panel3.Height = LayoutFlex.category_panel_1;
+            //this.panel2.Height = LayoutFlex.category_panel_2;
+           
+
             this.circularProgressBar1.Value = dt.Rows.Count * 10;
             this.circularProgressBar1.Text = (dt.Rows.Count * 10).ToString() + "%";
 
@@ -209,6 +213,22 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 materialButton1.Enabled = false;    
             }
 
+        }
+
+        private void frmCategories_Layout(object sender, LayoutEventArgs e)
+        {
+            panel1.Width = Convert.ToInt32(Dashboard.PnlContainer.Width * 0.25);
+
+            panel11.Height = panel12.Height = Convert.ToInt32((Dashboard.PnlContainer.Height * 0.6) / 2);
+            panel13.Height = Dashboard.PnlContainer.Height - (panel11.Height * 2);
+
+            panel3.Height = Convert.ToInt32(Dashboard.PnlContainer.Height * 0.33);
+            panel4.Height = Convert.ToInt32(panel3.Height * 0.20);
+
+
+            panel9.Width = panel10.Width = Convert.ToInt32(0.6 * panel3.Width) / 2;
+
+            panel5.Width = panel6.Width = panel7.Width = panel8.Width = Convert.ToInt32(panel4.Width / 4);
         }
     }
 }

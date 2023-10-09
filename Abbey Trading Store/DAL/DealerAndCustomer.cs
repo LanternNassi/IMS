@@ -788,14 +788,14 @@ namespace Abbey_Trading_Store.DAL
                         }else
                         {
                             //Sending the message via AfricasTalking
-                            //var sms = Env.MessageGateway.SendMessage(temp_phone, new_message , "MMAK");
-                            //foreach (var res in sms["SMSMessageData"]["Recipients"])
-                            //{
-                            //    Console.WriteLine((string)res["status"] + ": ");
-                            //    Console.WriteLine((string)res["number"]);
+                            var sms = Env.MessageGateway.SendMessage(Contact_Cleaner(dr[4].ToString()), new_message, "MMAK");
+                            foreach (var res in sms["SMSMessageData"]["Recipients"])
+                            {
+                                Console.WriteLine((string)res["status"] + ": ");
+                                Console.WriteLine((string)res["number"]);
 
 
-                            //}
+                            }
 
                         }
 

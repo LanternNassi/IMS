@@ -34,7 +34,7 @@ namespace Abbey_Trading_Store.UI.Advanced
         );
 
         public frmUser active_form = null;
-        
+        public static System.Drawing.Size PnlContainer;
 
 
         public Dashboard()
@@ -49,14 +49,16 @@ namespace Abbey_Trading_Store.UI.Advanced
 
             // Set the size of the form slightly less than size of 
             // working rectangle.
-            this.Size = new System.Drawing.Size(
-                workingRectangle.Width - 10 , workingRectangle.Height - 10);
+            this.Size = LayoutFlex.working_size;
 
             // Set the location so the entire form is visible.
             this.Location = new System.Drawing.Point(5, 5);
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
 
+            PnlContainer = pnlform.Size;
 
+            //this.pnlform.Height = LayoutFlex.overall_container_height;
+            //this.top_panel.Height = LayoutFlex.top_panel_height;
             //DataTable dt = new DataTable();
             //Env.account_adapter.Fill(dt);
 
@@ -74,7 +76,7 @@ namespace Abbey_Trading_Store.UI.Advanced
             //search.Visible = true;
             lblTitle.Text = "Overview";
             this.pnlform.Controls.Clear();
-            Overview FrmDashboard_Vrb = new Overview() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            Overview FrmDashboard_Vrb = new Overview() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, Visible = true };
             FrmDashboard_Vrb.FormBorderStyle = FormBorderStyle.None;
             this.pnlform.Controls.Add(FrmDashboard_Vrb);
             FrmDashboard_Vrb.Show();
@@ -108,6 +110,7 @@ namespace Abbey_Trading_Store.UI.Advanced
                 this.pnlform.Controls.Clear();
                 Overview FrmDashboard_Vrb = new Overview() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
                 FrmDashboard_Vrb.FormBorderStyle = FormBorderStyle.None;
+                FrmDashboard_Vrb.Height = LayoutFlex.overall_container_height;
                 this.pnlform.Controls.Add(FrmDashboard_Vrb);
                 FrmDashboard_Vrb.Show();
                 Username.Text = Login_form.user;
@@ -150,6 +153,7 @@ namespace Abbey_Trading_Store.UI.Advanced
             //registrationForm FrmDashboard_Vrb = new registrationForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmUser FrmDashboard_Vrb = new frmUser() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             FrmDashboard_Vrb.FormBorderStyle = FormBorderStyle.None;
+            FrmDashboard_Vrb.Height = LayoutFlex.overall_container_height;
             this.pnlform.Controls.Add(FrmDashboard_Vrb);
             FrmDashboard_Vrb.Show();
             active_form = FrmDashboard_Vrb;
@@ -385,6 +389,16 @@ namespace Abbey_Trading_Store.UI.Advanced
         private void label1_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnUsers_Move(object sender, EventArgs e)
+        {
+            MessageBox.Show("Users panel being moved");
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

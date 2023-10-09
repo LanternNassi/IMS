@@ -932,5 +932,44 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             form.Show();
             Cursor = Cursors.Default;
         }
+
+        private void p_search1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmPurchaseAndSales_Layout(object sender, LayoutEventArgs e)
+        {
+            panel1.Height = Convert.ToInt32(Dashboard.PnlContainer.Height * 0.19);
+
+            panel6.Width = panel7.Width = panel8.Width = panel9.Width = Convert.ToInt32(Dashboard.PnlContainer.Width / 4);
+
+            panel2.Height = Convert.ToInt32(Dashboard.PnlContainer.Height * 0.15);
+
+            panel3.Height = Dashboard.PnlContainer.Height - (panel1.Height + panel2.Height);
+
+            panel10.Width = panel11.Width = panel13.Width = Convert.ToInt32(Dashboard.PnlContainer.Width * 0.58) / 3;
+
+            panel12.Width = panel14.Width = panel15.Width = (Dashboard.PnlContainer.Width - (panel10.Width * 3))/3;
+
+            //Overview and products section
+            panel4.Width = panel5.Width = Convert.ToInt32(Dashboard.PnlContainer.Width * 0.5);
+
+            //Added products section
+            panel16.Height = Convert.ToInt32(panel4.Height * 0.08);
+            panel17.Height = Convert.ToInt32(panel4.Height * 0.4);
+            panel18.Height = panel19.Height = panel20.Height = (panel4.Height - (panel16.Height + panel17.Height)) / 3;
+
+
+            //Overview Section or Receipt section
+            panel21.Height = Convert.ToInt32(panel5.Height * 0.65);
+            panel22.Height = panel23.Height = (panel5.Height - panel21.Height) / 2;
+
+        }
+
+        private void textBox13_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

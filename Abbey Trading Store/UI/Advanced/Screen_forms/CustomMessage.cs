@@ -197,6 +197,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             }
             else
             {
+                Cursor = Cursors.WaitCursor;
                 //Determining what is selected
                 DataTable chosen_dt = new DataTable();
                 if (this.materialCheckbox1.CheckState.ToString() == "Checked")
@@ -232,6 +233,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 {
                     MessageBox.Show("An error occured.Try again later");
                 }
+                Cursor = Cursors.Default;
+
             }
         }
 

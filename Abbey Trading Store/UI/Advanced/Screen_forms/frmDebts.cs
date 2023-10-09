@@ -30,11 +30,35 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DebtsDGV.DataSource = dt;
             Connection().Close();
 
-            calculate_debt(dt);
-            
+            int unsettled_amount = 0;
+            int settled_amount = 0;
+            foreach (DataRow dr in dt.Rows)
+            {
+                unsettled_amount += (Convert.ToInt32(dr[8].ToString()) * -1);
+                settled_amount += (Convert.ToInt32(dr[7].ToString()));
+            }
+
+            overall_settled_amount = settled_amount;
+            overall_unsettled_amount = unsettled_amount;
+
+            // Updating the progress bars
+            circularProgressBar1.Value = (unsettled_amount / overall_unsettled_amount) * 100;
+            circularProgressBar1.Text = ((unsettled_amount / overall_unsettled_amount) * 100).ToString() + "%";
+
+            circularProgressBar2.Value = (settled_amount / overall_settled_amount) * 100;
+            circularProgressBar2.Text = ((settled_amount / overall_settled_amount) * 100).ToString() + "%";
+
+
+            label11.Text = "shs." + unsettled_amount.ToString("N0");
+            label10.Text = "shs." + settled_amount.ToString("N0");
+
         }
         int row_overall = 0;
         string rem_amount = "";
+
+        int overall_settled_amount = 0;
+        int overall_unsettled_amount = 0;
+
 
         public void calculate_debt(DataTable dt)
         {
@@ -46,6 +70,14 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 unsettled_amount += (Convert.ToInt32(dr[8].ToString()) * -1);
                 settled_amount += (Convert.ToInt32(dr[7].ToString()));
             }
+
+            // Updating the progress bars
+            circularProgressBar1.Value = Convert.ToInt32((Convert.ToDecimal(unsettled_amount) / Convert.ToDecimal(overall_unsettled_amount)) * 100);
+            circularProgressBar1.Text = Convert.ToInt32((Convert.ToDecimal(unsettled_amount) / Convert.ToDecimal(overall_unsettled_amount)) * 100).ToString() + "%";
+
+            circularProgressBar2.Value = Convert.ToInt32((Convert.ToDecimal(settled_amount) / Convert.ToDecimal(overall_settled_amount)) * 100);
+            circularProgressBar2.Text = Convert.ToInt32((Convert.ToDecimal(settled_amount) / Convert.ToDecimal(overall_settled_amount)) * 100).ToString() + "%";
+
             label11.Text = "shs." + unsettled_amount.ToString("N0");
             label10.Text = "shs." + settled_amount.ToString("N0");
         }
@@ -272,5 +304,26 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
 
         }
+
+        private void frmDebts_Layout(object sender, LayoutEventArgs e)
+        {
+            panel1.Width = Convert.ToInt32(Dashboard.PnlContainer.Width * 0.25);
+
+            panel5.Height = panel6.Height = panel7.Height = panel8.Height = panel9.Height = Dashboard.PnlContainer.Height / 5;
+
+            panel4.Height = Convert.ToInt32(0.22 * Dashboard.PnlContainer.Height);
+
+            panel3.Height = panel2.Height = Convert.ToInt32(0.34 * Dashboard.PnlContainer.Height);
+
+            panel10.Height = panel11.Height = (Dashboard.PnlContainer.Height - (panel4.Height + panel2.Height + panel3.Height)) / 2;
+
+            panel12.Width = panel15.Width = Convert.ToInt32(0.55 * panel4.Width)/2;
+
+            panel13.Width = panel14.Width = (panel4.Width - (panel12.Width * 2)) / 2;
+
+
+        }
+
+        
     }
 }

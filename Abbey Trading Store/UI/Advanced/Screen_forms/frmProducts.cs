@@ -69,6 +69,14 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             }
 
+
+            //Calculating the heights of the panels regarding the space of the description panel since it is large
+            this.panel13.Height = this.panel14.Height = this.panel15.Height = this.panel17.Height = this.panel18.Height = this.panel19.Height = (LayoutFlex.overall_container_height - 130)/6;
+
+
+            //Calculating the width of the button panels
+            //this.panel4.Height = this.panel5.Height = LayoutFlex.overall_container_width
+
             //Initialising the product changes dataTable
             product_changes.Columns.Add("Type");
             product_changes.Columns.Add("Product");
@@ -450,6 +458,25 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 }
                 
             }
+
+        }
+
+        private void frmProducts_Layout(object sender, LayoutEventArgs e)
+        {
+            panel1.Width = Convert.ToInt32(Dashboard.PnlContainer.Width * 0.25);
+
+            panel13.Height = panel14.Height = panel15.Height = panel17.Height = panel18.Height = panel19.Height = Convert.ToInt32((Dashboard.PnlContainer.Height) * 0.8)/6;
+            panel16.Height = Dashboard.PnlContainer.Height - (panel14.Height * 6);
+
+            panel3.Height = Convert.ToInt32(Dashboard.PnlContainer.Height * 0.2);
+            panel8.Height = Convert.ToInt32(Dashboard.PnlContainer.Height * 0.1);
+
+            panel4.Width = panel5.Width = Convert.ToInt32(panel3.Width * 0.55) / 2;
+            panel7.Width = panel3.Width - (panel4.Width * 2);
+            panel6.Height = panel7.Height = Convert.ToInt32(0.5 * panel3.Height);
+
+
+            panel9.Width = panel10.Width = panel11.Width = panel12.Width = panel8.Width / 4;
 
         }
     }

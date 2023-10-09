@@ -199,5 +199,39 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 materialButton1.Enabled = false;
             }
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = e.RowIndex;
+            if (row >= 0)
+            {
+                id.Text = dataGridView1.Rows[row].Cells[0].Value.ToString();
+                type_comboBox1.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
+                name.Text = dataGridView1.Rows[row].Cells[2].Value.ToString();
+                Email.Text = dataGridView1.Rows[row].Cells[3].Value.ToString();
+                Contact.Text = dataGridView1.Rows[row].Cells[4].Value.ToString();
+                Address.Text = dataGridView1.Rows[row].Cells[5].Value.ToString();
+
+                materialButton1.Enabled = false;
+                materialButton2.Enabled = true;
+                materialButton3.Enabled = true;
+            }
+        }
+
+        private void frmDealCust_Layout(object sender, LayoutEventArgs e)
+        {
+            panel1.Width = Convert.ToInt32(Dashboard.PnlContainer.Width * 0.25);
+
+            panel16.Height = Convert.ToInt32(Dashboard.PnlContainer.Height * 0.19);
+            panel11.Height = panel12.Height = panel13.Height = panel14.Height = panel15.Height = (Dashboard.PnlContainer.Height - panel16.Height) / 5;
+
+            panel3.Height = Convert.ToInt32(Dashboard.PnlContainer.Height * 0.21);
+            panel4.Width = panel5.Width = Convert.ToInt32((Dashboard.PnlContainer.Width-panel1.Width) * 0.6)/2;
+
+            panel6.Height = Convert.ToInt32(0.121 * Dashboard.PnlContainer.Height);
+            panel7.Width = panel8.Width = panel9.Width = panel10.Width = panel6.Width / 4;
+
+
+        }
     }
 }

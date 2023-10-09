@@ -479,6 +479,7 @@
     <Compile Include="UI\Advanced\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Configurations\LayoutFlex.cs" />
     <Compile Include="UI\Advanced\Screen_forms\BatchUpload.cs">
       <SubType>Form</SubType>
     </Compile>
