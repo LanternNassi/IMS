@@ -3,7 +3,7 @@ name: Build artifact
 
 on:
   push:
-    branches: [ "BukasaBusinessStore" ]
+    branches: [ "MMAK" ]
 
 jobs:
 
