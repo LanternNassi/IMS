@@ -30,11 +30,11 @@ namespace Abbey_Trading_Store
                 conn.Open();
                 Console.WriteLine("Testing SQL server successful...");
                 //Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmCompany());
-                Application.Run(new Abbey_Trading_Store.UI.Login_form());
-                //Login_form.user = "Nessim";
-                //Login_form.account_type = "admin";
-                //Application.Run(new Abbey_Trading_Store.UI.Advanced.Dashboard());
-                
+                //Application.Run(new Abbey_Trading_Store.UI.Login_form());
+                Login_form.user = "Nessim";
+                Login_form.account_type = "admin";
+                Application.Run(new Abbey_Trading_Store.UI.Advanced.Dashboard());
+
 
                 //this.BackColor = Color.White;
             }

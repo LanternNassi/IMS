@@ -528,6 +528,12 @@
     <Compile Include="UI\Advanced\Screen_forms\frmDetails.Designer.cs">
       <DependentUpon>frmDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\frmExpenditures.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\frmExpenditures.Designer.cs">
+      <DependentUpon>frmExpenditures.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Advanced\Screen_forms\frmProducts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -740,6 +746,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Advanced\Screen_forms\frmDetails.resx">
       <DependentUpon>frmDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Advanced\Screen_forms\frmExpenditures.resx">
+      <DependentUpon>frmExpenditures.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Advanced\Screen_forms\frmProducts.resx">
       <DependentUpon>frmProducts.cs</DependentUpon>

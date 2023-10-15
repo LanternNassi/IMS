@@ -51,6 +51,15 @@ namespace Abbey_Trading_Store.UI.Advanced
             // working rectangle.
             this.Size = LayoutFlex.working_size;
 
+            top_panel.Height = Convert.ToInt32(0.166 * this.Size.Height);
+            panel4.Height = panel10.Height = top_panel.Height / 2;
+            panel5.Width = panel6.Height = panel8.Width = Convert.ToInt32(0.45 * panel4.Width) / 3;
+            panel7.Width = Convert.ToInt32(0.43 * panel4.Width);
+            panel9.Width = panel4.Width - ((panel5.Width * 3) + panel7.Width);
+
+
+            panel11.Width = panel12.Width = Convert.ToInt32(0.45 * panel10.Width)/2;
+
             // Set the location so the entire form is visible.
             this.Location = new System.Drawing.Point(5, 5);
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
@@ -100,6 +109,7 @@ namespace Abbey_Trading_Store.UI.Advanced
                 materialButton2.Enabled = true;
                 materialButton3.Enabled = true;
                 materialButton4.Enabled = true;
+                button3.Enabled = true;
 
                 pnlNav.Height = btnDashboard.Height;
                 pnlNav.Top = btnDashboard.Top;
@@ -122,6 +132,7 @@ namespace Abbey_Trading_Store.UI.Advanced
             }
             else
             {
+                button3.Enabled = true;
                 pnlNav.Height = btnSales.Height;
                 pnlNav.Top = btnSales.Top;
                 pnlNav.Left = btnSales.Left;
@@ -399,6 +410,39 @@ namespace Abbey_Trading_Store.UI.Advanced
         private void label3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Dashboard_Layout(object sender, LayoutEventArgs e)
+        {
+            // Aligning the panels 
+
+
+        }
+
+        private void panel7_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            pnlNav.Height = button3.Height;
+            pnlNav.Top = button3.Top;
+            pnlNav.Left = button3.Left;
+            button3.BackColor = Color.FromArgb(46, 51, 73);
+            lblTitle.Text = "Expenditures";
+            this.pnlform.Controls.Clear();
+            Screen_forms.frmExpenditures FrmExpend = new Screen_forms.frmExpenditures() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            FrmExpend.FormBorderStyle = FormBorderStyle.None;
+            this.pnlform.Controls.Add(FrmExpend);
+            FrmExpend.Show();
+
+        }
+
+        private void button3_Leave(object sender, EventArgs e)
+        {
+            button3.BackColor = Color.FromArgb(24, 30, 54);
         }
     }
 }

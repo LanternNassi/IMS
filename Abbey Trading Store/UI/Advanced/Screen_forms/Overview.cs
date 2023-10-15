@@ -151,5 +151,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             UnsettledDebts form = new UnsettledDebts();
             form.Show();
         }
+
+        private void Overview_Layout(object sender, LayoutEventArgs e)
+        {
+            flowLayoutPanel1.Height = Convert.ToInt32(0.33 * Dashboard.PnlContainer.Height);
+           
+        }
     }
 }

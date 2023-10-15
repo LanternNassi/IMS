@@ -447,6 +447,8 @@ Source: "C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\bin\x64\Debug\
 Source: "C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\bin\x64\Debug\zh-Hans\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\bin\x64\Debug\zh-Hant\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\bin\x64\Debug\AfricasTalkingCS.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\bin\x64\Debug\PhoneNumbers.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\bin\x64\Debug\PhoneNumbers.xml"; DestDir: "{app}"; Flags: ignoreversion
 
 
 
