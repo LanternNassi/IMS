@@ -186,53 +186,49 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.box_2.CheckState = System.Windows.Forms.CheckState.Checked;
 
             Console.WriteLine("Done installing SQL server file....");
-            bool database_created = Create_database();
-            if (database_created)
+            //bool database_created = Create_database();
+
+            // Create a database with the respective schema
+            DatabaseUpdater db_updater = new DatabaseUpdater();
+            db_updater.UpdateOrCreateDatabase();
+
+            //Adding animations
+            P_b_3.Value = 20;
+            System.Threading.Thread.Sleep(800);
+            P_b_3.Value = 40;
+            System.Threading.Thread.Sleep(1000);
+            P_b_3.Value = 80;
+            System.Threading.Thread.Sleep(3000);
+            P_b_3.Value = 100;
+            System.Threading.Thread.Sleep(1500);
+            this.box_3.CheckState = System.Windows.Forms.CheckState.Checked;
+
+
+            DAL.Users user = new DAL.Users();
+            user.user = "User";
+            user.password = "0000";
+            user.gender = "Male";
+            user.added_by = "admin";
+            user.type = "admin";
+            bool user_created = user.insert_2();
+            if (user_created)
             {
                 //Adding animations
-                P_b_3.Value = 20;
+                P_b_4.Value = 20;
                 System.Threading.Thread.Sleep(800);
-                P_b_3.Value = 40;
+                P_b_4.Value = 40;
+                System.Threading.Thread.Sleep(800);
+                P_b_4.Value = 80;
                 System.Threading.Thread.Sleep(1000);
-                P_b_3.Value = 80;
-                System.Threading.Thread.Sleep(3000);
-                P_b_3.Value = 100;
-                System.Threading.Thread.Sleep(1500);
-                this.box_3.CheckState = System.Windows.Forms.CheckState.Checked;
+                P_b_4.Value = 100;
+                System.Threading.Thread.Sleep(500);
+                this.box_4.CheckState = System.Windows.Forms.CheckState.Checked;
 
-                
-                DAL.Users user = new DAL.Users();
-                user.user = "User";
-                user.password = "0000";
-                user.gender = "Male";
-                user.added_by = "admin";
-                user.type = "admin";
-                bool user_created = user.insert_2();
-                if (user_created)
-                {
-                    //Adding animations
-                    P_b_4.Value = 20;
-                    System.Threading.Thread.Sleep(800);
-                    P_b_4.Value = 40;
-                    System.Threading.Thread.Sleep(800);
-                    P_b_4.Value = 80;
-                    System.Threading.Thread.Sleep(1000);
-                    P_b_4.Value = 100;
-                    System.Threading.Thread.Sleep(500);
-                    this.box_4.CheckState = System.Windows.Forms.CheckState.Checked;
 
-                    
-                    this.Hide();
-                    Login_form Lform = new Login_form();
-                    Lform.Show();
-                }
-
+                this.Hide();
+                Login_form Lform = new Login_form();
+                Lform.Show();
             }
-            else
-            {
-
-            }
-
 
         }
 

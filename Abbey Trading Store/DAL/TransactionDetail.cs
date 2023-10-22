@@ -106,7 +106,7 @@ namespace Abbey_Trading_Store.DAL
         {
             bool isSuccess = false;
             OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
-            string cmdstring = "INSERT INTO `Transaction Details`(`product_name`,`rate`,`Qty`,`total`,`dea_cust_name`,`added_by`,`Invoice_id`,`Profit`,`Type`)VALUES(@product_name,@rate,@Qty,@total,@dea_cust_name,@added_by,@Invoice_id,@Profit,@Type)";
+            string cmdstring = "INSERT INTO `Transaction_Detail`(`product_name`,`rate`,`Qty`,`total`,`dea_cust_name`,`added_by`,`Invoice_id`,`Profit`,`Type`)VALUES(@product_name,@rate,@Qty,@total,@dea_cust_name,@added_by,@Invoice_id,@Profit,@Type)";
 
 
             try
@@ -172,7 +172,7 @@ namespace Abbey_Trading_Store.DAL
         {
             DataTable dt = new DataTable();
             OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
-            string cmdstring = "SELECT product_name,rate,Qty,Total,dea_cust_name,added_date,added_by,Profit,Type FROM `Transaction Details` WHERE `dea_cust_name` = @dea_cust_name AND `Invoice_id` = @Invoice_id";
+            string cmdstring = "SELECT product_name,rate,Qty,Total,dea_cust_name,added_date,added_by,Profit,Type FROM `Transaction_Detail` WHERE `dea_cust_name` = @dea_cust_name AND `Invoice_id` = @Invoice_id";
             try
             {
                 OleDbCommand cmd = new OleDbCommand(cmdstring, conn);
@@ -200,7 +200,7 @@ namespace Abbey_Trading_Store.DAL
             OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
             try
             {
-                string cmd_text = "SELECT * FROM `Transaction Details` WHERE `type` = '" + type + "' AND `added_date` >= @start_date AND `added_date` <= @end_date " + ((product_name != null) ? ("AND `product_name` = '" + product_name + "' ") : ("")) + ((quantity != 0) ? ("AND `Qty`=@Qty ") : ("")) + ((added_by != null) ? ("AND `added_by`='" + added_by + "' ") : ("") + ((customer_name != null) ? ("AND `dea_cust_name`='" + customer_name + "' ") : ("")));
+                string cmd_text = "SELECT * FROM `Transaction_Detail` WHERE `type` = '" + type + "' AND `added_date` >= @start_date AND `added_date` <= @end_date " + ((product_name != null) ? ("AND `product_name` = '" + product_name + "' ") : ("")) + ((quantity != 0) ? ("AND `Qty`=@Qty ") : ("")) + ((added_by != null) ? ("AND `added_by`='" + added_by + "' ") : ("") + ((customer_name != null) ? ("AND `dea_cust_name`='" + customer_name + "' ") : ("")));
                 OleDbCommand cmd = new OleDbCommand(cmd_text, conn);
                 cmd.Parameters.AddWithValue("@start_date", start_date.ToString());
                 cmd.Parameters.AddWithValue("@end_date", end_date.ToString());
@@ -254,7 +254,7 @@ namespace Abbey_Trading_Store.DAL
             OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
             conn.Open();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
-            string cmds = "SELECT * FROM `Transaction Details` WHERE Invoice_id = @id";
+            string cmds = "SELECT * FROM `Transaction_Detail` WHERE Invoice_id = @id";
             OleDbCommand cmd = new OleDbCommand(cmds, conn);
             cmd.Parameters.AddWithValue("@id", id);
             adapter.SelectCommand = cmd;
@@ -270,7 +270,7 @@ namespace Abbey_Trading_Store.DAL
         {
             bool isSuccess = false;
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
-            string cmdstring = "INSERT INTO [Transaction Details](product_name,rate,Qty,total,dea_cust_name,added_by,Invoice_id,Profit,Type,Server_id)VALUES(@product_name,@rate,@Qty,@total,@dea_cust_name,@added_by,@Invoice_id,@Profit,@Type,@Server_id)";
+            string cmdstring = "INSERT INTO [Transaction_Detail](product_name,rate,Qty,total,dea_cust_name,added_by,Invoice_id,Profit,Type,Server_id)VALUES(@product_name,@rate,@Qty,@total,@dea_cust_name,@added_by,@Invoice_id,@Profit,@Type,@Server_id)";
 
 
             try
@@ -315,7 +315,7 @@ namespace Abbey_Trading_Store.DAL
         {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
-            string cmdstring = "SELECT product_name,rate,Qty,Total,dea_cust_name,added_date,added_by,Profit,Type FROM [Transaction Details] WHERE dea_cust_name = @dea_cust_name AND Invoice_id = @Invoice_id";
+            string cmdstring = "SELECT product_name,rate,Qty,Total,dea_cust_name,added_date,added_by,Profit,Type FROM [Transaction_Detail] WHERE dea_cust_name = @dea_cust_name AND Invoice_id = @Invoice_id";
             try
             {
                 SqlCommand cmd = new SqlCommand(cmdstring, conn);
@@ -344,7 +344,7 @@ namespace Abbey_Trading_Store.DAL
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                string cmd_text = "SELECT * FROM [Transaction Details] WHERE type = '" + type + "' AND added_date >= @start_date AND added_date <= @end_date " + ((product_name != null) ? ("AND product_name = '" + product_name + "' ") : ("")) + ((quantity != 0) ? ("AND Qty=@Qty ") : ("")) + ((added_by != null) ? ("AND added_by='" + added_by + "' ") : ("") + ((customer_name != null) ? ("AND dea_cust_name='" + customer_name + "' ") : ("")));
+                string cmd_text = "SELECT * FROM [Transaction_Detail] WHERE type = '" + type + "' AND added_date >= @start_date AND added_date <= @end_date " + ((product_name != null) ? ("AND product_name = '" + product_name + "' ") : ("")) + ((quantity != 0) ? ("AND Qty=@Qty ") : ("")) + ((added_by != null) ? ("AND added_by='" + added_by + "' ") : ("") + ((customer_name != null) ? ("AND dea_cust_name='" + customer_name + "' ") : ("")));
                 SqlCommand cmd = new SqlCommand(cmd_text, conn);
                 cmd.Parameters.AddWithValue("@start_date", start_date);
                 cmd.Parameters.AddWithValue("@end_date", end_date);
@@ -398,7 +398,7 @@ namespace Abbey_Trading_Store.DAL
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             conn.Open();
             SqlDataAdapter adapter = new SqlDataAdapter();
-            string cmds = "SELECT * FROM [Transaction Details] WHERE Invoice_id = @id";
+            string cmds = "SELECT * FROM [Transaction_Detail] WHERE Invoice_id = @id";
             SqlCommand cmd = new SqlCommand(cmds, conn);
             cmd.Parameters.AddWithValue("@id", id);
             adapter.SelectCommand = cmd;

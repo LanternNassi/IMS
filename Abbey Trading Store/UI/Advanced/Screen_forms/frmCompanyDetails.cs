@@ -35,7 +35,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void start_btn_Click(object sender, EventArgs e)
         {
-            BusinessAccount account = new BusinessAccount();
+            Abbey_Trading_Store.DAL.BusinessAccount account = new Abbey_Trading_Store.DAL.BusinessAccount();
             account.Name = Name.Text;
             account.Description = Info.Text;
             account.Tel_1= Tel_1.Text;

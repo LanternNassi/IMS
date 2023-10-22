@@ -400,7 +400,7 @@ namespace Abbey_Trading_Store.DAL
         {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
-            const string cmd = "SELECT * FROM DealerCust";
+            const string cmd = "SELECT * FROM DealerCusts";
             SqlDataAdapter adapter = new SqlDataAdapter(cmd, conn);
             try
             {
@@ -424,7 +424,7 @@ namespace Abbey_Trading_Store.DAL
         {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
-            string cmd = "SELECT * FROM DealerCust WHERE ID LIKE '%" + keywords + "%' OR Name LIKE '%" + keywords + "%' ";
+            string cmd = "SELECT * FROM DealerCusts WHERE ID LIKE '%" + keywords + "%' OR Name LIKE '%" + keywords + "%' ";
             SqlDataAdapter adapter = new SqlDataAdapter(cmd, conn);
             try
             {
@@ -449,7 +449,7 @@ namespace Abbey_Trading_Store.DAL
 
             bool isSuccess = false;
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
-            string command = "INSERT INTO DealerCust(type,Name,Email,Contact,address,added_by)VALUES(@type,@Name,@Email,@Contact,@address,@added_by)";
+            string command = "INSERT INTO DealerCusts(type,Name,Email,Contact,address,added_by)VALUES(@type,@Name,@Email,@Contact,@address,@added_by)";
 
             try
             {
@@ -489,7 +489,7 @@ namespace Abbey_Trading_Store.DAL
         {
             bool isSuccess = false;
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
-            string command = "UPDATE DealerCust SET type = @type , Name = @Name , Email = @Email , Contact = @Contact , address = @address WHERE ID = @id";
+            string command = "UPDATE DealerCusts SET type = @type , Name = @Name , Email = @Email , Contact = @Contact , address = @address WHERE ID = @id";
 
             try
             {
@@ -529,7 +529,7 @@ namespace Abbey_Trading_Store.DAL
         {
             bool isSuccess = false;
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
-            string command = "DELETE  FROM DealerCust WHERE ID = @id";
+            string command = "DELETE  FROM DealerCusts WHERE ID = @id";
 
             try
             {
@@ -568,7 +568,7 @@ namespace Abbey_Trading_Store.DAL
             try
             {
                 DataTable dt = new DataTable();
-                string cmdstring = "SELECT Name , Email , Contact , address FROM DealerCust WHERE ID LIKE '%" + keywords + "%' OR Name LIKE '%" + keywords + "%' ";
+                string cmdstring = "SELECT Name , Email , Contact , address FROM DealerCusts WHERE ID LIKE '%" + keywords + "%' OR Name LIKE '%" + keywords + "%' ";
                 SqlDataAdapter adapter = new SqlDataAdapter(cmdstring, conn);
                 conn.Open();
                 adapter.Fill(dt);
@@ -604,7 +604,7 @@ namespace Abbey_Trading_Store.DAL
             DataTable dt = new DataTable();
             try
             {
-                string cmds = "SELECT * FROM DealerCust WHERE Name = @Name ";
+                string cmds = "SELECT * FROM DealerCusts WHERE Name = @Name ";
                 SqlCommand cmd = new SqlCommand(cmds, conn);
                 cmd.Parameters.AddWithValue("@Name", name);
                 SqlDataAdapter adapter = new SqlDataAdapter();
@@ -679,7 +679,7 @@ namespace Abbey_Trading_Store.DAL
 
             try
             {
-                string contact = "SELECT * FROM DealerCust WHERE type = 'Customer' AND NOT (Contact = '0753103488' OR Contact = '')";
+                string contact = "SELECT * FROM DealerCusts WHERE type = 'Customer' AND NOT (Contact = '0753103488' OR Contact = '')";
                 SqlDataAdapter adapter = new SqlDataAdapter(contact, conn);
                 adapter.Fill(dt);
 

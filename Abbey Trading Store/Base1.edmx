@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BusinessAccount">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Tel_1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tel_2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tel_3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Valid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="Server_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="255" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="added_date" Type="datetime2" Precision="0" />
+          <Property Name="added_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="Server_id" Type="int" />
+        </EntityType>
+        <EntityType Name="DealerCust">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="255" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="255" />
+          <Property Name="address" Type="nvarchar" MaxLength="255" />
+          <Property Name="added_date" Type="datetime2" Precision="0" />
+          <Property Name="added_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="Server_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Modifications">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Action" Type="nvarchar" MaxLength="255" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="255" />
+          <Property Name="Added_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="added_date" Type="datetimeoffset" Precision="7" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product" Type="nvarchar" MaxLength="255" />
+          <Property Name="Category" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Rate" Type="nvarchar" MaxLength="255" />
+          <Property Name="Selling_price" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Added_date" Type="datetime2" Precision="0" />
+          <Property Name="Added_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="Server_id" Type="int" />
+          <Property Name="Wholesale_price" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Transaction Details">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="rate" Type="int" />
+          <Property Name="Qty" Type="nvarchar" MaxLength="255" />
+          <Property Name="total" Type="int" />
+          <Property Name="dea_cust_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="added_date" Type="datetime2" Precision="0" />
+          <Property Name="added_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="Invoice_id" Type="int" />
+          <Property Name="Profit" Type="nvarchar" MaxLength="255" />
+          <Property Name="Type" Type="nvarchar" MaxLength="255" />
+          <Property Name="Server_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Transaction Tracker">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Transaction_id" Type="int" />
+          <Property Name="Paid_amount" Type="nvarchar" MaxLength="255" />
+          <Property Name="Added_date" Type="datetime2" Precision="0" />
+          <Property Name="Updated_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="Server_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="255" />
+          <Property Name="dea_cust_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="grandTotal" Type="int" />
+          <Property Name="transaction_date" Type="datetime2" Precision="0" />
+          <Property Name="discount" Type="int" />
+          <Property Name="added_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="Paid_amount" Type="nvarchar" MaxLength="255" />
+          <Property Name="Return_amount" Type="int" />
+          <Property Name="Total_Profit" Type="nvarchar" MaxLength="255" />
+          <Property Name="Paid" Type="nvarchar" MaxLength="255" />
+          <Property Name="Taken" Type="nvarchar" MaxLength="255" />
+          <Property Name="Server_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User" Type="nvarchar" MaxLength="255" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="255" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="255" />
+          <Property Name="Added_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="Type" Type="nvarchar" MaxLength="255" />
+          <Property Name="Server_id" Type="int" />
+        </EntityType>
+        <EntityContainer Name="IMSModelStoreContainer">
+          <EntitySet Name="BusinessAccount" EntityType="Self.BusinessAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DealerCust" EntityType="Self.DealerCust" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modifications" EntityType="Self.Modifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaction Details" EntityType="Self.Transaction Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaction Tracker" EntityType="Self.Transaction Tracker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BusinessAccount">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tel_1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tel_2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tel_3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Valid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Server_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="added_date" Type="DateTime" Precision="0" />
+          <Property Name="added_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Server_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DealerCust">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="added_date" Type="DateTime" Precision="0" />
+          <Property Name="added_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Server_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Modification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Action" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Reason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Added_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="added_date" Type="DateTimeOffset" Precision="7" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Selling_price" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Added_date" Type="DateTime" Precision="0" />
+          <Property Name="Added_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Server_id" Type="Int32" />
+          <Property Name="Wholesale_price" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Transaction_Detail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="rate" Type="Int32" />
+          <Property Name="Qty" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="total" Type="Int32" />
+          <Property Name="dea_cust_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="added_date" Type="DateTime" Precision="0" />
+          <Property Name="added_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Invoice_id" Type="Int32" />
+          <Property Name="Profit" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Server_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Transaction_Tracker">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Transaction_id" Type="Int32" />
+          <Property Name="Paid_amount" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Added_date" Type="DateTime" Precision="0" />
+          <Property Name="Updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Server_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="dea_cust_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="grandTotal" Type="Int32" />
+          <Property Name="transaction_date" Type="DateTime" Precision="0" />
+          <Property Name="discount" Type="Int32" />
+          <Property Name="added_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Paid_amount" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Return_amount" Type="Int32" />
+          <Property Name="Total_Profit" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Paid" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Taken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Server_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Added_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Server_id" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="IMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BusinessAccounts" EntityType="Self.BusinessAccount" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="DealerCusts" EntityType="Self.DealerCust" />
+          <EntitySet Name="Modifications" EntityType="Self.Modification" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Transaction_Details" EntityType="Self.Transaction_Detail" />
+          <EntitySet Name="Transaction_Trackers" EntityType="Self.Transaction_Tracker" />
+          <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Expenditure_Categories" EntityType="IMSModel.Expenditure_Categories" />
+          <EntitySet Name="Expenditures" EntityType="IMSModel.Expenditures" />
+        </EntityContainer>
+        <EntityType Name="Expenditure_Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Overall_category" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Added_by" Type="String" Nullable="false" />
+          <Property Name="Added_date" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Expenditures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Amount" Type="String" Nullable="false" />
+          <Property Name="Added_by" Type="String" Nullable="false" />
+          <Property Name="Added_date" Type="DateTime" Nullable="false" />
+          <Property Name="Overall_category" Type="String" Nullable="false" />
+          <Property Name="Category" Type="String" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IMSModelStoreContainer" CdmEntityContainer="IMSEntities">
+          <EntitySetMapping Name="BusinessAccounts">
+            <EntityTypeMapping TypeName="IMSModel.BusinessAccount">
+              <MappingFragment StoreEntitySet="BusinessAccount">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Tel_1" ColumnName="Tel_1" />
+                <ScalarProperty Name="Tel_2" ColumnName="Tel_2" />
+                <ScalarProperty Name="Tel_3" ColumnName="Tel_3" />
+                <ScalarProperty Name="Valid" ColumnName="Valid" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Server_id" ColumnName="Server_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="IMSModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="added_date" ColumnName="added_date" />
+                <ScalarProperty Name="added_by" ColumnName="added_by" />
+                <ScalarProperty Name="Server_id" ColumnName="Server_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DealerCusts">
+            <EntityTypeMapping TypeName="IMSModel.DealerCust">
+              <MappingFragment StoreEntitySet="DealerCust">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="added_date" ColumnName="added_date" />
+                <ScalarProperty Name="added_by" ColumnName="added_by" />
+                <ScalarProperty Name="Server_id" ColumnName="Server_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modifications">
+            <EntityTypeMapping TypeName="IMSModel.Modification">
+              <MappingFragment StoreEntitySet="Modifications">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Added_by" ColumnName="Added_by" />
+                <ScalarProperty Name="added_date" ColumnName="added_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="IMSModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product" ColumnName="Product" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Selling_price" ColumnName="Selling_price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Added_date" ColumnName="Added_date" />
+                <ScalarProperty Name="Added_by" ColumnName="Added_by" />
+                <ScalarProperty Name="Server_id" ColumnName="Server_id" />
+                <ScalarProperty Name="Wholesale_price" ColumnName="Wholesale_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transaction_Details">
+            <EntityTypeMapping TypeName="IMSModel.Transaction_Detail">
+              <MappingFragment StoreEntitySet="Transaction Details">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="dea_cust_name" ColumnName="dea_cust_name" />
+                <ScalarProperty Name="added_date" ColumnName="added_date" />
+                <ScalarProperty Name="added_by" ColumnName="added_by" />
+                <ScalarProperty Name="Invoice_id" ColumnName="Invoice_id" />
+                <ScalarProperty Name="Profit" ColumnName="Profit" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Server_id" ColumnName="Server_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transaction_Trackers">
+            <EntityTypeMapping TypeName="IMSModel.Transaction_Tracker">
+              <MappingFragment StoreEntitySet="Transaction Tracker">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Transaction_id" ColumnName="Transaction_id" />
+                <ScalarProperty Name="Paid_amount" ColumnName="Paid_amount" />
+                <ScalarProperty Name="Added_date" ColumnName="Added_date" />
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Server_id" ColumnName="Server_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="IMSModel.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="dea_cust_name" ColumnName="dea_cust_name" />
+                <ScalarProperty Name="grandTotal" ColumnName="grandTotal" />
+                <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="added_by" ColumnName="added_by" />
+                <ScalarProperty Name="Paid_amount" ColumnName="Paid_amount" />
+                <ScalarProperty Name="Return_amount" ColumnName="Return_amount" />
+                <ScalarProperty Name="Total_Profit" ColumnName="Total_Profit" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="Taken" ColumnName="Taken" />
+                <ScalarProperty Name="Server_id" ColumnName="Server_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="IMSModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="user" ColumnName="User" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Added_by" ColumnName="Added_by" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Server_id" ColumnName="Server_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

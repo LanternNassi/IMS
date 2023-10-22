@@ -58,12 +58,12 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 }
 
 
-                Users.Text = "Users : " + dt_2.Rows[19][1].ToString();
-                Categories.Text = "Categories : " + dt_2.Rows[8][1].ToString();
-                Products.Text = "Products : " + dt_2.Rows[15][1].ToString();
-                Customers.Text = "Customers : " + dt_2.Rows[9][1].ToString();
-                Transactions.Text = "Transactions : " + dt_2.Rows[18][1].ToString();
-                TD.Text = "Details : " + dt_2.Rows[16][1].ToString();
+                Users.Text = "Users : " + dt_2.Rows[9][1].ToString();
+                Categories.Text = "Categories : " + dt_2.Rows[2][1].ToString();
+                Products.Text = "Products : " + dt_2.Rows[5][1].ToString();
+                Customers.Text = "Customers : " + dt_2.Rows[3][1].ToString();
+                Transactions.Text = "Transactions : " + dt_2.Rows[8][1].ToString();
+                TD.Text = "Details : " + dt_2.Rows[6][1].ToString();
 
                 if(dt.Rows.Count > 0)
                 {

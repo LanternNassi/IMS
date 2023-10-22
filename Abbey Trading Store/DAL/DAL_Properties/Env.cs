@@ -32,7 +32,7 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         //public static string local_server_database_conn_string = File.ReadLines(file_path).First();
         static string strComputerName = Environment.MachineName.ToString();
         static string computed_server_name = strComputerName + @"\SQLSERVER2012";
-        public static string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=IMS;Integrated Security=True;TrustServerCertificate=True";
+        public static string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=Tes2;Integrated Security=True;TrustServerCertificate=True";
 
         //Loading the account information
 

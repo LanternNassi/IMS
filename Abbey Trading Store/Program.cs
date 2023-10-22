@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.ServiceProcess;
 using System.Windows.Forms;
+using Abbey_Trading_Store.Configurations;
 
 namespace Abbey_Trading_Store
 {
@@ -25,10 +26,11 @@ namespace Abbey_Trading_Store
 
             try
             {
-                conn = new SqlConnection(Env.local_server_database_conn_string);
-                Console.WriteLine("Testing SQL server...");
-                conn.Open();
-                Console.WriteLine("Testing SQL server successful...");
+                
+                //Applying migrations 
+                DatabaseUpdater db_updater = new DatabaseUpdater();
+                db_updater.UpdateOrCreateDatabase();
+
                 //Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmCompany());
                 //Application.Run(new Abbey_Trading_Store.UI.Login_form());
                 Login_form.user = "Nessim";
