@@ -21,6 +21,12 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             
             this.flowLayoutPanel1.Height = LayoutFlex.overview_flowlayout_panel1;
             this.flowLayoutPanel2.Height = LayoutFlex.overview_flowlayout_panel2;
+            this.panel10.Height = LayoutFlex.scrollbar_1;
+
+            //materialScrollBar1.Value = flowLayoutPanel1.HorizontalScroll.Value;
+            materialScrollBar1.Minimum = flowLayoutPanel1.HorizontalScroll.Minimum ;
+            materialScrollBar1.Maximum = flowLayoutPanel1.HorizontalScroll.Maximum ;
+
         }
 
         System.Data.SqlClient.SqlDataAdapter low_on_stock= null;
@@ -36,9 +42,14 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
                 product Product = new product();
                 Users user = new Users();
+                ExpCategories category = new ExpCategories();
                 DataTable dt = Product.MostSellingProductsAppropriatetly();
                 DataTable dt_2 = DAL.DAL_Properties.Env.mode == 1 ? (user.Overview_2()) : (user.Overview());
                 DataTable dt_3 = DAL.DAL_Properties.Env.mode == 1 ? (user.TransactionsOverview_2()) : (user.TransactionsOverview("Customer"));
+                DataTable dt_4 = category.ExpenditureOverview();
+
+
+
                 foreach (DataRow dr in dt_3.Rows)
                 {
                     
@@ -54,6 +65,12 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     circularProgressBar1.Text = Convert.ToInt32(dr[1]) / 1000000000 * 100 + "%";
                     Profits.Text = Convert.ToInt32(dr[0]) / 1000000000 * 100 + "%";
                     
+
+                }
+
+                foreach(DataRow dr in dt_4.Rows)
+                {
+                    chart1.Series["Expenditure"].Points.AddXY(dr[1].ToString(), Convert.ToInt32(dr[0]));
 
                 }
 
@@ -156,6 +173,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             flowLayoutPanel1.Height = Convert.ToInt32(0.33 * Dashboard.PnlContainer.Height);
            
+        }
+
+        private void materialScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            flowLayoutPanel1.HorizontalScroll.Value = materialScrollBar1.Value;
         }
     }
 }

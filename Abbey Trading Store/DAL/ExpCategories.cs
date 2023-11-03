@@ -20,10 +20,14 @@ namespace Abbey_Trading_Store.DAL
             Expense_id = expense_id;
         }
 
+        public ExpCategories()
+        {
+
+        }
+
         public ExpCategories(Expenditure_Categories exp) {
             expenditure_category = exp;
         }  
-      
         public bool Insert()
         {
             bool isSuccess = false;
@@ -58,7 +62,6 @@ namespace Abbey_Trading_Store.DAL
             }
             return isSuccess;
         }
-
         public bool Update()
         {
             bool isSuccess = false;
@@ -93,7 +96,6 @@ namespace Abbey_Trading_Store.DAL
             }
             return isSuccess;
         }
-
         public bool Delete()
         {
             bool isSuccess = false;
@@ -126,8 +128,6 @@ namespace Abbey_Trading_Store.DAL
             return isSuccess;
 
         }
-
-
         public SqlDataAdapter Select()
         {
             DataTable dt = new DataTable();
@@ -152,6 +152,66 @@ namespace Abbey_Trading_Store.DAL
             }
             return dummy_adapter;
         }
+
+
+        public DataTable ExpenditureOverview()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+
+            try
+            {
+                conn.Open();
+                string command = "SELECT SUM(CAST(Amount AS int)),MONTH(Added_date) FROM Expenditures GROUP BY MONTH(Added_date)";
+                SqlDataAdapter adapter = new SqlDataAdapter(command, conn);
+                adapter.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return dt;
+
+        }
+
+
+        public DataTable ExpenditureSummaryOverview(int Overall_category)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+
+            try
+            {
+                conn.Open();
+                string command = "SELECT SUM(CAST(Expenditures.Amount AS int)) , Expenditure_Categories.Name FROM Expenditures INNER JOIN Expenditure_Categories ON Expenditures.Category = Expenditure_Categories.ID WHERE Expenditures.Overall_category = " + Overall_category.ToString() + " GROUP BY Expenditure_Categories.Name;";
+                SqlDataAdapter adapter = new SqlDataAdapter(command, conn);
+                adapter.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return dt;
+
+        }
+
+
+
+
 
     }
 }

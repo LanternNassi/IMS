@@ -365,5 +365,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             panel2.Height = panel3.Height = Convert.ToInt32(0.7 * Dashboard.PnlContainer.Height)/2;
             panel15.Height = panel16.Height = (Dashboard.PnlContainer.Height - (panel4.Height + panel2.Height + panel3.Height)) / 2;
         }
+
+        private void TDD_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

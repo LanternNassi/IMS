@@ -38,5 +38,44 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             cat_combobox.ValueMember = "ID";
 
         }
+
+        private void extra_txt_TextChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void amount_txt_TextChanged(object sender, EventArgs e)
+        {
+            if (amount_txt.Text != "")
+            {
+                materialButton2.Enabled = true;
+            }
+        }
+
+        private void materialButton2_Click(object sender, EventArgs e)
+        {
+            Expenditures expenditure = new Expenditures();
+            expenditure.Description = extra_txt.Text;
+            expenditure.Amount = amount_txt.Text;
+            expenditure.Added_by = Login_form.user;
+            expenditure.Overall_category = expense_id.ToString();
+            expenditure.Category = cat_combobox.SelectedValue.ToString();
+
+            ExpendituresDAL exp = new ExpendituresDAL(expenditure);
+            bool success = exp.InsertExpenditure();
+            if (success)
+            {
+                MessageBox.Show("Expenditure added successfully");
+                Dashboard.active_exp_form.Load_data();
+                this.Close();
+
+            }
+            else
+            {
+                MessageBox.Show("An error occured");
+            }
+
+
+        }
     }
 }

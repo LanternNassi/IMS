@@ -23,8 +23,9 @@ namespace Abbey_Trading_Store.UI.Advanced
         public static int top_panel_height = 150;
 
         //Overview screen layout variables
-        public static int overview_flowlayout_panel1 = 200;
-        public static int overview_flowlayout_panel2 = overall_container_height - 200;
+        public static int overview_flowlayout_panel1 = Convert.ToInt32(0.4 * overall_container_height);
+        public static int scrollbar_1 = 8;
+        public static int overview_flowlayout_panel2 = overall_container_height - (scrollbar_1 + overview_flowlayout_panel1);
 
 
         //User screen layout variables

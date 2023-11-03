@@ -283,6 +283,7 @@
       <HintPath>..\packages\libphonenumber-csharp.8.13.10\lib\netstandard2.0\PhoneNumbers.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="SqlBatchParser, Version=1.0.33.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SqlBatchParser.1.0.33\lib\net452\SqlBatchParser.dll</HintPath>
     </Reference>
@@ -382,6 +383,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -390,10 +392,12 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="UnitsNet, Version=5.0.0.0, Culture=neutral, PublicKeyToken=f8601875a1f041da, processorArchitecture=MSIL">
       <HintPath>..\packages\UnitsNet.5.21.0\lib\netstandard2.0\UnitsNet.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="WinFormAnimation, Version=1.6.0.4, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
       <HintPath>..\packages\WinFormAnimation.1.6.0.4\lib\net40\WinFormAnimation.dll</HintPath>
     </Reference>
@@ -444,6 +448,7 @@
     <Compile Include="DAL\DAL_Properties\TransactionsProps.cs" />
     <Compile Include="DAL\DAL_Properties\UsersProps.cs" />
     <Compile Include="DAL\ExpCategories.cs" />
+    <Compile Include="DAL\ExpendituresDAL.cs" />
     <Compile Include="DealerCust.cs">
       <DependentUpon>Base1.tt</DependentUpon>
     </Compile>
@@ -559,6 +564,9 @@
     </Compile>
     <Compile Include="Transaction_Tracker.cs">
       <DependentUpon>Base1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Advanced\CustomComponents\HorizontalScrollBar.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\Advanced\CustomMessageBox\FormMessageBox.cs">
       <SubType>Form</SubType>

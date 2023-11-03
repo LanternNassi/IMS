@@ -91,78 +91,87 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private async void materialButton1_Click(object sender, EventArgs e)
         {
-            if(Convert.ToDecimal(p_inventory.Text) >= 0)
+            if (p_inventory.Text != "")
             {
-                if (p_quantity.Text != "" && decimal.Parse(p_quantity.Text) > 0)
+                if (Convert.ToDecimal(p_inventory.Text) >= 0)
                 {
-                    Cursor = Cursors.WaitCursor;
-                    grandtotal.Text = "";
-                    textBox13.Text = "";
-                    //Getting 
-                    string productname = p_name.Text;
-                    decimal quantity = decimal.Parse(p_quantity.Text);
-                    decimal rate = 0;
-                    decimal total = 0;
-                    if (p_quantity.Text.Contains("."))
+                    if (p_quantity.Text != "" && decimal.Parse(p_quantity.Text) > 0)
                     {
-                        decimal calculated = decimal.Parse(p_quantity.Text) * decimal.Parse(p_rate.Text);
-                        string amount = Interaction.InputBox("Confirm the amount?", "Amount", calculated.ToString());
-                        total = decimal.Parse(amount);
-                        rate = decimal.Parse(p_rate.Text);
-                    }
-                    else
-                    {
-                        rate = decimal.Parse(p_rate.Text);
-                        total = rate * quantity;
-                    }
-                    //decimal total = rate * quantity;
-                    decimal subtotals = 0;
-                    if (subtotal.Text == "")
-                    {
-                    }
-                    else
-                    {
-                        subtotals = decimal.Parse(subtotal.Text);
-                    }
-                    decimal profit = ((quantity * rate) - (quantity * initial_price));
+                        Cursor = Cursors.WaitCursor;
+                        grandtotal.Text = "";
+                        textBox13.Text = "";
+                        //Getting 
+                        string productname = p_name.Text;
+                        decimal quantity = decimal.Parse(p_quantity.Text);
+                        decimal rate = 0;
+                        decimal total = 0;
+                        if (p_quantity.Text.Contains("."))
+                        {
+                            decimal calculated = decimal.Parse(p_quantity.Text) * decimal.Parse(p_rate.Text);
+                            string amount = Interaction.InputBox("Confirm the amount?", "Amount", calculated.ToString());
+                            total = decimal.Parse(amount);
+                            rate = decimal.Parse(p_rate.Text);
+                        }
+                        else
+                        {
+                            rate = decimal.Parse(p_rate.Text);
+                            total = rate * quantity;
+                        }
+                        //decimal total = rate * quantity;
+                        decimal subtotals = 0;
+                        if (subtotal.Text == "")
+                        {
+                        }
+                        else
+                        {
+                            subtotals = decimal.Parse(subtotal.Text);
+                        }
+                        decimal profit = ((quantity * rate) - (quantity * initial_price));
 
-                    //calulations
-                    subtotals += total;
-                    subtotal.Text = subtotals.ToString("N0");
+                        //calulations
+                        subtotals += total;
+                        subtotal.Text = subtotals.ToString("N0");
 
-                    if (productname == "")
-                    {
+                        if (productname == "")
+                        {
+                            Cursor = Cursors.Default;
+                            MessageBox.Show("Please add a product.");
+                        }
+                        else
+                        {
+                            dt.Rows.Add(productname, quantity, rate, total, profit);
+                            dataGridView1.DataSource = dt;
+                            //hiding the profit column
+                            dataGridView1.Columns[4].Visible = false;
+                            //NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
+                            //dgv_products.Columns["Total"].DefaultCellStyle.Format = "C";
+                            p_name.Text = "";
+                            p_search1.Text = "";
+                            p_inventory.Text = "";
+                            p_rate.Text = "0";
+                            p_rate.Items.Clear();
+                            p_quantity.Text = "";
+                            p_rate.Items.Clear();
+
+                        }
                         Cursor = Cursors.Default;
-                        MessageBox.Show("Please add a product.");
+
                     }
                     else
                     {
-                        dt.Rows.Add(productname, quantity, rate, total, profit);
-                        dataGridView1.DataSource = dt;
-                        //hiding the profit column
-                        dataGridView1.Columns[4].Visible = false;
-                        //NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
-                        //dgv_products.Columns["Total"].DefaultCellStyle.Format = "C";
-                        p_name.Text = "";
-                        p_search1.Text = "";
-                        p_inventory.Text = "";
-                        p_rate.Text = "0";
-                        p_rate.Items.Clear();
-                        p_quantity.Text = "";
-                        p_rate.Items.Clear();
-
+                        MessageBox.Show("Invalid entry . Add a quantity");
                     }
-                    Cursor = Cursors.Default;
-
                 }
                 else
                 {
-                    MessageBox.Show("Invalid entry . Add a quantity");
+                    MessageBox.Show("You are trying to add a product whose inventory count is depleted. Consider clearing the conflict before trying again");
                 }
-            } else
-            {
-                MessageBox.Show("You are trying to add a product whose inventory count is depleted. Consider clearing the conflict before trying again");
             }
+            else
+            {
+                MessageBox.Show("No active item or no count selected");
+            }
+            
            
             
 
@@ -666,7 +675,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                         SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
 
                         string cmd = "SELECT * FROM Transactions WHERE ID = " + x + " ";
-                        string cmd2 = "SELECT product_name , Qty , rate , total FROM [Transaction Details] WHERE Invoice_id = " + x + " ";
+                        string cmd2 = "SELECT product_name , Qty , rate , total FROM [Transaction_Detail] WHERE Invoice_id = " + x + " ";
 
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd, conn);
                         SqlDataAdapter adapter2 = new SqlDataAdapter(cmd2, conn);
@@ -773,7 +782,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 Cursor = Cursors.WaitCursor;
                 int invoice_id = int.Parse(this.invoice_txtbx.Text);
                 string cmd = "SELECT * FROM Transactions WHERE ID = " + invoice_id + " ";
-                string cmd2 = "SELECT product_name , Qty , rate , total FROM [Transaction Details] WHERE Invoice_id = " + invoice_id + " ";
+                string cmd2 = "SELECT product_name , Qty , rate , total FROM [Transaction_Detail] WHERE Invoice_id = " + invoice_id + " ";
 
 
                 SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);

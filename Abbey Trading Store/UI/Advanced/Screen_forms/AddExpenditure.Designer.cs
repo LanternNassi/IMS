@@ -99,6 +99,7 @@
             this.extra_txt.TabStop = false;
             this.extra_txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.extra_txt.UseSystemPasswordChar = false;
+            this.extra_txt.TextChanged += new System.EventHandler(this.extra_txt_TextChanged);
             // 
             // label1
             // 
@@ -129,6 +130,7 @@
             this.amount_txt.TabIndex = 7;
             this.amount_txt.Text = "";
             this.amount_txt.TrailingIcon = null;
+            this.amount_txt.TextChanged += new System.EventHandler(this.amount_txt_TextChanged);
             // 
             // label3
             // 
@@ -163,6 +165,7 @@
             this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton2.UseAccentColor = false;
             this.materialButton2.UseVisualStyleBackColor = true;
+            this.materialButton2.Click += new System.EventHandler(this.materialButton2_Click);
             // 
             // pictureBox1
             // 

@@ -90,6 +90,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
                 MessageBox.Show("Category added successfully");
                 Clear();
+                Dashboard.active_exp_form.Load_data();
 
             }
             else
@@ -120,6 +121,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
                 MessageBox.Show("Category updated successfully");
                 Clear();
+                Dashboard.active_exp_form.Load_data();
             }
             else
             {
@@ -145,6 +147,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
                 MessageBox.Show("Category deleted successfully");
                 Clear();
+                Dashboard.active_exp_form.Load_data();
 
             }
             else

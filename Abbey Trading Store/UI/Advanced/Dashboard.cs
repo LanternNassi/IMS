@@ -35,7 +35,7 @@ namespace Abbey_Trading_Store.UI.Advanced
 
         public frmUser active_form = null;
         public static System.Drawing.Size PnlContainer;
-
+        public static frmExpenditures active_exp_form = null;
 
         public Dashboard()
         {
@@ -437,6 +437,8 @@ namespace Abbey_Trading_Store.UI.Advanced
             FrmExpend.FormBorderStyle = FormBorderStyle.None;
             this.pnlform.Controls.Add(FrmExpend);
             FrmExpend.Show();
+
+            active_exp_form = FrmExpend;
 
         }
 
