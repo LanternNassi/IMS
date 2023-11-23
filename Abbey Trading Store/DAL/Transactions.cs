@@ -742,7 +742,7 @@ namespace Abbey_Trading_Store.DAL
                 if (rows > 0)
                 {
                     DataTable dt = new DataTable();
-                    string cmd_text2 = "SELECT * FROM [Transaction Details] WHERE Invoice_id = @Invoice_id";
+                    string cmd_text2 = "SELECT * FROM [Transaction_Detail] WHERE Invoice_id = @Invoice_id";
                     SqlDataAdapter adapter = new SqlDataAdapter();
                     // Deleting the transaction details and updating the products
                     SqlCommand cmd2 = new SqlCommand(cmd_text2, conn);
@@ -775,7 +775,7 @@ namespace Abbey_Trading_Store.DAL
                             int rows_affected = cmd3.ExecuteNonQuery();
                             if (rows_affected > 0)
                             {
-                                string cmd_text4 = "DELETE FROM [Transaction Details] WHERE ID = @ID";
+                                string cmd_text4 = "DELETE FROM [Transaction_Detail] WHERE ID = @ID";
                                 SqlCommand cmd4 = new SqlCommand(cmd_text4, conn);
                                 cmd4.Parameters.AddWithValue("@ID", Convert.ToInt32(dr[0]));
                                 int rows_deleted = cmd4.ExecuteNonQuery();

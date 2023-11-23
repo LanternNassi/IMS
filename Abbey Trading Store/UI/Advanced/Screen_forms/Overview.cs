@@ -24,8 +24,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.panel10.Height = LayoutFlex.scrollbar_1;
 
             //materialScrollBar1.Value = flowLayoutPanel1.HorizontalScroll.Value;
-            materialScrollBar1.Minimum = flowLayoutPanel1.HorizontalScroll.Minimum ;
-            materialScrollBar1.Maximum = flowLayoutPanel1.HorizontalScroll.Maximum ;
+            //materialScrollBar1.Minimum = flowLayoutPanel1.HorizontalScroll.Minimum;
+            //materialScrollBar1.Maximum = flowLayoutPanel1.HorizontalScroll.Maximum;
+
+            materialScrollBar1.Minimum = flowLayoutPanel1.HorizontalScroll.Minimum;
+            materialScrollBar1.Maximum = flowLayoutPanel1.HorizontalScroll.Maximum + 20;
 
         }
 
@@ -53,7 +56,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 foreach (DataRow dr in dt_3.Rows)
                 {
                     
-                    chart1.Series["Transactions"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[1]));
+                    chart1.Series["Sales"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[1]));
                     chart1.Series["Profit Accummulation"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[0]));
 
                     label6.Text = "Shs. " + Convert.ToInt32(dr[1]).ToString("N0");
@@ -178,6 +181,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private void materialScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
             flowLayoutPanel1.HorizontalScroll.Value = materialScrollBar1.Value;
+            //flowLayoutPanel1.Left = materialScrollBar1.Value;
         }
     }
 }

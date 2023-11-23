@@ -21,6 +21,14 @@ using System.Threading;
 using System.Diagnostics;
 using System.Net;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Collections;
+using System.Configuration.Install;
+using System.Net.Sockets;
+using Microsoft.Reporting.Map.WebForms.BingMaps;
+using System.Net.NetworkInformation;
+using System.Net.Http;
+//using Microsoft.Office.Interop.Excel;
+//using Microsoft.Office.Interop.Excel;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
@@ -47,6 +55,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private static Thread thread;
         private BackgroundWorker worker = null;
         public string derived_conn_str = null;
+        public static string IPAddress = "";
+        private object lockObject = new object(); // Used for synchronization
+        private static string selected_server_ip = "";
         public frmSetup()
         {
 
@@ -60,56 +71,305 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
 
         }
-        private void navigate()
+
+
+        public void create_firewall_entry_port()
         {
-            this.Hide();
-            Login_form form = new Login_form();
-            form.Show();
+            int portNumber = 9000;
+            string protocol = "TCP";
+            // Run the netsh command to add a firewall rule allowing remote connections
+            string command = $"netsh advfirewall firewall add rule name=\"Allow Port {portNumber}\" dir=in action=allow protocol={protocol} localport={portNumber}";
+
+            // Start a new process to run the netsh command
+            ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe")
+            {
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            Process process = new Process { StartInfo = processStartInfo };
+            process.Start();
+
+            // Execute the netsh command
+            process.StandardInput.WriteLine(command);
+            process.StandardInput.WriteLine("exit");
+            process.WaitForExit();
         }
 
-        public bool Create_database()
+
+        public string GetNetworkIPAddress()
         {
-            bool isSuccess = false;
             try
             {
-                //SqlConnection conn = new SqlConnection(derived_conn_str);
-                //conn.Open();
-                string location = @"C:\Users\" + Environment.UserName + @"\Documents\SS12_Script.sql";
-                string script = File.ReadAllText(location);
-                //SqlCommand cmd = new SqlCommand(script, conn);
-                //cmd.ExecuteNonQuery();
-
-
-                //using (SqlConnection conn = new SqlConnection(derived_conn_str))
-                //{
-                //    Server db = new Server(new ServerConnection(conn));
-                //    string script_txt = File.ReadAllText(script);
-                //    db.ConnectionContext.ExecuteNonQuery(script_txt);
-                //}
-
-                string strComputerName = Environment.MachineName.ToString();
-                string computed_server_name = strComputerName + @"\SQLSERVER2012";
-                SqlConnection conn = new SqlConnection(derived_conn_str);
-                Server db = new Server(new ServerConnection(computed_server_name));
-                //Server db = new Server(computed_server_name);
-                db.ConnectionContext.ExecuteNonQuery(script);
-
-                //server.ConnectionContext.ExecuteNonQuery(script);
-
-
-
-                isSuccess = true;
+                using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+                {
+                    socket.Connect("8.8.8.8", 65530);  // Google's public DNS server
+                    IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                    return endPoint?.Address.ToString();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + " From Create database");
+                Console.WriteLine($"Error getting local IP address: {ex.Message}");
+                return null;
             }
-            finally
+        }
+
+        public async Task<DataTable> GetNetworkConnectedMachinesAsync()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID");
+            dt.Columns.Add("IP Address");
+            dt.Columns.Add("IMS Installation");
+            dt.Columns.Add("Type of installation");
+            dt.Columns.Add("Connection String");
+
+            // local function to ping the machines 
+            bool PingHost(string ipAddress)
             {
+                try
+                {
+                    using (Ping ping = new Ping())
+                    {
+                        PingReply reply = ping.Send(ipAddress, 1000); // 1500 milliseconds (1.5 second) timeout
+                        return (reply != null && reply.Status == IPStatus.Success);
+                    }
+                }
+                catch (PingException)
+                {
+                    return false;
+                }
+            }
+
+            async Task<string> CHECK_IMS(string serverUrl)
+            {
+                string cont = "";
+                try
+                {
+                    using (HttpClient client = new HttpClient())
+                    {
+                        // Send a GET request to the server
+                        HttpResponseMessage response = await client.GetAsync(serverUrl);
+
+                        // Check if the request was successful (status code in the 200 range)
+                        if (response.IsSuccessStatusCode)
+                        {
+                            // Read the response content as a string
+                            string responseContent = await response.Content.ReadAsStringAsync();
+                            return responseContent;
+                            
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception: {ex.Message}");
+                }
+                return cont;
+            }
+
+            string base_ip_address = "";
+            int lastDotIndex = GetNetworkIPAddress().LastIndexOf('.');
+            Console.WriteLine(GetNetworkIPAddress());
+            if (lastDotIndex != -1)
+            {
+                // Trim off the characters after the last "."
+                string trimmedIpAddress = GetNetworkIPAddress().Substring(0, lastDotIndex+1);
+                base_ip_address = trimmedIpAddress;
+            }
+            else
+            {
+                Console.WriteLine("Invalid IP Address format");
+            }
+            Console.WriteLine(base_ip_address);
+
+
+            async void get_machines(int first_ip , int last_ip)
+            {
+                // Carrying out a search on the network for any maichines
+                for (int i = first_ip; i <= last_ip; i++)
+                {
+                    string ipAddress = base_ip_address + i.ToString();
+                    if (PingHost(ipAddress))
+                    {
+                        //Checking whether there is any IMS installation
+
+                        string response = await CHECK_IMS("http://" + ipAddress + ":9000");
+                        if (response == "Server State")
+                        {
+                            lock (lockObject)
+                            {
+                                dt.Rows.Add(i, ipAddress, "Installed", "Server");
+
+                            }
+
+                        }
+                        else if (response == "Client State")
+                        {
+                            lock (lockObject)
+                            {
+                                dt.Rows.Add(i, ipAddress, "Installed", "Client");
+                            }
+                        }
+                        else
+                        {
+                            lock (lockObject)
+                            {
+                                dt.Rows.Add(i, ipAddress, "Not Installed", "N/A");
+                            }
+                        }
+
+                        // Invoke the UI thread to update the DataGridView
+                        Invoke(new System.Action(() =>
+                        {
+                            Machines.DataSource = null; // Clear previous data
+                            Machines.DataSource = dt; // Update with new data
+                        }));
+
+
+                    }
+                }
 
             }
-            return isSuccess;
+            //get_machines(50, 150);
+            Thread third_thread = new Thread(async () => get_machines(1, 62));
+            Thread fourth_thread = new Thread(async () => get_machines(63, 125));
+
+            System.Threading.Thread first_thread = new System.Threading.Thread(async () => get_machines(126, 187));
+            Thread second_thread = new Thread(async () => get_machines(188, 254));
+
+            first_thread.Start();
+            second_thread.Start();
+            third_thread.Start();
+            fourth_thread.Start();
+
+
+            first_thread.Join();
+            second_thread.Join();
+            third_thread.Join();
+            fourth_thread.Join();
+
+
+
+            return dt;
         }
+
+        public void DownloadService( string service_type)
+        {
+            string output = string.Empty;
+            pathUser = pathUser.Replace("\\", "/");
+            string filePath = "";
+            if (service_type == "Server")
+            {
+                filePath = "";
+            }
+            else
+            {
+                filePath = "";
+            }
+            //string filePath = "http://192.168.43.90:8080/SQLEXPR_x86_ENU_2012.exe";
+            var files = filePath.Split('/');
+            pathUser = pathUser + @"/" + files[files.Count() - 1];
+            //wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
+            wc.DownloadFileCompleted += new AsyncCompletedEventHandler(Install_service);
+            Console.WriteLine("Downloading Windows server....");
+            wc.DownloadFileAsync(new Uri(filePath), pathUser);
+            handle.WaitOne();
+
+        }
+
+        public async void Create_conn_env_variable(string ip_address)
+        {
+            async Task<string> GET_Conn_string(string serverUrl)
+            {
+                string cont = "";
+                try
+                {
+                    using (HttpClient client = new HttpClient())
+                    {
+                        // Send a GET request to the server
+                        HttpResponseMessage response = await client.GetAsync(serverUrl);
+
+                        // Check if the request was successful (status code in the 200 range)
+                        if (response.IsSuccessStatusCode)
+                        {
+                            // Read the response content as a string
+                            string responseContent = await response.Content.ReadAsStringAsync();
+                            return responseContent;
+
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception: {ex.Message}");
+                }
+                return cont;
+            }
+            string variableName = "IMS_conn_string";
+            string variableValue = await GET_Conn_string("http://" + ip_address + ":9000/Connection/");
+
+            // Set the environment variable
+            Environment.SetEnvironmentVariable(variableName, variableValue, EnvironmentVariableTarget.Machine);
+
+        }
+
+
+        // Install the microservice
+        public void Install_service(object sender, AsyncCompletedEventArgs e)
+        {
+            string service_path = "";
+            try
+            {
+                // Create a TransactedInstaller and set its properties
+                using (TransactedInstaller transactedInstaller = new TransactedInstaller())
+                {
+                    // Create instances of the installer classes
+                    ServiceInstaller serviceInstaller = new ServiceInstaller();
+                    ServiceProcessInstaller processInstaller = new ServiceProcessInstaller();
+
+                    // Set the properties of the service installer
+                    serviceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
+                    serviceInstaller.ServiceName = "WindowsService1"; // Change this to your service name
+                    serviceInstaller.Description = "This windows service is mant to facilitate all IMS related connections"; // Change this to your service description
+                    serviceInstaller.DisplayName = "WindowsService1"; // Change this to your service display name
+                    //serviceInstaller.DelayedAutoStart = true;
+
+                    // Set the properties of the process installer
+                    processInstaller.Account = ServiceAccount.LocalSystem;
+
+                    // Set the installers for the transacted installer
+                    transactedInstaller.Installers.Add(serviceInstaller);
+                    transactedInstaller.Installers.Add(processInstaller);
+
+                    // Set the path to your service executable
+                    IDictionary savedState = new Hashtable();
+                    AssemblyInstaller assemblyInstaller = new AssemblyInstaller(service_path, null);
+                    assemblyInstaller.UseNewContext = true;
+
+                    // Install the service
+                    transactedInstaller.Context = new InstallContext("Install.log", null);
+                    transactedInstaller.Install(savedState);
+
+                    Console.WriteLine("Service installed successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error installing service: {ex.Message}");
+            }
+        }
+
 
         void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
@@ -135,32 +395,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             var files = filePath.Split('/');
             pathUser = pathUser + @"/" + files[files.Count() - 1];
             wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
-            wc.DownloadFileCompleted += new AsyncCompletedEventHandler(DownloadSS12);
+            wc.DownloadFileCompleted += new AsyncCompletedEventHandler(Client_DownloadFileCompleted);
             Console.WriteLine("Downloading SQL server file....");
             wc.DownloadFileAsync(new Uri(filePath), pathUser);
             handle.WaitOne();
            
-        }
-
-        //object sender, AsyncCompletedEventArgs e
-
-        public void DownloadSS12(object sender, AsyncCompletedEventArgs e)
-        {
-            string output = string.Empty;
-            pathUser_2 = pathUser_2.Replace("\\", "/");
-            string filePath = "https://mulapp.s3.eu-west-2.amazonaws.com/IMS/SS12_Script.sql";
-            var files = filePath.Split('/');
-            pathUser_2 = pathUser_2 + @"/" + files[files.Count() - 1];
-            wc_2.DownloadFileCompleted += new AsyncCompletedEventHandler(Client_DownloadFileCompleted);
-            Console.WriteLine("Downloading SQ server file structure....");
-            wc_2.DownloadFileAsync(new Uri(filePath), pathUser_2);
-            handle.WaitOne(); 
-            // wait for the async event to complete
-                              //thread = new Thread(() =>
-                              //{
-
-            //});
-            //thread.Start();
         }
 
         public void Client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
@@ -192,16 +431,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DatabaseUpdater db_updater = new DatabaseUpdater();
             db_updater.UpdateOrCreateDatabase();
 
-            //Adding animations
-            P_b_3.Value = 20;
-            System.Threading.Thread.Sleep(800);
-            P_b_3.Value = 40;
-            System.Threading.Thread.Sleep(1000);
-            P_b_3.Value = 80;
-            System.Threading.Thread.Sleep(3000);
-            P_b_3.Value = 100;
-            System.Threading.Thread.Sleep(1500);
-            this.box_3.CheckState = System.Windows.Forms.CheckState.Checked;
+            
 
 
             DAL.Users user = new DAL.Users();
@@ -213,16 +443,15 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             bool user_created = user.insert_2();
             if (user_created)
             {
-                //Adding animations
-                P_b_4.Value = 20;
-                System.Threading.Thread.Sleep(800);
-                P_b_4.Value = 40;
-                System.Threading.Thread.Sleep(800);
-                P_b_4.Value = 80;
-                System.Threading.Thread.Sleep(1000);
-                P_b_4.Value = 100;
-                System.Threading.Thread.Sleep(500);
-                this.box_4.CheckState = System.Windows.Forms.CheckState.Checked;
+                
+                
+
+                
+                //Creating the firewall rule to allow connections through port 9000
+                create_firewall_entry_port();
+
+                //Starting the service installation
+                DownloadService("Server");
 
 
                 this.Hide();
@@ -232,11 +461,16 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         }
 
-        private void frmSetup_Load(object sender, EventArgs e)
+        private async void frmSetup_Load(object sender, EventArgs e)
         {
+            //Loading all machines on the network
 
+            DataTable dt = await GetNetworkConnectedMachinesAsync();
+            //Machines.DataSource = dt;
+
+            //System.Threading.Timer timer = new System.Threading.Timer((object state) => { Machines.DataSource = dt; }, null, 0, 2000);
             
-
+            //timer.Dispose();
         }
 
         private void frmSetup_Shown(object sender, EventArgs e)
@@ -255,11 +489,53 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             if (this.start_btn.Text == "Start Setup")
             {
                 start_btn.Text = "Cancel Setup";
-                DownloadSQL();
+
+                //Check if the computer is connected to the network and any type of installations that exist
+                if (client.CheckState.ToString() == "Checked" && (selected_server_ip != ""))
+                {
+                    //Creating the firewall rule to allow connections through port 9000
+                    create_firewall_entry_port();
+
+                    //Starting the service installation
+                    DownloadService("Client");
+
+                    Create_conn_env_variable(selected_server_ip);
+
+                    this.Hide();
+                    Login_form Lform = new Login_form();
+                    Lform.Show();
+
+
+                }
+                else
+                {
+                    DownloadSQL();
+
+                }
             }
             else
             {
                 this.Close();
+            }
+        }
+
+        private void server_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Machines_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = e.RowIndex;
+            string type = Machines.Rows[row].Cells[3].Value.ToString();
+            if (client.CheckState.ToString() == "Checked" && type == "Server")
+            {
+                selected_server_ip = Machines.Rows[row].Cells[1].Value.ToString();
+                selected_server.Text = "Connect to " + Machines.Rows[row].Cells[1].Value.ToString();
+            }
+            else
+            {
+                MessageBox.Show("A client option and server machine should be selected.");
             }
         }
     }

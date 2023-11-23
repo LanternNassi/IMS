@@ -15,6 +15,28 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
 {
     static class Env
     {
+
+
+        public static string get_conn_string()
+        {
+            // Replace "YOUR_ENV_VARIABLE_NAME" with the actual name of the environment variable
+            string variableName = "IMS_conn_string";
+
+            // Retrieve the value of the environment variable
+            string variableValue = Environment.GetEnvironmentVariable(variableName);
+            if (variableValue != null)
+            {
+                return variableValue;
+            }
+            else
+            {
+                string strComputerName = Environment.MachineName.ToString();
+                string computed_server_name = strComputerName + @"\SQLSERVER2012";
+                string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=Tes2;Integrated Security=True;TrustServerCertificate=True";
+                return local_server_database_conn_string;
+            }
+
+        }
         public static string live_url = "http://localhost:8000";
         public static string debug_url = "http://localhost:8000";
         public static bool debug_enabled = false;
@@ -32,11 +54,12 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         //public static string local_server_database_conn_string = File.ReadLines(file_path).First();
         static string strComputerName = Environment.MachineName.ToString();
         static string computed_server_name = strComputerName + @"\SQLSERVER2012";
-        public static string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=Tes2;Integrated Security=True;TrustServerCertificate=True";
+        //public static string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=Tes2;Integrated Security=True;TrustServerCertificate=True";
+        public static string local_server_database_conn_string = get_conn_string();
 
         //Loading the account information
 
-        //public static SqlDataAdapter account_adapter = BusinessAccount.Select();
+        //public statsic SqlDataAdapter account_adapter = BusinessAccount.Select();
 
         //AfricasTalking info
         public static string MessageLiveUri = "https://api.africastalking.com/version1/messaging";
