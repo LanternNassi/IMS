@@ -3,7 +3,7 @@ name: Build artifact
 
 on:
   push:
-    branches: [ "MMAK" ]
+    branches: [ "main" ]
 
 jobs:
 
