@@ -58,14 +58,7 @@
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.panel3 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.materialScrollBar1 = new MaterialSkin.Controls.MaterialScrollBar();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -82,10 +75,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.panel10.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -384,11 +373,9 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.panel1);
             this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.panel3);
-            this.flowLayoutPanel1.Controls.Add(this.panel8);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -397,116 +384,13 @@
             this.flowLayoutPanel1.TabIndex = 5;
             this.flowLayoutPanel1.WrapContents = false;
             // 
-            // panel8
-            // 
-            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.panel8.Controls.Add(this.circularProgressBar2);
-            this.panel8.Controls.Add(this.label7);
-            this.panel8.Controls.Add(this.panel9);
-            this.panel8.Location = new System.Drawing.Point(1120, 3);
-            this.panel8.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(266, 181);
-            this.panel8.TabIndex = 3;
-            // 
-            // circularProgressBar2
-            // 
-            this.circularProgressBar2.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.CircularEaseIn;
-            this.circularProgressBar2.AnimationSpeed = 500;
-            this.circularProgressBar2.BackColor = System.Drawing.Color.Transparent;
-            this.circularProgressBar2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.circularProgressBar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.circularProgressBar2.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
-            this.circularProgressBar2.InnerMargin = 2;
-            this.circularProgressBar2.InnerWidth = -1;
-            this.circularProgressBar2.Location = new System.Drawing.Point(6, 80);
-            this.circularProgressBar2.MarqueeAnimationSpeed = 2000;
-            this.circularProgressBar2.Name = "circularProgressBar2";
-            this.circularProgressBar2.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.circularProgressBar2.OuterMargin = -25;
-            this.circularProgressBar2.OuterWidth = 26;
-            this.circularProgressBar2.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.circularProgressBar2.ProgressWidth = 10;
-            this.circularProgressBar2.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.circularProgressBar2.Size = new System.Drawing.Size(92, 90);
-            this.circularProgressBar2.StartAngle = 270;
-            this.circularProgressBar2.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
-            this.circularProgressBar2.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
-            this.circularProgressBar2.SubscriptText = "";
-            this.circularProgressBar2.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
-            this.circularProgressBar2.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
-            this.circularProgressBar2.SuperscriptText = "";
-            this.circularProgressBar2.TabIndex = 2;
-            this.circularProgressBar2.Text = "30%";
-            this.circularProgressBar2.TextMargin = new System.Windows.Forms.Padding(4, 4, 0, 0);
-            this.circularProgressBar2.Value = 68;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label7.Location = new System.Drawing.Point(104, 92);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(119, 25);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Total Profits";
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.panel9.Controls.Add(this.label8);
-            this.panel9.Controls.Add(this.pictureBox3);
-            this.panel9.Location = new System.Drawing.Point(3, 3);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(260, 71);
-            this.panel9.TabIndex = 1;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.label8.Location = new System.Drawing.Point(88, 27);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(167, 21);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Cummulative Profits";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Abbey_Trading_Store.Properties.Resources.profit__2_;
-            this.pictureBox3.Location = new System.Drawing.Point(0, 4);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(82, 64);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
-            // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.materialScrollBar1);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel10.Location = new System.Drawing.Point(0, 187);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1130, 17);
             this.panel10.TabIndex = 7;
-            // 
-            // materialScrollBar1
-            // 
-            this.materialScrollBar1.Depth = 0;
-            this.materialScrollBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialScrollBar1.Location = new System.Drawing.Point(0, 0);
-            this.materialScrollBar1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialScrollBar1.Name = "materialScrollBar1";
-            this.materialScrollBar1.Orientation = MaterialSkin.Controls.MaterialScrollOrientation.Horizontal;
-            this.materialScrollBar1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.materialScrollBar1.ScrollbarSize = 17;
-            this.materialScrollBar1.Size = new System.Drawing.Size(1130, 17);
-            this.materialScrollBar1.TabIndex = 8;
-            this.materialScrollBar1.Text = "materialScrollBar1";
-            this.materialScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.materialScrollBar1_Scroll);
             // 
             // flowLayoutPanel2
             // 
@@ -687,12 +571,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.panel10.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -727,14 +605,7 @@
         private CircularProgressBar.CircularProgressBar circularProgressBar1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Panel panel8;
-        private CircularProgressBar.CircularProgressBar circularProgressBar2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel10;
-        private MaterialSkin.Controls.MaterialScrollBar materialScrollBar1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;

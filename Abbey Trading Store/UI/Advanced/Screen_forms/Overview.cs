@@ -27,8 +27,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             //materialScrollBar1.Minimum = flowLayoutPanel1.HorizontalScroll.Minimum;
             //materialScrollBar1.Maximum = flowLayoutPanel1.HorizontalScroll.Maximum;
 
-            materialScrollBar1.Minimum = flowLayoutPanel1.HorizontalScroll.Minimum;
-            materialScrollBar1.Maximum = flowLayoutPanel1.HorizontalScroll.Maximum + 20;
+            //materialScrollBar1.Minimum = flowLayoutPanel1.HorizontalScroll.Minimum;
+            //materialScrollBar1.Maximum = flowLayoutPanel1.HorizontalScroll.Maximum + 20;
 
         }
 
@@ -180,7 +180,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void materialScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
-            flowLayoutPanel1.HorizontalScroll.Value = materialScrollBar1.Value;
+            //flowLayoutPanel1.HorizontalScroll.Value = materialScrollBar1.Value;
             //flowLayoutPanel1.Left = materialScrollBar1.Value;
         }
     }

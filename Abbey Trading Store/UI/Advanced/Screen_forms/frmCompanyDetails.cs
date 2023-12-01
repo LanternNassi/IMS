@@ -41,6 +41,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             account.Tel_1= Tel_1.Text;
             account.Tel_2 = Tel_2.Text;
             account.Tel_3 = Tel_3.Text;
+            account.Location = Location_txt.Text;
             account.Valid = "True";
             account.Server_id = 0;
 

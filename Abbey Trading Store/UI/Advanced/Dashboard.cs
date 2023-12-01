@@ -71,7 +71,7 @@ namespace Abbey_Trading_Store.UI.Advanced
             //DataTable dt = new DataTable();
             //Env.account_adapter.Fill(dt);
 
-            //CompanyName.Text = dt.Rows[0][1].ToString();
+            CompanyName.Text = Env.BusinessName;
 
         }
 

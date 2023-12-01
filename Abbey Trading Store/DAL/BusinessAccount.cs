@@ -19,6 +19,7 @@ namespace Abbey_Trading_Store.DAL
         private string tel_2;
         private string tel_3;
         private string valid;
+        private string location;
         private int server_id;
 
         BusinessAccountProps props = new BusinessAccountProps();
@@ -89,6 +90,16 @@ namespace Abbey_Trading_Store.DAL
             }
         }
 
+        public string Location
+        {
+            get { return location; }
+            set
+            {
+                location = value;
+                props.Location = value;
+            }
+        }
+
         public int Server_id
         {
             get { return server_id; }
@@ -110,7 +121,7 @@ namespace Abbey_Trading_Store.DAL
             bool isSuccess = false;
             try
             {
-                string cmd_txt = "INSERT INTO BusinessAccount(Name , Description , Tel_1 , Tel_2 , Tel_3 , Valid , Server_id) VALUES (@Name , @Description , @Tel_1 , @Tel_2 , @Tel_3 , @Valid , @Server_id)";
+                string cmd_txt = "INSERT INTO BusinessAccounts(Name , Description , Tel_1 , Tel_2 , Tel_3 , Valid ,Location, Server_id) VALUES (@Name , @Description , @Tel_1 , @Tel_2 , @Tel_3 , @Valid ,@Location, @Server_id)";
                 SqlCommand cmd = new SqlCommand(cmd_txt, conn);
                 cmd.Parameters.AddWithValue("@Name", Name);
                 cmd.Parameters.AddWithValue("@Description", Description);
@@ -118,6 +129,7 @@ namespace Abbey_Trading_Store.DAL
                 cmd.Parameters.AddWithValue("@Tel_2", Tel_2);
                 cmd.Parameters.AddWithValue("@Tel_3", Tel_3);
                 cmd.Parameters.AddWithValue("@Valid", Valid);
+                cmd.Parameters.AddWithValue("@Location", Location);
                 cmd.Parameters.AddWithValue("@Server_id", Server_id);
                 conn.Open();
                 int results = cmd.ExecuteNonQuery();
@@ -145,7 +157,7 @@ namespace Abbey_Trading_Store.DAL
             bool success = false;
             try
             {
-                string cmd_txt = "UPDATE BusinessAccount SET Name = @Name , Description = @Description , Tel_1 = @Tel_1 , Tel_2 = @Tel_2 , Tel_3 = @Tel_3 , Valid = @Valid , Server_id = @Server_id WHERE id = @id";
+                string cmd_txt = "UPDATE BusinessAccounts SET Name = @Name , Description = @Description , Tel_1 = @Tel_1 , Tel_2 = @Tel_2 , Tel_3 = @Tel_3 , Valid = @Valid , Location = @Location, Server_id = @Server_id WHERE id = @id";
                 SqlCommand cmd = new SqlCommand(cmd_txt, conn);
                 conn.Open();
                 cmd.Parameters.AddWithValue("@Name", Name);
@@ -154,6 +166,7 @@ namespace Abbey_Trading_Store.DAL
                 cmd.Parameters.AddWithValue("@Tel_2", Tel_2);
                 cmd.Parameters.AddWithValue("@Tel_3", Tel_3);
                 cmd.Parameters.AddWithValue("@Valid", Valid);
+                cmd.Parameters.AddWithValue("@Location", Location);
                 cmd.Parameters.AddWithValue("@Server_id", Server_id);
                 int rows = cmd.ExecuteNonQuery();
                 if (rows > 0)
@@ -182,10 +195,9 @@ namespace Abbey_Trading_Store.DAL
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                string cmd_txt = "SELECT * FROM BusinessAccount";
+                string cmd_txt = "SELECT * FROM BusinessAccounts";
                 conn.Open();
                 adapter = new SqlDataAdapter(cmd_txt , conn);
-
                 adapter.Fill(dt);
 
             }catch(Exception ex)

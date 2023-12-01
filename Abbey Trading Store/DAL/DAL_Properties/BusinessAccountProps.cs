@@ -17,6 +17,7 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         private string tel_2;
         private string tel_3;
         private string valid;
+        private string location;
         private int server_id;
 
         // properties
@@ -27,6 +28,7 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         public string Tel_2 { get { return tel_2; } set { tel_2 = value; } }
         public string Tel_3 { get { return tel_3; } set { tel_3 = value; } }
         public string Valid { get { return valid; } set { valid = value; } }
+        public string Location { get { return location; } set { location = value; } }
         public int Server_id { get { return server_id; } set { server_id = value; } }
 
 

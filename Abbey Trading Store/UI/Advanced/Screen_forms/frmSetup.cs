@@ -27,6 +27,8 @@ using System.Net.Sockets;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
 using System.Net.NetworkInformation;
 using System.Net.Http;
+using Newtonsoft.Json;
+using System.Reflection;
 //using Microsoft.Office.Interop.Excel;
 //using Microsoft.Office.Interop.Excel;
 
@@ -49,15 +51,21 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private static WebClient wc = new WebClient();
         private static WebClient wc_2 = new WebClient();
+        private static WebClient service_wc = new WebClient();
         private static ManualResetEvent handle = new ManualResetEvent(true);
         private static string pathUser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private static string pathUser_2 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private static string service_pathUser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
         private static Thread thread;
         private BackgroundWorker worker = null;
         public string derived_conn_str = null;
         public static string IPAddress = "";
         private object lockObject = new object(); // Used for synchronization
         private static string selected_server_ip = "";
+        private static string selected_installation = "";
+
+        private static string service_downloaded_path = "";
         public frmSetup()
         {
 
@@ -71,6 +79,51 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
 
         }
+
+
+        HttpClient http_client = new HttpClient();
+
+        public async Task<dynamic> FetchData(string url)
+        {
+            try
+            {
+
+
+
+                // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
+                http_client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                http_client.DefaultRequestHeaders.UserAgent.TryParseAdd("request");//Set the User Agent to "request"
+                HttpResponseMessage response = await http_client.GetAsync(url);
+
+                response.EnsureSuccessStatusCode();
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    dynamic response_content = await response.Content.ReadAsStringAsync();
+                    dynamic deserialized = JsonConvert.DeserializeObject(response_content);
+                    //MessageBox.Show(deserialized.ToString());
+
+                    return deserialized;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+
+            }
+            return null;
+        }
+
 
 
         public void create_firewall_entry_port()
@@ -260,26 +313,31 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             return dt;
         }
 
-        public void DownloadService( string service_type)
+        public async void DownloadService( string service_type)
         {
             string output = string.Empty;
-            pathUser = pathUser.Replace("\\", "/");
+            service_pathUser = service_pathUser.Replace("\\", "/");
             string filePath = "";
             if (service_type == "Server")
             {
-                filePath = "";
+                dynamic latest_release = await FetchData("https://api.github.com/repos/LanternNassi/Server-Service/releases/latest");
+                dynamic release_info = await FetchData(latest_release["assets_url"]);
+
+                filePath = release_info["browser_download_url"];
             }
             else
             {
-                filePath = "";
+                dynamic latest_release = await FetchData("https://api.github.com/repos/LanternNassi/IMS_Client_Service/releases/latest");
+                dynamic release_info = await FetchData(Convert.ToString(latest_release["assets_url"]));
+                //MessageBox.Show(Convert.ToString(release_info));
+                filePath = Convert.ToString(release_info[0]["browser_download_url"]);
             }
-            //string filePath = "http://192.168.43.90:8080/SQLEXPR_x86_ENU_2012.exe";
             var files = filePath.Split('/');
-            pathUser = pathUser + @"/" + files[files.Count() - 1];
+            service_pathUser = service_pathUser + @"/" + files[files.Count() - 1];
             //wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
-            wc.DownloadFileCompleted += new AsyncCompletedEventHandler(Install_service);
+            service_wc.DownloadFileCompleted += new AsyncCompletedEventHandler(Install_service);
             Console.WriteLine("Downloading Windows server....");
-            wc.DownloadFileAsync(new Uri(filePath), pathUser);
+            service_wc.DownloadFileAsync(new Uri(filePath), service_pathUser);
             handle.WaitOne();
 
         }
@@ -326,49 +384,65 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
 
         // Install the microservice
+
+        
         public void Install_service(object sender, AsyncCompletedEventArgs e)
         {
-            string service_path = "";
+            string service_path = service_pathUser;
             try
             {
-                // Create a TransactedInstaller and set its properties
-                using (TransactedInstaller transactedInstaller = new TransactedInstaller())
+                Console.WriteLine("Service installation started.");
+                // Set up the assembly installer
+                using (AssemblyInstaller installer = new AssemblyInstaller(service_path, null))
                 {
-                    // Create instances of the installer classes
-                    ServiceInstaller serviceInstaller = new ServiceInstaller();
-                    ServiceProcessInstaller processInstaller = new ServiceProcessInstaller();
+                    Console.WriteLine("Service installation started 2.");
 
-                    // Set the properties of the service installer
-                    serviceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
-                    serviceInstaller.ServiceName = "WindowsService1"; // Change this to your service name
-                    serviceInstaller.Description = "This windows service is mant to facilitate all IMS related connections"; // Change this to your service description
-                    serviceInstaller.DisplayName = "WindowsService1"; // Change this to your service display name
-                    //serviceInstaller.DelayedAutoStart = true;
-
-                    // Set the properties of the process installer
-                    processInstaller.Account = ServiceAccount.LocalSystem;
-
-                    // Set the installers for the transacted installer
-                    transactedInstaller.Installers.Add(serviceInstaller);
-                    transactedInstaller.Installers.Add(processInstaller);
-
-                    // Set the path to your service executable
-                    IDictionary savedState = new Hashtable();
-                    AssemblyInstaller assemblyInstaller = new AssemblyInstaller(service_path, null);
-                    assemblyInstaller.UseNewContext = true;
+                    installer.UseNewContext = true;
 
                     // Install the service
-                    transactedInstaller.Context = new InstallContext("Install.log", null);
-                    transactedInstaller.Install(savedState);
+                    installer.Install(null);
+
+                    // Commit the installation
+                    installer.Commit(null);
 
                     Console.WriteLine("Service installed successfully.");
                 }
+
+                //Starting the service
+                ServiceController service;
+
+                if (selected_installation == "Client")
+                {
+                    service = new ServiceController("IMSClient");
+
+                }
+                else
+                {
+                    service = new ServiceController("IMSServer");
+
+                }
+
+                if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
+
+                    (service.Status.Equals(ServiceControllerStatus.StopPending)))
+                {
+                    service.Start();
+
+                }
+
+                else service.Stop();
+
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error installing service: {ex.Message}");
+                MessageBox.Show("An error occured during installation . Please consider starting the installation as an administator to clear some of the issues.");
             }
+
         }
+
+
 
 
         void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -455,8 +529,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
 
                 this.Hide();
-                Login_form Lform = new Login_form();
-                Lform.Show();
+                Screen_forms.frmCompany cform = new frmCompany();
+                cform.Show();
+                //Login_form Lform = new Login_form();
+                //Lform.Show();
             }
 
         }
@@ -498,9 +574,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
                     //Starting the service installation
                     DownloadService("Client");
+                    selected_installation = "Client";
 
-                    Create_conn_env_variable(selected_server_ip);
-
+                    //Create_conn_env_variable(selected_server_ip);
+                    MessageBox.Show("Client Service installed");
                     this.Hide();
                     Login_form Lform = new Login_form();
                     Lform.Show();
@@ -509,6 +586,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 }
                 else
                 {
+                    selected_installation = "Server";
                     DownloadSQL();
 
                 }
@@ -528,7 +606,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             int row = e.RowIndex;
             string type = Machines.Rows[row].Cells[3].Value.ToString();
-            if (client.CheckState.ToString() == "Checked" && type == "Server")
+            if (client.CheckState.ToString() == "Checked")
             {
                 selected_server_ip = Machines.Rows[row].Cells[1].Value.ToString();
                 selected_server.Text = "Connect to " + Machines.Rows[row].Cells[1].Value.ToString();

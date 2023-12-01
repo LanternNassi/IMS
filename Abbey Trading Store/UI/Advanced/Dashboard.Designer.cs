@@ -560,11 +560,11 @@
             this.CompanyName.AutoSize = true;
             this.CompanyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
-            this.CompanyName.Location = new System.Drawing.Point(70, 16);
+            this.CompanyName.Location = new System.Drawing.Point(40, 14);
             this.CompanyName.Name = "CompanyName";
-            this.CompanyName.Size = new System.Drawing.Size(377, 32);
+            this.CompanyName.Size = new System.Drawing.Size(445, 32);
             this.CompanyName.TabIndex = 34;
-            this.CompanyName.Text = "MMAK AGRO CHEMICALS";
+            this.CompanyName.Text = "TEST BUSINESS ENTERPRISE";
             // 
             // panel6
             // 

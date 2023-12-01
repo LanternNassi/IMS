@@ -226,13 +226,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 Abbey_Trading_Store.Reports.Invoice_Report.Invoice dataset = new Reports.Invoice_Report.Invoice();
                 dynamic adapter1 = Td.GetTransactionAppropriately(Int32.Parse(id.Text));
                 dynamic adapter2 = Td.GetdetailsAppropriately(Int32.Parse(id.Text));
+                dynamic adapter3 = DAL.BusinessAccount.Select();
 
+                
                 adapter1.Fill(dataset, "Overall_data");
                 adapter2.Fill(dataset, "Invoice_data");
+                adapter3.Fill(dataset, "DataTable_Company");
 
                 ReportDataSource datasource1 = new ReportDataSource("DataSet1", dataset.Tables[0]);
                 ReportDataSource datasource2 = new ReportDataSource("DataSet2", dataset.Tables[1]);
-                ReportDataSource[] list = { datasource1, datasource2 };
+                ReportDataSource datacource3 = new ReportDataSource("Company", dataset.Tables[2]);
+
+                ReportDataSource[] list = { datasource1, datasource2, datacource3 };
                 ReportView form = new ReportView(list, "Abbey_Trading_Store.Reports.Invoice_Report.Invoice.rdlc");
                 form.Show();
                 Cursor = Cursors.Default;

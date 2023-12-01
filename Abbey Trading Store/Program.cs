@@ -42,6 +42,8 @@ namespace Abbey_Trading_Store
             }
             catch (SqlException ex)
             {
+                //Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmSetup());
+
                 try
                 {
                     ServiceController service = new ServiceController("MSSQL$SQLSERVER2012");

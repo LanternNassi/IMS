@@ -17,7 +17,7 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
     {
 
 
-        public static string get_conn_string()
+        private static string get_conn_string()
         {
             // Replace "YOUR_ENV_VARIABLE_NAME" with the actual name of the environment variable
             string variableName = "IMS_conn_string";
@@ -37,6 +37,10 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
             }
 
         }
+
+        
+
+
         public static string live_url = "http://localhost:8000";
         public static string debug_url = "http://localhost:8000";
         public static bool debug_enabled = false;
@@ -69,6 +73,24 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
 
         public static dynamic MessageGateway = new AfricasTalkingGateway(MessageUsername, MessageAPIKey);
 
+        private static DataRow Get_business_details()
+        {
+            SqlDataAdapter adapter = BusinessAccount.Select();
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            return dt.Rows[0];
+        }
+
+        // Business Details
+        private static DataRow business_dr = Get_business_details();
+
+        public static string BusinessName = business_dr[1].ToString();
+        public static string BusinessDescription = business_dr[2].ToString();
+        public static string Tel_1 = business_dr[3].ToString();
+        public static string Tel_2 = business_dr[4].ToString();
+        public static string Tel_3 = business_dr[5].ToString();
+        public static string Valid = business_dr[6].ToString();
+        public static string Location = business_dr[7].ToString();
 
 
 

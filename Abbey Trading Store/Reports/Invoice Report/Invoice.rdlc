@@ -9,14 +9,16 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>MMAK AGRO CHEMICALS LTD</Value>
+                <Value>=First(Fields!Name.Value, "Company")</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
@@ -41,7 +43,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Dealers in farm supply and Fertilisers</Value>
+                <Value>=First(Fields!Description.Value, "Company")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -75,7 +77,40 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tel : 0743061508 , Tel : 0754066646 , Tel :0780757304 </Value>
+                <Value>Tel :</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Label>Tel_1</Label>
+                <Value>=First(Fields!Tel_1.Value, "Company")</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> , Tel :</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Label>Tel_2</Label>
+                <Value>=First(Fields!Tel_2.Value, "Company")</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> , Tel : </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Label>Tel_3</Label>
+                <Value>=First(Fields!Tel_3.Value, "Company")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -1075,6 +1110,13 @@
       </ConnectionProperties>
       <rd:DataSourceID>6342270f-001f-4d6a-9a44-1035e141cbf9</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="Abbey_Trading_StoreReportsInvoice_Report1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>d17f862e-157f-457d-a76a-b91126125af6</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
@@ -1155,6 +1197,48 @@
         <rd:TableName>Invoice</rd:TableName>
         <rd:ObjectDataSourceSelectMethod>Overall_data</rd:ObjectDataSourceSelectMethod>
         <rd:ObjectDataSourceType>Abbey_Trading_Store.Reports.Invoice_Report.Invoice, Reports.Invoice Report.Invoice.Designer.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="Company">
+      <Query>
+        <DataSourceName>Abbey_Trading_StoreReportsInvoice_Report1</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tel_1">
+          <DataField>Tel_1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tel_2">
+          <DataField>Tel_2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tel_3">
+          <DataField>Tel_3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Valid">
+          <DataField>Valid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Location">
+          <DataField>Location</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Abbey_Trading_Store.Reports.Invoice_Report</rd:DataSetName>
+        <rd:TableName>Invoice</rd:TableName>
+        <rd:ObjectDataSourceSelectMethod>DataTable_Company</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>Abbey_Trading_Store.Reports.Invoice_Report.Invoice, Reports.Invoice Report.Invoice.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

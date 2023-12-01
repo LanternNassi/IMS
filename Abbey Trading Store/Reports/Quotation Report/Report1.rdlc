@@ -479,7 +479,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>MMAK AGRO CHEMICALS</Value>
+                  <Value>=First(Fields!Name.Value, "Company")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -512,7 +512,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Dealers in all Farm Supplies and Fertilisers</Value>
+                  <Value>=First(Fields!Description.Value, "Company")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -547,7 +547,45 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Tel : 0743061508 , 0754066646, 0780757304</Value>
+                  <Value>Tel : </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Label>Tel_1</Label>
+                  <Value>=First(Fields!Tel_1.Value, "Company")</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value> , </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Label>Tel_2</Label>
+                  <Value>=First(Fields!Tel_2.Value, "Company")</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>, </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Label>Tel_3</Label>
+                  <Value>=First(Fields!Tel_3.Value, "Company")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -622,7 +660,16 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Located at Busega , Kampala</Value>
+                  <Value>Located at </Value>
+                  <Style>
+                    <FontStyle>Normal</FontStyle>
+                    <FontSize>7pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Label>Location</Label>
+                  <Value>=First(Fields!Location.Value, "Company")</Value>
                   <Style>
                     <FontStyle>Normal</FontStyle>
                     <FontSize>7pt</FontSize>
@@ -942,6 +989,50 @@
         <rd:DataSetName>QuotationDataSet</rd:DataSetName>
         <rd:SchemaPath>C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\Reports\Quotation Report\QuotationDataSet.xsd</rd:SchemaPath>
         <rd:TableName>Products</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="Company">
+      <Query>
+        <DataSourceName>QuotationDataSet</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tel_1">
+          <DataField>Tel_1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tel_2">
+          <DataField>Tel_2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tel_3">
+          <DataField>Tel_3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Valid">
+          <DataField>Valid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Location">
+          <DataField>Location</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>QuotationDataSet</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\SHANY\Desktop\projects\MMAK\Abbey Trading Store\Reports\Quotation Report\QuotationDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>DataTable_Company</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />

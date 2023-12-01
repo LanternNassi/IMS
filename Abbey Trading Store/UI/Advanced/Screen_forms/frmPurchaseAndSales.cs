@@ -676,23 +676,32 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
                         string cmd = "SELECT * FROM Transactions WHERE ID = " + x + " ";
                         string cmd2 = "SELECT product_name , Qty , rate , total FROM [Transaction_Detail] WHERE Invoice_id = " + x + " ";
+                        string cmd3 = "SELECT * FROM BusinessAccounts WHERE id = 1";
 
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd, conn);
                         SqlDataAdapter adapter2 = new SqlDataAdapter(cmd2, conn);
+                        SqlDataAdapter adapter3 = new SqlDataAdapter(cmd3, conn);
 
-                        Abbey_Trading_StoreDataSet dataset = new Abbey_Trading_StoreDataSet();
+
+                        Invoice.Abbey_Trading_StoreDataSet dataset = new Invoice.Abbey_Trading_StoreDataSet();
                         conn.Open();
 
                         adapter2.Fill(dataset, "Datatable_invoice");
                         adapter.Fill(dataset, "DataTable_Details2");
+                        adapter3.Fill(dataset, "DataTable_Company");
                         conn.Close();
 
                         ReportDataSource datasource = new ReportDataSource("DataSet_Report", dataset.Tables[0]);
                         ReportDataSource datasource2 = new ReportDataSource("DataSet_details", dataset.Tables[1]);
+                        ReportDataSource datasource3 = new ReportDataSource("DataSet1_company", dataset.Tables[2]);
+
+
 
                         this.reportViewer1.LocalReport.DataSources.Clear();
                         this.reportViewer1.LocalReport.DataSources.Add(datasource2);
                         this.reportViewer1.LocalReport.DataSources.Add(datasource);
+                        this.reportViewer1.LocalReport.DataSources.Add(datasource3);
+
                         this.reportViewer1.RefreshReport();
                     }
                     
@@ -783,6 +792,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 int invoice_id = int.Parse(this.invoice_txtbx.Text);
                 string cmd = "SELECT * FROM Transactions WHERE ID = " + invoice_id + " ";
                 string cmd2 = "SELECT product_name , Qty , rate , total FROM [Transaction_Detail] WHERE Invoice_id = " + invoice_id + " ";
+                string cmd3 = "SELECT Name , Description , Tel_1 , Tel_2 , Tel_3 , Valid , Location FROM BusinessAccounts WHERE id = 1";
 
 
                 SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
@@ -791,23 +801,31 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 if (check_validity(adapter))
                 {
                     SqlDataAdapter adapter2 = new SqlDataAdapter(cmd2, conn);
+                    SqlDataAdapter adapter3 = new SqlDataAdapter(cmd3, conn);
 
-                    Abbey_Trading_StoreDataSet dataset = new Abbey_Trading_StoreDataSet();
+                    Invoice.Abbey_Trading_StoreDataSet dataset = new Invoice.Abbey_Trading_StoreDataSet();
+                    //Abbey_Trading_StoreDataSet dataset = new Abbey_Trading_StoreDataSet();
 
                     conn.Open();
                     adapter.Fill(dataset, "DataTable_Details2");
                     adapter2.Fill(dataset, "Datatable_invoice");
+                    adapter3.Fill(dataset, "DataTable_Company");
                     //Env.account_adapter.Fill(dataset, "DataTable_Company");
+                    //DataTable dt = new DataTable();
+                    //adapter3.Fill(dt);
+                    //MessageBox.Show(dt.Rows[0][1].ToString());
+
                     conn.Close();
 
                     ReportDataSource datasource = new ReportDataSource("DataSet_Report", dataset.Tables[0]);
                     ReportDataSource datasource2 = new ReportDataSource("DataSet_details", dataset.Tables[1]);
-                    //ReportDataSource datasource3 = new ReportDataSource("DataSet_Company", dataset.Tables[2]);
+                    ReportDataSource datasource3 = new ReportDataSource("DataSet1_company", dataset.Tables[2]);
 
 
                     reportViewer1.LocalReport.DataSources.Clear();
                     reportViewer1.LocalReport.DataSources.Add(datasource);
                     reportViewer1.LocalReport.DataSources.Add(datasource2);
+                    reportViewer1.LocalReport.DataSources.Add(datasource3);
                     //reportViewer1.LocalReport.DataSources.Add(datasource3);
                     this.reportViewer1.RefreshReport();
                 }
@@ -918,10 +936,19 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             temp_dt.Columns.Add("Grand_total");
             temp_dt.Columns.Add("Customer_name");
             temp_dt.Columns.Add("Discount");
+
+            DataTable company_details = new DataTable();
+
             try
             {
                 temp_dt.Rows.Add(Login_form.user, grandtotal.Text, name.Text, textBox13.Text);
-            }catch(Exception ex)
+                using (Microsoft.Data.SqlClient.SqlDataAdapter ad = DAL.BusinessAccount.Select())
+                {
+                    ad.Fill(company_details);
+
+                }
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show("Please enter a valid disocunt");
             }
@@ -934,8 +961,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             ReportDataSource datasource = new ReportDataSource("Overall", temp_dt);
             ReportDataSource datasource_2 = new ReportDataSource("Products", dt);
+            ReportDataSource datasource_3 = new ReportDataSource("Company", company_details);
 
-            ReportDataSource[] list = { datasource , datasource_2 };
+            ReportDataSource[] list = { datasource , datasource_2 , datasource_3};
 
             ReportView form = new ReportView(list, "Abbey_Trading_Store.Reports.Quotation_Report.Report1.rdlc");
             form.Show();

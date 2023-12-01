@@ -55,6 +55,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.start_btn = new MaterialSkin.Controls.MaterialButton();
+            this.Location_txt = new MaterialSkin.Controls.MaterialTextBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,7 +134,7 @@
             this.Name.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.Name.LeadingIcon = null;
             this.Name.Location = new System.Drawing.Point(201, 86);
-            this.Name.MaxLength = 34;
+            this.Name.MaxLength = 22;
             this.Name.MouseState = MaterialSkin.MouseState.OUT;
             this.Name.Multiline = false;
             this.Name.Name = "Name";
@@ -200,7 +202,7 @@
             this.Info.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.Info.LeadingIcon = null;
             this.Info.Location = new System.Drawing.Point(201, 174);
-            this.Info.MaxLength = 75;
+            this.Info.MaxLength = 65;
             this.Info.MouseState = MaterialSkin.MouseState.OUT;
             this.Info.Multiline = false;
             this.Info.Name = "Info";
@@ -391,7 +393,7 @@
             this.start_btn.Depth = 0;
             this.start_btn.HighEmphasis = true;
             this.start_btn.Icon = null;
-            this.start_btn.Location = new System.Drawing.Point(632, 459);
+            this.start_btn.Location = new System.Drawing.Point(621, 475);
             this.start_btn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.start_btn.MouseState = MaterialSkin.MouseState.HOVER;
             this.start_btn.Name = "start_btn";
@@ -404,11 +406,41 @@
             this.start_btn.UseVisualStyleBackColor = true;
             this.start_btn.Click += new System.EventHandler(this.start_btn_Click);
             // 
+            // Location_txt
+            // 
+            this.Location_txt.AnimateReadOnly = false;
+            this.Location_txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Location_txt.Depth = 0;
+            this.Location_txt.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.Location_txt.LeadingIcon = null;
+            this.Location_txt.Location = new System.Drawing.Point(201, 466);
+            this.Location_txt.MaxLength = 26;
+            this.Location_txt.MouseState = MaterialSkin.MouseState.OUT;
+            this.Location_txt.Multiline = false;
+            this.Location_txt.Name = "Location_txt";
+            this.Location_txt.Size = new System.Drawing.Size(284, 50);
+            this.Location_txt.TabIndex = 21;
+            this.Location_txt.Text = "";
+            this.Location_txt.TrailingIcon = null;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.label20.Location = new System.Drawing.Point(24, 487);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(78, 18);
+            this.label20.TabIndex = 20;
+            this.label20.Text = "Location ";
+            // 
             // frmCompany
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(800, 500);
+            this.ClientSize = new System.Drawing.Size(800, 526);
+            this.Controls.Add(this.Location_txt);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.start_btn);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.panel1);
@@ -463,5 +495,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label19;
         public MaterialSkin.Controls.MaterialButton start_btn;
+        private MaterialSkin.Controls.MaterialTextBox Location_txt;
+        private System.Windows.Forms.Label label20;
     }
 }

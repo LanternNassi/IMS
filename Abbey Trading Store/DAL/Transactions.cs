@@ -711,7 +711,7 @@ namespace Abbey_Trading_Store.DAL
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                string cmds = "SELECT * FROM [Transaction Tracker] WHERE Transaction_id = @id";
+                string cmds = "SELECT * FROM Transaction_Tracker WHERE Transaction_id = @id";
                 SqlCommand cmd = new SqlCommand(cmds, conn);
                 cmd.Parameters.AddWithValue("@id", id);
                 adapter.SelectCommand = cmd;
