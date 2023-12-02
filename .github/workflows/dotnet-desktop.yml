@@ -77,7 +77,15 @@ jobs:
         
   release:
       needs: build
-      runs-on: ubuntu-latest  # You can use a different OS for releasing
+      
+      runs-on: ubuntu-latest
+      
+      env:
+        Solution_Name: Abbey Trading Store.sln                         
+        SigningCertificate: IMS_TemporaryKey.pfx
+        Wap_Project_Directory: IMS    
+        Wap_Project_Path: IMS\IMS.wapproj 
+        
       steps:
       - name: Checkout repository
         uses: actions/checkout@v2
