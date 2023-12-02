@@ -66,13 +66,13 @@ jobs:
         Appx_Bundle_Platforms: "x64"
         Appx_Package_Build_Mode: StoreUpload
         Configuration: ${{ matrix.configuration }}
-        Artifact_name: MSIX Package
+        Artifact_name: MSIX
 
      #Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: MSIX Package
+        name: MSIX
         path: ${{ env.Wap_Project_Directory }}\AppPackages
 
     - name: Generate release tag
@@ -97,7 +97,7 @@ jobs:
     - name: Download the artifact
       uses: actions/download-artifact@v1
       with:
-        name: MSIX Package
+        name: MSIX
         path: ./
 
     - name: Upload Release Asset
@@ -107,7 +107,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.ACCESS_KEY }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{env.Artifact_name}}.zip
+        asset_path: MSIX.zip
         asset_name: IMS.zip  
         asset_content_type: application/zip
 
