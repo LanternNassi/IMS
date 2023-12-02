@@ -67,39 +67,6 @@ jobs:
         Appx_Package_Build_Mode: StoreUpload
         Configuration: ${{ matrix.configuration }}
 
-    
-    - name: Generate release tag
-      id: generate_release_tag
-      uses: alexvingg/next-release-tag@v1.0.4
-      with:
-        github_token: ${{ secrets.ACCESS_KEY }}
-        tag_prefix: 'IMS '
-
-
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.ACCESS_KEY }}
-      with:
-        tag_name: ${{ steps.generate_release_tag.outputs.release_tag }}
-        release_name: Release ${{ steps.generate_release_tag.outputs.release_tag }}
-        draft: false
-        prerelease: false
-        
-
-    - name: Upload Release Asset
-      id: upload-release-asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.ACCESS_KEY }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ env.Wap_Project_Directory }}\AppPackages
-        asset_name: IMS  
-        asset_content_type: application/octet-stream
-
-        
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     #- name: Upload build artifacts
      # uses: actions/upload-artifact@v3
@@ -107,3 +74,41 @@ jobs:
        # name: MSIX Package
         #path: ${{ env.Wap_Project_Directory }}\AppPackages
 
+        
+  release:
+      needs: build
+      runs-on: ubuntu-latest  # You can use a different OS for releasing
+      steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+  
+      - name: Generate release tag
+        id: generate_release_tag
+        uses: alexvingg/next-release-tag@v1.0.4
+        with:
+          github_token: ${{ secrets.ACCESS_KEY }}
+          tag_prefix: 'IMS '
+  
+  
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_KEY }}
+        with:
+          tag_name: ${{ steps.generate_release_tag.outputs.release_tag }}
+          release_name: Release ${{ steps.generate_release_tag.outputs.release_tag }}
+          draft: false
+          prerelease: false
+          
+  
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_KEY }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.Wap_Project_Directory }}\AppPackages
+          asset_name: IMS  
+          asset_content_type: application/octet-stream
