@@ -92,7 +92,12 @@ jobs:
         release_name: Release ${{ steps.generate_release_tag.outputs.release_tag }}
         draft: false
         prerelease: false
-        
+
+    - name: Download the artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: MSIX Package
+        path: ./
 
     - name: Upload Release Asset
       id: upload-release-asset
@@ -101,7 +106,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.ACCESS_KEY }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ env.Wap_Project_Directory }}\AppPackages
+        asset_path: MSIX Package
         asset_name: IMS.zip  
         asset_content_type: application/zip
 
