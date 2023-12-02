@@ -67,12 +67,12 @@ jobs:
         Appx_Package_Build_Mode: StoreUpload
         Configuration: ${{ matrix.configuration }}
 
-    # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
-    #- name: Upload build artifacts
-     # uses: actions/upload-artifact@v3
-      #with:
-       # name: MSIX Package
-        #path: ${{ env.Wap_Project_Directory }}\AppPackages
+     #Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: MSIX Package
+        path: ${{ env.Wap_Project_Directory }}\AppPackages
 
         
   release:
@@ -84,7 +84,8 @@ jobs:
         Solution_Name: Abbey Trading Store.sln                         
         SigningCertificate: IMS_TemporaryKey.pfx
         Wap_Project_Directory: IMS    
-        Wap_Project_Path: IMS\IMS.wapproj 
+        Wap_Project_Path: IMS\IMS.wapproj
+        release_bundles: Abbey Trading Store
         
       steps:
       - name: Checkout repository
@@ -117,6 +118,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACCESS_KEY }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.Wap_Project_Directory }}\IMS\AppPackages
-          asset_name: IMS  
-          asset_content_type: application/octet-stream
+          asset_path: ${{env.release_bundles}}/bin/Release
+          asset_name: IMS.zip  
+          asset_content_type: application/zip
