@@ -49,32 +49,14 @@ namespace Abbey_Trading_Store
                 if (client || server)
                 {
 
-                    if (client)
+                    if (server)
                     {
 
-                        string variableValue = Environment.GetEnvironmentVariable("IMS_conn_string");
-                        //SqlConnection conn_1 = new SqlConnection();
-                        try
-                        {
-                            SqlConnection conn_2 = new SqlConnection(variableValue);
-                            //conn_1 = conn_2;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("The server to which this client installation belongs cannot be found");
-                            return;
-                        }
-                        finally
-                        {
-
-                        }
-
-
+                      
                         string strComputerName = Environment.MachineName.ToString();
                         string computed_server_name = strComputerName + @"\SQLSERVER2012";
                         string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=Tes2;Integrated Security=True;TrustServerCertificate=True";
-                        Environment.SetEnvironmentVariable("IMS_conn_string", local_server_database_conn_string, EnvironmentVariableTarget.Process);
-                        //Env.local_server_database_conn_string = variableValue;
+                        Env.local_server_database_conn_string = local_server_database_conn_string;
                         ////Applying migrations 
                         DatabaseUpdater db_updater = new DatabaseUpdater();
                         db_updater.UpdateOrCreateDatabase();
@@ -90,6 +72,11 @@ namespace Abbey_Trading_Store
                         Application.Run(new Abbey_Trading_Store.UI.Login_form());
 
                     }
+                    else
+                    {
+                        Application.Run(new Abbey_Trading_Store.UI.Login_form());
+
+                    }
 
                 }
                 else
@@ -98,7 +85,6 @@ namespace Abbey_Trading_Store
 
                 }
 
-                //Application.Run(new Abbey_Trading_Store.UI.Login_form());
 
 
             }
