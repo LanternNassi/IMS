@@ -8,8 +8,8 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using AfricasTalkingCS;
-
-
+using System.Windows.Forms;
+using System.ServiceProcess;
 
 namespace Abbey_Trading_Store.DAL.DAL_Properties
 {
@@ -19,22 +19,10 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
 
         private static string get_conn_string()
         {
-            // Replace "YOUR_ENV_VARIABLE_NAME" with the actual name of the environment variable
-            string variableName = "IMS_conn_string";
+            
 
-            // Retrieve the value of the environment variable
-            string variableValue = Environment.GetEnvironmentVariable(variableName);
-            if (variableValue != null)
-            {
-                return variableValue;
-            }
-            else
-            {
-                string strComputerName = Environment.MachineName.ToString();
-                string computed_server_name = strComputerName + @"\SQLSERVER2012";
-                string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=Tes2;Integrated Security=True;TrustServerCertificate=True";
-                return local_server_database_conn_string;
-            }
+            return Environment.GetEnvironmentVariable("IMS_conn_string");
+           
 
         }
 
