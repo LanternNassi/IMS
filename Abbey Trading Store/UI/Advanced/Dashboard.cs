@@ -110,6 +110,16 @@ namespace Abbey_Trading_Store.UI.Advanced
             Env.MessageGateway = new AfricasTalkingGateway(settings.MessageUsername,settings.MessageAPIKey);
 
 
+            if (bool.Parse(Env.Messages))
+            {
+                materialButton3.Enabled = false;
+
+            }
+            else
+            {
+                materialButton3.Enabled = true;
+            }
+
         }
 
 
