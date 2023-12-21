@@ -26,8 +26,6 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
 
         }
 
-        
-
 
         public static string live_url = "http://localhost:8000";
         public static string debug_url = "http://localhost:8000";
