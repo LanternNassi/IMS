@@ -279,6 +279,7 @@
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Expenditure_Categories" EntityType="IMSModel.Expenditure_Categories" />
           <EntitySet Name="Expenditures" EntityType="IMSModel.Expenditures" />
+          <EntitySet Name="Settings" EntityType="IMSModel.Settings" />
         </EntityContainer>
         <EntityType Name="Expenditure_Categories">
           <Key>
@@ -302,6 +303,19 @@
           <Property Name="Added_date" Type="DateTime" Nullable="false" />
           <Property Name="Overall_category" Type="String" Nullable="false" />
           <Property Name="Category" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppVersion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Messages" Type="String" />
+          <Property Name="MessageAPIKey" Type="String" />
+          <Property Name="MessageUsername" Type="String" />
+          <Property Name="MessageFrom" Type="String" />
+          <Property Name="Active" Type="String" />
+          <Property Name="Date_configured" Type="DateTime" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

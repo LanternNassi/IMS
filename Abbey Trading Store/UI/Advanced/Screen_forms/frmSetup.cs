@@ -29,6 +29,9 @@ using System.Net.NetworkInformation;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Reflection;
+using MaterialSkin.Controls;
+using Microsoft.VisualBasic;
+using System.Text.RegularExpressions;
 //using Microsoft.Office.Interop.Excel;
 //using Microsoft.Office.Interop.Excel;
 //using Microsoft.Office.Interop.Excel;
@@ -71,6 +74,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private static string selected_installation = "";
 
         private static string service_downloaded_path = "";
+
+
+        private static Abbey_Trading_Store.Settings settings;
+
+
         public frmSetup()
         {
 
@@ -86,9 +94,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         }
 
 
-        HttpClient http_client = new HttpClient();
+        public static HttpClient http_client = new HttpClient();
 
-        public async Task<dynamic> FetchData(string url)
+        public static async Task<dynamic> FetchData(string url)
         {
             try
             {
@@ -339,7 +347,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 dynamic latest_release = await FetchData("https://api.github.com/repos/LanternNassi/Server-Service/releases/latest");
                 dynamic release_info = await FetchData(Convert.ToString(latest_release["assets_url"]));
 
-                filePath = Convert.ToString(release_info["browser_download_url"]);
+                filePath = Convert.ToString(release_info[0]["browser_download_url"]);
             }
             else
             {
@@ -403,8 +411,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         
         public void Install_service(object sender, AsyncCompletedEventArgs e)
+        //public void Install_service()
         {
             string service_path = service_pathUser;
+            //string service_path = "C:/Users/SHANY/Downloads/Server.Service.exe";
+            //string service_path = "C:/Users/SHANY/Desktop/IMS_Service/Server Service/bin/Release/Server Service.exe";
             try
             {
                 Console.WriteLine("Service installation started.");
@@ -478,6 +489,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         public void DownloadSQL()
         {
+
+
+
             string output = string.Empty;
             pathUser = pathUser.Replace("\\", "/");
             string filePath = "https://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x86_ENU_2012.exe";
@@ -579,7 +593,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             
         }
 
-        private void start_btn_Click(object sender, EventArgs e)
+        private async void start_btn_Click(object sender, EventArgs e)
         {
             if (this.start_btn.Text == "Start Setup")
             {
@@ -624,7 +638,48 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 else
                 {
                     selected_installation = "Server";
+
+                    //Getting Settings configuration
+                    if (MessageBox.Show("Do you have any configurations to set up for your system ?", "Configurations Set uo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        // user clicked yes
+
+                        string api_key = Interaction.InputBox("Messages", "Enter your account message API key", "");
+                        if (settings.MessageAPIKey.Length > 40)
+                        {
+                            settings.MessageAPIKey = api_key;
+
+                            settings.Messages = "true";
+                        }
+                        else
+                        {
+                            settings.MessageAPIKey = "";
+                        }
+                        settings.MessageUsername = Interaction.InputBox("Messages", "Enter your account message username", "");
+                        settings.MessageFrom = Interaction.InputBox("Messages", "Enter your 'From' field according to your dashboard", "");
+                        settings.Active = "true";
+                        settings.Date_configured = DateTime.Now;
+                        dynamic latest_release_info = await FetchData("https://api.github.com/repos/LanternNassi/IMS/releases/latest");
+                        string numericPart = Regex.Replace(latest_release_info["tag_name"], "[^0-9]", "");
+                        if (int.TryParse(numericPart, out int versionNumber))
+                        {
+                            settings.AppVersion = versionNumber.ToString();
+                        }
+                        else
+                        {
+                            settings.AppVersion = "0";
+                        }
+                            
+                    }
+                    else
+                    {
+                        
+                        
+                    }
+
+
                     DownloadSQL();
+                    //Install_service();
 
                 }
 

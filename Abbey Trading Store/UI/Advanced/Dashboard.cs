@@ -15,6 +15,11 @@ using System.Net;
 using System.Threading;
 using Abbey_Trading_Store.DAL.DAL_Properties;
 using Abbey_Trading_Store.DAL;
+//using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
+using AfricasTalkingCS;
+using System.Text.RegularExpressions;
+using System.Runtime.CompilerServices;
 
 namespace Abbey_Trading_Store.UI.Advanced
 {
@@ -32,10 +37,10 @@ namespace Abbey_Trading_Store.UI.Advanced
            int nHeightEllipse
 
         );
-
         public frmUser active_form = null;
         public static System.Drawing.Size PnlContainer;
         public static frmExpenditures active_exp_form = null;
+        public static System.Threading.Timer timer = null;
 
         public Dashboard()
         {
@@ -43,6 +48,27 @@ namespace Abbey_Trading_Store.UI.Advanced
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             //this.Size = Screen.PrimaryScreen.Bounds.Size;
+
+            DataRow Get_business_details()
+            {
+                SqlDataAdapter adapter = DAL.BusinessAccount.Select();
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                return dt.Rows[0];
+            }
+
+
+
+            // Business Details
+            DataRow business_dr = Get_business_details();
+
+            Env.BusinessName = business_dr[1].ToString();
+            Env.BusinessDescription = business_dr[2].ToString();
+            Env.Tel_1 = business_dr[3].ToString();
+            Env.Tel_2 = business_dr[4].ToString();
+            Env.Tel_3 = business_dr[5].ToString();
+            Env.Valid = business_dr[6].ToString();
+            Env.Location = business_dr[7].ToString();
 
             System.Drawing.Rectangle workingRectangle =
                 Screen.PrimaryScreen.WorkingArea;
@@ -73,6 +99,51 @@ namespace Abbey_Trading_Store.UI.Advanced
 
             CompanyName.Text = Env.BusinessName;
 
+            Settings settings = SettingsConfig.GetSettings(1);
+            Env.AppVersion = settings.AppVersion;
+            Env.Messages = settings.Messages;
+            Env.MessageAPIKey = settings.MessageAPIKey;
+            Env.MessageUsername = settings.MessageUsername;
+            Env.MessageFrom = settings.MessageFrom;
+            Env.Active = settings.Active;
+            Env.Date_configured = Convert.ToDateTime(settings.Date_configured);
+            Env.MessageGateway = new AfricasTalkingGateway(settings.MessageUsername,settings.MessageAPIKey);
+
+
+        }
+
+
+
+        private async void CheckForUpdates(object state)
+        {
+            try
+            {
+
+                dynamic latest_release_info = await frmSetup.FetchData("https://api.github.com/repos/LanternNassi/IMS/releases/latest");
+                string numericPart = Regex.Replace(Convert.ToString(latest_release_info["tag_name"]), "[^0-9]", "");
+                if (int.TryParse(numericPart, out int versionNumber))
+                {
+                    if (Convert.ToInt32(Env.AppVersion) < versionNumber)
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            materialButton5.Enabled = true;
+                        });
+                    }
+                }
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+            finally
+            {
+
+            }
+            
+            
+
         }
 
 
@@ -91,8 +162,14 @@ namespace Abbey_Trading_Store.UI.Advanced
             FrmDashboard_Vrb.Show();
         }
 
-        private void Dashboard_Load(object sender, EventArgs e)
+        private async void Dashboard_Load(object sender, EventArgs e)
         {
+
+            
+
+            timer = new System.Threading.Timer(CheckForUpdates, null, TimeSpan.Zero, TimeSpan.FromMinutes(15));
+
+
 
             if (Login_form.account_type == "admin")
             {
@@ -246,6 +323,8 @@ namespace Abbey_Trading_Store.UI.Advanced
 
         private void button5_Click(object sender, EventArgs e)
         {
+            timer.Dispose();
+
             this.Close();
         }
 
@@ -445,6 +524,12 @@ namespace Abbey_Trading_Store.UI.Advanced
         private void button3_Leave(object sender, EventArgs e)
         {
             button3.BackColor = Color.FromArgb(24, 30, 54);
+        }
+
+        private void materialButton5_Click(object sender, EventArgs e)
+        {
+            UpdateScreen form = new UpdateScreen(this);
+            form.Show();
         }
     }
 }

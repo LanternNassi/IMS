@@ -50,6 +50,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.top_panel = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.materialButton5 = new MaterialSkin.Controls.MaterialButton();
             this.panel12 = new System.Windows.Forms.Panel();
             this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
             this.panel11 = new System.Windows.Forms.Panel();
@@ -72,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.top_panel.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.panel13.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -400,6 +403,7 @@
             // 
             // panel10
             // 
+            this.panel10.Controls.Add(this.panel13);
             this.panel10.Controls.Add(this.panel12);
             this.panel10.Controls.Add(this.panel11);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -407,6 +411,38 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1130, 54);
             this.panel10.TabIndex = 32;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.materialButton5);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel13.Location = new System.Drawing.Point(703, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(200, 54);
+            this.panel13.TabIndex = 35;
+            // 
+            // materialButton5
+            // 
+            this.materialButton5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialButton5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton5.Depth = 0;
+            this.materialButton5.Enabled = false;
+            this.materialButton5.HighEmphasis = true;
+            this.materialButton5.Icon = ((System.Drawing.Image)(resources.GetObject("materialButton5.Icon")));
+            this.materialButton5.Location = new System.Drawing.Point(33, 9);
+            this.materialButton5.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton5.Name = "materialButton5";
+            this.materialButton5.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton5.Size = new System.Drawing.Size(105, 36);
+            this.materialButton5.TabIndex = 34;
+            this.materialButton5.Text = "Update";
+            this.materialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton5.UseAccentColor = false;
+            this.materialButton5.UseVisualStyleBackColor = true;
+            this.materialButton5.Click += new System.EventHandler(this.materialButton5_Click);
             // 
             // panel12
             // 
@@ -664,6 +700,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.top_panel.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             this.panel11.ResumeLayout(false);
@@ -723,5 +761,7 @@
         private System.Windows.Forms.Panel panel5;
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel panel13;
+        private MaterialSkin.Controls.MaterialButton materialButton5;
     }
 }

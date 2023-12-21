@@ -30,9 +30,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             //materialScrollBar1.Minimum = flowLayoutPanel1.HorizontalScroll.Minimum;
             //materialScrollBar1.Maximum = flowLayoutPanel1.HorizontalScroll.Maximum + 20;
 
+
         }
 
         System.Data.SqlClient.SqlDataAdapter low_on_stock= null;
+
 
         private void chart1_Click(object sender, EventArgs e)
         {
@@ -162,8 +164,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            LowStock form = new LowStock(low_on_stock);
-            form.Show();
+            
         }
 
         private void materialButton2_Click(object sender, EventArgs e)
@@ -182,6 +183,12 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             //flowLayoutPanel1.HorizontalScroll.Value = materialScrollBar1.Value;
             //flowLayoutPanel1.Left = materialScrollBar1.Value;
+        }
+
+        private void materialButton1_Click_1(object sender, EventArgs e)
+        {
+            LowStock form = new LowStock(low_on_stock);
+            form.Show();
         }
     }
 }

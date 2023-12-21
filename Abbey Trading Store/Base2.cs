@@ -25,6 +25,7 @@ namespace Abbey_Trading_Store
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Expenditure_Categories> Expenditure_Categories { get; set; }
         public virtual DbSet<Expenditures> Expenditures { get; set; }
+        public virtual DbSet<Settings> Settings { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -63,6 +64,10 @@ namespace Abbey_Trading_Store
 
             modelBuilder.Entity<Expenditures>()
                 .Property(e => e.Added_date)
+                .HasPrecision(0);
+
+            modelBuilder.Entity<Settings>()
+                .Property(e => e.Date_configured)
                 .HasPrecision(0);
         }
     }

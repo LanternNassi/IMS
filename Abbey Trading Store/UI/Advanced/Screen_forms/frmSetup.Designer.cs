@@ -76,9 +76,9 @@
             this.box_1.Name = "box_1";
             this.box_1.ReadOnly = false;
             this.box_1.Ripple = true;
-            this.box_1.Size = new System.Drawing.Size(244, 37);
+            this.box_1.Size = new System.Drawing.Size(249, 37);
             this.box_1.TabIndex = 6;
-            this.box_1.Text = "Downloaded Database Server";
+            this.box_1.Text = "Downloading Database Server";
             this.box_1.UseVisualStyleBackColor = true;
             // 
             // box_2
@@ -93,9 +93,9 @@
             this.box_2.Name = "box_2";
             this.box_2.ReadOnly = false;
             this.box_2.Ripple = true;
-            this.box_2.Size = new System.Drawing.Size(215, 37);
+            this.box_2.Size = new System.Drawing.Size(220, 37);
             this.box_2.TabIndex = 7;
-            this.box_2.Text = "Installed Database Server";
+            this.box_2.Text = "Installing Database Server";
             this.box_2.UseVisualStyleBackColor = true;
             // 
             // start_btn
