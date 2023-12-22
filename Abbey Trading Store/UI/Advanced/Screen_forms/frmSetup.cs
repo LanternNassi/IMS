@@ -32,6 +32,7 @@ using System.Reflection;
 using MaterialSkin.Controls;
 using Microsoft.VisualBasic;
 using System.Text.RegularExpressions;
+using Abbey_Trading_Store.DAL;
 //using Microsoft.Office.Interop.Excel;
 //using Microsoft.Office.Interop.Excel;
 //using Microsoft.Office.Interop.Excel;
@@ -552,8 +553,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             bool user_created = user.insert_2();
             if (user_created)
             {
-                
-                
+
+                bool settings_success = SettingsConfig.AddSettings(settings);
 
                 
                 //Creating the firewall rule to allow connections through port 9000
@@ -611,16 +612,47 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     DownloadService("Client");
                     selected_installation = "Client";
 
-                    try
+                    string cnn = "";
+
+
+                    void get_conn_str()
                     {
 
+                        string conn_str = Interaction.InputBox("Server Connection String", "Enter the connection string of the server machine", selected_machine_conn_string);
+                        SqlConnection conn = new SqlConnection();
+                        try
+                        {
+                            conn = new SqlConnection(conn_str);
+                            conn.Open();
+                            MessageBox.Show("The connection string is valid.");
+                            cnn = conn_str;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("The connection string is not valid in the context");
+                            get_conn_str();
+                        }
+                        finally
+                        {
+                            conn.Close();
+                        }
+
+                    }
+
+                    //Getting the connection string
+                    get_conn_str();
+
+                    try
+                    {
+                        
+
                         //This sets the environment variable in the current process
-                        Environment.SetEnvironmentVariable("IMS_conn_string", selected_machine_conn_string, EnvironmentVariableTarget.Process);
+                        Environment.SetEnvironmentVariable("IMS_conn_string", cnn, EnvironmentVariableTarget.Process);
 
                         //This sets the environment variable in the system for subsquent processes
-                        Environment.SetEnvironmentVariable("IMS_conn_string", selected_machine_conn_string, EnvironmentVariableTarget.Machine);
+                        Environment.SetEnvironmentVariable("IMS_conn_string", cnn, EnvironmentVariableTarget.Machine);
 
-                        Console.WriteLine($"Environment variable {selected_machine_conn_string} set successfully.");
+                        Console.WriteLine($"Environment variable {cnn} set successfully.");
                     }
                     catch (Exception ex)
                     {
@@ -645,7 +677,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                         // user clicked yes
 
                         string api_key = Interaction.InputBox("Messages", "Enter your account message API key", "");
-                        if (settings.MessageAPIKey.Length > 40)
+                        if (api_key.Length > 40)
                         {
                             settings.MessageAPIKey = api_key;
 
