@@ -944,7 +944,7 @@ namespace Abbey_Trading_Store.DAL
         {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
-            string cmd = "SELECT * FROM Products WHERE id LIKE '%" + keywords + "%' OR Product LIKE '%" + keywords + "%' OR Category LIKE '%" + keywords + "%' OR Added_by LIKE '%" + keywords + "%'";
+            string cmd = "SELECT TOP 20 * FROM Products WHERE id LIKE '%" + keywords + "%' OR Product LIKE '%" + keywords + "%' OR Category LIKE '%" + keywords + "%' OR Added_by LIKE '%" + keywords + "%'";
             try
             {
 

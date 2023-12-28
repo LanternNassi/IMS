@@ -37,10 +37,15 @@ namespace Abbey_Trading_Store.Configurations
 
         private void UpdateDatabase()
         {
+            string strComputerName = Environment.MachineName.ToString();
+            string computed_server_name = strComputerName + @"\SQLSERVER2012";
+            string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=IMSProd;Integrated Security=True;TrustServerCertificate=True";
+
+
             // Create a DbMigrator instance
             DbMigrator migrator = new DbMigrator(new Configuration()
             {
-                TargetDatabase = new System.Data.Entity.Infrastructure.DbConnectionInfo(Env.local_server_database_conn_string, "System.Data.SqlClient")
+                TargetDatabase = new System.Data.Entity.Infrastructure.DbConnectionInfo(local_server_database_conn_string, "System.Data.SqlClient")
             });
 
             // Get pending migrations and apply them

@@ -450,6 +450,7 @@
     <Compile Include="DAL\DAL_Properties\UsersProps.cs" />
     <Compile Include="DAL\ExpCategories.cs" />
     <Compile Include="DAL\ExpendituresDAL.cs" />
+    <Compile Include="DAL\SettingsConfig.cs" />
     <Compile Include="DealerCust.cs">
       <DependentUpon>Base1.tt</DependentUpon>
     </Compile>
@@ -518,6 +519,10 @@
     <Compile Include="Migrations\202310220739438_Add_CategoryFields_expenditures.designer.cs">
       <DependentUpon>202310220739438_Add_CategoryFields_expenditures.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312200941310_Add_Settings_Config.cs" />
+    <Compile Include="Migrations\202312200941310_Add_Settings_Config.designer.cs">
+      <DependentUpon>202312200941310_Add_Settings_Config.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modification.cs">
       <DependentUpon>Base1.tt</DependentUpon>
@@ -555,6 +560,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Users.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs">
+      <DependentUpon>Base1.tt</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Transaction.cs">
@@ -721,6 +729,12 @@
     <Compile Include="UI\Advanced\Screen_forms\UnsettledDebts.Designer.cs">
       <DependentUpon>UnsettledDebts.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\UpdateScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Advanced\Screen_forms\UpdateScreen.Designer.cs">
+      <DependentUpon>UpdateScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Batch_entry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -856,6 +870,9 @@
     <EmbeddedResource Include="Migrations\202310220739438_Add_CategoryFields_expenditures.resx">
       <DependentUpon>202310220739438_Add_CategoryFields_expenditures.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312200941310_Add_Settings_Config.resx">
+      <DependentUpon>202312200941310_Add_Settings_Config.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Reports\Categories Report\Categories.rdlc" />
     <EmbeddedResource Include="Reports\Inventory Report\InventoryReport.rdlc" />
@@ -933,6 +950,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Advanced\Screen_forms\UnsettledDebts.resx">
       <DependentUpon>UnsettledDebts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Advanced\Screen_forms\UpdateScreen.resx">
+      <DependentUpon>UpdateScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Batch_entry.resx">
       <DependentUpon>Batch_entry.cs</DependentUpon>

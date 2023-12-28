@@ -35,6 +35,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void start_btn_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             Abbey_Trading_Store.DAL.BusinessAccount account = new Abbey_Trading_Store.DAL.BusinessAccount();
             account.Name = Name.Text;
             account.Description = Info.Text;
@@ -48,13 +49,15 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             bool created = account.Insert();
             if (created) {
                 MessageBox.Show("Credentials created successfully");
-                this.Close();
+                this.Hide();
                 Login_form form = new Login_form();
                 form.Show();
             }else
             {
                 MessageBox.Show("A problem was encoutered during the setup of the credentials.");
             }
+            Cursor = Cursors.Default;
+
         }
     }
 }

@@ -424,7 +424,7 @@ namespace Abbey_Trading_Store.DAL
         {
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
-            string cmd = "SELECT * FROM DealerCusts WHERE ID LIKE '%" + keywords + "%' OR Name LIKE '%" + keywords + "%' ";
+            string cmd = "SELECT TOP 20 * FROM DealerCusts WHERE ID LIKE '%" + keywords + "%' OR Name LIKE '%" + keywords + "%' ";
             SqlDataAdapter adapter = new SqlDataAdapter(cmd, conn);
             try
             {
