@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using AfricasTalkingCS;
 using System.Windows.Forms;
 using System.ServiceProcess;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace Abbey_Trading_Store.DAL.DAL_Properties
 {
@@ -21,8 +22,18 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         {
             
 
-            return Environment.GetEnvironmentVariable("IMS_conn_string");
-           
+            string conn_str = Environment.GetEnvironmentVariable("IMS_conn_string");
+            if (conn_str != null)
+            {
+                return conn_str;
+            }
+            else
+            {
+                string strComputerName = Environment.MachineName.ToString();
+                string computed_server_name = strComputerName + @"\SQLSERVER2012";
+                return "Data Source=" + computed_server_name + ";Initial Catalog=IMSProd;Integrated Security=True;TrustServerCertificate=True";
+            }
+
 
         }
 

@@ -92,8 +92,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             //index for current run
             int current_index = 0;
-            int total_sales = 0;
-            int total_profits = 0;
+            long total_sales = 0;
+            long total_profits = 0;
 
             foreach (DataRow dr in cc.Rows)
             {
@@ -107,11 +107,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                             {
                                 dt.Rows[prod.Key]["Quantity"] = Convert.ToDecimal(dt.Rows[prod.Key]["Quantity"]) + Convert.ToDecimal(dr[3]);
 
-                                dt.Rows[prod.Key]["Total Sales"] = Convert.ToInt32(dt.Rows[prod.Key]["ToTal Sales"]) + Convert.ToInt32(dr[4]);
-                                total_sales += Convert.ToInt32(dr[4]);
+                                dt.Rows[prod.Key]["Total Sales"] = Convert.ToInt64(dt.Rows[prod.Key]["ToTal Sales"]) + Convert.ToInt32(dr[4]);
+                                total_sales += Convert.ToInt64(dr[4]);
 
-                                dt.Rows[prod.Key]["Total profits"] = Convert.ToInt32(dt.Rows[prod.Key]["Total profits"]) + Convert.ToInt32(dr[9]);
-                                total_profits += Convert.ToInt32(dr[9]);
+                                dt.Rows[prod.Key]["Total profits"] = Convert.ToInt64(dt.Rows[prod.Key]["Total profits"]) + Convert.ToInt32(dr[9]);
+                                total_profits += Convert.ToInt64(dr[9]);
 
                             }
                             else
@@ -123,10 +123,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     }
                     else
                     {
-                        dt.Rows.Add(Convert.ToInt32(dr[0]), dr[1].ToString(), Convert.ToDecimal(dr[3]), Convert.ToInt32(dr[4]), Convert.ToInt32(dr[9]));
+                        dt.Rows.Add(Convert.ToInt64(dr[0]), dr[1].ToString(), Convert.ToDecimal(dr[3]), Convert.ToInt64(dr[4]), Convert.ToInt64(dr[9]));
 
-                        total_sales += Convert.ToInt32(dr[4]);
-                        total_profits += Convert.ToInt32(dr[9]);
+                        total_sales += Convert.ToInt64(dr[4]);
+                        total_profits += Convert.ToInt64(dr[9]);
 
                         checked_products.Add(current_index, dr[1].ToString());
                         current_index++;

@@ -22,9 +22,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DataTable dt = Ts.DisplayAllTransactionsAppropriately();
             flexible = dt;
             dataGridView1.DataSource = dt;
-            int purchase_holder = 0;
-            int sales_holder = 0;
-            int profit_holder = 0;
+            long purchase_holder = 0;
+            long sales_holder = 0;
+            long profit_holder = 0;
             for (int i = 0; (i <= flexible.Rows.Count - 1); i++)
             {
                 string paid = flexible.Rows[i][10].ToString();
@@ -32,20 +32,20 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 {
                     if (paid == "True" || paid == "Cleared")
                     {
-                        sales_holder += int.Parse(flexible.Rows[i][3].ToString());
+                        sales_holder += Convert.ToInt64(flexible.Rows[i][3].ToString());
                     }
 
                 }
                 else
                 {
-                    purchase_holder += int.Parse(flexible.Rows[i][3].ToString());
+                    purchase_holder += Convert.ToInt64(flexible.Rows[i][3].ToString());
 
                 }
                 try
                 {
                     if (paid == "True" || paid == "Cleared")
                     {
-                        profit_holder += int.Parse(flexible.Rows[i][9].ToString());
+                        profit_holder += Convert.ToInt64(flexible.Rows[i][9].ToString());
                     }
                 }
                 catch (Exception ex)
@@ -77,9 +77,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DataTable dt_showAll = Ts.DisplayAllTransactionsAppropriately();
             flexible = dt_showAll;
             dataGridView1.DataSource = flexible;
-            int purchase_holder = 0;
-            int sales_holder = 0;
-            int profit_holder = 0;
+            long purchase_holder = 0;
+            long sales_holder = 0;
+            long profit_holder = 0;
             for (int i = 0; (i <= flexible.Rows.Count - 1); i++)
             {
                 string paid = flexible.Rows[i][10].ToString();
@@ -87,20 +87,20 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 {
                     if (paid == "True" || paid == "Cleared")
                     {
-                        sales_holder += int.Parse(flexible.Rows[i][3].ToString());
+                        sales_holder += Convert.ToInt64(flexible.Rows[i][3].ToString());
                     }
 
                 }
                 else
                 {
-                    purchase_holder += int.Parse(flexible.Rows[i][3].ToString());
+                    purchase_holder += Convert.ToInt64(flexible.Rows[i][3].ToString());
 
                 }
                 try
                 {
                     if (paid == "True" || paid == "Cleared")
                     {
-                        profit_holder += int.Parse(flexible.Rows[i][9].ToString());
+                        profit_holder += Convert.ToInt64(flexible.Rows[i][9].ToString());
                     }
                 }
                 catch (Exception ex)
@@ -174,9 +174,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             flexible = holder;
             dataGridView1.DataSource = flexible;
-            int purchase_holder = 0;
-            int sales_holder = 0;
-            int profit_holder = 0;
+            long purchase_holder = 0;
+            long sales_holder = 0;
+            long profit_holder = 0;
             for (int i = 0; (i <= flexible.Rows.Count - 1); i++)
             {
                 string paid = flexible.Rows[i][10].ToString();
@@ -185,20 +185,20 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
                     if (paid == "True" || paid == "Cleared")
                     {
-                        sales_holder += int.Parse(flexible.Rows[i][3].ToString());
+                        sales_holder += Convert.ToInt64(flexible.Rows[i][3].ToString());
                     }
 
                 }
                 else
                 {
-                    purchase_holder += int.Parse(flexible.Rows[i][3].ToString());
+                    purchase_holder += Convert.ToInt64(flexible.Rows[i][3].ToString());
 
                 }
                 try
                 {
                     if (paid == "True" || paid == "Cleared")
                     {
-                        profit_holder += int.Parse(flexible.Rows[i][9].ToString());
+                        profit_holder += Convert.ToInt64(flexible.Rows[i][9].ToString());
 
                     }
                 }
@@ -265,9 +265,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 {
                     flexible = holder;
                     dataGridView1.DataSource = flexible;
-                    int purchase_holder = 0;
-                    int sales_holder = 0;
-                    int profit_holder = 0;
+                    long purchase_holder = 0;
+                    long sales_holder = 0;
+                    long profit_holder = 0;
                     for (int i = 0; (i <= flexible.Rows.Count - 1); i++)
                     {
                         string paid = flexible.Rows[i][10].ToString();
@@ -275,14 +275,14 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                         {
                             if (paid == "True" || paid == "Cleared")
                             {
-                                sales_holder += int.Parse(flexible.Rows[i][3].ToString());
+                                sales_holder += Convert.ToInt64(flexible.Rows[i][3].ToString());
                             }
 
 
                         }
                         else if (flexible.Rows[i][1].ToString() == "Dealer")
                         {
-                            purchase_holder += int.Parse(flexible.Rows[i][3].ToString());
+                            purchase_holder += Convert.ToInt64(flexible.Rows[i][3].ToString());
 
                         }
                         try
@@ -291,7 +291,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                             {
                                 if(paid == "True" || paid == "Cleared")
                                 {
-                                    profit_holder += int.Parse(flexible.Rows[i][9].ToString());
+                                    profit_holder += Convert.ToInt64(flexible.Rows[i][9].ToString());
                                 }
                             }
                         }

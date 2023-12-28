@@ -8,8 +8,13 @@ namespace Abbey_Trading_Store
 {
     public partial class Base2 : DbContext
     {
+
+        static string strComputerName = Environment.MachineName.ToString();
+        static string computed_server_name = strComputerName + @"\SQLSERVER2012";
+        static string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=IMSProd;Integrated Security=True;TrustServerCertificate=True";
+
         public Base2()
-            : base(Env.local_server_database_conn_string)
+            : base(local_server_database_conn_string)
         {
             Database.SetInitializer(new CreateDatabaseIfNotExists<Base2>());
         }

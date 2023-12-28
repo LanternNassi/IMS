@@ -496,7 +496,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             string output = string.Empty;
             pathUser = pathUser.Replace("\\", "/");
             string filePath = "https://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x86_ENU_2012.exe";
-            //string filePath = "http://192.168.43.90:8080/SQLEXPR_x86_ENU_2012.exe";
+            //string filePath = "http://127.0.0.1:8080/SQLEXPR_x86_ENU_2012.exe";
             var files = filePath.Split('/');
             pathUser = pathUser + @"/" + files[files.Count() - 1];
             wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
@@ -534,7 +534,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             string strComputerName = Environment.MachineName.ToString();
             string computed_server_name = strComputerName + @"\SQLSERVER2012";
-            string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=Tes2;Integrated Security=True;TrustServerCertificate=True";
+            string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=IMSProd;Integrated Security=True;TrustServerCertificate=True";
             Environment.SetEnvironmentVariable("IMS_conn_string", local_server_database_conn_string, EnvironmentVariableTarget.Process);
 
             // Create a database with the respective schema
@@ -675,33 +675,36 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     if (MessageBox.Show("Do you have any configurations to set up for your system ?", "Configurations Set uo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         // user clicked yes
-
+                        Abbey_Trading_Store.Settings sett = new Abbey_Trading_Store.Settings();
                         string api_key = Interaction.InputBox("Messages", "Enter your account message API key", "");
                         if (api_key.Length > 40)
                         {
-                            settings.MessageAPIKey = api_key;
+                            sett.MessageAPIKey = api_key;
 
-                            settings.Messages = "true";
+                            sett.Messages = "true";
                         }
                         else
                         {
-                            settings.MessageAPIKey = "";
+                            sett.MessageAPIKey = "";
                         }
-                        settings.MessageUsername = Interaction.InputBox("Messages", "Enter your account message username", "");
-                        settings.MessageFrom = Interaction.InputBox("Messages", "Enter your 'From' field according to your dashboard", "");
-                        settings.Active = "true";
-                        settings.Date_configured = DateTime.Now;
+                        sett.MessageUsername = Interaction.InputBox("Messages", "Enter your account message username", "");
+                        sett.MessageFrom = Interaction.InputBox("Messages", "Enter your 'From' field according to your dashboard", "");
+                        sett.Active = "true";
+                        sett.Date_configured = DateTime.Now;
                         dynamic latest_release_info = await FetchData("https://api.github.com/repos/LanternNassi/IMS/releases/latest");
-                        string numericPart = Regex.Replace(latest_release_info["tag_name"], "[^0-9]", "");
+                        string numericPart = Regex.Replace(Convert.ToString(latest_release_info["tag_name"]), "[^0-9]", "");
                         if (int.TryParse(numericPart, out int versionNumber))
                         {
-                            settings.AppVersion = versionNumber.ToString();
+                            sett.AppVersion = versionNumber.ToString();
                         }
                         else
                         {
-                            settings.AppVersion = "0";
+                            sett.AppVersion = "0";
                         }
-                            
+
+                        settings = sett;
+
+
                     }
                     else
                     {

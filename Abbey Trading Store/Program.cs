@@ -118,7 +118,7 @@ namespace Abbey_Trading_Store
                       
                         string strComputerName = Environment.MachineName.ToString();
                         string computed_server_name = strComputerName + @"\SQLSERVER2012";
-                        string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=Tes2;Integrated Security=True;TrustServerCertificate=True";
+                        string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=IMSProd;Integrated Security=True;TrustServerCertificate=True";
                         Env.local_server_database_conn_string = local_server_database_conn_string;
                         Env.installation_type = "Server";
                         ////Applying migrations 
@@ -135,25 +135,26 @@ namespace Abbey_Trading_Store
                         ////this.BackColor = Color.White;\
                         ///
 
-                        Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmSetup());
+                        //Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmSetup());
 
-                        //Application.Run(new Abbey_Trading_Store.UI.Login_form());
+                        Application.Run(new Abbey_Trading_Store.UI.Login_form());
 
                     }
                     else
                     {
                         Env.installation_type = "Client";
 
-                        Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmSetup());
+                        //Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmSetup());
 
 
-                        //Application.Run(new Abbey_Trading_Store.UI.Login_form());
+                        Application.Run(new Abbey_Trading_Store.UI.Login_form());
 
                     }
 
                 }
                 else
                 {
+
                     Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmSetup());
 
                 }
