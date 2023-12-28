@@ -29,6 +29,11 @@ using System.Net.NetworkInformation;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Reflection;
+using MaterialSkin.Controls;
+using Microsoft.VisualBasic;
+using System.Text.RegularExpressions;
+using Abbey_Trading_Store.DAL;
+//using Microsoft.Office.Interop.Excel;
 //using Microsoft.Office.Interop.Excel;
 //using Microsoft.Office.Interop.Excel;
 
@@ -63,9 +68,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         public static string IPAddress = "";
         private object lockObject = new object(); // Used for synchronization
         private static string selected_server_ip = "";
+
+       
+
+        private static string selected_machine_conn_string = "";
         private static string selected_installation = "";
 
         private static string service_downloaded_path = "";
+
+
+        private static Abbey_Trading_Store.Settings settings;
+
+
         public frmSetup()
         {
 
@@ -81,9 +95,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         }
 
 
-        HttpClient http_client = new HttpClient();
+        public static HttpClient http_client = new HttpClient();
 
-        public async Task<dynamic> FetchData(string url)
+        public static async Task<dynamic> FetchData(string url)
         {
             try
             {
@@ -170,6 +184,38 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             }
         }
 
+        public static async Task<string> CHECK_IMS(string serverUrl)
+        {
+            string cont = "";
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    // Send a GET request to the server
+                    HttpResponseMessage response = await client.GetAsync(serverUrl);
+
+                    // Check if the request was successful (status code in the 200 range)
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Read the response content as a string
+                        string responseContent = await response.Content.ReadAsStringAsync();
+                        return responseContent;
+
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+            }
+            return cont;
+        }
+
+
         public async Task<DataTable> GetNetworkConnectedMachinesAsync()
         {
             DataTable dt = new DataTable();
@@ -196,36 +242,6 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 }
             }
 
-            async Task<string> CHECK_IMS(string serverUrl)
-            {
-                string cont = "";
-                try
-                {
-                    using (HttpClient client = new HttpClient())
-                    {
-                        // Send a GET request to the server
-                        HttpResponseMessage response = await client.GetAsync(serverUrl);
-
-                        // Check if the request was successful (status code in the 200 range)
-                        if (response.IsSuccessStatusCode)
-                        {
-                            // Read the response content as a string
-                            string responseContent = await response.Content.ReadAsStringAsync();
-                            return responseContent;
-                            
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Exception: {ex.Message}");
-                }
-                return cont;
-            }
 
             string base_ip_address = "";
             int lastDotIndex = GetNetworkIPAddress().LastIndexOf('.');
@@ -256,9 +272,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                         string response = await CHECK_IMS("http://" + ipAddress + ":9000");
                         if (response == "Server State")
                         {
+                            string conn_string = await CHECK_IMS("http://" + ipAddress + ":9000/Connection/");
                             lock (lockObject)
                             {
-                                dt.Rows.Add(i, ipAddress, "Installed", "Server");
+                                dt.Rows.Add(i, ipAddress, "Installed", "Server" , Convert.ToString(conn_string));
 
                             }
 
@@ -277,13 +294,21 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                                 dt.Rows.Add(i, ipAddress, "Not Installed", "N/A");
                             }
                         }
-
-                        // Invoke the UI thread to update the DataGridView
-                        Invoke(new System.Action(() =>
+                        try
                         {
-                            Machines.DataSource = null; // Clear previous data
-                            Machines.DataSource = dt; // Update with new data
-                        }));
+                            // Invoke the UI thread to update the DataGridView
+                            Invoke(new System.Action(() =>
+                            {
+                                Machines.DataSource = null; // Clear previous data
+                                Machines.DataSource = dt; // Update with new data
+                                Machines.Columns[4].Visible = false;
+
+                            }));
+                        }catch(Exception ex)
+                        {
+
+                        }
+                        
 
 
                     }
@@ -321,9 +346,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             if (service_type == "Server")
             {
                 dynamic latest_release = await FetchData("https://api.github.com/repos/LanternNassi/Server-Service/releases/latest");
-                dynamic release_info = await FetchData(latest_release["assets_url"]);
+                dynamic release_info = await FetchData(Convert.ToString(latest_release["assets_url"]));
 
-                filePath = release_info["browser_download_url"];
+                filePath = Convert.ToString(release_info[0]["browser_download_url"]);
             }
             else
             {
@@ -378,7 +403,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             string variableValue = await GET_Conn_string("http://" + ip_address + ":9000/Connection/");
 
             // Set the environment variable
-            Environment.SetEnvironmentVariable(variableName, variableValue, EnvironmentVariableTarget.Machine);
+            Environment.SetEnvironmentVariable(variableName, variableValue, EnvironmentVariableTarget.Process);
 
         }
 
@@ -387,8 +412,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         
         public void Install_service(object sender, AsyncCompletedEventArgs e)
+        //public void Install_service()
         {
             string service_path = service_pathUser;
+            //string service_path = "C:/Users/SHANY/Downloads/Server.Service.exe";
+            //string service_path = "C:/Users/SHANY/Desktop/IMS_Service/Server Service/bin/Release/Server Service.exe";
             try
             {
                 Console.WriteLine("Service installation started.");
@@ -462,10 +490,13 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         public void DownloadSQL()
         {
+
+
+
             string output = string.Empty;
             pathUser = pathUser.Replace("\\", "/");
             string filePath = "https://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x86_ENU_2012.exe";
-            //string filePath = "http://192.168.43.90:8080/SQLEXPR_x86_ENU_2012.exe";
+            //string filePath = "http://127.0.0.1:8080/SQLEXPR_x86_ENU_2012.exe";
             var files = filePath.Split('/');
             pathUser = pathUser + @"/" + files[files.Count() - 1];
             wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
@@ -501,6 +532,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             Console.WriteLine("Done installing SQL server file....");
             //bool database_created = Create_database();
 
+            string strComputerName = Environment.MachineName.ToString();
+            string computed_server_name = strComputerName + @"\SQLSERVER2012";
+            string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=IMSProd;Integrated Security=True;TrustServerCertificate=True";
+            Environment.SetEnvironmentVariable("IMS_conn_string", local_server_database_conn_string, EnvironmentVariableTarget.Process);
+
             // Create a database with the respective schema
             DatabaseUpdater db_updater = new DatabaseUpdater();
             db_updater.UpdateOrCreateDatabase();
@@ -517,8 +553,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             bool user_created = user.insert_2();
             if (user_created)
             {
-                
-                
+
+                bool settings_success = SettingsConfig.AddSettings(settings);
 
                 
                 //Creating the firewall rule to allow connections through port 9000
@@ -544,9 +580,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DataTable dt = await GetNetworkConnectedMachinesAsync();
             //Machines.DataSource = dt;
 
-            //System.Threading.Timer timer = new System.Threading.Timer((object state) => { Machines.DataSource = dt; }, null, 0, 2000);
             
-            //timer.Dispose();
         }
 
         private void frmSetup_Shown(object sender, EventArgs e)
@@ -560,10 +594,12 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             
         }
 
-        private void start_btn_Click(object sender, EventArgs e)
+        private async void start_btn_Click(object sender, EventArgs e)
         {
             if (this.start_btn.Text == "Start Setup")
             {
+                Cursor = Cursors.WaitCursor;
+
                 start_btn.Text = "Cancel Setup";
 
                 //Check if the computer is connected to the network and any type of installations that exist
@@ -576,6 +612,53 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     DownloadService("Client");
                     selected_installation = "Client";
 
+                    string cnn = "";
+
+
+                    void get_conn_str()
+                    {
+
+                        string conn_str = Interaction.InputBox("Server Connection String", "Enter the connection string of the server machine", selected_machine_conn_string);
+                        SqlConnection conn = new SqlConnection();
+                        try
+                        {
+                            conn = new SqlConnection(conn_str);
+                            conn.Open();
+                            MessageBox.Show("The connection string is valid.");
+                            cnn = conn_str;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("The connection string is not valid in the context");
+                            get_conn_str();
+                        }
+                        finally
+                        {
+                            conn.Close();
+                        }
+
+                    }
+
+                    //Getting the connection string
+                    get_conn_str();
+
+                    try
+                    {
+                        
+
+                        //This sets the environment variable in the current process
+                        Environment.SetEnvironmentVariable("IMS_conn_string", cnn, EnvironmentVariableTarget.Process);
+
+                        //This sets the environment variable in the system for subsquent processes
+                        Environment.SetEnvironmentVariable("IMS_conn_string", cnn, EnvironmentVariableTarget.Machine);
+
+                        Console.WriteLine($"Environment variable {cnn} set successfully.");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error setting environment variable: {ex.Message}");
+                    }
+
                     //Create_conn_env_variable(selected_server_ip);
                     MessageBox.Show("Client Service installed");
                     this.Hide();
@@ -587,9 +670,56 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 else
                 {
                     selected_installation = "Server";
+
+                    //Getting Settings configuration
+                    if (MessageBox.Show("Do you have any configurations to set up for your system ?", "Configurations Set uo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        // user clicked yes
+                        Abbey_Trading_Store.Settings sett = new Abbey_Trading_Store.Settings();
+                        string api_key = Interaction.InputBox("Messages", "Enter your account message API key", "");
+                        if (api_key.Length > 40)
+                        {
+                            sett.MessageAPIKey = api_key;
+
+                            sett.Messages = "true";
+                        }
+                        else
+                        {
+                            sett.MessageAPIKey = "";
+                        }
+                        sett.MessageUsername = Interaction.InputBox("Messages", "Enter your account message username", "");
+                        sett.MessageFrom = Interaction.InputBox("Messages", "Enter your 'From' field according to your dashboard", "");
+                        sett.Active = "true";
+                        sett.Date_configured = DateTime.Now;
+                        dynamic latest_release_info = await FetchData("https://api.github.com/repos/LanternNassi/IMS/releases/latest");
+                        string numericPart = Regex.Replace(Convert.ToString(latest_release_info["tag_name"]), "[^0-9]", "");
+                        if (int.TryParse(numericPart, out int versionNumber))
+                        {
+                            sett.AppVersion = versionNumber.ToString();
+                        }
+                        else
+                        {
+                            sett.AppVersion = "0";
+                        }
+
+                        settings = sett;
+
+
+                    }
+                    else
+                    {
+                        
+                        
+                    }
+
+
                     DownloadSQL();
+                    //Install_service();
 
                 }
+
+                Cursor = Cursors.Default;
+
             }
             else
             {
@@ -609,12 +739,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             if (client.CheckState.ToString() == "Checked")
             {
                 selected_server_ip = Machines.Rows[row].Cells[1].Value.ToString();
+                selected_machine_conn_string = Machines.Rows[row].Cells[4].Value.ToString();
                 selected_server.Text = "Connect to " + Machines.Rows[row].Cells[1].Value.ToString();
             }
             else
             {
                 MessageBox.Show("A client option and server machine should be selected.");
             }
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

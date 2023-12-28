@@ -30,9 +30,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             //materialScrollBar1.Minimum = flowLayoutPanel1.HorizontalScroll.Minimum;
             //materialScrollBar1.Maximum = flowLayoutPanel1.HorizontalScroll.Maximum + 20;
 
+
         }
 
         System.Data.SqlClient.SqlDataAdapter low_on_stock= null;
+
 
         private void chart1_Click(object sender, EventArgs e)
         {
@@ -57,10 +59,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 {
                     
                     chart1.Series["Sales"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[1]));
-                    chart1.Series["Profit Accummulation"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[0]));
+                    chart1.Series["Profit Accummulation"].Points.AddXY(dr[2].ToString(), Convert.ToInt64(dr[0]));
 
-                    label6.Text = "Shs. " + Convert.ToInt32(dr[1]).ToString("N0");
-                    profitlbl.Text = "Shs. " + Convert.ToInt32(dr[0]).ToString("N0");
+                    label6.Text = "Shs. " + Convert.ToInt64(dr[1]).ToString("N0");
+                    profitlbl.Text = "Shs. " + Convert.ToInt64(dr[0]).ToString("N0");
 
                     circularProgressBar1.Value = Convert.ToInt32(dr[1]) / 1000000000;
                     Profits.Value = Convert.ToInt32(dr[0]) / 1000000000;
@@ -73,7 +75,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
                 foreach(DataRow dr in dt_4.Rows)
                 {
-                    chart1.Series["Expenditure"].Points.AddXY(dr[1].ToString(), Convert.ToInt32(dr[0]));
+                    chart1.Series["Expenditure"].Points.AddXY(dr[1].ToString(), Convert.ToInt64(dr[0]));
 
                 }
 
@@ -118,17 +120,17 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 DataTable dt_3 = DAL.DAL_Properties.Env.mode == 1 ? (user.TransactionsOverview_2()) : (user.TransactionsOverview("Customer"));
                 foreach (DataRow dr in dt_3.Rows)
                 {
-                    chart1.Series["Transactions"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[1]));
-                    chart1.Series["Profit Accummulation"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[0]));
+                    chart1.Series["Transactions"].Points.AddXY(dr[2].ToString(), Convert.ToInt64(dr[1]));
+                    chart1.Series["Profit Accummulation"].Points.AddXY(dr[2].ToString(), Convert.ToInt64(dr[0]));
 
-                    label6.Text = "Shs. " + Convert.ToInt32(dr[1]).ToString("N0");
-                    profitlbl.Text = "Shs. " + Convert.ToInt32(dr[0]).ToString("N0");
+                    label6.Text = "Shs. " + Convert.ToInt64(dr[1]).ToString("N0");
+                    profitlbl.Text = "Shs. " + Convert.ToInt64(dr[0]).ToString("N0");
 
                     circularProgressBar1.Value = Convert.ToInt32(dr[1]) / 1000000000;
                     Profits.Value = Convert.ToInt32(dr[0]) / 1000000000;
 
-                    circularProgressBar1.Text = Convert.ToInt32(dr[1]) / 1000000000 * 100 + "%";
-                    Profits.Text = Convert.ToInt32(dr[0]) / 1000000000 * 100 + "%";
+                    circularProgressBar1.Text = Convert.ToInt64(dr[1]) / 1000000000 * 100 + "%";
+                    Profits.Text = Convert.ToInt64(dr[0]) / 1000000000 * 100 + "%";
 
 
 
@@ -162,8 +164,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            LowStock form = new LowStock(low_on_stock);
-            form.Show();
+            
         }
 
         private void materialButton2_Click(object sender, EventArgs e)
@@ -182,6 +183,12 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             //flowLayoutPanel1.HorizontalScroll.Value = materialScrollBar1.Value;
             //flowLayoutPanel1.Left = materialScrollBar1.Value;
+        }
+
+        private void materialButton1_Click_1(object sender, EventArgs e)
+        {
+            LowStock form = new LowStock(low_on_stock);
+            form.Show();
         }
     }
 }

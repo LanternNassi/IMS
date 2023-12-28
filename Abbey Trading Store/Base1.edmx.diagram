@@ -16,6 +16,7 @@
         <EntityTypeShape EntityType="IMSModel.User" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IMSModel.Expenditure_Categories" Width="1.5" PointX="5.375" PointY="8.75" />
         <EntityTypeShape EntityType="IMSModel.Expenditures" Width="1.5" PointX="7.875" PointY="8.75" />
+        <EntityTypeShape EntityType="IMSModel.Settings" Width="1.5" PointX="9.5" PointY="3.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

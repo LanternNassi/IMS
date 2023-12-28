@@ -36,5 +36,6 @@ namespace Abbey_Trading_Store
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Expenditure_Categories> Expenditure_Categories { get; set; }
         public virtual DbSet<Expenditures> Expenditures { get; set; }
+        public virtual DbSet<Settings> Settings { get; set; }
     }
 }
