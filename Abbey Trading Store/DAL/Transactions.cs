@@ -161,7 +161,7 @@ namespace Abbey_Trading_Store.DAL
             OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
             try
             {
-                string cmds = "SELECT * FROM Transactions";
+                string cmds = "SELECT * FROM Transactions ORDER BY transaction_date desc";
                 OleDbDataAdapter adapter = new OleDbDataAdapter(cmds, conn);
                 adapter.Fill(dt);
 
@@ -531,7 +531,7 @@ namespace Abbey_Trading_Store.DAL
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                string cmds = "SELECT * FROM Transactions";
+                string cmds = "SELECT * FROM Transactions ORDER BY transaction_date desc";
                 SqlDataAdapter adapter = new SqlDataAdapter(cmds, conn);
                 adapter.Fill(dt);
 
@@ -554,7 +554,7 @@ namespace Abbey_Trading_Store.DAL
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                string cmds = "SELECT * FROM Transactions WHERE type = @type";
+                string cmds = "SELECT * FROM Transactions WHERE type = @type ORDER BY transaction_date desc";
                 SqlCommand cmd = new SqlCommand(cmds, conn);
                 cmd.Parameters.AddWithValue("@type", type);
                 SqlDataAdapter adapter = new SqlDataAdapter();
@@ -687,7 +687,7 @@ namespace Abbey_Trading_Store.DAL
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                string cmds = "SELECT * FROM Transactions WHERE (type = @type AND NOT Paid = @Paid) OR Return_amount < 0";
+                string cmds = "SELECT * FROM Transactions WHERE (type = @type AND NOT Paid = @Paid) OR Return_amount < 0 ORDER BY transaction_date desc";
                 SqlCommand cmd = new SqlCommand(cmds, conn);
                 cmd.Parameters.AddWithValue("@type", type);
                 cmd.Parameters.AddWithValue("@Paid", "True");
@@ -828,14 +828,14 @@ namespace Abbey_Trading_Store.DAL
             try
             {
                 conn.Open();
-                string cmd_string = "SELECT * FROM Transactions WHERE type = 'Customer' AND Paid = 'False'";
+                string cmd_string = "SELECT * FROM Transactions WHERE type = 'Customer' AND Paid = 'False' ORDER BY transaction_date desc";
                 if (name == "")
                 {
-                    cmd_string = "SELECT * FROM Transactions WHERE type = 'Customer' AND Paid = 'False'";
+                    cmd_string = "SELECT * FROM Transactions WHERE type = 'Customer' AND Paid = 'False' ORDER BY transaction_date desc";
                 }
                 else
                 {
-                    cmd_string = "SELECT * FROM Transactions WHERE type = 'Customer' AND Paid = 'False' AND dea_cust_name LIKE '%" + name + "%'";
+                    cmd_string = "SELECT * FROM Transactions WHERE type = 'Customer' AND Paid = 'False' AND dea_cust_name LIKE '%" + name + "%' ORDER BY transaction_date desc";
 
                 }
                 adapter = new SqlDataAdapter(cmd_string, conn);
