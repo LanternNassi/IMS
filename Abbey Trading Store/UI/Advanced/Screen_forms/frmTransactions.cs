@@ -45,6 +45,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 {
                     if (paid == "True" || paid == "Cleared")
                     {
+
                         profit_holder += Convert.ToInt64(flexible.Rows[i][9].ToString());
                     }
                 }
@@ -57,6 +58,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             }
             txtbx_total.Text = "Shs. " + purchase_holder.ToString("N0");
             txtbx_sales.Text = "Shs. " + sales_holder.ToString("N0");
+
+            circularProgressBar2.Value = Convert.ToInt32((Convert.ToDecimal(profit_holder) / Convert.ToDecimal(sales_holder))*100);
+            circularProgressBar2.Text = Convert.ToString(circularProgressBar2.Value) + "%"; 
+
             txtbx_discounts.Text = "Shs. " + profit_holder.ToString("N0");
         }
         Transactions Ts = new Transactions();
@@ -111,6 +116,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             txtbx_total.Text = "Shs. " + purchase_holder.ToString("N0");
             txtbx_sales.Text = "Shs. " + sales_holder.ToString("N0");
             txtbx_discounts.Text = "Shs. " + profit_holder.ToString("N0");
+
+            circularProgressBar2.Value = Convert.ToInt32((Convert.ToDecimal(profit_holder) / Convert.ToDecimal(sales_holder)) * 100);
+            circularProgressBar2.Text = Convert.ToString(circularProgressBar2.Value) + "%";
+
             Cateory_combobox.Text = "";
             checkBox1.Checked = false;
             Cursor = Cursors.Default;
@@ -211,6 +220,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             txtbx_sales.Text = "Shs. " + sales_holder.ToString("N0");
             txtbx_discounts.Text = "Shs. " + profit_holder.ToString("N0");
 
+            circularProgressBar2.Value = Convert.ToInt32((Convert.ToDecimal(profit_holder) / Convert.ToDecimal(sales_holder)) * 100);
+            circularProgressBar2.Text = Convert.ToString(circularProgressBar2.Value) + "%";
+
         }
 
         private void checkBox1_CheckStateChanged(object sender, EventArgs e)
@@ -304,6 +316,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     txtbx_sales.Text = "Shs. " + sales_holder.ToString("N0");
                     txtbx_discounts.Text = "Shs. " + profit_holder.ToString("N0");
                     Cateory_combobox.Text = "";
+
+                    circularProgressBar2.Value = Convert.ToInt32((Convert.ToDecimal(profit_holder) / Convert.ToDecimal(sales_holder)) * 100);
+                    circularProgressBar2.Text = Convert.ToString(circularProgressBar2.Value) + "%";
                 }
                 else
                 {

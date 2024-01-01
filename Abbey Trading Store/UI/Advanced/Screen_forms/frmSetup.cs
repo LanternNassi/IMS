@@ -97,7 +97,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         public static HttpClient http_client = new HttpClient();
 
-        public static async Task<dynamic> FetchData(string url)
+        public static async Task<dynamic> FetchData(string url , bool show_error=true)
         {
             try
             {
@@ -128,7 +128,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                if (show_error)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
             }
             finally

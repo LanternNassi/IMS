@@ -129,7 +129,7 @@ namespace Abbey_Trading_Store.UI.Advanced
             try
             {
 
-                dynamic latest_release_info = await frmSetup.FetchData("https://api.github.com/repos/LanternNassi/IMS/releases/latest");
+                dynamic latest_release_info = await frmSetup.FetchData("https://api.github.com/repos/LanternNassi/IMS/releases/latest" , false);
                 string numericPart = Regex.Replace(Convert.ToString(latest_release_info["tag_name"]), "[^0-9]", "");
                 if (int.TryParse(numericPart, out int versionNumber))
                 {
