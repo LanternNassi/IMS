@@ -172,6 +172,7 @@ namespace Abbey_Trading_Store.DAL
                 ProcessStartInfo startInfo = new ProcessStartInfo
                 {
                     FileName = service_pathUser,
+                    Verb = "runas", // Run as administrator
                     UseShellExecute = true,
                     Arguments = "/SILENT", // Use silent mode for Inno Setup
                 };
