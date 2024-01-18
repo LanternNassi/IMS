@@ -654,7 +654,7 @@
         <Top>2.63825in</Top>
         <Left>4.81145in</Left>
         <Height>0.25in</Height>
-        <Width>1.48264in</Width>
+        <Width>1.00002in</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -692,9 +692,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox28</rd:DefaultName>
         <Top>2.62783in</Top>
-        <Left>6.36354in</Left>
+        <Left>5.97812in</Left>
         <Height>0.25in</Height>
-        <Width>1.6875in</Width>
+        <Width>2.07292in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -823,7 +823,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=First(Format(CInt(Fields!grandTotal.Value + Fields!discount.Value), "##,##0.##"), "DataSet2")</Value>
+                <Value>=First(Format(CInt(Fields!grandTotal.Value) + CInt(Fields!discount.Value), "##,##0.##"), "DataSet2")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>

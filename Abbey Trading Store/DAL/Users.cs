@@ -172,7 +172,7 @@ namespace Abbey_Trading_Store.DAL
             try
             {
                 conn.Open();
-                string command = "SELECT SUM(CAST(Total_profit AS int)), SUM(grandTotal), MONTH(transaction_date) FROM Transactions WHERE type = 'Customer' AND (PAID = 'Cleared' OR PAID = 'True') GROUP BY MONTH(transaction_date)";
+                string command = "SELECT SUM(CAST(Total_profit AS int)) AS total_profit_sum, SUM(grandTotal)  AS grand_total_sum, MONTH(transaction_date) AS transaction_month FROM Transactions WHERE type = 'Customer' AND (PAID = 'Cleared' OR PAID = 'True') GROUP BY MONTH(transaction_date);";
                 SqlDataAdapter adapter = new SqlDataAdapter(command, conn);
                 adapter.Fill(dt);
 
@@ -186,6 +186,19 @@ namespace Abbey_Trading_Store.DAL
             {
                 conn.Close();
             }
+
+            //// Get the rows as an array and reverse the array
+            //DataRow[] rows = dt.Select();
+            //Array.Reverse(rows);
+
+            //// Clear the original rows in the DataTable
+            //dt.Rows.Clear();
+
+            //// Add the reversed rows back to the DataTable
+            //foreach (DataRow row in rows)
+            //{
+            //    dt.Rows.Add(row);
+            //}
 
             return dt;
 

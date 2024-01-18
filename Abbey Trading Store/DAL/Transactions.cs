@@ -652,7 +652,7 @@ namespace Abbey_Trading_Store.DAL
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                string cmds = "INSERT INTO [Transaction Tracker](Transaction_id,Paid_amount,Added_date,Updated_by)VALUES(@Transaction_id,@Paid_amount,@Added_date,@Updated_by)";
+                string cmds = "INSERT INTO [Transaction_Tracker](Transaction_id,Paid_amount,Added_date,Updated_by)VALUES(@Transaction_id,@Paid_amount,@Added_date,@Updated_by)";
                 SqlCommand cmd = new SqlCommand(cmds, conn);
                 cmd.Parameters.AddWithValue("@Transaction_id", args[0]);
                 cmd.Parameters.AddWithValue("@Paid_amount", args[1]);
