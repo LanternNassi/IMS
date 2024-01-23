@@ -59,8 +59,15 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             txtbx_total.Text = "Shs. " + purchase_holder.ToString("N0");
             txtbx_sales.Text = "Shs. " + sales_holder.ToString("N0");
 
-            circularProgressBar2.Value = Convert.ToInt32((Convert.ToDecimal(profit_holder) / Convert.ToDecimal(sales_holder))*100);
-            circularProgressBar2.Text = Convert.ToString(circularProgressBar2.Value) + "%"; 
+            if (sales_holder != 0)
+            {
+                circularProgressBar2.Value = Convert.ToInt32((Convert.ToDecimal(profit_holder) / Convert.ToDecimal(sales_holder)) * 100);
+                circularProgressBar2.Text = Convert.ToString(circularProgressBar2.Value) + "%";
+            }
+
+            circularProgressBar2.Value = 0;
+            circularProgressBar2.Text = 0 + "%";
+
 
             txtbx_discounts.Text = "Shs. " + profit_holder.ToString("N0");
         }

@@ -57,6 +57,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private static WebClient wc = new WebClient();
         private static WebClient wc_2 = new WebClient();
         private static WebClient service_wc = new WebClient();
+
+
         private static ManualResetEvent handle = new ManualResetEvent(true);
         private static string pathUser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private static string pathUser_2 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -385,7 +387,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 // Start the process
                 using (Process process = new Process())
                 {
-                    process.StartInfo.FileName = updator_pathUser;
+                    string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                    process.StartInfo.FileName = path + "/IMSUpdate.exe";
                     process.StartInfo.Arguments = "/silent /norestart";
                     process.StartInfo.UseShellExecute = false;
                     process.StartInfo.RedirectStandardOutput = true;
@@ -431,7 +435,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             //wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
             updator_wc.DownloadFileCompleted += new AsyncCompletedEventHandler(Install_Updator);
             Console.WriteLine("Downloading IMS updator....");
-            service_wc.DownloadFileAsync(new Uri(filePath), updator_pathUser);
+            updator_wc.DownloadFileAsync(new Uri(filePath), updator_pathUser);
             handle.WaitOne();
         }
 
@@ -572,7 +576,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             string output = string.Empty;
             pathUser = pathUser.Replace("\\", "/");
-            string filePath = "https://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x86_ENU_2012.exe";
+            string filePath = "https://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x64_ENU_2012.exe";
+            //string filePath = " https://download.microsoft.com/download/3/8/d/38de7036-2433-4207-8eae-06e247e17b25/SQLEXPR_x64_ENU.exe";
             //string filePath = "http://127.0.0.1:8080/SQLEXPR_x86_ENU_2012.exe";
             var files = filePath.Split('/');
             pathUser = pathUser + @"/" + files[files.Count() - 1];
