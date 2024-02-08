@@ -57,10 +57,16 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         private static WebClient wc = new WebClient();
         private static WebClient wc_2 = new WebClient();
         private static WebClient service_wc = new WebClient();
+
+
         private static ManualResetEvent handle = new ManualResetEvent(true);
         private static string pathUser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private static string pathUser_2 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private static string service_pathUser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+        private static WebClient updator_wc = new WebClient();
+        private static string updator_pathUser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    
 
         private static Thread thread;
         private BackgroundWorker worker = null;
@@ -140,6 +146,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             }
             return null;
         }
+
+
+
 
 
 
@@ -370,6 +379,71 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         }
 
+
+        public void Install_Updator(object sender, AsyncCompletedEventArgs e)
+        {
+            try
+            {
+                // Start the process
+                using (Process process = new Process())
+                {
+                    string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                    process.StartInfo.FileName = path + "/IMSUpdate.exe";
+                    process.StartInfo.Arguments = "/silent /norestart";
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.RedirectStandardOutput = true;
+                    process.StartInfo.RedirectStandardError = true;
+                    process.StartInfo.CreateNoWindow = true;
+
+                    // Start the process
+                    process.Start();
+
+                    // Read the output and errors (if needed)
+                    string output = process.StandardOutput.ReadToEnd();
+                    string error = process.StandardError.ReadToEnd();
+
+                    // Wait for the process to exit
+                    process.WaitForExit();
+
+                    // Display output and errors (if needed)
+                    Console.WriteLine("Output:\n" + output);
+                    Console.WriteLine("Error:\n" + error);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+        }
+
+        public async void DownloadUpdator()
+        {
+
+            string output = string.Empty;
+            updator_pathUser = updator_pathUser.Replace("\\", "/");
+            string filePath = "";
+
+            // Getting the updater information
+            dynamic latest_release = await FetchData("https://api.github.com/repos/LanternNassi/IMSUPDATE/releases/latest");
+            dynamic release_info = await FetchData(Convert.ToString(latest_release["assets_url"]));
+
+            filePath = Convert.ToString(release_info[0]["browser_download_url"]);
+
+            var files = filePath.Split('/');
+            updator_pathUser = updator_pathUser + @"/" + files[files.Count() - 1];
+            //wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
+            updator_wc.DownloadFileCompleted += new AsyncCompletedEventHandler(Install_Updator);
+            Console.WriteLine("Downloading IMS updator....");
+            updator_wc.DownloadFileAsync(new Uri(filePath), updator_pathUser);
+            handle.WaitOne();
+        }
+
+
+
+
+
+
         public async void Create_conn_env_variable(string ip_address)
         {
             async Task<string> GET_Conn_string(string serverUrl)
@@ -409,6 +483,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             Environment.SetEnvironmentVariable(variableName, variableValue, EnvironmentVariableTarget.Process);
 
         }
+
+
+
+        
 
 
         // Install the microservice
@@ -498,7 +576,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
             string output = string.Empty;
             pathUser = pathUser.Replace("\\", "/");
-            string filePath = "https://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x86_ENU_2012.exe";
+            string filePath = "https://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x64_ENU_2012.exe";
+            //string filePath = " https://download.microsoft.com/download/3/8/d/38de7036-2433-4207-8eae-06e247e17b25/SQLEXPR_x64_ENU.exe";
             //string filePath = "http://127.0.0.1:8080/SQLEXPR_x86_ENU_2012.exe";
             var files = filePath.Split('/');
             pathUser = pathUser + @"/" + files[files.Count() - 1];
@@ -565,6 +644,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
                 //Starting the service installation
                 DownloadService("Server");
+
+                //Downloading the IMS UPdate
+                DownloadUpdator();
 
 
                 this.Hide();

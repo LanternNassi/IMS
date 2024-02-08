@@ -13,6 +13,7 @@ using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Smo.Wmi;
 using Microsoft.SqlServer.Management.Sdk.Sfc;
+using System.Diagnostics;
 
 namespace Abbey_Trading_Store
 {
@@ -100,6 +101,7 @@ namespace Abbey_Trading_Store
             //Console.WriteLine("TCP protocol enabled successfully.");
 
 
+            
 
             //Code above is stray
 

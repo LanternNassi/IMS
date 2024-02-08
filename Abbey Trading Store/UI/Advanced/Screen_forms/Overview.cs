@@ -53,9 +53,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 DataTable dt_3 = DAL.DAL_Properties.Env.mode == 1 ? (user.TransactionsOverview_2()) : (user.TransactionsOverview("Customer"));
                 DataTable dt_4 = category.ExpenditureOverview();
 
+                //Reversing the rows of transactions overview
+                DataRow[] rows = dt_3.Select();
+                Array.Reverse(rows);
 
-
-                foreach (DataRow dr in dt_3.Rows)
+                foreach (DataRow dr in rows)
                 {
                     
                     chart1.Series["Sales"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[1]));
