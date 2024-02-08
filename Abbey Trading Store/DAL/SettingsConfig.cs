@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -167,22 +168,11 @@ namespace Abbey_Trading_Store.DAL
 
         public static async void Install_update(object sender, AsyncCompletedEventArgs e)
         {
+            //form_screen.Hide();
+            
             try
             {
-                ProcessStartInfo startInfo = new ProcessStartInfo
-                {
-                    FileName = service_pathUser,
-                    Verb = "runas", // Run as administrator
-                    UseShellExecute = true,
-                    Arguments = "/SILENT", // Use silent mode for Inno Setup
-                };
-
-                using (Process process = new Process { StartInfo = startInfo })
-                {
-                    process.Start();
-                    process.WaitForExit(); // Wait for the installer to finish
-                }
-
+                //Update the current version 
                 dynamic latest_release_info = await frmSetup.FetchData("https://api.github.com/repos/LanternNassi/IMS/releases/latest");
                 string numericPart = Regex.Replace(Convert.ToString(latest_release_info["tag_name"]), "[^0-9]", "");
                 if (int.TryParse(numericPart, out int versionNumber))
@@ -197,11 +187,29 @@ namespace Abbey_Trading_Store.DAL
                 }
 
 
-                MessageBox.Show("The update process is done . You might consider restarting your application for the update to take effect");
-                form_screen.Hide();
+                //Start the updator
+                string installer = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "/IMSUpdate/IMSUpdate.exe";
+
+
+                using (Process process = new Process())
+                {
+                    process.StartInfo.FileName = installer;
+                    process.StartInfo.UseShellExecute = true; // Set to false if you want to redirect output
+                    process.Start();
+                }
+
+                //Exit the application
+                Application.Exit();
+
                 
-                // Optionally, you may want to restart your application after the update
-                Process.Start("Abbey Trading Store.exe");
+
+                
+                
+                
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -234,17 +242,20 @@ namespace Abbey_Trading_Store.DAL
             string output = string.Empty;
             service_pathUser = service_pathUser.Replace("\\", "/");
             string filePath = "";
-            
+
             dynamic latest_release = await UI.Advanced.Screen_forms.frmSetup.FetchData("https://api.github.com/repos/LanternNassi/IMS/releases/latest");
             dynamic release_info = await UI.Advanced.Screen_forms.frmSetup.FetchData(Convert.ToString(latest_release["assets_url"]));
 
             filePath = Convert.ToString(release_info[0]["browser_download_url"]);
-            
+
+            //filePath = "http://127.0.0.1:8080/IMS.exe";
+
+
             var files = filePath.Split('/');
             service_pathUser = service_pathUser + @"/" + files[files.Count() - 1];
             update_wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
             update_wc.DownloadFileCompleted += new AsyncCompletedEventHandler(Install_update);
-            Console.WriteLine("Downloading Windows server....");
+            Console.WriteLine("Downloading Update....");
             update_wc.DownloadFileAsync(new Uri(filePath), service_pathUser);
             handle.WaitOne();
         }

@@ -44,11 +44,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             // Updating the progress bars
             if (overall_unsettled_amount != 0)
             {
-                circularProgressBar1.Value = (unsettled_amount / overall_unsettled_amount) * 100;
-                circularProgressBar1.Text = ((unsettled_amount / overall_unsettled_amount) * 100).ToString() + "%";
+                //circularProgressBar1.Value = (unsettled_amount / overall_unsettled_amount) * 100;
+                //circularProgressBar1.Text = ((unsettled_amount / overall_unsettled_amount) * 100).ToString() + "%";
 
-                circularProgressBar2.Value = (settled_amount / overall_settled_amount) * 100;
-                circularProgressBar2.Text = ((settled_amount / overall_settled_amount) * 100).ToString() + "%";
+                //circularProgressBar2.Value = (settled_amount / overall_settled_amount) * 100;
+                //circularProgressBar2.Text = ((settled_amount / overall_settled_amount) * 100).ToString() + "%";
             }
             else
             {
@@ -92,7 +92,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
                 circularProgressBar2.Value = Convert.ToInt32((Convert.ToDecimal(settled_amount) / Convert.ToDecimal(overall_settled_amount)) * 100);
                 circularProgressBar2.Text = Convert.ToInt32((Convert.ToDecimal(settled_amount) / Convert.ToDecimal(overall_settled_amount)) * 100).ToString() + "%";
-            }else
+            }
+            else
             {
                 circularProgressBar1.Value = 0;
                 circularProgressBar1.Text = "0%";
