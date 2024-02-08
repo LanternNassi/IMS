@@ -103,6 +103,16 @@ namespace Abbey_Trading_Store.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap borrow {
+            get {
+                object obj = ResourceManager.GetObject("borrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap calendar {
             get {
                 object obj = ResourceManager.GetObject("calendar", resourceCulture);
@@ -246,6 +256,16 @@ namespace Abbey_Trading_Store.Properties {
         internal static System.Drawing.Bitmap downloads {
             get {
                 object obj = ResourceManager.GetObject("downloads", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap economic_crisis {
+            get {
+                object obj = ResourceManager.GetObject("economic-crisis", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

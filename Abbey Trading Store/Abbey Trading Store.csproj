@@ -1166,6 +1166,8 @@
     <None Include="Resources\Untitled design.gif" />
     <None Include="Resources\Untitled design %282%29.gif" />
     <None Include="Resources\Copy of Untitled Design.gif" />
+    <None Include="Resources\economic-crisis.png" />
+    <None Include="Resources\borrow.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

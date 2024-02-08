@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="people" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\people.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="transaction" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\transaction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -166,17 +169,17 @@
   <data name="profit (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\profit (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Dizzy_face_rafiki" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Dizzy face-rafiki.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Contact_us_bro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Contact us-bro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="diagram1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\diagram1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="profit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\profit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="calendar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\calendar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="chart_diagram" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\chart-diagram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Untitled design" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Untitled design.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -186,9 +189,6 @@
   </data>
   <data name="chat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Untitled_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Untitled-11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="App_installation_bro1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\App installation-bro1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,8 +214,14 @@
   <data name="transaction (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\transaction (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="diagram1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\diagram1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Copy of Untitled Design" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Copy of Untitled Design.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="recovery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\recovery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="economic-crisis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\economic-crisis.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="downloads" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\downloads.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,11 +238,11 @@
   <data name="diagram" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\diagram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="recovery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\recovery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="chart_diagram" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chart-diagram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Contact_us_bro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Contact us-bro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Untitled_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Untitled-11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,10 +250,10 @@
   <data name="international-mkt2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\international-mkt2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="people" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\people.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dizzy_face_rafiki" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Dizzy face-rafiki.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Copy of Untitled Design" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Copy of Untitled Design.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="borrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\borrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
