@@ -52,11 +52,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             }
             else
             {
-                circularProgressBar1.Value = 0;
-                circularProgressBar1.Text = "0%";
+                //circularProgressBar1.Value = 0;
+                //circularProgressBar1.Text = "0%";
 
-                circularProgressBar2.Value = 0;
-                circularProgressBar2.Text = "0%";
+                //circularProgressBar2.Value = 0;
+                //circularProgressBar2.Text = "0%";
 
             }
             
@@ -87,19 +87,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             // Updating the progress bars
             if(overall_unsettled_amount != 0)
             {
-                circularProgressBar1.Value = Convert.ToInt32((Convert.ToDecimal(unsettled_amount) / Convert.ToDecimal(overall_unsettled_amount)) * 100);
-                circularProgressBar1.Text = Convert.ToInt32((Convert.ToDecimal(unsettled_amount) / Convert.ToDecimal(overall_unsettled_amount)) * 100).ToString() + "%";
+                //circularProgressBar1.Value = Convert.ToInt32((Convert.ToDecimal(unsettled_amount) / Convert.ToDecimal(overall_unsettled_amount)) * 100);
+                //circularProgressBar1.Text = Convert.ToInt32((Convert.ToDecimal(unsettled_amount) / Convert.ToDecimal(overall_unsettled_amount)) * 100).ToString() + "%";
 
-                circularProgressBar2.Value = Convert.ToInt32((Convert.ToDecimal(settled_amount) / Convert.ToDecimal(overall_settled_amount)) * 100);
-                circularProgressBar2.Text = Convert.ToInt32((Convert.ToDecimal(settled_amount) / Convert.ToDecimal(overall_settled_amount)) * 100).ToString() + "%";
-            }
-            else
+                //circularProgressBar2.Value = Convert.ToInt32((Convert.ToDecimal(settled_amount) / Convert.ToDecimal(overall_settled_amount)) * 100);
+                //circularProgressBar2.Text = Convert.ToInt32((Convert.ToDecimal(settled_amount) / Convert.ToDecimal(overall_settled_amount)) * 100).ToString() + "%";
+            }else
             {
-                circularProgressBar1.Value = 0;
-                circularProgressBar1.Text = "0%";
+                //circularProgressBar1.Value = 0;
+                //circularProgressBar1.Text = "0%";
 
-                circularProgressBar2.Value = 0;
-                circularProgressBar2.Text = "0%";
+                //circularProgressBar2.Value = 0;
+                //circularProgressBar2.Text = "0%";
 
             }
             
