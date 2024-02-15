@@ -41,6 +41,8 @@ namespace Abbey_Trading_Store.UI.Advanced
         public static System.Drawing.Size PnlContainer;
         public static frmExpenditures active_exp_form = null;
         public static System.Threading.Timer timer = null;
+        private System.Timers.Timer backupTimer;
+
 
         public Dashboard()
         {
@@ -120,7 +122,37 @@ namespace Abbey_Trading_Store.UI.Advanced
                 materialButton3.Enabled = true;
             }
 
+            //Setting up the backUp mechanism
+            backupTimer = new System.Timers.Timer();
+            backupTimer.Interval = 1000; // 1 second
+            backupTimer.Elapsed += BackupTimer_Tick;
+            SetBackupTime(17, 22, 0); // Set backup time to 5:00:00 PM
+            backupTimer.Start();
+
         }
+
+
+        private void BackupTimer_Tick(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Event raised");
+            DateTime now = DateTime.Now;
+            if (now.Hour == 17 && now.Minute == 22 && now.Second == 0)
+            {
+                SettingsConfig.CreateBackUp("QAgZ6BcOpsGqfIT5abREtBBZO");
+            }
+        }
+
+        private void SetBackupTime(int hour, int minute, int second)
+        {
+            TimeSpan timeUntilBackup = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, minute, second) - DateTime.Now;
+            if (timeUntilBackup.TotalMilliseconds < 0)
+            {
+                timeUntilBackup = timeUntilBackup.Add(new TimeSpan(24, 0, 0)); // Add 24 hours to the time if it's already passed for today
+            }
+
+            backupTimer.Interval = timeUntilBackup.TotalMilliseconds;
+        }
+
 
 
 

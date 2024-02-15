@@ -19,6 +19,9 @@ using System.Threading.Tasks;
 //using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlServer.Management.Common;
+using System.Net.Http;
 
 namespace Abbey_Trading_Store.DAL
 {
@@ -201,14 +204,7 @@ namespace Abbey_Trading_Store.DAL
                 //Exit the application
                 Application.Exit();
 
-                
-
-                
-                
-                
-
-
-
+              
 
             }
             catch (Exception ex)
@@ -259,6 +255,80 @@ namespace Abbey_Trading_Store.DAL
             update_wc.DownloadFileAsync(new Uri(filePath), service_pathUser);
             handle.WaitOne();
         }
+
+        public static async void RequestForPayment() { 
+
+        }
+
+
+        public static async void CreateBackUp(string clientId)
+        {
+            string strComputerName = Environment.MachineName.ToString();
+            string computed_server_name = strComputerName + @"\SQLSERVER2012";
+
+            // Create a new instance of the Server object
+            Server server = new Server(new ServerConnection(computed_server_name));
+
+            try
+            {
+                // Create a new Backup object
+                Backup backup = new Backup
+                {
+                    Action = BackupActionType.Database,
+                    Database = "IMSProd"
+                };
+
+                // Define the backup file location
+                backup.Devices.AddDevice(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/IMSProd.bak", DeviceType.File);
+
+                // Perform the backup
+                backup.SqlBackup(server);
+                Console.WriteLine("Backup completed successfully... Uploading the backup");
+
+                // Uploading the backup store
+                UploadBackUp(clientId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Backup failed: " + ex.Message);
+            }
+            finally
+            {
+                server.ConnectionContext.Disconnect();
+            }
+        }
+
+        public static async void UploadBackUp(string clientId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                using (MultipartFormDataContent formData = new MultipartFormDataContent())
+                {
+                    string backupFilePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/IMSProd.bak";
+                    // Add the backup file to the form data
+                    byte[] fileBytes = File.ReadAllBytes(backupFilePath);
+                    formData.Add(new ByteArrayContent(fileBytes), "file", Path.GetFileName(backupFilePath));
+
+                    // Add the client ID to the form data
+                    formData.Add(new StringContent(clientId), "ClientID");
+
+                    // Post the form data to the URL
+                    HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:8080/backups", formData);
+
+                    // Check the response status
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("Backup file uploaded successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Failed to upload backup file. Status code: " + response.StatusCode);
+                    }
+                }
+            }
+        }
+
+
 
 
 
