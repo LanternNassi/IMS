@@ -523,6 +523,10 @@
     <Compile Include="Migrations\202312200941310_Add_Settings_Config.designer.cs">
       <DependentUpon>202312200941310_Add_Settings_Config.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402211717492_BackupConfig.cs" />
+    <Compile Include="Migrations\202402211717492_BackupConfig.designer.cs">
+      <DependentUpon>202402211717492_BackupConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modification.cs">
       <DependentUpon>Base1.tt</DependentUpon>
@@ -872,6 +876,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312200941310_Add_Settings_Config.resx">
       <DependentUpon>202312200941310_Add_Settings_Config.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402211717492_BackupConfig.resx">
+      <DependentUpon>202402211717492_BackupConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Reports\Categories Report\Categories.rdlc" />

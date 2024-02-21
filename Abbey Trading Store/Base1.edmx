@@ -316,6 +316,8 @@
           <Property Name="MessageFrom" Type="String" />
           <Property Name="Active" Type="String" />
           <Property Name="Date_configured" Type="DateTime" />
+          <Property Name="ClientId" Type="String" Nullable="false" />
+          <Property Name="ValidTill" Type="DateTime" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

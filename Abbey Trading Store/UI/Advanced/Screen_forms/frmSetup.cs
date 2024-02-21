@@ -103,11 +103,15 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         public static HttpClient http_client = new HttpClient();
 
+        
+
         public static async Task<dynamic> FetchData(string url , bool show_error=true)
         {
             try
             {
 
+                string requestBody = "{\"key\": \"value\"}";
+                HttpContent content = new StringContent(requestBody, Encoding.UTF8, "application/json");
 
 
                 // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
@@ -679,6 +683,57 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             
         }
 
+        private async Task <dynamic> VerifyClientID()
+        {
+            try
+            {
+                var client = new HttpClient();
+
+                var clientId = "";
+
+                if (this.client_id.Text.Trim() != "")
+                {
+                    clientId = this.client_id.Text;
+                }
+                else
+                {
+                    return null;
+                }
+
+                var requestBody = $"{{\"ClientID\" : \"{clientId}\"}}";
+                var content = new StringContent(requestBody, null, "application/json");
+
+                var request = new HttpRequestMessage(HttpMethod.Get, "http://127.0.0.1:8080/clients");
+                request.Content = content;
+
+                var response = await client.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
+                {
+                    dynamic response_content = await response.Content.ReadAsStringAsync();
+                    dynamic deserialized = JsonConvert.DeserializeObject(response_content);
+                    //MessageBox.Show(deserialized.ToString());
+
+                    return deserialized;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+            }
+            return null;
+
+        }
+
         private async void start_btn_Click(object sender, EventArgs e)
         {
             if (this.start_btn.Text == "Start Setup")
@@ -756,6 +811,22 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 {
                     selected_installation = "Server";
 
+                    if (this.client_id.Text.Trim() == "")
+                    {
+                        MessageBox.Show("Please Add your client id provided by the software provider");
+                        return;
+                    }
+
+                    //Verifying the client id 
+                    dynamic client_verification = VerifyClientID();
+
+                    if (client_verification == null)
+                    {
+                        MessageBox.Show("The client id provided doesnot exist . Please contact the software provider for more information");
+                        return;
+                    }
+
+
                     //Getting Settings configuration
                     if (MessageBox.Show("Do you have any configurations to set up for your system ?", "Configurations Set uo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -772,6 +843,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                         {
                             sett.MessageAPIKey = "";
                         }
+
+                        sett.ClientId = this.client_id.Text.Trim();
+                        sett.ValidTill = Convert.ToDateTime(client_verification.ValidTill);
                         sett.MessageUsername = Interaction.InputBox("Messages", "Enter your account message username", "");
                         sett.MessageFrom = Interaction.InputBox("Messages", "Enter your 'From' field according to your dashboard", "");
                         sett.Active = "true";

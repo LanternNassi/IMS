@@ -69,6 +69,8 @@ namespace Abbey_Trading_Store.DAL
                 settings.MessageFrom = dt.Rows[0][5].ToString();
                 settings.Active = dt.Rows[0][6].ToString();
                 settings.Date_configured = Convert.ToDateTime(dt.Rows[0][7]);
+                settings.ClientId = dt.Rows[0][8].ToString();
+                settings.ValidTill = Convert.ToDateTime(dt.Rows[0][9].ToString());
 
             }
             catch (Exception ex)
@@ -88,7 +90,7 @@ namespace Abbey_Trading_Store.DAL
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                const string cmds = "INSERT INTO Settings(AppVersion,Messages,MessageAPIKey,MessageUsername,MessageFrom,Active,Date_configured)VALUES(@AppVersion,@Messages,@MessageAPIKey,@MessageUsername,@MessageFrom,@Active,@Date_configured);";
+                const string cmds = "INSERT INTO Settings(AppVersion,Messages,MessageAPIKey,MessageUsername,MessageFrom,Active,Date_configured,ClientId,ValidTill)VALUES(@AppVersion,@Messages,@MessageAPIKey,@MessageUsername,@MessageFrom,@Active,@Date_configured,@ClientId,@ValidTill);";
                 SqlCommand cmd = new SqlCommand(cmds, conn);
                 cmd.Parameters.AddWithValue("@AppVersion", settings.AppVersion);
                 cmd.Parameters.AddWithValue("@Messages", settings.Messages);
@@ -97,7 +99,8 @@ namespace Abbey_Trading_Store.DAL
                 cmd.Parameters.AddWithValue("@MessageFrom", settings.MessageFrom);
                 cmd.Parameters.AddWithValue("@Active", settings.Active);
                 cmd.Parameters.AddWithValue("@Date_configured", settings.Date_configured);
-
+                cmd.Parameters.AddWithValue("@ClientId", settings.ClientId);
+                cmd.Parameters.AddWithValue("@ValidTill", settings.ValidTill);
 
 
                 conn.Open();
@@ -131,7 +134,7 @@ namespace Abbey_Trading_Store.DAL
             try
             {
 
-                const string cmds = "UPDATE Settings SET AppVersion = @AppVersion,Messages=@Messages,MessageAPIKey=@MessageAPIKey,MessageUsername=@MessageUsername,MessageFrom=@MessageFrom,Active=@Active,Date_configured=@Date_configured WHERE id = @id";
+                const string cmds = "UPDATE Settings SET AppVersion = @AppVersion,Messages=@Messages,MessageAPIKey=@MessageAPIKey,MessageUsername=@MessageUsername,MessageFrom=@MessageFrom,Active=@Active,Date_configured=@Date_configured,ClientId=@ClientId,ValidTill=@ValidTill WHERE id = @id";
                 SqlCommand cmd = new SqlCommand(cmds, conn);
 
                 cmd.Parameters.AddWithValue("@id", id);
@@ -142,8 +145,8 @@ namespace Abbey_Trading_Store.DAL
                 cmd.Parameters.AddWithValue("@MessageFrom", settings.MessageFrom);
                 cmd.Parameters.AddWithValue("@Active", settings.Active);
                 cmd.Parameters.AddWithValue("@Date_configured", settings.Date_configured);
-
-
+                cmd.Parameters.AddWithValue("@ClientId", settings.ClientId);
+                cmd.Parameters.AddWithValue("@ValidTill", settings.ValidTill);
 
                 conn.Open();
                 int rows = cmd.ExecuteNonQuery();
