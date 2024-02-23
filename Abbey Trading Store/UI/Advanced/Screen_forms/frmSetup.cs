@@ -33,6 +33,7 @@ using MaterialSkin.Controls;
 using Microsoft.VisualBasic;
 using System.Text.RegularExpressions;
 using Abbey_Trading_Store.DAL;
+using System.Data.SqlTypes;
 //using Microsoft.Office.Interop.Excel;
 //using Microsoft.Office.Interop.Excel;
 //using Microsoft.Office.Interop.Excel;
@@ -814,15 +815,20 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     if (this.client_id.Text.Trim() == "")
                     {
                         MessageBox.Show("Please Add your client id provided by the software provider");
+                        Cursor = Cursors.Default;
                         return;
+
                     }
 
                     //Verifying the client id 
-                    dynamic client_verification = VerifyClientID();
+                    dynamic client_verification = await FetchData("http://127.0.0.1:8080/clients/" + this.client_id.Text.Trim());
+
+                    //dynamic client_verification = VerifyClientID();
 
                     if (client_verification == null)
                     {
                         MessageBox.Show("The client id provided doesnot exist . Please contact the software provider for more information");
+                        Cursor = Cursors.Default;
                         return;
                     }
 
@@ -845,9 +851,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                         }
 
                         sett.ClientId = this.client_id.Text.Trim();
-                        sett.ValidTill = Convert.ToDateTime(client_verification.ValidTill);
-                        sett.MessageUsername = Interaction.InputBox("Messages", "Enter your account message username", "");
-                        sett.MessageFrom = Interaction.InputBox("Messages", "Enter your 'From' field according to your dashboard", "");
+
+                        DateTime dateTime = Convert.ToDateTime(client_verification.ValidTill);
+
+                        if (dateTime < SqlDateTime.MinValue.Value)
+                        {
+                            dateTime = SqlDateTime.MinValue.Value;
+                        }
+
+
+                        sett.ValidTill = dateTime;
+                        sett.MessageUsername = Interaction.InputBox("Enter your account message username", "Messages", "");
+                        sett.MessageFrom = Interaction.InputBox("Enter your 'From' field according to your dashboard", "Messages", "");
                         sett.Active = "true";
                         sett.Date_configured = DateTime.Now;
                         dynamic latest_release_info = await FetchData("https://api.github.com/repos/LanternNassi/IMS/releases/latest");
