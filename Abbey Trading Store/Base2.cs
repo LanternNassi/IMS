@@ -74,6 +74,10 @@ namespace Abbey_Trading_Store
             modelBuilder.Entity<Settings>()
                 .Property(e => e.Date_configured)
                 .HasPrecision(0);
+            
+            modelBuilder.Entity<Settings>()
+                .Property(e => e.ValidTill)
+                .HasPrecision(0);
         }
     }
 }
