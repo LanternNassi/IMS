@@ -118,10 +118,11 @@ namespace Abbey_Trading_Store
                     {
 
                       
-                        string strComputerName = Environment.MachineName.ToString();
-                        string computed_server_name = strComputerName + @"\SQLSERVER2012";
-                        string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=IMSProd;Integrated Security=True;TrustServerCertificate=True";
-                        Env.local_server_database_conn_string = local_server_database_conn_string;
+                        //string strComputerName = Environment.MachineName.ToString();
+                        //string computed_server_name = strComputerName + @"\SQLSERVER2012";
+                        //string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=IMSProd;Integrated Security=True;TrustServerCertificate=True";
+                        
+                        //Env.local_server_database_conn_string = local_server_database_conn_string;
                         Env.installation_type = "Server";
                         ////Applying migrations 
                         DatabaseUpdater db_updater = new DatabaseUpdater();
