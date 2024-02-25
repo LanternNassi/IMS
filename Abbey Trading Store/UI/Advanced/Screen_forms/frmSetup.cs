@@ -821,7 +821,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     }
 
                     //Verifying the client id 
-                    dynamic client_verification = await FetchData("http://127.0.0.1:8080/clients/" + this.client_id.Text.Trim());
+                    dynamic client_verification = await FetchData("https://imscontroller-1.onrender.com/clients/" + this.client_id.Text.Trim());
 
                     //dynamic client_verification = VerifyClientID();
 

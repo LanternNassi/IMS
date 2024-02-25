@@ -264,8 +264,36 @@ namespace Abbey_Trading_Store.DAL
         }
 
 
+        static bool DeleteFile(string directoryPath, string fileName)
+        {
+            string filePath = Path.Combine(directoryPath, fileName);
+
+            if (File.Exists(filePath))
+            {
+                try
+                {
+                    File.Delete(filePath);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error deleting file: {ex.Message}");
+                    return false;
+                }
+            }
+            else
+            {
+                Console.WriteLine("File not found.");
+                return false;
+            }
+        }
+
+
         public static async void CreateBackUp(string clientId)
         {
+
+            DeleteFile(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "IMSProd.bak");
+
             string strComputerName = Environment.MachineName.ToString();
             string computed_server_name = strComputerName + @"\SQLSERVER2012";
 
@@ -316,16 +344,20 @@ namespace Abbey_Trading_Store.DAL
                     formData.Add(new StringContent(clientId), "ClientID");
 
                     // Post the form data to the URL
-                    HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:8080/backups", formData);
+                    HttpResponseMessage response = await client.PostAsync(Env.OrgUrl + "/backups", formData);
 
                     // Check the response status
                     if (response.IsSuccessStatusCode)
                     {
                         Console.WriteLine("Backup file uploaded successfully.");
+
+                        DeleteFile(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "IMSProd.bak");
+
                     }
                     else
                     {
                         Console.WriteLine("Failed to upload backup file. Status code: " + response.StatusCode);
+                        MessageBox.Show("Failed to upload backup file. Status code: " + response.StatusCode);
                     }
                 }
             }
