@@ -110,13 +110,14 @@ namespace Abbey_Trading_Store.UI.Advanced
             Env.Active = settings.Active;
             Env.Date_configured = Convert.ToDateTime(settings.Date_configured);
             Env.MessageGateway = new AfricasTalkingGateway(settings.MessageUsername,settings.MessageAPIKey);
-
+            Env.ClientId = settings.ClientId;
+            Env.ValidTill = settings.ValidTill;
 
             if (bool.Parse(Env.Messages))
             {
                 materialButton3.Enabled = false;
-
             }
+
             else
             {
                 materialButton3.Enabled = true;
@@ -138,7 +139,7 @@ namespace Abbey_Trading_Store.UI.Advanced
             DateTime now = DateTime.Now;
             if (now.Hour == 14 && now.Minute == 0 && now.Second == 0)
             {
-                SettingsConfig.CreateBackUp("QAgZ6BcOpsGqfIT5abREtBBZO");
+                SettingsConfig.CreateBackUp(Env.ClientId);
             }
         }
 
