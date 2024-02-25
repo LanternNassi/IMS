@@ -72,7 +72,12 @@ namespace Abbey_Trading_Store.DAL.DAL_Properties
         public static dynamic MessageGateway = "";
         public static string Active = "";
         public static DateTime Date_configured = DateTime.Now;
-        
+        public static string ClientId = "";
+        public static DateTime ValidTill;
+
+        public static string OrgUrl = "https://imscontroller-1.onrender.com";
+
+
 
         public static string BusinessName = "";
         public static string BusinessDescription = "";

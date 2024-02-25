@@ -22,5 +22,7 @@ namespace Abbey_Trading_Store
         public string MessageFrom { get; set; }
         public string Active { get; set; }
         public Nullable<System.DateTime> Date_configured { get; set; }
+        public string ClientId { get; set; }
+        public System.DateTime ValidTill { get; set; }
     }
 }

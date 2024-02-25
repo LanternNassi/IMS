@@ -19,6 +19,9 @@ using System.Threading.Tasks;
 //using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlServer.Management.Common;
+using System.Net.Http;
 
 namespace Abbey_Trading_Store.DAL
 {
@@ -66,6 +69,8 @@ namespace Abbey_Trading_Store.DAL
                 settings.MessageFrom = dt.Rows[0][5].ToString();
                 settings.Active = dt.Rows[0][6].ToString();
                 settings.Date_configured = Convert.ToDateTime(dt.Rows[0][7]);
+                settings.ClientId = dt.Rows[0][8].ToString();
+                settings.ValidTill = Convert.ToDateTime(dt.Rows[0][9].ToString());
 
             }
             catch (Exception ex)
@@ -85,7 +90,7 @@ namespace Abbey_Trading_Store.DAL
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                const string cmds = "INSERT INTO Settings(AppVersion,Messages,MessageAPIKey,MessageUsername,MessageFrom,Active,Date_configured)VALUES(@AppVersion,@Messages,@MessageAPIKey,@MessageUsername,@MessageFrom,@Active,@Date_configured);";
+                const string cmds = "INSERT INTO Settings(AppVersion,Messages,MessageAPIKey,MessageUsername,MessageFrom,Active,Date_configured,ClientId,ValidTill)VALUES(@AppVersion,@Messages,@MessageAPIKey,@MessageUsername,@MessageFrom,@Active,@Date_configured,@ClientId,@ValidTill);";
                 SqlCommand cmd = new SqlCommand(cmds, conn);
                 cmd.Parameters.AddWithValue("@AppVersion", settings.AppVersion);
                 cmd.Parameters.AddWithValue("@Messages", settings.Messages);
@@ -94,7 +99,8 @@ namespace Abbey_Trading_Store.DAL
                 cmd.Parameters.AddWithValue("@MessageFrom", settings.MessageFrom);
                 cmd.Parameters.AddWithValue("@Active", settings.Active);
                 cmd.Parameters.AddWithValue("@Date_configured", settings.Date_configured);
-
+                cmd.Parameters.AddWithValue("@ClientId", settings.ClientId);
+                cmd.Parameters.AddWithValue("@ValidTill", settings.ValidTill);
 
 
                 conn.Open();
@@ -128,7 +134,7 @@ namespace Abbey_Trading_Store.DAL
             try
             {
 
-                const string cmds = "UPDATE Settings SET AppVersion = @AppVersion,Messages=@Messages,MessageAPIKey=@MessageAPIKey,MessageUsername=@MessageUsername,MessageFrom=@MessageFrom,Active=@Active,Date_configured=@Date_configured WHERE id = @id";
+                const string cmds = "UPDATE Settings SET AppVersion = @AppVersion,Messages=@Messages,MessageAPIKey=@MessageAPIKey,MessageUsername=@MessageUsername,MessageFrom=@MessageFrom,Active=@Active,Date_configured=@Date_configured,ClientId=@ClientId,ValidTill=@ValidTill WHERE id = @id";
                 SqlCommand cmd = new SqlCommand(cmds, conn);
 
                 cmd.Parameters.AddWithValue("@id", id);
@@ -139,8 +145,8 @@ namespace Abbey_Trading_Store.DAL
                 cmd.Parameters.AddWithValue("@MessageFrom", settings.MessageFrom);
                 cmd.Parameters.AddWithValue("@Active", settings.Active);
                 cmd.Parameters.AddWithValue("@Date_configured", settings.Date_configured);
-
-
+                cmd.Parameters.AddWithValue("@ClientId", settings.ClientId);
+                cmd.Parameters.AddWithValue("@ValidTill", settings.ValidTill);
 
                 conn.Open();
                 int rows = cmd.ExecuteNonQuery();
@@ -201,14 +207,7 @@ namespace Abbey_Trading_Store.DAL
                 //Exit the application
                 Application.Exit();
 
-                
-
-                
-                
-                
-
-
-
+              
 
             }
             catch (Exception ex)
@@ -259,6 +258,112 @@ namespace Abbey_Trading_Store.DAL
             update_wc.DownloadFileAsync(new Uri(filePath), service_pathUser);
             handle.WaitOne();
         }
+
+        public static async void RequestForPayment() { 
+
+        }
+
+
+        static bool DeleteFile(string directoryPath, string fileName)
+        {
+            string filePath = Path.Combine(directoryPath, fileName);
+
+            if (File.Exists(filePath))
+            {
+                try
+                {
+                    File.Delete(filePath);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error deleting file: {ex.Message}");
+                    return false;
+                }
+            }
+            else
+            {
+                Console.WriteLine("File not found.");
+                return false;
+            }
+        }
+
+
+        public static async void CreateBackUp(string clientId)
+        {
+
+            DeleteFile(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "IMSProd.bak");
+
+            string strComputerName = Environment.MachineName.ToString();
+            string computed_server_name = strComputerName + @"\SQLSERVER2012";
+
+            // Create a new instance of the Server object
+            Server server = new Server(new ServerConnection(computed_server_name));
+
+            try
+            {
+                // Create a new Backup object
+                Backup backup = new Backup
+                {
+                    Action = BackupActionType.Database,
+                    Database = "IMSProd"
+                };
+
+                // Define the backup file location
+                backup.Devices.AddDevice(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/IMSProd.bak", DeviceType.File);
+
+                // Perform the backup
+                backup.SqlBackup(server);
+                Console.WriteLine("Backup completed successfully... Uploading the backup");
+
+                // Uploading the backup store
+                UploadBackUp(clientId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Backup failed: " + ex.Message);
+            }
+            finally
+            {
+                server.ConnectionContext.Disconnect();
+            }
+        }
+
+        public static async void UploadBackUp(string clientId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                using (MultipartFormDataContent formData = new MultipartFormDataContent())
+                {
+                    string backupFilePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/IMSProd.bak";
+                    // Add the backup file to the form data
+                    byte[] fileBytes = File.ReadAllBytes(backupFilePath);
+                    formData.Add(new ByteArrayContent(fileBytes), "file", Path.GetFileName(backupFilePath));
+
+                    // Add the client ID to the form data
+                    formData.Add(new StringContent(clientId), "ClientID");
+
+                    // Post the form data to the URL
+                    HttpResponseMessage response = await client.PostAsync(Env.OrgUrl + "/backups", formData);
+
+                    // Check the response status
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("Backup file uploaded successfully.");
+
+                        DeleteFile(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "IMSProd.bak");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Failed to upload backup file. Status code: " + response.StatusCode);
+                        MessageBox.Show("Failed to upload backup file. Status code: " + response.StatusCode);
+                    }
+                }
+            }
+        }
+
+
 
 
 
