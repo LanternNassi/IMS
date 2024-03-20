@@ -450,6 +450,7 @@
     <Compile Include="DAL\DAL_Properties\UsersProps.cs" />
     <Compile Include="DAL\ExpCategories.cs" />
     <Compile Include="DAL\ExpendituresDAL.cs" />
+    <Compile Include="DAL\Helpers\MoneyFormatter.cs" />
     <Compile Include="DAL\SettingsConfig.cs" />
     <Compile Include="DealerCust.cs">
       <DependentUpon>Base1.tt</DependentUpon>

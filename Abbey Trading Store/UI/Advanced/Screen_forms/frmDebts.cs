@@ -13,6 +13,7 @@ using Microsoft.Reporting.WinForms;
 using System.Windows.Forms;
 using Abbey_Trading_Store.DAL.DAL_Properties;
 using System.Data.SqlClient;
+using Abbey_Trading_Store.DAL.Helpers;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
@@ -27,7 +28,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DataTable dt = new DataTable();
             Connection().Open();
             adapter.Fill(dt);
-            DebtsDGV.DataSource = dt;
+            active_debts_dt = dt;
+            DebtsDGV.DataSource = MoneyFormatter.formatDT(dt.Copy() , new int[] { 3, 5, 7, 8, 9 });
             Connection().Close();
 
             int unsettled_amount = 0;
@@ -72,6 +74,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         int overall_settled_amount = 0;
         int overall_unsettled_amount = 0;
 
+        DataTable active_debts_dt = new DataTable();
 
         public void calculate_debt(DataTable dt)
         {
@@ -134,7 +137,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 //Computing the remaining amount
                 bool cleared = false;
                 bool Success = false;
-                int total = Int32.Parse(DebtsDGV.Rows[row_overall].Cells[3].Value.ToString());
+                int total = Int32.Parse(active_debts_dt.Rows[row_overall][3].ToString());
                 int new_return_amount = ((Int32.Parse(rem_amount) * -1) - Int32.Parse(PaidAmount.Text));
                 if (new_return_amount == 0)
                 {
@@ -191,12 +194,14 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     DataTable dttrack = new DataTable();
                     Connection().Open();
                     adapter.Fill(dttrack);
-                    TRACKDGV.DataSource = dttrack;
+                    TRACKDGV.DataSource = MoneyFormatter.formatDT(dttrack , new int[] {2});
                     //Refreshing debts
                     dynamic adapter2 = transaction.GetAllDebtsCreditsAppropriately("Customer");
                     DataTable dt = new DataTable();
                     adapter2.Fill(dt);
-                    DebtsDGV.DataSource = dt;
+
+                    active_debts_dt = dt;
+                    DebtsDGV.DataSource = MoneyFormatter.formatDT(dt.Copy(), new int[] { 3, 5, 7, 8, 9 }); ;
                     Connection().Close();
                 }
                 Cursor = Cursors.Default;
@@ -286,10 +291,10 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             row_overall = e.RowIndex;
             if (row == 0 || row > 0)
             {
-                id.Text = DebtsDGV.Rows[row].Cells[0].Value.ToString();
-                CustomerName.Text = DebtsDGV.Rows[row].Cells[2].Value.ToString();
-                RemainAmount.Text = (Convert.ToInt32(DebtsDGV.Rows[row].Cells[8].Value) * -1).ToString("N0");
-                rem_amount = DebtsDGV.Rows[row].Cells[8].Value.ToString();
+                id.Text = active_debts_dt.Rows[row][0].ToString();
+                CustomerName.Text = active_debts_dt.Rows[row][2].ToString();
+                RemainAmount.Text = "shs." + (Convert.ToInt32(active_debts_dt.Rows[row][8]) * -1).ToString("N0");
+                rem_amount = active_debts_dt.Rows[row][8].ToString();
                 if (id.Text != "")
                 {
                     // Loading the changes track dgv
@@ -298,7 +303,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     DataTable dttrack = new DataTable();
                     Connection().Open();
                     adapter.Fill(dttrack);
-                    TRACKDGV.DataSource = dttrack;
+                    TRACKDGV.DataSource = MoneyFormatter.formatDT(dttrack.Copy() , new int[] {2});
                     Connection().Close();
                 }
 
@@ -312,7 +317,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
                 Transactions transact = new Transactions();
                 DataTable dt = transact.SearchCreditorsDebtors_2(searchtxtbx.Text);
-                DebtsDGV.DataSource = dt;
+                active_debts_dt = dt;
+                DebtsDGV.DataSource = MoneyFormatter.formatDT(dt.Copy(), new int[] { 3, 5, 7, 8, 9 }); ;
                 calculate_debt(dt);
             }
             else
@@ -322,7 +328,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 DataTable dt = new DataTable();
                 Connection().Open();
                 adapter.Fill(dt);
-                DebtsDGV.DataSource = dt;
+                active_debts_dt = dt;
+                DebtsDGV.DataSource = MoneyFormatter.formatDT(dt.Copy(), new int[] { 3, 5, 7, 8, 9 }); ;
                 Connection().Close();
                 calculate_debt(dt);
 

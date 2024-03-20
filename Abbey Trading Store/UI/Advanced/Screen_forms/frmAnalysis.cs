@@ -1,4 +1,5 @@
 ﻿using Abbey_Trading_Store.DAL;
+using Abbey_Trading_Store.DAL.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -62,8 +63,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     (quantity != "") ? Convert.ToDecimal(quantity) : (0),
                     (added_by != "") ? (added_by) : (null)
                 );
-                TDD.DataSource = dt;
                 cc = dt;
+                TDD.DataSource = MoneyFormatter.formatDT(dt.Copy(), new int[] { 2, 4, 9 });
                 update_overall();
             }
             catch(Exception ex)
@@ -145,7 +146,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
 
             }
-            Overall_dgv.DataSource = dt;
+            Overall_dgv.DataSource = MoneyFormatter.formatDT(dt.Copy(), new int[] { 3, 4 });
             Total_sales.Text = "Shs." + total_sales.ToString("N0");
             Total_profits.Text = "Shs." + total_profits.ToString("N0");
 

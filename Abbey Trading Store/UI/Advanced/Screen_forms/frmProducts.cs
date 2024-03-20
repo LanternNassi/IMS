@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Abbey_Trading_Store.DAL;
 using Abbey_Trading_Store.DAL.DAL_Properties;
+using Abbey_Trading_Store.DAL.Helpers;
 using Abbey_Trading_Store.UI.Advanced.CustomMessageBox;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json.Serialization;
@@ -24,7 +25,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         public bool item_active = false;
         public DataTable product_changes = new DataTable();
-        public DataGridViewRow product_row = null;
+        public DataRow product_row = null;
+
+        private DataTable active_products = new DataTable();
 
         public frmProducts()
         {
@@ -36,24 +39,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             // Specifying value in combobox
             category_comboBox1.DisplayMember = "title";
             category_comboBox1.ValueMember = "title";
-            //Loading the datatable
-            product product = new product();
-            DataTable dt = new DataTable();
-            dynamic adapter = product.SelectAppropriately();
-            Connection().Open();
-            adapter.Fill(dt);
-            dataGridView1.DataSource = dt;
-            Connection().Close();
 
-            if (dt.Rows.Count > 100)
+            LoadProductsData();
+
+            if (active_products.Rows.Count > 100)
             {
-                this.circularProgressBar2.Value = (1000 / dt.Rows.Count);
-                this.circularProgressBar2.Text = (1000 / dt.Rows.Count).ToString() + "%";
+                this.circularProgressBar2.Value = (1000 / active_products.Rows.Count);
+                this.circularProgressBar2.Text = (1000 / active_products.Rows.Count).ToString() + "%";
             }
             else
             {
-                this.circularProgressBar2.Value = (dt.Rows.Count);
-                this.circularProgressBar2.Text = (dt.Rows.Count).ToString() + "%";
+                this.circularProgressBar2.Value = (active_products.Rows.Count);
+                this.circularProgressBar2.Text = (active_products.Rows.Count).ToString() + "%";
 
             }
 
@@ -83,6 +80,23 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             product_changes.Columns.Add("Initial_price");
             product_changes.Columns.Add("Set_price");
 
+        }
+
+        public void LoadProductsData()
+        {
+            //Loading the datatable
+            product product = new product();
+            DataTable dt = new DataTable();
+            dynamic adapter = product.SelectAppropriately();
+            Connection().Open();
+
+
+            adapter.Fill(dt);
+            adapter.Fill(active_products);
+
+
+            dataGridView1.DataSource = MoneyFormatter.formatDT(dt, new int[] { 4, 5, 10 });
+            Connection().Close();
         }
 
         private dynamic Connection()
@@ -206,12 +220,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             finally
             {
 
-                DataTable dt = new DataTable();
-                dynamic adapter = product.SelectAppropriately();
-                Connection().Open();
-                adapter.Fill(dt);
-                dataGridView1.DataSource = dt;
-                Connection().Close();
+                LoadProductsData();
             }
         }
 
@@ -245,7 +254,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             {
                 item_active = false;
                 Cursor = Cursors.Default;
-                string old_price = product_row.Cells[5].Value.ToString();
+                string old_price = product_row[5].ToString();
                 if (old_price != SP_txtbx.Text)
                 {
                     if (MessageBox.Show("Product updated successfully. Do you wish to send out messages to clients informing them of the new changes made immediately?", "Product Management", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -285,12 +294,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     "Product Management Portal",
                     MessageBoxButtons.OK);
             }
-            DataTable dt = new DataTable();
-            dynamic adapter = product.select_2();
-            Connection().Open();
-            adapter.Fill(dt);
-            dataGridView1.DataSource = dt;
-            Connection().Close();
+            LoadProductsData();
         }
 
         private async void materialButton3_Click(object sender, EventArgs e)
@@ -327,12 +331,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     "Product Management Portal",
                     MessageBoxButtons.OK);
             }
-            DataTable dt = new DataTable();
-            dynamic adapter = product.SelectAppropriately();
-            Connection().Open();
-            adapter.Fill(dt);
-            dataGridView1.DataSource = dt;
-            Connection().Close();
+            LoadProductsData();
         }
 
         private void search_TextChanged(object sender, EventArgs e)
@@ -391,14 +390,23 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             int row = e.RowIndex;
             if (row >= 0)
             {
-                product_row = dataGridView1.Rows[row];
-                id.Text = dataGridView1.Rows[row].Cells[0].Value.ToString();
-                name.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
-                category_comboBox1.Text = dataGridView1.Rows[row].Cells[2].Value.ToString();
-                description.Text = dataGridView1.Rows[row].Cells[3].Value.ToString();
-                rate.Text = dataGridView1.Rows[row].Cells[4].Value.ToString();
-                SP_txtbx.Text = dataGridView1.Rows[row].Cells[5].Value.ToString();
-                WP.Text = dataGridView1.Rows[row].Cells[10].Value.ToString();
+                //product_row = dataGridView1.Rows[row];
+                //id.Text = dataGridView1.Rows[row].Cells[0].Value.ToString();
+                //name.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
+                //category_comboBox1.Text = dataGridView1.Rows[row].Cells[2].Value.ToString();
+                //description.Text = dataGridView1.Rows[row].Cells[3].Value.ToString();
+                //rate.Text = dataGridView1.Rows[row].Cells[4].Value.ToString();
+                //SP_txtbx.Text = dataGridView1.Rows[row].Cells[5].Value.ToString();
+                //WP.Text = dataGridView1.Rows[row].Cells[10].Value.ToString();
+
+                product_row = active_products.Rows[row];
+                id.Text = active_products.Rows[row][0].ToString();
+                name.Text = active_products.Rows[row][1].ToString();
+                category_comboBox1.Text = active_products.Rows[row][2].ToString();
+                description.Text = active_products.Rows[row][3].ToString();
+                rate.Text = active_products.Rows[row][4].ToString();
+                SP_txtbx.Text = active_products.Rows[row][5].ToString();
+                WP.Text = active_products.Rows[row][10].ToString();
 
                 materialButton1.Enabled = false;
                 materialButton2.Enabled = true;
@@ -440,16 +448,11 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 if (quantity != "")
                 {
                     product Product = new product();
-                    bool success = Product.update_product_quantity(Convert.ToInt32(product_row.Cells[0].Value), Convert.ToInt32(quantity), Reason, Login_form.user);
+                    bool success = Product.update_product_quantity(Convert.ToInt32(product_row[0]), Convert.ToInt32(quantity), Reason, Login_form.user);
                     if (success)
                     {
                         MessageBox.Show("Quantity updated successfully");
-                        DataTable dt = new DataTable();
-                        dynamic adapter = Product.SelectAppropriately();
-                        Connection().Open();
-                        adapter.Fill(dt);
-                        dataGridView1.DataSource = dt;
-                        Connection().Close();
+                        LoadProductsData();
                     }
                     else
                     {

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Abbey_Trading_Store.DAL.Helpers;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
@@ -18,6 +19,12 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             InitializeComponent();
         }
+
+        DataTable utilities = new DataTable();
+        DataTable Payments = new DataTable();
+        DataTable Benefits = new DataTable();
+        DataTable mis = new DataTable();
+
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)
         {
@@ -98,25 +105,25 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             int total = 0;
             //Utilities
-            foreach(DataGridViewRow dr in Utility_dgv.Rows)
+            foreach(DataRow dr in utilities.Rows)
             {
-                total += Convert.ToInt32(dr.Cells[2].Value);
+                total += Convert.ToInt32(dr[2]);
             }
 
             //Payments
-            foreach(DataGridViewRow dr in Payment_dgv.Rows)
+            foreach(DataRow dr in Payments.Rows)
             {
-                total += Convert.ToInt32(dr.Cells[2].Value);
+                total += Convert.ToInt32(dr[2]);
             }
             //Benefits 
-            foreach(DataGridViewRow dr in Benefit_dgv.Rows)
+            foreach(DataRow dr in Benefits.Rows)
             {
-                total += Convert.ToInt32(dr.Cells[2].Value);
+                total += Convert.ToInt32(dr[2]);
             }
             //mis
-            foreach(DataGridViewRow dr in mis_dgv.Rows)
+            foreach(DataRow dr in mis.Rows)
             {
-                total += Convert.ToInt32(dr.Cells[2].Value);
+                total += Convert.ToInt32(dr[2]);
             }
 
 
@@ -234,7 +241,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 SqlDataAdapter utility_adapter_2 = utility_exp.Select();
                 DataTable utility_dt_2 = new DataTable();
                 utility_adapter_2.Fill(utility_dt_2);
-                Utility_dgv.DataSource = utility_dt_2;
+                utilities = utility_dt_2;
+                Utility_dgv.DataSource = MoneyFormatter.formatDT(utility_dt_2.Copy(), new int[] { 2 });
 
                 int utility_sum = total_sum(utility_dt_2);
                 label13.Text = "Total shs." + utility_sum.ToString("N0");
@@ -251,7 +259,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 SqlDataAdapter payment_adapter_2 = payment_exp.Select();
                 DataTable payment_dt_2 = new DataTable();
                 payment_adapter_2.Fill(payment_dt_2);
-                Payment_dgv.DataSource = payment_dt_2;
+                Payments = payment_dt_2;
+                Payment_dgv.DataSource = MoneyFormatter.formatDT(payment_dt_2.Copy() , new int[] {2});
 
                 int payment_sum = total_sum(payment_dt_2);
                 label12.Text = "Total shs." + payment_sum.ToString("N0");
@@ -268,7 +277,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 SqlDataAdapter benefit_adapter_2 = benefit_exp.Select();
                 DataTable benefit_dt_2 = new DataTable();
                 benefit_adapter_2.Fill(benefit_dt_2);
-                Benefit_dgv.DataSource = benefit_dt_2;
+                Benefits = benefit_dt_2;
+                Benefit_dgv.DataSource = MoneyFormatter.formatDT(benefit_dt_2.Copy() , new int[] {2});
 
                 int benefit_sum = total_sum(benefit_dt_2);
                 label14.Text = "Total shs." + benefit_sum.ToString("N0");
@@ -284,7 +294,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 SqlDataAdapter mis_adapter_2 = mis_exp.Select();
                 DataTable mis_dt_2 = new DataTable();
                 mis_adapter_2.Fill(mis_dt_2);
-                mis_dgv.DataSource = mis_dt_2;
+                mis = mis_dt_2;
+                mis_dgv.DataSource = MoneyFormatter.formatDT(mis_dt_2.Copy(), new int[] { 2 });
 
                 int mis_sum = total_sum(mis_dt_2);
                 label15.Text = "Total shs." + mis_sum.ToString("N0");
