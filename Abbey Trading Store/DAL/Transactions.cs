@@ -155,15 +155,14 @@ namespace Abbey_Trading_Store.DAL
             }
             return transID;
         }
-        public DataTable DisplayAllTransactions()
+        public OleDbDataAdapter DisplayAllTransactions()
         {
-            DataTable dt = new DataTable();
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
             OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
             try
             {
                 string cmds = "SELECT * FROM Transactions ORDER BY transaction_date desc";
-                OleDbDataAdapter adapter = new OleDbDataAdapter(cmds, conn);
-                adapter.Fill(dt);
+                adapter = new OleDbDataAdapter(cmds, conn);
 
             }
             catch (Exception ex)
@@ -175,7 +174,7 @@ namespace Abbey_Trading_Store.DAL
 
             }
 
-            return dt;
+            return adapter;
         }
         public bool UpdatePayment(int TransactionId, int amount, int paid_amount, bool cleared)
         {
@@ -525,15 +524,14 @@ namespace Abbey_Trading_Store.DAL
             return transID;
         }
 
-        public DataTable DisplayAllTransactions_2()
+        public SqlDataAdapter DisplayAllTransactions_2()
         {
-            DataTable dt = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
                 string cmds = "SELECT * FROM Transactions ORDER BY transaction_date desc";
-                SqlDataAdapter adapter = new SqlDataAdapter(cmds, conn);
-                adapter.Fill(dt);
+                adapter = new SqlDataAdapter(cmds, conn);
 
             }
             catch (Exception ex)
@@ -545,7 +543,7 @@ namespace Abbey_Trading_Store.DAL
 
             }
 
-            return dt;
+            return adapter;
         }
 
         public DataTable DisplayTransactionsBasedOnType_2(string type)
@@ -876,7 +874,7 @@ namespace Abbey_Trading_Store.DAL
             }
 
         }
-        public DataTable DisplayAllTransactionsAppropriately()
+        public dynamic DisplayAllTransactionsAppropriately()
         {
             if (Env.mode == 1)
             {

@@ -32,8 +32,12 @@ namespace Abbey_Trading_Store.UI
 
         private void frmTransactions_Load(object sender, EventArgs e)
         {
-            DataTable dt = Ts.DisplayAllTransactions();         
-            flexible = dt;
+            OleDbDataAdapter adapter = Ts.DisplayAllTransactions();
+            DataTable dt = new DataTable();
+
+            adapter.Fill(dt);
+            adapter.Fill(flexible);
+
             dgv_transactions.DataSource = dt;
             int purchase_holder = 0;
             int sales_holder = 0;
@@ -164,8 +168,12 @@ namespace Abbey_Trading_Store.UI
         private void Show_all_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            DataTable dt_showAll = Ts.DisplayAllTransactions();    
-            flexible = dt_showAll;
+            OleDbDataAdapter adapter = Ts.DisplayAllTransactions();
+            DataTable dt_showAll = new DataTable();
+
+            adapter.Fill(dt_showAll);
+            adapter.Fill(flexible);
+
             dgv_transactions.DataSource = flexible;
             int purchase_holder = 0;
             int sales_holder = 0;

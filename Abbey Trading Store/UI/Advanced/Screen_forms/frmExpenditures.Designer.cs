@@ -30,12 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmExpenditures));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -50,6 +44,12 @@
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -67,7 +67,6 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel20 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
-            this.Benefit_dgv = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.panel16 = new System.Windows.Forms.Panel();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -75,7 +74,6 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
-            this.Payment_dgv = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.panel15 = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -84,7 +82,6 @@
             this.panel14 = new System.Windows.Forms.Panel();
             this.panel19 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
-            this.Utility_dgv = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.panel13 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -113,12 +110,15 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
-            this.mis_dgv = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.panel17 = new System.Windows.Forms.Panel();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.mis_dgv = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
+            this.Benefit_dgv = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
+            this.Payment_dgv = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
+            this.Utility_dgv = new Abbey_Trading_Store.DAL.DAL_Properties.DGV();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -128,18 +128,15 @@
             this.panel7.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel20.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Benefit_dgv)).BeginInit();
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel18.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Payment_dgv)).BeginInit();
             this.panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel14.SuspendLayout();
             this.panel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Utility_dgv)).BeginInit();
             this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel6.SuspendLayout();
@@ -159,9 +156,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
             this.panel12.SuspendLayout();
             this.panel21.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mis_dgv)).BeginInit();
             this.panel17.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mis_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Benefit_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Payment_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Utility_dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -350,34 +350,6 @@
             this.label14.TabIndex = 10;
             this.label14.Text = "Total  : Shs.0";
             // 
-            // Benefit_dgv
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            this.Benefit_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.Benefit_dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.Benefit_dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Benefit_dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.Benefit_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Benefit_dgv.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Benefit_dgv.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Benefit_dgv.EnableHeadersVisualStyles = false;
-            this.Benefit_dgv.Location = new System.Drawing.Point(0, 33);
-            this.Benefit_dgv.Name = "Benefit_dgv";
-            this.Benefit_dgv.RowHeadersVisible = false;
-            this.Benefit_dgv.RowTemplate.Height = 30;
-            this.Benefit_dgv.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.Benefit_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.Benefit_dgv.Size = new System.Drawing.Size(372, 121);
-            this.Benefit_dgv.TabIndex = 27;
-            // 
             // panel16
             // 
             this.panel16.Controls.Add(this.comboBox3);
@@ -460,34 +432,6 @@
             this.label12.Size = new System.Drawing.Size(114, 25);
             this.label12.TabIndex = 10;
             this.label12.Text = "Total  : Shs.0";
-            // 
-            // Payment_dgv
-            // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            this.Payment_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.Payment_dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.Payment_dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Payment_dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.Payment_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Payment_dgv.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Payment_dgv.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Payment_dgv.EnableHeadersVisualStyles = false;
-            this.Payment_dgv.Location = new System.Drawing.Point(0, 33);
-            this.Payment_dgv.Name = "Payment_dgv";
-            this.Payment_dgv.RowHeadersVisible = false;
-            this.Payment_dgv.RowTemplate.Height = 30;
-            this.Payment_dgv.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.Payment_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.Payment_dgv.Size = new System.Drawing.Size(397, 121);
-            this.Payment_dgv.TabIndex = 27;
             // 
             // panel15
             // 
@@ -581,34 +525,6 @@
             this.label13.Size = new System.Drawing.Size(114, 25);
             this.label13.TabIndex = 10;
             this.label13.Text = "Total  : Shs.0";
-            // 
-            // Utility_dgv
-            // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            this.Utility_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.Utility_dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.Utility_dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Utility_dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.Utility_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Utility_dgv.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Utility_dgv.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Utility_dgv.EnableHeadersVisualStyles = false;
-            this.Utility_dgv.Location = new System.Drawing.Point(0, 0);
-            this.Utility_dgv.Name = "Utility_dgv";
-            this.Utility_dgv.RowHeadersVisible = false;
-            this.Utility_dgv.RowTemplate.Height = 30;
-            this.Utility_dgv.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.Utility_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.Utility_dgv.Size = new System.Drawing.Size(331, 121);
-            this.Utility_dgv.TabIndex = 27;
             // 
             // panel13
             // 
@@ -987,34 +903,6 @@
             this.label15.TabIndex = 10;
             this.label15.Text = "Total  : Shs.0";
             // 
-            // mis_dgv
-            // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            this.mis_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.mis_dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.mis_dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mis_dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.mis_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.mis_dgv.DefaultCellStyle = dataGridViewCellStyle8;
-            this.mis_dgv.Dock = System.Windows.Forms.DockStyle.Top;
-            this.mis_dgv.EnableHeadersVisualStyles = false;
-            this.mis_dgv.Location = new System.Drawing.Point(0, 33);
-            this.mis_dgv.Name = "mis_dgv";
-            this.mis_dgv.RowHeadersVisible = false;
-            this.mis_dgv.RowTemplate.Height = 30;
-            this.mis_dgv.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.mis_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.mis_dgv.Size = new System.Drawing.Size(544, 141);
-            this.mis_dgv.TabIndex = 27;
-            // 
             // panel17
             // 
             this.panel17.Controls.Add(this.comboBox4);
@@ -1070,6 +958,118 @@
             this.toolTip1.ToolTipTitle = "Adding Utility expense";
             this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
             // 
+            // mis_dgv
+            // 
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            this.mis_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            this.mis_dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.mis_dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.mis_dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.mis_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mis_dgv.DefaultCellStyle = dataGridViewCellStyle8;
+            this.mis_dgv.Dock = System.Windows.Forms.DockStyle.Top;
+            this.mis_dgv.EnableHeadersVisualStyles = false;
+            this.mis_dgv.Location = new System.Drawing.Point(0, 33);
+            this.mis_dgv.Name = "mis_dgv";
+            this.mis_dgv.RowHeadersVisible = false;
+            this.mis_dgv.RowTemplate.Height = 30;
+            this.mis_dgv.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.mis_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.mis_dgv.Size = new System.Drawing.Size(544, 141);
+            this.mis_dgv.TabIndex = 27;
+            // 
+            // Benefit_dgv
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.Benefit_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.Benefit_dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.Benefit_dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Benefit_dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.Benefit_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Benefit_dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Benefit_dgv.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Benefit_dgv.EnableHeadersVisualStyles = false;
+            this.Benefit_dgv.Location = new System.Drawing.Point(0, 33);
+            this.Benefit_dgv.Name = "Benefit_dgv";
+            this.Benefit_dgv.RowHeadersVisible = false;
+            this.Benefit_dgv.RowTemplate.Height = 30;
+            this.Benefit_dgv.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.Benefit_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.Benefit_dgv.Size = new System.Drawing.Size(372, 121);
+            this.Benefit_dgv.TabIndex = 27;
+            // 
+            // Payment_dgv
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            this.Payment_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.Payment_dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.Payment_dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Payment_dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.Payment_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Payment_dgv.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Payment_dgv.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Payment_dgv.EnableHeadersVisualStyles = false;
+            this.Payment_dgv.Location = new System.Drawing.Point(0, 33);
+            this.Payment_dgv.Name = "Payment_dgv";
+            this.Payment_dgv.RowHeadersVisible = false;
+            this.Payment_dgv.RowTemplate.Height = 30;
+            this.Payment_dgv.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.Payment_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.Payment_dgv.Size = new System.Drawing.Size(397, 121);
+            this.Payment_dgv.TabIndex = 27;
+            // 
+            // Utility_dgv
+            // 
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            this.Utility_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.Utility_dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.Utility_dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Utility_dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.Utility_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Utility_dgv.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Utility_dgv.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Utility_dgv.EnableHeadersVisualStyles = false;
+            this.Utility_dgv.Location = new System.Drawing.Point(0, 0);
+            this.Utility_dgv.Name = "Utility_dgv";
+            this.Utility_dgv.RowHeadersVisible = false;
+            this.Utility_dgv.RowTemplate.Height = 30;
+            this.Utility_dgv.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.Utility_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.Utility_dgv.Size = new System.Drawing.Size(331, 121);
+            this.Utility_dgv.TabIndex = 27;
+            // 
             // frmExpenditures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1101,14 +1101,12 @@
             this.panel9.ResumeLayout(false);
             this.panel20.ResumeLayout(false);
             this.panel20.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Benefit_dgv)).EndInit();
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel18.ResumeLayout(false);
             this.panel18.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Payment_dgv)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -1116,7 +1114,6 @@
             this.panel14.ResumeLayout(false);
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Utility_dgv)).EndInit();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -1143,10 +1140,13 @@
             this.panel12.ResumeLayout(false);
             this.panel21.ResumeLayout(false);
             this.panel21.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mis_dgv)).EndInit();
             this.panel17.ResumeLayout(false);
             this.panel17.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mis_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Benefit_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Payment_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Utility_dgv)).EndInit();
             this.ResumeLayout(false);
 
         }
