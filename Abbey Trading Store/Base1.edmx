@@ -244,13 +244,13 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="dea_cust_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="grandTotal" Type="Int32" />
+          <Property Name="grandTotal" Type="Int64" />
           <Property Name="transaction_date" Type="DateTime" Precision="0" />
           <Property Name="discount" Type="Int32" />
           <Property Name="added_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Paid_amount" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Paid_amount" Type="Int64" />
           <Property Name="Return_amount" Type="Int32" />
-          <Property Name="Total_Profit" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Profit" Type="Int64" />
           <Property Name="Paid" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Taken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Server_id" Type="Int32" />

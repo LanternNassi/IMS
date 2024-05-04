@@ -48,60 +48,6 @@ namespace Abbey_Trading_Store
                 return false;
             }
 
-            // Specify the SQL Server instance name
-            //string ComputerName = Environment.MachineName.ToString();
-            //string strcomputed_server_name = ComputerName + @"\SQLSERVER2012";
-            //string local_server_database_conn = "Data Source=" + strcomputed_server_name + ";Initial Catalog=Tes2;Integrated Security=True;TrustServerCertificate=True";
-
-            //string serverInstanceName = strcomputed_server_name;
-
-            //{
-            //    ManagedComputer managedcomp = new ManagedComputer();
-            //    MessageBox.Show(managedcomp.Urn.ToString());
-            //    //foreach (ServerInstance serverInstance in managedcomp.ServerAliases)
-            //    //{
-            //    //    Console.WriteLine($"Server Name: {serverInstance.Name}");
-            //    //    //Console.WriteLine($"Version: {serverInstance.VersionString}");
-            //    //    //Console.WriteLine($"Edition: {serverInstance.Edition}");
-            //    //    Console.WriteLine();
-            //    //}
-            //}
-            //catch(Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-
-            //var serverInstance = managedcomp.ServerInstances[""];
-            //var tcpProtocol = serverInstance?.ServerProtocols["Tcp"];
-
-
-            //// Enable the TCP protocol if it's not already enabled
-            //if (!tcpProtocol.IsEnabled)
-            //{
-            //    tcpProtocol.IsEnabled = true;
-            //    tcpProtocol.Alter();
-            //    Console.WriteLine("TCP protocol enabled successfully.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("TCP protocol is already enabled.");
-            //}
-
-
-            //string test_str = "SQLSERVER2012";
-            //var managedComp = new ManagedComputer();
-            //var urn = new Urn($"ManagedComputer[@Name='{Environment.MachineName}']/ServerProtocol[@Name='Tcp']");
-            //ServerProtocol sp;
-            //sp = (ServerProtocol)managedComp.GetSmoObject(urn);
-
-            //sp.IsEnabled = true;
-
-            //sp.Alter();
-
-            //Console.WriteLine("TCP protocol enabled successfully.");
-
-
-            
 
             //Code above is stray
 
@@ -118,27 +64,16 @@ namespace Abbey_Trading_Store
                     {
 
                       
-                        //string strComputerName = Environment.MachineName.ToString();
-                        //string computed_server_name = strComputerName + @"\SQLSERVER2012";
-                        //string local_server_database_conn_string = "Data Source=" + computed_server_name + ";Initial Catalog=IMSProd;Integrated Security=True;TrustServerCertificate=True";
-                        
-                        //Env.local_server_database_conn_string = local_server_database_conn_string;
                         Env.installation_type = "Server";
+
                         ////Applying migrations 
                         DatabaseUpdater db_updater = new DatabaseUpdater();
                         db_updater.UpdateOrCreateDatabase();
 
                         ////Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmCompany());
-                        //Application.Run(new Abbey_Trading_Store.UI.Login_form());
                         ////Login_form.user = "Nessim";
                         ////Login_form.account_type = "admin";
-                        ////Application.Run(new Abbey_Trading_Store.UI.Advanced.Dashboard());
-
-
-                        ////this.BackColor = Color.White;\
-                        ///
-
-                        //Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmSetup());
+                        ///Application.Run(new Abbey_Trading_Store.UI.Advanced.Dashboard());
 
                         Application.Run(new Abbey_Trading_Store.UI.Login_form());
 
@@ -148,9 +83,16 @@ namespace Abbey_Trading_Store
                         Env.installation_type = "Client";
 
                         //Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmSetup());
+                        //Login_form.user = "Nessim";
+                        //Login_form.account_type = "admin";
+
+                        //Application.Run(new Abbey_Trading_Store.UI.Advanced.Dashboard());
 
 
                         Application.Run(new Abbey_Trading_Store.UI.Login_form());
+
+                        
+
 
                     }
 
@@ -167,7 +109,6 @@ namespace Abbey_Trading_Store
             }
             catch (Exception ex)
             {
-                //Application.Run(new Abbey_Trading_Store.UI.Advanced.Screen_forms.frmSetup());
 
                 try
                 {
