@@ -261,6 +261,7 @@ namespace Abbey_Trading_Store.DAL
 
         public static async void RequestForPayment() { 
 
+
         }
 
 
@@ -336,17 +337,13 @@ namespace Abbey_Trading_Store.DAL
                 using (MultipartFormDataContent formData = new MultipartFormDataContent())
                 {
                     string backupFilePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/IMSProd.bak";
-                    // Add the backup file to the form data
                     byte[] fileBytes = File.ReadAllBytes(backupFilePath);
                     formData.Add(new ByteArrayContent(fileBytes), "file", Path.GetFileName(backupFilePath));
 
-                    // Add the client ID to the form data
                     formData.Add(new StringContent(clientId), "ClientID");
 
-                    // Post the form data to the URL
                     HttpResponseMessage response = await client.PostAsync(Env.OrgUrl + "/backups", formData);
 
-                    // Check the response status
                     if (response.IsSuccessStatusCode)
                     {
                         Console.WriteLine("Backup file uploaded successfully.");

@@ -612,6 +612,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.panel2.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(262, 133);
             this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(5);
             this.panel2.Size = new System.Drawing.Size(868, 180);
             this.panel2.TabIndex = 29;
             // 
@@ -634,13 +635,13 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.TDD.DefaultCellStyle = dataGridViewCellStyle2;
             this.TDD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TDD.EnableHeadersVisualStyles = false;
-            this.TDD.Location = new System.Drawing.Point(0, 0);
+            this.TDD.Location = new System.Drawing.Point(5, 5);
             this.TDD.Name = "TDD";
             this.TDD.RowHeadersVisible = false;
             this.TDD.RowTemplate.Height = 30;
             this.TDD.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.TDD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.TDD.Size = new System.Drawing.Size(868, 180);
+            this.TDD.Size = new System.Drawing.Size(858, 170);
             this.TDD.TabIndex = 25;
             this.TDD.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TDD_CellContentClick);
             // 
@@ -672,6 +673,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.panel3.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(262, 334);
             this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(5);
             this.panel3.Size = new System.Drawing.Size(868, 238);
             this.panel3.TabIndex = 31;
             // 
@@ -695,13 +697,13 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.Overall_dgv.DefaultCellStyle = dataGridViewCellStyle4;
             this.Overall_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Overall_dgv.EnableHeadersVisualStyles = false;
-            this.Overall_dgv.Location = new System.Drawing.Point(0, 0);
+            this.Overall_dgv.Location = new System.Drawing.Point(5, 5);
             this.Overall_dgv.Name = "Overall_dgv";
             this.Overall_dgv.RowHeadersVisible = false;
             this.Overall_dgv.RowTemplate.Height = 30;
             this.Overall_dgv.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.Overall_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.Overall_dgv.Size = new System.Drawing.Size(868, 238);
+            this.Overall_dgv.Size = new System.Drawing.Size(858, 228);
             this.Overall_dgv.TabIndex = 25;
             // 
             // frmAnalysis

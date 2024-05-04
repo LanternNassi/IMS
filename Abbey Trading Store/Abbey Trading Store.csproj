@@ -450,6 +450,8 @@
     <Compile Include="DAL\DAL_Properties\UsersProps.cs" />
     <Compile Include="DAL\ExpCategories.cs" />
     <Compile Include="DAL\ExpendituresDAL.cs" />
+    <Compile Include="DAL\Helpers\EntityHelpers.cs" />
+    <Compile Include="DAL\Helpers\MoneyFormatter.cs" />
     <Compile Include="DAL\SettingsConfig.cs" />
     <Compile Include="DealerCust.cs">
       <DependentUpon>Base1.tt</DependentUpon>
@@ -526,6 +528,14 @@
     <Compile Include="Migrations\202402211717492_BackupConfig.cs" />
     <Compile Include="Migrations\202402211717492_BackupConfig.designer.cs">
       <DependentUpon>202402211717492_BackupConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405041156002_change_profit_int.cs" />
+    <Compile Include="Migrations\202405041156002_change_profit_int.designer.cs">
+      <DependentUpon>202405041156002_change_profit_int.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405041203197_change_transactions_fields_int.cs" />
+    <Compile Include="Migrations\202405041203197_change_transactions_fields_int.designer.cs">
+      <DependentUpon>202405041203197_change_transactions_fields_int.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modification.cs">
@@ -879,6 +889,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202402211717492_BackupConfig.resx">
       <DependentUpon>202402211717492_BackupConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405041156002_change_profit_int.resx">
+      <DependentUpon>202405041156002_change_profit_int.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405041203197_change_transactions_fields_int.resx">
+      <DependentUpon>202405041203197_change_transactions_fields_int.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Reports\Categories Report\Categories.rdlc" />

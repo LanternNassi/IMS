@@ -704,7 +704,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 var requestBody = $"{{\"ClientID\" : \"{clientId}\"}}";
                 var content = new StringContent(requestBody, null, "application/json");
 
-                var request = new HttpRequestMessage(HttpMethod.Get, "http://127.0.0.1:8080/clients");
+                var request = new HttpRequestMessage(HttpMethod.Get, "https://org-latest.onrender.com/clients");
                 request.Content = content;
 
                 var response = await client.SendAsync(request);
