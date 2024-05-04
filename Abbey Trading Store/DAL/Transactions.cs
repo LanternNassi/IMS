@@ -14,6 +14,8 @@ using Abbey_Trading_Store.DAL.DAL_Properties;
 using System.Runtime.CompilerServices;
 using System.Data.SqlClient;
 using System.Transactions;
+using System.Data.Entity;
+using Abbey_Trading_Store.DAL.Helpers;
 
 namespace Abbey_Trading_Store.DAL
 {
@@ -34,74 +36,90 @@ namespace Abbey_Trading_Store.DAL
         private string taken;
         private int server_id = 0;
 
+        public readonly DbContext _dbcontext = new Base2();
+
         // Instantiating a new object of TransactionsProps
         TransactionsProps newtransaction = new TransactionsProps();
+        Abbey_Trading_Store.Transaction transactionx = new Abbey_Trading_Store.Transaction();
 
 
         // properties
         public int id { get { return ID; } set { 
                 ID = value;
                 newtransaction.id = value;
+                transactionx.ID = value;
             }
         }
         public string Type { get { return type; } set { 
                 type = value;
                 newtransaction.Type = value;
+                transactionx.type = value;
             }
         }
         public string Dea_Cust_name { get { return dea_cust_name; } set { 
                 dea_cust_name = value;
                 newtransaction.Dea_Cust_name = value;
+                transactionx.dea_cust_name = value;
             }
         }
         public int GrandTotal { get { return grandTotal; } set { 
                 grandTotal = value;
                 newtransaction.GrandTotal = value;
+                transactionx.grandTotal = value;
             }
         }
         public DateTime Transaction_date { get { return transaction_date; } set { 
                 transaction_date = value;
                 newtransaction.Transaction_date = value;
+                transactionx.transaction_date = value;
             }
         }
         public int Discount { get { return discount; } set { 
                 discount = value;
                 newtransaction.Discount = value;
+                transactionx.discount = value;
             }
         }
         public string Added_by { get { return added_by; } set { 
                 added_by = value;
                 newtransaction.Added_by = value;
+                transactionx.added_by = value;
             }
         }
         public int Return_amount { get { return return_amount; } set { 
                 return_amount = value;
                 newtransaction.Return_amount = value;
+                transactionx.Return_amount = value;
             }
         }
         public int Paid_amount { get { return paid_amount; } set { 
                 paid_amount = value; 
                 newtransaction.Paid_amount = value;
+                transactionx.Paid_amount = value;
             }
         }
         public int Total_Profit { get { return total_profit; } set { 
                 total_profit = value;
                 newtransaction.Total_Profit = value;
+                transactionx.Total_Profit = value;
             }
         }
         public string Paid { get { return paid; } set { 
                 paid = value;
                 newtransaction.Paid = value;
+                transactionx.Paid = value;
             }
         }
         public string Taken { get { return taken; } set { 
                 taken = value;
                 newtransaction.Taken = value;
+                transactionx.Taken = value;
             }
         }
         public int Server_id { get { return server_id; } set { 
                 server_id = value;
                 newtransaction.Server_id = value;
+                transactionx.Server_id = value;
             }
         }
 
@@ -524,13 +542,74 @@ namespace Abbey_Trading_Store.DAL
             return transID;
         }
 
-        public SqlDataAdapter DisplayAllTransactions_2()
+        public (DataTable trans_dt  , DataTable dt) DisplayTransactions(int offset , int per_page , string type, bool filter_date, DateTime start_date , DateTime end_date)
+        {
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            DataTable trans_dt = new DataTable();
+
+            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+            try
+            {
+
+                //Generating query
+                var cmd = _dbcontext.Set<Transaction>()
+                    .Where(c => (type == "All") ? (true) : (c.type == type))
+                    .Where(c => filter_date ? (
+                        c.transaction_date >= start_date
+                    ) : (true))
+                    .Where(c => filter_date ? (
+                        c.transaction_date <= end_date
+                    ) : (true))
+                    .OrderByDescending(c => c.transaction_date)
+                    .Skip(offset)
+                    .Take(per_page)
+                    .ToList();
+
+
+                trans_dt = EntityHelpers.ConvertIEnumerableToDatable(cmd);
+
+
+
+                var cmd_2 = _dbcontext.Set<Transaction>()
+                    .Where(c => c.Paid == "True")
+                    .Where(c => filter_date ? (
+                        c.transaction_date >= start_date
+                    ) : (true))
+                    .Where(c => filter_date ? (
+                        c.transaction_date <= end_date
+                    ) : (true))
+                    .GroupBy(c => c.type)
+                    .Select(c => new
+                    {
+                        type = c.Key,
+                        Total_sales = c.Sum(t => t.grandTotal),
+                        Total_Profit = c.Sum(t => t.Total_Profit)
+                    })
+                    .ToList();
+
+                dt = EntityHelpers.ConvertIEnumerableToDatable(cmd_2);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+            }
+
+            return (trans_dt, dt);
+
+        }
+
+        public SqlDataAdapter DisplayAllTransactions_2(int offset , int per_page)
         {
             SqlDataAdapter adapter = new SqlDataAdapter();
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
             try
             {
-                string cmds = "SELECT * FROM Transactions ORDER BY transaction_date desc";
+                string cmds = "SELECT * FROM Transactions ORDER BY transaction_date desc OFFSET " + offset + " ROWS FETCH NEXT " + per_page +" ROWS ONLY";
                 adapter = new SqlDataAdapter(cmds, conn);
 
             }
@@ -883,11 +962,11 @@ namespace Abbey_Trading_Store.DAL
             }
             else if (Env.mode == 2)
             {
-                return DisplayAllTransactions_2();
+                return DisplayAllTransactions_2(1,10);
             }
             else
             {
-                return DisplayAllTransactions_2();
+                return DisplayAllTransactions_2(1,10);
             }
 
         }

@@ -17,13 +17,13 @@ namespace Abbey_Trading_Store
         public int ID { get; set; }
         public string type { get; set; }
         public string dea_cust_name { get; set; }
-        public Nullable<int> grandTotal { get; set; }
+        public Nullable<long> grandTotal { get; set; }
         public Nullable<System.DateTime> transaction_date { get; set; }
         public Nullable<int> discount { get; set; }
         public string added_by { get; set; }
-        public string Paid_amount { get; set; }
+        public Nullable<long> Paid_amount { get; set; }
         public Nullable<int> Return_amount { get; set; }
-        public string Total_Profit { get; set; }
+        public Nullable<long> Total_Profit { get; set; }
         public string Paid { get; set; }
         public string Taken { get; set; }
         public Nullable<int> Server_id { get; set; }

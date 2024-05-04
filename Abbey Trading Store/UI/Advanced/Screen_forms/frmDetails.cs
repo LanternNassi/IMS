@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Abbey_Trading_Store.DAL.Helpers;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
@@ -69,7 +70,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             //}
             print = TD.GetAllTransactionDetailsAppropriately(lbltop.Text, frmTransactions.transaction_id);
             filter = dt;
-            dgv_TD.DataSource = dt;
+            dgv_TD.DataSource = MoneyFormatter.formatDT(dt.Copy() , new int[] {1,3,7});
         }
         DataTable print = new DataTable();
         DataTable filter = new DataTable();

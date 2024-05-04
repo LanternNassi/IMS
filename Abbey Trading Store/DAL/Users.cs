@@ -15,6 +15,10 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 
+
+using Abbey_Trading_Store;
+using System.Data.Entity;
+
 namespace Abbey_Trading_Store.DAL
 {
     class Users
@@ -29,7 +33,10 @@ namespace Abbey_Trading_Store.DAL
         private int Server_id = 0;
 
         //Getting props class 
+        Abbey_Trading_Store.User user_db = new Abbey_Trading_Store.User();
         UsersProps userclass = new UsersProps();
+
+        private readonly DbContext _dbContext = new Base2();
 
         // declaring properties for the fields 
         public int id
@@ -39,35 +46,43 @@ namespace Abbey_Trading_Store.DAL
             {
                 Id = value;
                 userclass.id = value;
+                user_db.ID = value;
+                
             }
         }
         public string user { get { return User; } set { 
                 User = value;
                 userclass.user = value;
+                user_db.user = value;
             } 
         }
         public string password { get { return Password; } set {
                 Password = value;
                 userclass.contact = value;
+                user_db.Contact = value;
             } 
         }
         public string gender { get { return Gender; } set {
                 Gender = value;
                 userclass.gender = value;
+                user_db.Gender = value;
             } 
         }
         public string added_by { get { return Added_by; } set { 
                 Added_by = value;
                 userclass.added_by = value;
+                user_db.Added_by = value;
             } 
         }
         public string type { get { return Type; } set { 
                 Type = value;
                 userclass.type = value;
+                user_db.Type = value;
             } 
         }
         public int server_id { get { return Server_id; } set { 
-                Server_id = value; 
+                Server_id = value;
+                user_db.Server_id = value;
             }
         }
 
@@ -75,37 +90,11 @@ namespace Abbey_Trading_Store.DAL
 
         // Declaring the new HTTP client
         HttpClient client = new HttpClient();
-
-        
-
         //Global uri
         string uri = Env.debug_enabled ? (Env.debug_url) : (Env.live_url);
 
-        public DataTable select()
-        {
-            DataTable dt = new DataTable();
-            OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
-            try
-            {
-                const string command = "SELECT * FROM Users";
-                OleDbDataAdapter adapter = new OleDbDataAdapter(command, conn);
-                conn.Open();
-                adapter.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-               
 
-            }
-
-            return dt;
-
-        }
+        
 
         public DataTable Overview()
         {
@@ -161,8 +150,6 @@ namespace Abbey_Trading_Store.DAL
 
             return dt;
         }
-
-
 
         public DataTable TransactionsOverview(string type)
         {
@@ -232,6 +219,33 @@ namespace Abbey_Trading_Store.DAL
         }
 
 
+        #region OledbFunctions
+
+        public DataTable select()
+        {
+            DataTable dt = new DataTable();
+            OleDbConnection conn = new OleDbConnection(Env.local_database_conn_string);
+            try
+            {
+                const string command = "SELECT * FROM Users";
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command, conn);
+                conn.Open();
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+
+
+            }
+
+            return dt;
+
+        }
         public bool insert()
         {
             bool isSuccess = true;
@@ -273,32 +287,6 @@ namespace Abbey_Trading_Store.DAL
 
 
         }
-
-        public async Task<bool> insert2()
-        {
-            //Posting to online server
-            string derived_uri = uri + "/createUser/";
-            var stringPayload = JsonConvert.SerializeObject(userclass);
-
-            // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
-            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = await client.PostAsync(derived_uri, httpContent);
-
-            response.EnsureSuccessStatusCode();
-            if (response.IsSuccessStatusCode)
-            {
-                dynamic response_content = await response.Content.ReadAsStringAsync();
-                dynamic deserialized = JsonConvert.DeserializeObject(response_content);
-                server_id = Convert.ToInt32(deserialized.id);
-                //MessageBox.Show(deserialized.id);
-                return true;
-            } else
-            {
-                return false;
-            }
-        }
-
         public DataTable search(string keywords)
         {
             DataTable dt = new DataTable();
@@ -322,8 +310,6 @@ namespace Abbey_Trading_Store.DAL
             return dt;
 
         }
-
-
         public bool update(string id)
         {
             bool isSuccess = true;
@@ -363,29 +349,6 @@ namespace Abbey_Trading_Store.DAL
             return isSuccess;
 
         }
-
-        public async Task<bool> update2()
-        {
-            string derived_uri = uri + "/updateUser/";
-            //Serialize object
-            var Stringpayload = JsonConvert.SerializeObject(userclass);
-            var httpContent = new StringContent(Stringpayload, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PutAsync(derived_uri, httpContent);
-
-            response.EnsureSuccessStatusCode();
-            if (response.IsSuccessStatusCode)
-            {
-                dynamic response_content = await response.Content.ReadAsStringAsync();
-                dynamic deserialized = JsonConvert.DeserializeObject(response_content);
-                server_id = Convert.ToInt32(deserialized.id);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public bool delete(string id)
         {
             bool isSuccess = true;
@@ -422,6 +385,59 @@ namespace Abbey_Trading_Store.DAL
 
         }
 
+        #endregion
+
+
+        #region HTTP Functions
+
+        public async Task<bool> insert2()
+        {
+            //Posting to online server
+            string derived_uri = uri + "/createUser/";
+            var stringPayload = JsonConvert.SerializeObject(userclass);
+
+            // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
+            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(derived_uri, httpContent);
+
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                dynamic response_content = await response.Content.ReadAsStringAsync();
+                dynamic deserialized = JsonConvert.DeserializeObject(response_content);
+                server_id = Convert.ToInt32(deserialized.id);
+                //MessageBox.Show(deserialized.id);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> update2()
+        {
+            string derived_uri = uri + "/updateUser/";
+            //Serialize object
+            var Stringpayload = JsonConvert.SerializeObject(userclass);
+            var httpContent = new StringContent(Stringpayload, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PutAsync(derived_uri, httpContent);
+
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                dynamic response_content = await response.Content.ReadAsStringAsync();
+                dynamic deserialized = JsonConvert.DeserializeObject(response_content);
+                server_id = Convert.ToInt32(deserialized.id);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> delete2(int User)
         {
             string derived_uri = uri + "/deleteUser/"+User+"/";
@@ -445,8 +461,10 @@ namespace Abbey_Trading_Store.DAL
 
         }
 
+        #endregion HTTP Functions
 
-        // All modifier functions for the database server 
+
+        #region SQLDBFunctions
 
         public SqlDataAdapter select_2()
         {
@@ -475,50 +493,12 @@ namespace Abbey_Trading_Store.DAL
             return adapter_dummy;
 
         }
-
         public bool insert_2()
         {
-            bool isSuccess = true;
-            SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "INSERT INTO Users([User], Contact, Gender, Added_by, Type , Server_id) VALUES (@User, @Password, @Gender, @Added_by, @Type , @Server_id);";
-            cmd.Parameters.AddWithValue("@User", User);
-            cmd.Parameters.AddWithValue("@Password", Password);
-            cmd.Parameters.AddWithValue("@Gender", Gender);
-            cmd.Parameters.AddWithValue("@Added_by", Added_by);
-            cmd.Parameters.AddWithValue("@Type", Type);
-            cmd.Parameters.AddWithValue("@Server_id", Server_id);
-            cmd.Connection = conn;
-            try
-            {
-                conn.Open();
-                int affected = cmd.ExecuteNonQuery();
-                if (affected > 0)
-                {
-                    isSuccess = true;
-                }
-                else
-                {
-                    isSuccess = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-
-
-            }
-            return isSuccess;
-
-
-
+            var d = _dbContext.Set<User>().Add(user_db);
+            _dbContext.SaveChanges();
+            return true;
         }
-
         public DataTable search_2(string keywords)
         {
             DataTable dt = new DataTable();
@@ -542,7 +522,6 @@ namespace Abbey_Trading_Store.DAL
             return dt;
 
         }
-
         public bool update_2(string id)
         {
             bool isSuccess = true;
@@ -582,7 +561,6 @@ namespace Abbey_Trading_Store.DAL
             return isSuccess;
 
         }
-
         public bool delete_2(string id)
         {
             bool isSuccess = true;
@@ -619,8 +597,10 @@ namespace Abbey_Trading_Store.DAL
 
         }
 
-        // End of all modeifier functions for the database server
+        #endregion
 
+
+        #region Appropriates
         public DataTable SelectAppropriately()
         {
             if (Env.mode == 1)
@@ -743,7 +723,7 @@ namespace Abbey_Trading_Store.DAL
             }
 
         }
-
+        #endregion
 
 
     }

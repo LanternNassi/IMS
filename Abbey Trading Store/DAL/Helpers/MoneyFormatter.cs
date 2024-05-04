@@ -77,7 +77,6 @@ namespace Abbey_Trading_Store.DAL.Helpers
                     {
                         try
                         {
-                            //ssageBox.Show(row[col].ToString());
                             long money_value;
                             if (long.TryParse(row[col].ToString(), out money_value))
                             {
