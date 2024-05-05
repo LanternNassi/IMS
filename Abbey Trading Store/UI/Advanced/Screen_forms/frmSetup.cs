@@ -684,56 +684,6 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             
         }
 
-        private async Task <dynamic> VerifyClientID()
-        {
-            try
-            {
-                var client = new HttpClient();
-
-                var clientId = "";
-
-                if (this.client_id.Text.Trim() != "")
-                {
-                    clientId = this.client_id.Text;
-                }
-                else
-                {
-                    return null;
-                }
-
-                var requestBody = $"{{\"ClientID\" : \"{clientId}\"}}";
-                var content = new StringContent(requestBody, null, "application/json");
-
-                var request = new HttpRequestMessage(HttpMethod.Get, "https://org-latest.onrender.com/clients");
-                request.Content = content;
-
-                var response = await client.SendAsync(request);
-                response.EnsureSuccessStatusCode();
-                if (response.IsSuccessStatusCode)
-                {
-                    dynamic response_content = await response.Content.ReadAsStringAsync();
-                    dynamic deserialized = JsonConvert.DeserializeObject(response_content);
-                    //MessageBox.Show(deserialized.ToString());
-
-                    return deserialized;
-                }
-                else
-                {
-                    return null;
-                }
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-
-            }
-            return null;
-
-        }
 
         private async void start_btn_Click(object sender, EventArgs e)
         {
@@ -821,9 +771,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     }
 
                     //Verifying the client id 
-                    dynamic client_verification = await FetchData("https://imscontroller-1.onrender.com/clients/" + this.client_id.Text.Trim());
+                    dynamic client_verification = await FetchData("https://org-latest.onrender.com/clients/" + this.client_id.Text.Trim());
 
-                    //dynamic client_verification = VerifyClientID();
 
                     if (client_verification == null)
                     {
