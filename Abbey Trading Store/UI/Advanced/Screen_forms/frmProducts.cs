@@ -339,7 +339,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             string keyword = search.Text;
             product product = new product();
             DataTable dt = product.SearchAppropriately(keyword);
-            dataGridView1.DataSource = dt;
+            active_products.Clear();
+            active_products = dt.Copy();
+            dataGridView1.DataSource = MoneyFormatter.formatDT(dt.Copy(), new int[] { 4, 5, 10 }); ;
 
             if(dt.Rows.Count > 10)
             {
