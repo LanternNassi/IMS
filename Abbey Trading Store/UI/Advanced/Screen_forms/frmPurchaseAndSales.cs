@@ -103,18 +103,24 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                         //Getting 
                         string productname = p_name.Text;
                         decimal quantity = decimal.Parse(p_quantity.Text);
-                        decimal rate = 0;
+                        decimal rate = (p_rate.Text=="Custom") ? (0) : decimal.Parse(p_rate.Text);
                         decimal total = 0;
+                        
+                        if (p_rate.Text == "Custom")
+                        {
+                            string new_price = Interaction.InputBox("Enter custom price", "Amount", p_rate.Items[0].ToString());
+                            rate = decimal.Parse(new_price);
+                        }
+
+
                         if (p_quantity.Text.Contains("."))
                         {
                             decimal calculated = decimal.Parse(p_quantity.Text) * decimal.Parse(p_rate.Text);
                             string amount = Interaction.InputBox("Confirm the amount?", "Amount", calculated.ToString());
                             total = decimal.Parse(amount);
-                            rate = decimal.Parse(p_rate.Text);
                         }
                         else
                         {
-                            rate = decimal.Parse(p_rate.Text);
                             total = rate * quantity;
                         }
                         //decimal total = rate * quantity;
@@ -255,7 +261,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 //p_rate.Text = temp.Rows[0]["Selling_Price"].ToString();
                 this.p_rate.Items.AddRange(new object[] {
                     temp.Rows[0]["Selling_Price"].ToString(),
-                    temp.Rows[0]["Wholesale_price"].ToString()
+                    temp.Rows[0]["Wholesale_price"].ToString(),
+                    "Custom"
             });
                 this.p_rate.Text = temp.Rows[0]["Selling_Price"].ToString();
                 //p_rate.Items.Add(temp.Rows[0]["Wholesale_price"].ToString());
@@ -306,7 +313,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     //p_rate.Text = searchdt.Rows[0]["Selling_Price"].ToString();
                     this.p_rate.Items.AddRange(new object[] {
                     searchdt.Rows[0]["Selling_Price"].ToString(),
-                    searchdt.Rows[0]["Wholesale_price"].ToString()
+                    searchdt.Rows[0]["Wholesale_price"].ToString(),
+                    "Custom"
             });
                     this.p_rate.Text = searchdt.Rows[0]["Selling_Price"].ToString();
                     //p_rate.Items.Add(searchdt.Rows[0]["Wholesale_price"].ToString());
