@@ -702,6 +702,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                     //Starting the service installation
                     DownloadService("Client");
                     selected_installation = "Client";
+                    DownloadUpdator();
 
                     string cnn = "";
 
