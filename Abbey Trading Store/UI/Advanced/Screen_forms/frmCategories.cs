@@ -28,8 +28,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             //this.panel2.Height = LayoutFlex.category_panel_2;
            
 
-            this.circularProgressBar1.Value = dt.Rows.Count * 10;
-            this.circularProgressBar1.Text = (dt.Rows.Count * 10).ToString() + "%";
+            //this.circularProgressBar1.Value = dt.Rows.Count * 10;
+            //this.circularProgressBar1.Text = (dt.Rows.Count * 10).ToString() + "%";
 
             
         }
@@ -82,8 +82,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DataTable dt = category.SelectAppropriately();
             dataGridView1.DataSource = dt;
             Cursor = Cursors.Default;
-            this.circularProgressBar1.Value = dt.Rows.Count * 10;
-            this.circularProgressBar1.Text = (dt.Rows.Count * 10).ToString() + "%";
+            //this.circularProgressBar1.Value = dt.Rows.Count * 10;
+            //this.circularProgressBar1.Text = (dt.Rows.Count * 10).ToString() + "%";
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -115,8 +115,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 clear();
                 DataTable dt = category.SelectAppropriately();
                 dataGridView1.DataSource = dt;
-                this.circularProgressBar1.Value = dt.Rows.Count * 10;
-                this.circularProgressBar1.Text = (dt.Rows.Count * 10).ToString() + "%";
+                //this.circularProgressBar1.Value = dt.Rows.Count * 10;
+                //this.circularProgressBar1.Text = (dt.Rows.Count * 10).ToString() + "%";
             }
             else
             {
@@ -157,8 +157,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DataTable dt = category.SearchAppropriately(value);
             dataGridView1.DataSource = dt;
 
-            this.circularProgressBar2.Value = dt.Rows.Count * 10;
-            this.circularProgressBar2.Text = (dt.Rows.Count * 10).ToString() + "%";
+            //this.circularProgressBar2.Value = dt.Rows.Count * 10;
+            //this.circularProgressBar2.Text = (dt.Rows.Count * 10).ToString() + "%";
         }
 
         private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
