@@ -20,6 +20,8 @@ using Microsoft.Data.SqlClient;
 using AfricasTalkingCS;
 using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
+using System.Configuration;
+
 
 namespace Abbey_Trading_Store.UI.Advanced
 {
@@ -166,7 +168,7 @@ namespace Abbey_Trading_Store.UI.Advanced
                 string numericPart = Regex.Replace(Convert.ToString(latest_release_info["tag_name"]), "[^0-9]", "");
                 if (int.TryParse(numericPart, out int versionNumber))
                 {
-                    if (Convert.ToInt32(Env.AppVersion) < versionNumber)
+                    if (Convert.ToInt32(ConfigurationManager.AppSettings["ApplicationVersion"].Replace(".","")) < versionNumber)
                     {
                         this.Invoke((MethodInvoker)delegate
                         {

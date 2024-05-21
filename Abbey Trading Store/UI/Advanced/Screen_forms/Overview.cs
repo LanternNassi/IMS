@@ -5,11 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 {
@@ -18,7 +21,13 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         public Overview()
         {
             InitializeComponent();
-            
+
+            foreach(ChartArea area in this.chart1.ChartAreas)
+            {
+                area.AxisY.LabelStyle.Format = "#,##0";
+            }
+            //this.chartArea6.AxisY.LabelStyle.Format = "#,##0";
+
             this.flowLayoutPanel1.Height = LayoutFlex.overview_flowlayout_panel1;
             this.flowLayoutPanel2.Height = LayoutFlex.overview_flowlayout_panel2;
             this.panel10.Height = LayoutFlex.scrollbar_1;
@@ -33,11 +42,48 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         }
 
+        
+
         System.Data.SqlClient.SqlDataAdapter low_on_stock= null;
+
+        int trans_track = 0;
+        int trans_track_total = 0;
+        DataRow[] trans_profit_rows = null;
 
 
         private void chart1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void Draw_chart1()
+        {
+            //Clear all the series data to redraw
+            foreach (var series in chart1.Series)
+            {
+                series.Points.Clear();
+            }
+
+            foreach (DataRow dr in trans_profit_rows.Skip(trans_track).Take(4))
+            {
+
+                chart1.Series["Sales"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[1]));
+                chart1.Series["Profit Accummulation"].Points.AddXY(dr[2].ToString(), Convert.ToInt64(dr[0]));
+
+                label6.Text = "Shs. " + Convert.ToInt64(dr[1]).ToString("N0");
+                profitlbl.Text = "Shs. " + Convert.ToInt64(dr[0]).ToString("N0");
+
+                circularProgressBar1.Value = Convert.ToInt32(dr[1]) / 1000000000;
+                Profits.Value = Convert.ToInt32(dr[0]) / 1000000000;
+
+                circularProgressBar1.Text = Convert.ToInt32(dr[1]) / 1000000000 * 100 + "%";
+                Profits.Text = Convert.ToInt32(dr[0]) / 1000000000 * 100 + "%";
+
+                t_year.Text = dr[3].ToString();
+            }
+
+             
+
 
         }
 
@@ -54,32 +100,23 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 DataTable dt_4 = category.ExpenditureOverview();
 
                 //Reversing the rows of transactions overview
+                
                 DataRow[] rows = dt_3.Select();
-                Array.Reverse(rows);
 
-                foreach (DataRow dr in rows)
-                {
-                    
-                    chart1.Series["Sales"].Points.AddXY(dr[2].ToString(), Convert.ToInt32(dr[1]));
-                    chart1.Series["Profit Accummulation"].Points.AddXY(dr[2].ToString(), Convert.ToInt64(dr[0]));
+                trans_profit_rows = rows;
+                trans_track = (rows.Count() - 4);
+                trans_track_total = rows.Count();
+                //Array.Reverse(rows);
 
-                    label6.Text = "Shs. " + Convert.ToInt64(dr[1]).ToString("N0");
-                    profitlbl.Text = "Shs. " + Convert.ToInt64(dr[0]).ToString("N0");
+                Draw_chart1();
 
-                    circularProgressBar1.Value = Convert.ToInt32(dr[1]) / 1000000000;
-                    Profits.Value = Convert.ToInt32(dr[0]) / 1000000000;
+                
 
-                    circularProgressBar1.Text = Convert.ToInt32(dr[1]) / 1000000000 * 100 + "%";
-                    Profits.Text = Convert.ToInt32(dr[0]) / 1000000000 * 100 + "%";
-                    
+                //foreach(DataRow dr in dt_4.Rows)
+                //{
+                //    chart1.Series["Expenditure"].Points.AddXY(dr[1].ToString(), Convert.ToInt64(dr[0]));
 
-                }
-
-                foreach(DataRow dr in dt_4.Rows)
-                {
-                    chart1.Series["Expenditure"].Points.AddXY(dr[1].ToString(), Convert.ToInt64(dr[0]));
-
-                }
+                //}
 
 
                 Users.Text = "Users : " + dt_2.Rows[12][1].ToString();
@@ -191,6 +228,24 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         {
             LowStock form = new LowStock(low_on_stock);
             form.Show();
+        }
+
+        private void t_prev_Click(object sender, EventArgs e)
+        {
+            if (trans_track != 0)
+            {
+                trans_track -= 4;
+                Draw_chart1();
+            }
+        }
+
+        private void t_next_Click(object sender, EventArgs e)
+        {
+            if (trans_track != (trans_track_total - 4))
+            {
+                trans_track += 4;
+                Draw_chart1();
+            }
         }
     }
 }
