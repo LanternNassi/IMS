@@ -267,12 +267,18 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void Customer_TextChanged(object sender, EventArgs e)
         {
-            regenerate();
+            if (Customer.Text == "")
+            {
+                regenerate();
+            }
         }
 
         private void Product_TextChanged(object sender, EventArgs e)
         {
-            regenerate();
+            if (Product.Text == "")
+            {
+                regenerate();
+            }
         }
 
         private void Added_by_TextChanged(object sender, EventArgs e)

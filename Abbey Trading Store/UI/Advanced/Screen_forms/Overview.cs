@@ -28,9 +28,9 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             }
             //this.chartArea6.AxisY.LabelStyle.Format = "#,##0";
 
-            this.flowLayoutPanel1.Height = LayoutFlex.overview_flowlayout_panel1;
-            this.flowLayoutPanel2.Height = LayoutFlex.overview_flowlayout_panel2;
-            this.panel10.Height = LayoutFlex.scrollbar_1;
+            //this.flowLayoutPanel1.Height = LayoutFlex.overview_flowlayout_panel1;
+            //this.flowLayoutPanel2.Height = LayoutFlex.overview_flowlayout_panel2;
+            //this.panel10.Height = LayoutFlex.scrollbar_1;
 
             //materialScrollBar1.Value = flowLayoutPanel1.HorizontalScroll.Value;
             //materialScrollBar1.Minimum = flowLayoutPanel1.HorizontalScroll.Minimum;
@@ -39,6 +39,15 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             //materialScrollBar1.Minimum = flowLayoutPanel1.HorizontalScroll.Minimum;
             //materialScrollBar1.Maximum = flowLayoutPanel1.HorizontalScroll.Maximum + 20;
 
+
+            //panel14.Height = flowLayoutPanel1.Height + 20;
+            //fP_1_v.Value = flowLayoutPanel1.VerticalScroll.Value;
+            //fP_1_v.Minimum = flowLayoutPanel1.VerticalScroll.Minimum;
+            //fP_1_v.Maximum = flowLayoutPanel1.VerticalScroll.Maximum;
+
+
+
+            
 
         }
 
@@ -49,6 +58,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         int trans_track = 0;
         int trans_track_total = 0;
         DataRow[] trans_profit_rows = null;
+        SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
+
 
 
         private void chart1_Click(object sender, EventArgs e)
@@ -145,6 +156,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 Abbey_Trading_Store.DAL.Transactions transact = new Transactions();
                 System.Data.SqlClient.SqlDataAdapter adapter_G = transact.GetDebtorsOnly();
                 DataTable Gt = new DataTable();
+                //conn.Open();
                 adapter_G.Fill(Gt);
                 materialButton2.Text = Gt.Rows.Count.ToString() + " Unsettled debts";
 
@@ -192,6 +204,8 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 //}
 
             }
+
+            conn.Close();
             
             
         }
@@ -214,14 +228,30 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
 
         private void Overview_Layout(object sender, LayoutEventArgs e)
         {
-            flowLayoutPanel1.Height = Convert.ToInt32(0.33 * Dashboard.PnlContainer.Height);
-           
+        
+
+            flowLayoutPanel1.Height = Convert.ToInt32(this.Height * 0.32);
+
+            flowLayoutPanel2.Height = Convert.ToInt32((this.Height * 0.62));
+            panel13.Height = (this.Height - (flowLayoutPanel1.Height + flowLayoutPanel2.Height));
+
+
+            panel1.Height = panel2.Height = panel3.Height = flowLayoutPanel1.Height;
+
+            panel5.Height = panel4.Height = flowLayoutPanel2.Height;
+
+            panel5.Width = Convert.ToInt32(0.6 * flowLayoutPanel2.Width);
+            panel4.Width = Convert.ToInt32(0.32 * flowLayoutPanel2.Width);
+
+            panel1.Width = Convert.ToInt32(0.35 * flowLayoutPanel1.Width);
+            panel2.Width = Convert.ToInt32(0.3 * flowLayoutPanel1.Width);
+            panel3.Width = Convert.ToInt32(0.25 * flowLayoutPanel1.Width);
+
         }
 
         private void materialScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
-            //flowLayoutPanel1.HorizontalScroll.Value = materialScrollBar1.Value;
-            //flowLayoutPanel1.Left = materialScrollBar1.Value;
+            
         }
 
         private void materialButton1_Click_1(object sender, EventArgs e)
@@ -246,6 +276,37 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 trans_track += 4;
                 Draw_chart1();
             }
+        }
+
+        private void ov_h_sb_ValueChanged(object sender, int newValue)
+        {
+            //flowLayoutPanel1.AutoScrollPosition = new Point(0, ov_h_sb.Value);
+
+        }
+
+        private void ov_h_sb_Scroll(object sender, ScrollEventArgs e)
+        {
+
+            //flowLayoutPanel1.HorizontalScroll.Value = ov_h_sb.Value;
+
+        }
+
+        private void fP_1_v_Scroll(object sender, ScrollEventArgs e)
+        {
+
+            //fP_1_v.Minimum = flowLayoutPanel1.VerticalScroll.Minimum;
+            //fP_1_v.Maximum = flowLayoutPanel1.VerticalScroll.Maximum;
+
+            //flowLayoutPanel1.VerticalScroll.Value = fP_1_v.Value;
+
+
+            //Console.WriteLine("Maximum is " + flowLayoutPanel1.VerticalScroll.Maximum.ToString() + " " + fP_1_v.Value.ToString() + " / " + flowLayoutPanel1.VerticalScroll.Value.ToString());
+
+        }
+
+        private void profitlbl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -126,11 +126,22 @@ namespace Abbey_Trading_Store.UI.Advanced
             }
 
             //Setting up the backUp mechanism
-            backupTimer = new System.Timers.Timer();
-            backupTimer.Interval = 1000; // 1 second
-            backupTimer.Elapsed += BackupTimer_Tick;
-            SetBackupTime(14, 0, 0); // Set backup time to 5:00:00 PM
-            backupTimer.Start();
+
+
+            if (Env.ClientId != "")
+            {
+
+                backupTimer = new System.Timers.Timer();
+                backupTimer.Interval = 1000; // 1 second
+                backupTimer.Elapsed += BackupTimer_Tick;
+                SetBackupTime(16, 0, 0); // Set backup time to 5:00:00 PM
+                backupTimer.Start();
+            }
+            else
+            {
+                MessageBox.Show("This system doesnt have a client id hence cannot register or upload data backups. Reachout to the provider to get one. ");
+            }
+            
 
         }
 
@@ -139,7 +150,7 @@ namespace Abbey_Trading_Store.UI.Advanced
         {
             //MessageBox.Show("Event raised");
             DateTime now = DateTime.Now;
-            if (now.Hour == 14 && now.Minute == 0 && now.Second == 0)
+            if (now.Hour == 16 && now.Minute == 0 && now.Second == 0)
             {
                 SettingsConfig.CreateBackUp(Env.ClientId);
             }
