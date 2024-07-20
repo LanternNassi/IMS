@@ -588,6 +588,9 @@
     <Compile Include="Transaction_Tracker.cs">
       <DependentUpon>Base1.tt</DependentUpon>
     </Compile>
+    <Compile Include="UI\Advanced\CustomComponents\CustomFlowLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\Advanced\CustomComponents\HorizontalScrollBar.cs">
       <SubType>Component</SubType>
     </Compile>

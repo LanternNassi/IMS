@@ -32,12 +32,12 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             DebtsDGV.DataSource = MoneyFormatter.formatDT(dt.Copy() , new int[] { 3, 5, 7, 8, 9 });
             Connection().Close();
 
-            int unsettled_amount = 0;
-            int settled_amount = 0;
+            long unsettled_amount = 0;
+            long settled_amount = 0;
             foreach (DataRow dr in dt.Rows)
             {
-                unsettled_amount += (Convert.ToInt32(dr[8].ToString()) * -1);
-                settled_amount += (Convert.ToInt32(dr[7].ToString()));
+                unsettled_amount += (Convert.ToInt64(dr[8].ToString()) * -1);
+                settled_amount += (Convert.ToInt64(dr[7].ToString()));
             }
 
             overall_settled_amount = settled_amount;
@@ -71,20 +71,20 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
         int row_overall = 0;
         string rem_amount = "";
 
-        int overall_settled_amount = 0;
-        int overall_unsettled_amount = 0;
+        long overall_settled_amount = 0;
+        long overall_unsettled_amount = 0;
 
         DataTable active_debts_dt = new DataTable();
 
         public void calculate_debt(DataTable dt)
         {
             //Calculating unsettled debts
-            int unsettled_amount = 0;
-            int settled_amount = 0;
+            long unsettled_amount = 0;
+            long settled_amount = 0;
             foreach (DataRow dr in dt.Rows)
             {
-                unsettled_amount += (Convert.ToInt32(dr[8].ToString()) * -1);
-                settled_amount += (Convert.ToInt32(dr[7].ToString()));
+                unsettled_amount += (Convert.ToInt64(dr[8].ToString()) * -1);
+                settled_amount += (Convert.ToInt64(dr[7].ToString()));
             }
 
             // Updating the progress bars
