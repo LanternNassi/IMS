@@ -924,7 +924,7 @@ namespace Abbey_Trading_Store.DAL
             }
             finally
             {
-                conn.Close();
+                //conn.Close();
             }
             return adapter;
         }
