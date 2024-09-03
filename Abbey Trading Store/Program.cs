@@ -124,7 +124,7 @@ namespace Abbey_Trading_Store
 
                     }
 
-                    else service.Stop();
+                    else service.Start();
 
                 }
                 catch (Exception ex2)
