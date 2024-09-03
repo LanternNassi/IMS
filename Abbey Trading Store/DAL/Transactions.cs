@@ -572,7 +572,8 @@ namespace Abbey_Trading_Store.DAL
 
 
                 var cmd_2 = _dbcontext.Set<Transaction>()
-                    .Where(c => c.Paid == "True")
+                    .Where(c => (c.Paid == "True") || (c.Paid== "Cleared"))
+                    
                     .Where(c => filter_date ? (
                         c.transaction_date >= start_date
                     ) : (true))

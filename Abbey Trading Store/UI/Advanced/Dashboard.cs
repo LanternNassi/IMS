@@ -148,7 +148,6 @@ namespace Abbey_Trading_Store.UI.Advanced
 
         private void BackupTimer_Tick(object sender, EventArgs e)
         {
-            //MessageBox.Show("Event raised");
             DateTime now = DateTime.Now;
             if (now.Hour == 16 && now.Minute == 0 && now.Second == 0)
             {
@@ -166,8 +165,6 @@ namespace Abbey_Trading_Store.UI.Advanced
 
             backupTimer.Interval = timeUntilBackup.TotalMilliseconds;
         }
-
-
 
 
         private async void CheckForUpdates(object state)
@@ -214,6 +211,7 @@ namespace Abbey_Trading_Store.UI.Advanced
             this.pnlform.Controls.Clear();
             Overview FrmDashboard_Vrb = new Overview() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true, Visible = true };
             FrmDashboard_Vrb.FormBorderStyle = FormBorderStyle.None;
+            FrmDashboard_Vrb.Height = LayoutFlex.overall_container_height;
             this.pnlform.Controls.Add(FrmDashboard_Vrb);
             FrmDashboard_Vrb.Show();
         }
