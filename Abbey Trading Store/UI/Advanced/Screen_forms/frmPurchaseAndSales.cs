@@ -509,11 +509,25 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             transact.Taken = "True";
             transact.Added_by = Login_form.user;
             transact.Dea_Cust_name = name.Text;
-            transact.Discount = int.Parse(textBox13.Text);
+
+
+            int entered_discount;
+            if (int.TryParse(textBox13.Text ,out entered_discount))
+            {
+                transact.Discount = entered_discount;
+            }
+            else
+            {
+                MessageBox.Show("Invalid discount value entered. Please enter a valid discount such as 0 , 1000, etc");
+                return;
+            }
+            //transact.Discount = int.Parse(textBox13.Text);
             transact.GrandTotal = int.Parse((grandtotal.Text).Replace(",", ""));
             transact.Transaction_date = DateTime.Now;
             transact.Type = course;
             transact.Return_amount = int.Parse((return_amount.Text).Replace(",", ""));
+
+
             transact.Paid_amount = int.Parse((paid_amount.Text).Replace(",", ""));
             if (form_type == "Sales")
             {
