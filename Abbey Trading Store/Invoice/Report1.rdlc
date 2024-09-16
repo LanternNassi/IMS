@@ -496,7 +496,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Return Amount</Value>
+                <Value>Balance</Value>
                 <Style>
                   <FontSize>6.5pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -592,8 +592,47 @@
           </Border>
         </Style>
       </Line>
+      <Textbox Name="Textbox5">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Served by : </Value>
+                <Style>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!added_by.Value, "DataSet_details")</Value>
+                <Style>
+                  <FontSize>7pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox5</rd:DefaultName>
+        <Top>1.67548in</Top>
+        <Left>0.86633in</Left>
+        <Height>0.25in</Height>
+        <Width>1.55208in</Width>
+        <ZIndex>7</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>4.74962cm</Height>
+    <Height>5.06712cm</Height>
     <Style>
       <Border>
         <Style>None</Style>
@@ -923,27 +962,21 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>1.03688cm</Height>
+      <Height>1.16917cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox5">
+        <Textbox Name="Textbox16">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Served by : </Value>
+                  <Value>@System powered by 0758989094</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                     <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-                <TextRun>
-                  <Value>=First(Fields!added_by.Value, "DataSet_details")</Value>
-                  <Style>
-                    <FontSize>6.5pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -952,9 +985,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox5</rd:DefaultName>
           <Top>0.10267in</Top>
-          <Left>0.49541in</Left>
+          <Left>0.25022in</Left>
           <Height>0.25in</Height>
-          <Width>1.55208in</Width>
+          <Width>2.28277in</Width>
           <Style>
             <Border>
               <Style>None</Style>
