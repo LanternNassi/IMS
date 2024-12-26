@@ -153,12 +153,12 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
                 materialButton1.Text = LST.Rows.Count.ToString() + " Low on stock";
 
                 //Unsettled debts
-                Abbey_Trading_Store.DAL.Transactions transact = new Transactions();
-                System.Data.SqlClient.SqlDataAdapter adapter_G = transact.GetDebtorsOnly();
-                DataTable Gt = new DataTable();
-                //conn.Open();
-                adapter_G.Fill(Gt);
-                materialButton2.Text = Gt.Rows.Count.ToString() + " Unsettled debts";
+                //Abbey_Trading_Store.DAL.Transactions transact = new Transactions();
+                //System.Data.SqlClient.SqlDataAdapter adapter_G = transact.GetDebtorsOnly();
+                //DataTable Gt = new DataTable();
+                ////conn.Open();
+                //adapter_G.Fill(Gt);
+                //materialButton2.Text = Gt.Rows.Count.ToString() + " Unsettled debts";
 
 
 
