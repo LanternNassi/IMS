@@ -30,6 +30,34 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Username = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.pnlNav = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.top_panel = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.CompanyName = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.pnlform = new System.Windows.Forms.Panel();
+            this.materialButton5 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            this.btnSettings = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -41,37 +69,9 @@
             this.btnCategories = new System.Windows.Forms.Button();
             this.btnUsers = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Username = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.pnlNav = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.top_panel = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.materialButton5 = new MaterialSkin.Controls.MaterialButton();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.CompanyName = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
-            this.pnlform = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.top_panel.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -83,12 +83,14 @@
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnSettings);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
@@ -106,6 +108,369 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 710);
             this.panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.Username);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(198, 130);
+            this.panel2.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
+            this.label2.Location = new System.Drawing.Point(52, 102);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 12);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Developed by Nessim";
+            // 
+            // Username
+            // 
+            this.Username.AutoSize = true;
+            this.Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Username.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.Username.Location = new System.Drawing.Point(70, 76);
+            this.Username.Name = "Username";
+            this.Username.Size = new System.Drawing.Size(85, 16);
+            this.Username.TabIndex = 4;
+            this.Username.Text = "User Name";
+            // 
+            // button5
+            // 
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(1329, 12);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(25, 25);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "X";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // pnlNav
+            // 
+            this.pnlNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(149)))));
+            this.pnlNav.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlNav.Location = new System.Drawing.Point(0, 173);
+            this.pnlNav.Name = "pnlNav";
+            this.pnlNav.Size = new System.Drawing.Size(3, 440);
+            this.pnlNav.TabIndex = 6;
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(242, 145);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(0, 0);
+            this.panel3.TabIndex = 32;
+            // 
+            // top_panel
+            // 
+            this.top_panel.Controls.Add(this.panel10);
+            this.top_panel.Controls.Add(this.panel4);
+            this.top_panel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.top_panel.Location = new System.Drawing.Point(200, 0);
+            this.top_panel.Name = "top_panel";
+            this.top_panel.Size = new System.Drawing.Size(1130, 118);
+            this.top_panel.TabIndex = 34;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.panel13);
+            this.panel10.Controls.Add(this.panel12);
+            this.panel10.Controls.Add(this.panel11);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(0, 64);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1130, 54);
+            this.panel10.TabIndex = 32;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.materialButton5);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel13.Location = new System.Drawing.Point(703, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(200, 54);
+            this.panel13.TabIndex = 35;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.materialButton4);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel12.Location = new System.Drawing.Point(903, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(227, 54);
+            this.panel12.TabIndex = 34;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.lblTitle);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(251, 54);
+            this.panel11.TabIndex = 33;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
+            this.lblTitle.Location = new System.Drawing.Point(44, 11);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(162, 32);
+            this.lblTitle.TabIndex = 32;
+            this.lblTitle.Text = "Dashboard";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.panel9);
+            this.panel4.Controls.Add(this.panel8);
+            this.panel4.Controls.Add(this.panel7);
+            this.panel4.Controls.Add(this.panel6);
+            this.panel4.Controls.Add(this.panel5);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1130, 64);
+            this.panel4.TabIndex = 31;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.label3);
+            this.panel9.Controls.Add(this.label1);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel9.Location = new System.Drawing.Point(1044, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(83, 64);
+            this.panel9.TabIndex = 43;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(49, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(18, 20);
+            this.label3.TabIndex = 40;
+            this.label3.Text = "X";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(16, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 24);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "-";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.materialButton2);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(869, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(175, 64);
+            this.panel8.TabIndex = 42;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.CompanyName);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(353, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(516, 64);
+            this.panel7.TabIndex = 41;
+            this.panel7.Paint += new System.Windows.Forms.PaintEventHandler(this.panel7_Paint);
+            // 
+            // CompanyName
+            // 
+            this.CompanyName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CompanyName.AutoSize = true;
+            this.CompanyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
+            this.CompanyName.Location = new System.Drawing.Point(40, 14);
+            this.CompanyName.Name = "CompanyName";
+            this.CompanyName.Size = new System.Drawing.Size(445, 32);
+            this.CompanyName.TabIndex = 34;
+            this.CompanyName.Text = "TEST BUSINESS ENTERPRISE";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.materialButton3);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel6.Location = new System.Drawing.Point(153, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(200, 64);
+            this.panel6.TabIndex = 40;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.materialButton1);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(153, 64);
+            this.panel5.TabIndex = 39;
+            // 
+            // pnlform
+            // 
+            this.pnlform.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlform.ForeColor = System.Drawing.Color.White;
+            this.pnlform.Location = new System.Drawing.Point(200, 118);
+            this.pnlform.Name = "pnlform";
+            this.pnlform.Size = new System.Drawing.Size(1130, 592);
+            this.pnlform.TabIndex = 35;
+            // 
+            // materialButton5
+            // 
+            this.materialButton5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialButton5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton5.Depth = 0;
+            this.materialButton5.Enabled = false;
+            this.materialButton5.HighEmphasis = true;
+            this.materialButton5.Icon = ((System.Drawing.Image)(resources.GetObject("materialButton5.Icon")));
+            this.materialButton5.Location = new System.Drawing.Point(33, 9);
+            this.materialButton5.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton5.Name = "materialButton5";
+            this.materialButton5.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton5.Size = new System.Drawing.Size(105, 36);
+            this.materialButton5.TabIndex = 34;
+            this.materialButton5.Text = "Update";
+            this.materialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton5.UseAccentColor = false;
+            this.materialButton5.UseVisualStyleBackColor = true;
+            this.materialButton5.Click += new System.EventHandler(this.materialButton5_Click);
+            // 
+            // materialButton4
+            // 
+            this.materialButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialButton4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton4.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton4.Depth = 0;
+            this.materialButton4.Enabled = false;
+            this.materialButton4.HighEmphasis = true;
+            this.materialButton4.Icon = ((System.Drawing.Image)(resources.GetObject("materialButton4.Icon")));
+            this.materialButton4.Location = new System.Drawing.Point(46, 9);
+            this.materialButton4.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton4.Name = "materialButton4";
+            this.materialButton4.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton4.Size = new System.Drawing.Size(135, 36);
+            this.materialButton4.TabIndex = 33;
+            this.materialButton4.Text = "Quick Fixes";
+            this.materialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton4.UseAccentColor = false;
+            this.materialButton4.UseVisualStyleBackColor = true;
+            this.materialButton4.Click += new System.EventHandler(this.materialButton4_Click);
+            // 
+            // materialButton2
+            // 
+            this.materialButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton2.Depth = 0;
+            this.materialButton2.Enabled = false;
+            this.materialButton2.HighEmphasis = true;
+            this.materialButton2.Icon = global::Abbey_Trading_Store.Properties.Resources.settings;
+            this.materialButton2.Location = new System.Drawing.Point(8, 14);
+            this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton2.Name = "materialButton2";
+            this.materialButton2.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton2.Size = new System.Drawing.Size(158, 36);
+            this.materialButton2.TabIndex = 35;
+            this.materialButton2.Text = "Batch upload";
+            this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton2.UseAccentColor = false;
+            this.materialButton2.UseVisualStyleBackColor = true;
+            this.materialButton2.Click += new System.EventHandler(this.materialButton2_Click);
+            // 
+            // materialButton3
+            // 
+            this.materialButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton3.Depth = 0;
+            this.materialButton3.Enabled = false;
+            this.materialButton3.HighEmphasis = true;
+            this.materialButton3.Icon = ((System.Drawing.Image)(resources.GetObject("materialButton3.Icon")));
+            this.materialButton3.Location = new System.Drawing.Point(10, 14);
+            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton3.Name = "materialButton3";
+            this.materialButton3.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton3.Size = new System.Drawing.Size(180, 36);
+            this.materialButton3.TabIndex = 37;
+            this.materialButton3.Text = "Custom message";
+            this.materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton3.UseAccentColor = false;
+            this.materialButton3.UseVisualStyleBackColor = true;
+            this.materialButton3.Click += new System.EventHandler(this.materialButton3_Click);
+            // 
+            // materialButton1
+            // 
+            this.materialButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton1.Depth = 0;
+            this.materialButton1.HighEmphasis = true;
+            this.materialButton1.Icon = global::Abbey_Trading_Store.Properties.Resources.product;
+            this.materialButton1.Location = new System.Drawing.Point(14, 14);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton1.Name = "materialButton1";
+            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton1.Size = new System.Drawing.Size(125, 36);
+            this.materialButton1.TabIndex = 36;
+            this.materialButton1.Text = "Products";
+            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton1.UseAccentColor = false;
+            this.materialButton1.UseVisualStyleBackColor = true;
+            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSettings.Enabled = false;
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnSettings.Image = global::Abbey_Trading_Store.Properties.Resources.mechanical_gears___2_;
+            this.btnSettings.Location = new System.Drawing.Point(0, 593);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(198, 42);
+            this.btnSettings.TabIndex = 13;
+            this.btnSettings.Text = "IMS  Settings";
+            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -317,39 +682,6 @@
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             this.btnDashboard.Leave += new System.EventHandler(this.btnDashboard_Leave);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.Username);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(198, 130);
-            this.panel2.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            this.label2.Location = new System.Drawing.Point(52, 102);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 12);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Developed by Nessim";
-            // 
-            // Username
-            // 
-            this.Username.AutoSize = true;
-            this.Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Username.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.Username.Location = new System.Drawing.Point(70, 76);
-            this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(85, 16);
-            this.Username.TabIndex = 4;
-            this.Username.Text = "User Name";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.ErrorImage = global::Abbey_Trading_Store.Properties.Resources.Untitled_11;
@@ -361,318 +693,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // button5
-            // 
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(1329, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(25, 25);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "X";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // pnlNav
-            // 
-            this.pnlNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(149)))));
-            this.pnlNav.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlNav.Location = new System.Drawing.Point(0, 173);
-            this.pnlNav.Name = "pnlNav";
-            this.pnlNav.Size = new System.Drawing.Size(3, 410);
-            this.pnlNav.TabIndex = 6;
-            // 
-            // panel3
-            // 
-            this.panel3.Location = new System.Drawing.Point(242, 145);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(0, 0);
-            this.panel3.TabIndex = 32;
-            // 
-            // top_panel
-            // 
-            this.top_panel.Controls.Add(this.panel10);
-            this.top_panel.Controls.Add(this.panel4);
-            this.top_panel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.top_panel.Location = new System.Drawing.Point(200, 0);
-            this.top_panel.Name = "top_panel";
-            this.top_panel.Size = new System.Drawing.Size(1130, 118);
-            this.top_panel.TabIndex = 34;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.panel13);
-            this.panel10.Controls.Add(this.panel12);
-            this.panel10.Controls.Add(this.panel11);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(0, 64);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1130, 54);
-            this.panel10.TabIndex = 32;
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.materialButton5);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel13.Location = new System.Drawing.Point(703, 0);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(200, 54);
-            this.panel13.TabIndex = 35;
-            // 
-            // materialButton5
-            // 
-            this.materialButton5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialButton5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton5.Depth = 0;
-            this.materialButton5.Enabled = false;
-            this.materialButton5.HighEmphasis = true;
-            this.materialButton5.Icon = ((System.Drawing.Image)(resources.GetObject("materialButton5.Icon")));
-            this.materialButton5.Location = new System.Drawing.Point(33, 9);
-            this.materialButton5.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton5.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton5.Name = "materialButton5";
-            this.materialButton5.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton5.Size = new System.Drawing.Size(105, 36);
-            this.materialButton5.TabIndex = 34;
-            this.materialButton5.Text = "Update";
-            this.materialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton5.UseAccentColor = false;
-            this.materialButton5.UseVisualStyleBackColor = true;
-            this.materialButton5.Click += new System.EventHandler(this.materialButton5_Click);
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.materialButton4);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel12.Location = new System.Drawing.Point(903, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(227, 54);
-            this.panel12.TabIndex = 34;
-            // 
-            // materialButton4
-            // 
-            this.materialButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialButton4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton4.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton4.Depth = 0;
-            this.materialButton4.Enabled = false;
-            this.materialButton4.HighEmphasis = true;
-            this.materialButton4.Icon = ((System.Drawing.Image)(resources.GetObject("materialButton4.Icon")));
-            this.materialButton4.Location = new System.Drawing.Point(46, 9);
-            this.materialButton4.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton4.Name = "materialButton4";
-            this.materialButton4.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton4.Size = new System.Drawing.Size(135, 36);
-            this.materialButton4.TabIndex = 33;
-            this.materialButton4.Text = "Quick Fixes";
-            this.materialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton4.UseAccentColor = false;
-            this.materialButton4.UseVisualStyleBackColor = true;
-            this.materialButton4.Click += new System.EventHandler(this.materialButton4_Click);
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.lblTitle);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(251, 54);
-            this.panel11.TabIndex = 33;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
-            this.lblTitle.Location = new System.Drawing.Point(44, 11);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(162, 32);
-            this.lblTitle.TabIndex = 32;
-            this.lblTitle.Text = "Dashboard";
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.panel9);
-            this.panel4.Controls.Add(this.panel8);
-            this.panel4.Controls.Add(this.panel7);
-            this.panel4.Controls.Add(this.panel6);
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1130, 64);
-            this.panel4.TabIndex = 31;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.label3);
-            this.panel9.Controls.Add(this.label1);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel9.Location = new System.Drawing.Point(1044, 0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(83, 64);
-            this.panel9.TabIndex = 43;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(49, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(18, 20);
-            this.label3.TabIndex = 40;
-            this.label3.Text = "X";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(16, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(17, 24);
-            this.label1.TabIndex = 39;
-            this.label1.Text = "-";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.materialButton2);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel8.Location = new System.Drawing.Point(869, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(175, 64);
-            this.panel8.TabIndex = 42;
-            // 
-            // materialButton2
-            // 
-            this.materialButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton2.Depth = 0;
-            this.materialButton2.Enabled = false;
-            this.materialButton2.HighEmphasis = true;
-            this.materialButton2.Icon = global::Abbey_Trading_Store.Properties.Resources.settings;
-            this.materialButton2.Location = new System.Drawing.Point(8, 14);
-            this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton2.Name = "materialButton2";
-            this.materialButton2.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton2.Size = new System.Drawing.Size(158, 36);
-            this.materialButton2.TabIndex = 35;
-            this.materialButton2.Text = "Batch upload";
-            this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton2.UseAccentColor = false;
-            this.materialButton2.UseVisualStyleBackColor = true;
-            this.materialButton2.Click += new System.EventHandler(this.materialButton2_Click);
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.CompanyName);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(353, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(516, 64);
-            this.panel7.TabIndex = 41;
-            this.panel7.Paint += new System.Windows.Forms.PaintEventHandler(this.panel7_Paint);
-            // 
-            // CompanyName
-            // 
-            this.CompanyName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CompanyName.AutoSize = true;
-            this.CompanyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(179)))));
-            this.CompanyName.Location = new System.Drawing.Point(40, 14);
-            this.CompanyName.Name = "CompanyName";
-            this.CompanyName.Size = new System.Drawing.Size(445, 32);
-            this.CompanyName.TabIndex = 34;
-            this.CompanyName.Text = "TEST BUSINESS ENTERPRISE";
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.materialButton3);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel6.Location = new System.Drawing.Point(153, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(200, 64);
-            this.panel6.TabIndex = 40;
-            // 
-            // materialButton3
-            // 
-            this.materialButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton3.Depth = 0;
-            this.materialButton3.Enabled = false;
-            this.materialButton3.HighEmphasis = true;
-            this.materialButton3.Icon = ((System.Drawing.Image)(resources.GetObject("materialButton3.Icon")));
-            this.materialButton3.Location = new System.Drawing.Point(10, 14);
-            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton3.Name = "materialButton3";
-            this.materialButton3.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton3.Size = new System.Drawing.Size(180, 36);
-            this.materialButton3.TabIndex = 37;
-            this.materialButton3.Text = "Custom message";
-            this.materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton3.UseAccentColor = false;
-            this.materialButton3.UseVisualStyleBackColor = true;
-            this.materialButton3.Click += new System.EventHandler(this.materialButton3_Click);
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.materialButton1);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(153, 64);
-            this.panel5.TabIndex = 39;
-            // 
-            // materialButton1
-            // 
-            this.materialButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton1.Depth = 0;
-            this.materialButton1.HighEmphasis = true;
-            this.materialButton1.Icon = global::Abbey_Trading_Store.Properties.Resources.product;
-            this.materialButton1.Location = new System.Drawing.Point(14, 14);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(125, 36);
-            this.materialButton1.TabIndex = 36;
-            this.materialButton1.Text = "Products";
-            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton1.UseAccentColor = false;
-            this.materialButton1.UseVisualStyleBackColor = true;
-            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
-            // 
-            // pnlform
-            // 
-            this.pnlform.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlform.ForeColor = System.Drawing.Color.White;
-            this.pnlform.Location = new System.Drawing.Point(200, 118);
-            this.pnlform.Name = "pnlform";
-            this.pnlform.Size = new System.Drawing.Size(1130, 592);
-            this.pnlform.TabIndex = 35;
             // 
             // Dashboard
             // 
@@ -697,7 +717,6 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.top_panel.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
@@ -717,6 +736,7 @@
             this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -763,5 +783,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel13;
         private MaterialSkin.Controls.MaterialButton materialButton5;
+        private System.Windows.Forms.Button btnSettings;
     }
 }
