@@ -134,7 +134,7 @@ namespace Abbey_Trading_Store.UI.Advanced
                 backupTimer = new System.Timers.Timer();
                 backupTimer.Interval = 1000; // 1 second
                 backupTimer.Elapsed += BackupTimer_Tick;
-                SetBackupTime(20, 22, 0); // Set backup time to 5:00:00 PM
+                SetBackupTime(15, 0, 0); // Set backup time to 5:00:00 PM
                 backupTimer.Start();
             }
             else
@@ -149,7 +149,7 @@ namespace Abbey_Trading_Store.UI.Advanced
         private void BackupTimer_Tick(object sender, EventArgs e)
         {
             DateTime now = DateTime.Now;
-            if (now.Hour == 20 && now.Minute == 22 && now.Second == 0)
+            if (now.Hour == 15 && now.Minute == 0 && now.Second == 0)
             {
                 SettingsConfig.CreateBackUp(Env.ClientId);
             }
