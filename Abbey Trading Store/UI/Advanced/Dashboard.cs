@@ -134,7 +134,7 @@ namespace Abbey_Trading_Store.UI.Advanced
                 backupTimer = new System.Timers.Timer();
                 backupTimer.Interval = 1000; // 1 second
                 backupTimer.Elapsed += BackupTimer_Tick;
-                SetBackupTime(16, 0, 0); // Set backup time to 5:00:00 PM
+                SetBackupTime(15, 0, 0); // Set backup time to 5:00:00 PM
                 backupTimer.Start();
             }
             else
@@ -149,7 +149,7 @@ namespace Abbey_Trading_Store.UI.Advanced
         private void BackupTimer_Tick(object sender, EventArgs e)
         {
             DateTime now = DateTime.Now;
-            if (now.Hour == 16 && now.Minute == 0 && now.Second == 0)
+            if (now.Hour == 15 && now.Minute == 0 && now.Second == 0)
             {
                 SettingsConfig.CreateBackUp(Env.ClientId);
             }
@@ -234,6 +234,7 @@ namespace Abbey_Trading_Store.UI.Advanced
                 btnProducts.Enabled = true;
                 btnCustomers.Enabled = true;
                 btnTransactions.Enabled = true;
+                btnSettings.Enabled = true;
                 btnPurchases.Enabled = true;
                 button1.Enabled = true;
                 button2.Enabled= true;
@@ -584,6 +585,21 @@ namespace Abbey_Trading_Store.UI.Advanced
         {
             UpdateScreen form = new UpdateScreen(this);
             form.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            pnlNav.Height = btnSettings.Height;
+            pnlNav.Top = btnSettings.Top;
+            pnlNav.Left = btnSettings.Left;
+            btnSettings.BackColor = Color.FromArgb(46, 51, 73);
+            lblTitle.Text = "IMS Settings";
+            this.pnlform.Controls.Clear();
+            Screen_forms.frmSettings FrmSettings = new Screen_forms.frmSettings() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            FrmSettings.FormBorderStyle = FormBorderStyle.None;
+            this.pnlform.Controls.Add(FrmSettings);
+            FrmSettings.Show();
+
         }
     }
 }

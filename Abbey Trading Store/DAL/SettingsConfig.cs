@@ -22,6 +22,12 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Common;
 using System.Net.Http;
+using Azure.Storage.Blobs;
+using Newtonsoft.Json;
+using System.Security.Policy;
+using System.Web;
+using System.Windows.Forms;
+using Cursor = System.Windows.Forms.Cursor;
 
 namespace Abbey_Trading_Store.DAL
 {
@@ -51,7 +57,7 @@ namespace Abbey_Trading_Store.DAL
         public static Settings GetSettings(int id)
         {
             DataTable dt = new DataTable();
-            Settings settings= new Settings();
+            Settings settings = new Settings();
             const string command = "SELECT * FROM Settings";
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
 
@@ -127,7 +133,8 @@ namespace Abbey_Trading_Store.DAL
         }
 
 
-        public static bool UpdateSettings(int id , Settings settings)
+
+        public static bool UpdateSettings(int id, Settings settings)
         {
             bool isSuccess = false;
             SqlConnection conn = new SqlConnection(Env.local_server_database_conn_string);
@@ -160,7 +167,7 @@ namespace Abbey_Trading_Store.DAL
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -175,7 +182,7 @@ namespace Abbey_Trading_Store.DAL
         public static async void Install_update(object sender, AsyncCompletedEventArgs e)
         {
             //form_screen.Hide();
-            
+
             try
             {
                 //Update the current version 
@@ -207,14 +214,14 @@ namespace Abbey_Trading_Store.DAL
                 //Exit the application
                 Application.Exit();
 
-              
+
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         static void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -232,7 +239,7 @@ namespace Abbey_Trading_Store.DAL
             });
         }
 
-        public static async void Download_install_update(UpdateScreen form , MaterialSkin.Controls.MaterialProgressBar progress , Label label)
+        public static async void Download_install_update(UpdateScreen form, MaterialSkin.Controls.MaterialProgressBar progress, Label label)
         {
             form_screen = form;
             progressbar = progress;
@@ -259,7 +266,7 @@ namespace Abbey_Trading_Store.DAL
             handle.WaitOne();
         }
 
-        public static async void RequestForPayment() { 
+        public static async void RequestForPayment() {
 
 
         }
@@ -292,6 +299,7 @@ namespace Abbey_Trading_Store.DAL
 
         public static async void CreateBackUp(string clientId)
         {
+
 
             DeleteFile(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "IMSProd.bak");
 
@@ -330,6 +338,73 @@ namespace Abbey_Trading_Store.DAL
             }
         }
 
+
+        public static string[] GenerateRandomCombinations(int count, int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>?";
+
+            string[] combinations = new string[count];
+
+            var random = new Random();
+
+            for (int i = 0; i < count; i++)
+            {
+                var sb = new StringBuilder(length);
+
+                for (int j = 0; j < length; j++)
+                {
+                    sb.Append(chars[random.Next(chars.Length)]);
+                }
+
+                combinations[i] = sb.ToString();
+            }
+
+            return combinations;
+        }
+
+
+
+        public static async Task<(string uri , long size)> UploadFileToAzure(string filePath , string blobName)
+        {
+            // Azure Storage connection string
+            string connectionString = "DefaultEndpointsProtocol=https;AccountName=imsbackups;AccountKey=9+/oR8w0B/8ckTq5wTxQnCTkR+Zd2nD0hc8EE/1pzLBNQQgCJ7/GdKf2Ye0hYLLktNDvViIj4mfn+AStKozyoA==;EndpointSuffix=core.windows.net";
+
+            // Name of the container
+            string containerName = "backups";
+
+            
+            try
+            {
+                // Create a BlobServiceClient
+                BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+
+                // Get a reference to the container
+                BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
+
+                // Ensure the container exists
+                await containerClient.CreateIfNotExistsAsync();
+
+                // Get a reference to the blob
+                BlobClient blobClient = containerClient.GetBlobClient(blobName);
+
+                // Upload the file
+                FileStream fileStream = File.OpenRead(filePath);
+                await blobClient.UploadAsync(fileStream, overwrite: true);
+
+                var properties = await blobClient.GetPropertiesAsync();
+
+                Console.WriteLine($"File uploaded to blob: {blobClient.Uri}");
+
+                return (blobClient.Uri.ToString() , properties.Value.ContentLength );
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return ("" , 0);
+            }
+
+        }
+
         public static async void UploadBackUp(string clientId)
         {
             using (HttpClient client = new HttpClient())
@@ -337,17 +412,31 @@ namespace Abbey_Trading_Store.DAL
                 using (MultipartFormDataContent formData = new MultipartFormDataContent())
                 {
                     string backupFilePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/IMSProd.bak";
-                    byte[] fileBytes = File.ReadAllBytes(backupFilePath);
-                    formData.Add(new ByteArrayContent(fileBytes), "file", Path.GetFileName(backupFilePath));
+
+
+                    string UniqueBackUpKey = GenerateRandomCombinations(1, 10)[0];
+
+                    string blobName = Path.GetFileName(backupFilePath);
+
+                    blobName = UniqueBackUpKey + "@" + blobName;
+
+
+                    var (uploaded_uri , backupSize) = await UploadFileToAzure(backupFilePath , blobName);
+
 
                     formData.Add(new StringContent(clientId), "ClientID");
+                    formData.Add(new StringContent(blobName), "Name");
+                    formData.Add(new StringContent(uploaded_uri), "Backup");
+                    formData.Add(new StringContent(backupSize.ToString()), "Size");
+                    formData.Add(new StringContent("0"), "Bill");
+
 
                     HttpResponseMessage response = await client.PostAsync(Env.OrgUrl + "/backups", formData);
 
                     if (response.IsSuccessStatusCode)
                     {
                         Console.WriteLine("Backup file uploaded successfully.");
-
+                        MessageBox.Show("System BackUp completed successfully");
                         DeleteFile(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "IMSProd.bak");
 
                     }
@@ -360,11 +449,81 @@ namespace Abbey_Trading_Store.DAL
             }
         }
 
+        public static async Task<dynamic> GetBillsByBillId(string billId)
+        {
+
+            try
+            {
+
+                HttpClient client = new HttpClient();
+
+                string requestUri = Env.OrgUrl + "/backups/bill/" + billId;
+
+                HttpResponseMessage response = await client.GetAsync(requestUri);
+
+                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
+                {
+                    dynamic response_content = await response.Content.ReadAsStringAsync();
+                    dynamic deserialized = JsonConvert.DeserializeObject(response_content);
+                    return deserialized;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+
+
+        }
+
+
+
+        public static async Task<dynamic> GetBackupsByClientId(string clientId)
+        {
+
+            try
+            {
+
+                HttpClient client = new HttpClient();
+
+                string requestUri = Env.OrgUrl + "/backups/client/" + clientId;
+
+                HttpResponseMessage response = await client.GetAsync(requestUri);
+
+                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
+                {
+                    dynamic response_content = await response.Content.ReadAsStringAsync();
+                    dynamic deserialized = JsonConvert.DeserializeObject(response_content);
+                    return deserialized;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+
+            
+        }
 
 
 
 
-        
+
+
 
 
     }

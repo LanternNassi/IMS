@@ -333,6 +333,26 @@ namespace Abbey_Trading_Store.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mechanical_gears_ {
+            get {
+                object obj = ResourceManager.GetObject("mechanical-gears-", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mechanical_gears___2_ {
+            get {
+                object obj = ResourceManager.GetObject("mechanical-gears- (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap money_bag {
             get {
                 object obj = ResourceManager.GetObject("money_bag", resourceCulture);

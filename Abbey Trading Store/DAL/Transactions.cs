@@ -28,8 +28,7 @@ namespace Abbey_Trading_Store.DAL
         private int grandTotal;
         private DateTime transaction_date;
         private int discount;
-        private string added_by;
-        private int return_amount;
+        private string added_by;        private int return_amount;
         private int paid_amount;
         private int total_profit;
         private string paid;
