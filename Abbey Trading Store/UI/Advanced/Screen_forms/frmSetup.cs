@@ -584,8 +584,31 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             string filePath = "https://www.almsysinc.com/soft/files/microsoft/SQLEXPR_x64_ENU_2012.exe";
             //string filePath = " https://download.microsoft.com/download/3/8/d/38de7036-2433-4207-8eae-06e247e17b25/SQLEXPR_x64_ENU.exe";
             //string filePath = "http://127.0.0.1:8080/SQLEXPR_x86_ENU_2012.exe";
+            
             var files = filePath.Split('/');
-            pathUser = pathUser + @"/" + files[files.Count() - 1];
+            string fileName = files[files.Count() - 1];
+            pathUser = pathUser + @"/" + fileName;
+            
+            // Check if SQL Server file already exists in Documents folder
+            if (File.Exists(pathUser))
+            {
+                FileInfo fileInfo = new FileInfo(pathUser);
+                if (fileInfo.Length > 0)
+                {
+                    Console.WriteLine("SQL server file already exists with valid size. Proceeding to installation...");
+                    // File exists and has valid size, proceed directly to installation
+                    Client_DownloadFileCompleted(null, new AsyncCompletedEventArgs(null, false, null));
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("SQL server file exists but has zero size. Re-downloading...");
+                    // Delete the invalid file and proceed with download
+                    File.Delete(pathUser);
+                }
+            }
+            
+            // File doesn't exist or was invalid, proceed with download
             wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(Client_DownloadProgressChanged);
             wc.DownloadFileCompleted += new AsyncCompletedEventHandler(Client_DownloadFileCompleted);
             Console.WriteLine("Downloading SQL server file....");
@@ -600,7 +623,7 @@ namespace Abbey_Trading_Store.UI.Advanced.Screen_forms
             this.Dat_action.Visible = true;
             string pathUser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             Console.WriteLine("Installing SQL server file....");
-            string new_path = pathUser + @"\SQLEXPR_x86_ENU_2012.exe";
+            string new_path = pathUser + @"\SQLEXPR_x64_ENU_2012.exe"; // Fixed filename to match download
             P_b_2.Value = 10;
             Process processobj = Process.Start(new_path, @"/q /Action=Install /IACCEPTSQLSERVERLICENSETERMS /Hideconsole /Features=SQLEngine /InstanceName=SQLSERVER2012 /UPDATEENABLED=false /SQLSYSADMINACCOUNTS=""NT AUTHORITY\SYSTEM"" /SQLSVCACCOUNT=""NT AUTHORITY\SYSTEM"" /BROWSERSVCSTARTUPTYPE=""Automatic""");
             processobj.WaitForExit();
